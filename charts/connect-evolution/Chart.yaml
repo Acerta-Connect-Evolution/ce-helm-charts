@@ -1,0 +1,43 @@
+apiVersion: v2
+appVersion: '1.0'
+description: Helm chart for connect evolution application
+name: connect-evolution
+type: application
+version: 1.14.3
+dependencies:
+  - name: ce-calendar-timespend-backend
+    version: 1.41.4
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-calendar-timespend-backend.enabled
+  - name: ce-calendar-timespend-frontend
+    version: 0.27.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-calendar-timespend-frontend.enabled
+  - name: connect-backend
+    version: 0.0.24
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: connect-backend.enabled
+  - name: connect-frontend
+    version: 0.3.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: connect-frontend.enabled
+  - name: mssql-latest
+    version: 0.2.1
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: mssql-latest.enabled
+  - name: elasticsearch
+    version: 7.14.0
+    repository: https://helm.elastic.co
+    condition: elasticsearch.enabled
+  - name: pulsar-standalone
+    version: 1.0.7
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: pulsar-standalone.enabled
+  - name: flink
+    version: 0.2.3
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: flink.enabled
+  - name: ce-calendar-connect-adapter-flink-jobs
+    version: 0.23.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-calendar-connect-adapter-flink-jobs.enabled

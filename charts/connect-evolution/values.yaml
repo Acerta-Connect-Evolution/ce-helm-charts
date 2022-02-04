@@ -1,0 +1,34 @@
+ce-calendar-timespend-backend:
+  enabled: true
+  axon-server:
+    enabled: true
+
+ce-calendar-timespend-frontend:
+  enabled: true
+
+connect-backend:
+  enabled: true
+
+connect-frontend:
+  enabled: true
+
+mssql-latest:
+  enabled: false
+
+elasticsearch:
+  enabled: false
+  image: nexus.global.dns:8443/acerta-dev/elasticsearch
+  imageTag: 7.15.0
+  replicas: 1
+  minimumMasterNodes: 1
+  volumeClaimTemplate.resources.requests.storage: 1Gi
+  sysctlInitContainer.enabled: false
+
+pulsar-standalone:
+  enabled: false
+
+flink:
+  enabled: false
+
+ce-calendar-connect-adapter-flink-jobs:
+  enabled: false
