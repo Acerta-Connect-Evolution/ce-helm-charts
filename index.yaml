@@ -9,4 +9,195 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-connect-adapter-flink-jobs-0.23.0/ce-calendar-connect-adapter-flink-jobs-0.23.0.tgz
     version: 0.23.0
-generated: "2022-02-04T12:44:46.316769096Z"
+  ce-calendar-timespend-backend:
+  - apiVersion: v2
+    appVersion: 1.36.0
+    created: "2022-02-04T12:47:15.121029418Z"
+    dependencies:
+    - condition: axon-server.enabled
+      name: axon-server
+      repository: https://jdlabsco.github.io/axon-server-helm/repo
+      version: 0.0.2
+    description: Helm chart for ce-calendar-timespend-backend
+    digest: 336c8984a770c936080b2183395cedb71a3d271328690f346cfdacb6e66cc7ec
+    name: ce-calendar-timespend-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.41.4/ce-calendar-timespend-backend-1.41.4.tgz
+    version: 1.41.4
+  ce-calendar-timespend-frontend:
+  - apiVersion: v2
+    appVersion: 1.24.0
+    created: "2022-02-04T12:47:15.274325726Z"
+    description: Helm chart for ce-calendar-timespend-frontend
+    digest: f1e649c71b95f9914a8edc2256b490634f2ad68ddd8fd7bd0a5cdf7ad99629c7
+    name: ce-calendar-timespend-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-frontend-0.27.0/ce-calendar-timespend-frontend-0.27.0.tgz
+    version: 0.27.0
+  connect-backend:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-02-04T12:47:15.464629029Z"
+    description: Connect Backend aka DICCO
+    digest: ba41b32dc72e4a8fef1079721bbc11689c69b9061081565e6d36cbe4bde27473
+    name: connect-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-backend-0.0.25/connect-backend-0.0.25.tgz
+    version: 0.0.25
+  connect-frontend:
+  - apiVersion: v2
+    appVersion: 21.14.0
+    created: "2022-02-04T12:47:15.621575756Z"
+    description: A Helm chart for Connect UI
+    digest: ebbcd687c9df1b319d3a754e6fa90d408b263420ca4060c39361b7463e49ee64
+    name: connect-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-frontend-0.3.0/connect-frontend-0.3.0.tgz
+    version: 0.3.0
+  elasticsearch:
+  - apiVersion: v1
+    appVersion: 7.15.0
+    created: "2022-02-04T12:47:15.765932317Z"
+    description: Official Elastic helm chart for Elasticsearch
+    digest: d11e5f3f15ea7e8345112b735558403c13c9a56f0d4b79c6708c8794a738e930
+    home: https://github.com/elastic/helm-charts
+    icon: https://helm.elastic.co/icons/elasticsearch.png
+    maintainers:
+    - email: helm-charts@elastic.co
+      name: Elastic
+    name: elasticsearch
+    sources:
+    - https://github.com/elastic/elasticsearch
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/elasticsearch-7.15.0/elasticsearch-7.15.0.tgz
+    version: 7.15.0
+  flink:
+  - apiVersion: v1
+    appVersion: 1.11.2
+    created: "2022-02-04T12:47:15.903738044Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: https://charts.helm.sh/incubator
+      version: 2.0.0
+    description: Chart for Apache Flink
+    digest: ebc0e4bce0d6f36101d461fd52dd1aa26e4b831e197b57ef8d2c2ffaba22597e
+    home: https://github.com/riskfocus/helm-charts-public
+    maintainers:
+    - email: charts-maintainers@riskfocus.com
+      name: charts-maintainers
+    name: flink
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/flink-0.2.3/flink-0.2.3.tgz
+    version: 0.2.3
+  flink-client:
+  - apiVersion: v2
+    appVersion: "1.1"
+    created: "2022-02-04T12:47:16.046098994Z"
+    description: Helm chart for Flink Client
+    digest: 62f412a9f7d913212824072b77135aaef259e4ae274954538921b29fa676c178
+    name: flink-client
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/flink-client-1.1.0/flink-client-1.1.0.tgz
+    version: 1.1.0
+  gabschart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-02-04T12:47:16.209060853Z"
+    description: A Helm chart for Kubernetes
+    digest: 93c774357fa2309df65413f5293026281e074ebce4c768e75c2db9ecd0db8a8c
+    name: gabschart
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/gabschart-14.0.0/gabschart-14.0.0.tgz
+    version: 14.0.0
+  kafdrop:
+  - apiVersion: v1
+    appVersion: 3.27.0
+    created: "2022-02-04T12:47:16.36216936Z"
+    description: Kafdrop helm chart
+    digest: f7f2f8b905d54260885047ea9215cacf0b81641d69a66cf89deb26c919cab4fd
+    name: kafdrop
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/kafdrop-0.1.0/kafdrop-0.1.0.tgz
+    version: 0.1.0
+  mssql-latest:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-02-04T12:47:16.53858339Z"
+    description: MS SQL Server 2019
+    digest: cfb3e268c9de361998054fec1027aeb73f5ce68d5d9b9bf2cc51ae1c57c483dd
+    name: mssql-latest
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/mssql-latest-0.2.1/mssql-latest-0.2.1.tgz
+    version: 0.2.1
+  mssql-linux:
+  - apiVersion: v1
+    appVersion: 14.0.3023.8
+    created: "2022-02-04T12:47:16.706363475Z"
+    description: SQL Server 2017 Linux Helm Chart
+    digest: f0697970ee6ee3683f3817d67a3804a8faf40e2f76f5a0c8853e38b4992302e7
+    home: https://hub.docker.com/r/microsoft/mssql-server-linux/
+    icon: https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1I4Dx
+    maintainers:
+    - email: tliddle30@gmail.com
+      name: thomasliddledba
+    - email: winromulus@winromulus.com
+      name: winromulus
+    name: mssql-linux
+    sources:
+    - https://hub.docker.com/r/microsoft/mssql-server-linux/
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/mssql-linux-0.11.2/mssql-linux-0.11.2.tgz
+    version: 0.11.2
+  pact-broker:
+  - apiVersion: v2
+    appVersion: "1.0"
+    condition: postgresql.enabled
+    created: "2022-02-04T12:47:16.877551877Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.16.1
+    description: Helm chart for Pact Broker
+    digest: c5729c4843a27984e771fced57e7c8cb70db37468dd3d337769933f0cdc0dd37
+    name: pact-broker
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pact-broker-2.0.3/pact-broker-2.0.3.tgz
+    version: 2.0.3
+  pulsar:
+  - apiVersion: v1
+    appVersion: 2.7.2
+    created: "2022-02-04T12:47:17.037568421Z"
+    description: Apache Pulsar Helm chart for Kubernetes
+    digest: e211ab232fb5ddfcb02c11b039f3d72462da57e3ab243d3c901c6bb731602b3b
+    home: https://pulsar.apache.org
+    icon: http://pulsar.apache.org/img/pulsar.svg
+    maintainers:
+    - email: dev@pulsar.apache.org
+      name: The Apache Pulsar Team
+    name: pulsar
+    sources:
+    - https://github.com/apache/pulsar
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-2.7.5/pulsar-2.7.5.tgz
+    version: 2.7.5
+  pulsar-standalone:
+  - apiVersion: v2
+    appVersion: "1.5"
+    created: "2022-02-04T12:47:17.186882708Z"
+    description: Helm chart for Pulsar Standalone
+    digest: c2adf12a9b23426c73db6912ccbb48b1827c0004d6e2c1d71fadf5dc33469efd
+    name: pulsar-standalone
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
+    version: 1.0.7
+generated: "2022-02-04T12:47:17.186890408Z"
