@@ -1,0 +1,79 @@
+{{- /* @formatter:off */}}
+  {{- $fullName := include "mychart.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "mychart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "mychart.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "mychart.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/bash
+            - -c
+            - /pulsar/bin/init.sh & bin/pulsar standalone
+          ports:
+            - containerPort: 6650
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: DEBEZIUM_DATABASE_DBNAME
+              value: {{ .Values.env.debezium.database.dbname }}
+            - name: DEBEZIUM_CONFIGS_DATABASE_HOSTNAME
+              value: {{ .Values.env.debezium.configs.database.hostname }}
+            - name: DEBEZIUM_CONFIGS_DATABASE_PORT
+              value: "{{ .Values.env.debezium.configs.database.port }}"
+            - name: DEBEZIUM_CONFIGS_DATABASE_USER
+              value: {{ .Values.env.debezium.configs.database.user }}
+            - name: DEBEZIUM_CONFIGS_DATABASE_PASSWORD
+              value: {{ .Values.env.debezium.configs.database.password }}
+            - name: DEBEZIUM_CONFIGS_DATABASE_DBNAME
+              value: {{ .Values.env.debezium.configs.database.dbname }}
+            - name: DEBEZIUM_CONFIGS_DATABASE_SERVER_NAME
+              value: {{ .Values.env.debezium.configs.database.server.name }}
+            - name: DEBEZIUM_CONFIGS_DATABASE_TABLE_INCLUDE_LIST
+              value: {{ .Values.env.debezium.configs.database.table.include.list }}
+            - name: DEBEZIUM_CONFIGS_SNAPSHOT_MODE
+              value: {{ .Values.env.debezium.configs.snapshot.mode }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

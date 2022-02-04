@@ -1,0 +1,48 @@
+agent:
+  enabled: true
+
+replicas: 1
+
+image:
+  repository: mcr.microsoft.com/mssql/server
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "2019-latest"
+
+ACCEPT_EULA:
+    value: "y"
+MSSQL_PID:
+    value: "Developer"
+MSSQL_AGENT_ENABLED:
+    value: "true"
+hostname: mssqllatest
+sa_password: "Admin123"
+existingSecret: ""
+existingSecretKey: sapassword
+
+containers:
+  ports:
+      containerPort: 1433
+
+podAnnotations: {}
+
+podSecurityContext:
+  fsGroup: 10001
+
+service:
+  type: LoadBalancer
+  port: 1433
+
+persistence:
+  storageClass: ""
+  dataAccessMode: ReadWriteOnce
+  dataSize: 1Gi
+  userlogaccessMode: ReadWriteOnce
+  userlogsize: 1Gi
+  userlogSeparateClaim: true
+  tempdbaccessMode: ReadWriteOnce
+  tempsize: 1Gi
+  tempSeparateClaim: true
+  userdbaccessMode: ReadWriteOnce
+  userdbsize: 1Gi
+  userdbSeparteClaim: true

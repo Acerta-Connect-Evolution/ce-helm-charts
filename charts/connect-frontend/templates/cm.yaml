@@ -1,0 +1,2821 @@
+# https://carlos.mendible.com/2019/02/10/kubernetes-mount-file-pod-with-configmap/
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "connectfrontend.fullname" . }}
+  labels:
+    {{- include "connectfrontend.labels" . | nindent 4 }}
+data:
+  CSD.xml: |
+    <?xml version="1.0"?>
+    <table>
+        <record>
+            <CSDKey>DB2ACERTABLOB</CSDKey>
+            <CMDKey>DB2CMD</CMDKey>
+            <ConnectorType>JDBC</ConnectorType>
+            <Brand>MSSQL</Brand>
+            <DatabaseName>DICCOBLOB</DatabaseName>
+            <Description>MS SQL Server blobs</Description>
+            <DriverName>com.microsoft.sqlserver.jdbc.SQLServerDriver</DriverName>
+            <DriverNameShort>sqlserver</DriverNameShort>
+            <ErrorCountThreshold>5</ErrorCountThreshold>
+            <HostName>sqldiccoblob.global.dns</HostName>
+            <PortNumber>1433</PortNumber>
+            <Status>on</Status>
+            <Type>TYPE_SELECT</Type>
+            <User>diccoblob_user</User>
+            <Password>JGRFUrdiFYG9Ooh6543546U4ed</Password>
+        </record>
+        <record>
+            <CSDKey>DB2ACERTAL4</CSDKey>
+            <CMDKey>DB2CMD</CMDKey>
+            <ConnectorType>JDBC</ConnectorType>
+            <Brand>DB2</Brand>
+            <DatabaseName>BEBBCM_SDTG</DatabaseName>
+            <Description>Acerta L4 mainframe</Description>
+            <DriverName>com.ibm.db2.jcc.DB2Driver</DriverName>
+            <DriverNameShort>db2j:net</DriverNameShort>
+            <ErrorCountThreshold>5</ErrorCountThreshold>
+            <HostName>mfsspg.global.dns</HostName>
+            <PortNumber>446</PortNumber>
+            <Status>on</Status>
+            <Type>TYPE_SELECT</Type>
+            <UidPwd>o49Vo-eEymR07bL1oBmlbzYg</UidPwd>
+        </record>
+        <record>
+            <CSDKey>DB2ACERTASP</CSDKey>
+            <CMDKey>DB2CMD</CMDKey>
+            <ConnectorType>JDBC</ConnectorType>
+            <Brand>MSSQL</Brand>
+            <DatabaseName>DICCOBLOB</DatabaseName>
+            <Description>MSSQL blob insert for Acerta internal</Description>
+            <DriverName>com.microsoft.sqlserver.jdbc.SQLServerDriver</DriverName>
+            <DriverNameShort>sqlserver</DriverNameShort>
+            <ErrorCountThreshold>5</ErrorCountThreshold>
+            <HostName>sqldiccoblob.global.dns</HostName>
+            <PortNumber>1433</PortNumber>
+            <Status>on</Status>
+            <Type>TYPE_STORED_PROCEDURE</Type>
+            <User>diccoblob_user</User>
+            <Password>JGRFUrdiFYG9Ooh6543546U4ed</Password>
+        </record>
+        <record>
+            <CSDKey>RestCSD</CSDKey>
+            <CMDKey>RestCMD</CMDKey>
+            <ConnectorType>REST</ConnectorType>
+            <Description>Test</Description>
+            <ErrorCountThreshold>10</ErrorCountThreshold>
+            <HostName>connect-backend-calendar-timespend-tst</HostName>
+            <PortNumber>8080</PortNumber>
+            <Path>/dicco-rest/executepim</Path>
+            <Status>on</Status>
+            <UidPwd/>
+        </record>
+        <record>
+            <CSDKey>RestImportCSD</CSDKey>
+            <CMDKey>RestCMD</CMDKey>
+            <ConnectorType>REST</ConnectorType>
+            <Description>Test</Description>
+            <ErrorCountThreshold>10</ErrorCountThreshold>
+            <HostName></HostName>
+            <PortNumber>80</PortNumber>
+            <Path>/dicco-rest/executepim</Path>
+            <Status>on</Status>
+            <UidPwd/>
+        </record>
+        <record>
+            <CSDKey>SCRIPTURACSD</CSDKey>
+            <CMDKey>SCRIPTURACMD</CMDKey>
+            <ConnectorType>HTTP</ConnectorType>
+            <Description></Description>
+            <ErrorCountThreshold>20</ErrorCountThreshold>
+            <HostName>scripturaforms.global.dns</HostName>
+            <PortNumber>13542</PortNumber>
+            <Protocol>http</Protocol>
+            <Status>on</Status>
+            <User></User>
+        </record>
+    </table>
+  ehcache.xml: |
+    <ehcache>
+        <cache name="costCenterCache"
+               maxElementsInMemory="1000"
+               eternal="false"
+               timeToIdleSeconds="3600"
+               timeToLiveSeconds="3600"
+               memoryStoreEvictionPolicy="LRU"
+               transactionalMode="off"
+               diskPersistent="false">
+        </cache>
+
+        <cache name="basicLoonCodeCache"
+               maxElementsInMemory="1000"
+               eternal="false"
+               timeToIdleSeconds="3600"
+               timeToLiveSeconds="3600"
+               memoryStoreEvictionPolicy="LRU"
+               transactionalMode="off"
+               diskPersistent="false">
+        </cache>
+
+        <cache name="basicPresenceAbsenceCodeCache"
+               maxElementsInMemory="1000"
+               eternal="false"
+               timeToIdleSeconds="3600"
+               timeToLiveSeconds="3600"
+               memoryStoreEvictionPolicy="LRU"
+               transactionalMode="off"
+               diskPersistent="false">
+        </cache>
+
+        <cache name="menuCache"
+               maxElementsInMemory="10"
+               eternal="false"
+               timeToIdleSeconds="3600"
+               timeToLiveSeconds="3600"
+               memoryStoreEvictionPolicy="LRU"
+               transactionalMode="off"
+               diskPersistent="false">
+        </cache>
+
+        <defaultCache
+                maxElementsInMemory="10000"
+                eternal="false"
+                timeToIdleSeconds="120"
+                timeToLiveSeconds="120"
+                overflowToDisk="true"
+                maxElementsOnDisk="10000000"
+                diskPersistent="false"
+                diskExpiryThreadIntervalSeconds="120"
+                memoryStoreEvictionPolicy="LRU"
+        />
+
+    </ehcache>
+  KEY.xml: |
+    <table>
+    	<record>
+    		<LOGTPSKD>BDP09</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BDP09</THDKey>
+    		<Description>Menu</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BDP11</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BDP11</THDKey>
+    		<Description>Authorization</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BDP13</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BDP13</THDKey>
+    		<Description>Authentication</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BFP21</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BFP21</THDKey>
+    		<Description>Approval</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BFP23</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BFP23</THDKey>
+    		<Description>Approval</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BOP21</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BOP21</THDKey>
+    		<Description>IAM User profile</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BOP23</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BOP23</THDKey>
+    		<Description>IAM Module</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BOP25</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BOP25</THDKey>
+    		<Description>IAM User profile</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BOP27</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BOP27</THDKey>
+    		<Description>IAM Party</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BOP41</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BOP41</THDKey>
+    		<Description>IAM Security</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BOP47</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BOP47</THDKey>
+    		<Description>IAM Security</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P07</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P07</THDKey>
+    		<Description>Employee Search</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P05</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P05</THDKey>
+    		<Description>Create Employee</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P01</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P01</THDKey>
+    		<Description>Employee Read</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P03</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P03</THDKey>
+    		<Description>Employee Update BankAccount</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP21</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP21</THDKey>
+    		<Description>Salary</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP31</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP31</THDKey>
+    		<Description>Salary Processing</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP35</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP35</THDKey>
+    		<Description>Salary Processing</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP33</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP33</THDKey>
+    		<Description>Steering Group</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP53</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP53</THDKey>
+    		<Description>Fiscal External Declaration</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP71</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP71</THDKey>
+    		<Description>Repertory Consult</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP73</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP73</THDKey>
+    		<Description>Repertory Detail Consult</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP77</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP77</THDKey>
+    		<Description>Repertory Detail Consult</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP81</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP81</THDKey>
+    		<Description>Timeline</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP87</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP87</THDKey>
+    		<Description>Errors</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P13</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P13</THDKey>
+    		<Description>Employer search</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P15</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P15</THDKey>
+    		<Description>Employer configurate</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P17</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P17</THDKey>
+    		<Description>Employer configurate</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P19</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P19</THDKey>
+    		<Description>Employer configurate</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P49</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P49</THDKey>
+    		<Description>Employer configurate</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P11</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P11</THDKey>
+    		<Description>Employer retrieve</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P55</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P55</THDKey>
+    		<Description>Employer retrieve service receiver</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P57</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P57</THDKey>
+    		<Description>Employer retrieve NOSS</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P59</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P59</THDKey>
+    		<Description>Employer retrieve Joint Committee</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P61</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P61</THDKey>
+    		<Description>Employer retrieve Child Benefit Fund</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P63</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P63</THDKey>
+    		<Description>Employer retrieve Steeringgroup</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P65</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P65</THDKey>
+    		<Description>Employer retrieve Insurance</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P67</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P67</THDKey>
+    		<Description>Employer retrieve AccountOrganisation - InvoicingGroup</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P41</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P41</THDKey>
+    		<Description>Employer custom fields</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P43</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P43</THDKey>
+    		<Description>Employer custom fields</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P51</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P51</THDKey>
+    		<Description>Employer payment schedules</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P53</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P53</THDKey>
+    		<Description>Employer salary scales on joint committee</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P69</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P69</THDKey>
+    		<Description>Employer salary scales</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P85</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P85</THDKey>
+    		<Description>Employer exploitation point</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P87</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P87</THDKey>
+    		<Description>Employer Official and Custom Salary Scales</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P93</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P93</THDKey>
+    		<Description>Employer LCI bank accounts</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P89</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P89</THDKey>
+    		<Description>Cor data retrieval</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP85</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP85</THDKey>
+    		<Description>Cor data retrieval</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P75</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P75</THDKey>
+    		<Description>Employee ESS Standin</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P71</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P71</THDKey>
+    		<Description>Employee ESS overview</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P73</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P73</THDKey>
+    		<Description>Employee ESS update</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P77</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P77</THDKey>
+    		<Description>Employee ESS data</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP03</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP03</THDKey>
+    		<Description>Presence And Absence Individual Adjustment</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP11</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP11</THDKey>
+    		<Description>Presence And Absence Workschedule Overview</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP13</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP13</THDKey>
+    		<Description>Presence And Absence Counterdefinition</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP15</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP15</THDKey>
+    		<Description>Presence And Absence Collective Overview</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP17</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP17</THDKey>
+    		<Description>Presence And Absence Calendar</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP19</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP19</THDKey>
+    		<Description>Presence And Absence Counter</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP07</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP07</THDKey>
+    		<Description>Presence And Absence Cascade</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP01</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP01</THDKey>
+    		<Description>Presence And Absence Presence AbsenceCodes</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P21</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P21</THDKey>
+    		<Description>Employment Contract Update</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P23</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P23</THDKey>
+    		<Description>Employment Contract Retrieve</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P25</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P25</THDKey>
+    		<Description>Employment Contract Comboxes</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P27</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P27</THDKey>
+    		<Description>Employment Contract Search</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1PA1</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1PA1</THDKey>
+    		<Description>Employment Contract Search Launchpad</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P31</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P31</THDKey>
+    		<Description>Employment Contract Create - Search Persons</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P33</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P33</THDKey>
+    		<Description>Employment Contract Retrieve</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P35</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P35</THDKey>
+    		<Description>Employment Contract Update</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P37</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P37</THDKey>
+    		<Description>Employment Contract Copy</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1PA7</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1PA7</THDKey>
+    		<Description>Employment Contract migrate for DPP</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P39</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P39</THDKey>
+    		<Description>Employment Online Report In OUT</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP51</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP51</THDKey>
+    		<Description>Frontier Workers Search</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP77</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP77</THDKey>
+    		<Description>Repertory Detail Consult</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P29</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P29</THDKey>
+    		<Description>Employment Contract Create</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP35</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP35</THDKey>
+    		<Description>Processed Calendar</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP37</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP37</THDKey>
+    		<Description>Smartcounters</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP89</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP89</THDKey>
+    		<Description>Convert Data</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP09</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP09</THDKey>
+    		<Description>Calendar report</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP39</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP39</THDKey>
+    		<Description>Processed salary report</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1PA3</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1PA3</THDKey>
+    		<Description>Employee NOSS category update</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1PA5</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1PA5</THDKey>
+    		<Description>Employee NOSS category save</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B2P21</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B2P21</THDKey>
+    		<Description>Ordersystem</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B2P23</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B2P23</THDKey>
+    		<Description>Ordersystem</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B2P25</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B2P25</THDKey>
+    		<Description>Ordersystem</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BAP36</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BAP36</THDKey>
+    		<Description>Party Search 32K</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BAP35</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BAP35</THDKey>
+    		<Description>Party Search</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BAP43</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BAP43</THDKey>
+    		<Description>Organisation unit search</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BAP53</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BAP53</THDKey>
+    		<Description>Party Search</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BAP61</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BAP61</THDKey>
+    		<Description>Poa - Volmachtenbeheer</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPA1</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPA1</THDKey>
+    		<Description>Chart of accounts</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPA3</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPA3</THDKey>
+    		<Description>Processing approach</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPA5</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPA5</THDKey>
+    		<Description>Processing approach Errors</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPC1</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPC1</THDKey>
+    		<Description>Dimona</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPC3</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPC3</THDKey>
+    		<Description>Dimona</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPC5</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPC5</THDKey>
+    		<Description>Dimona</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B2P41</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B2P41</THDKey>
+    		<Description>Afspraken</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPB1</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPB1</THDKey>
+    		<Description>Parametersysteem</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPB3</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPB3</THDKey>
+    		<Description>Parametersysteem</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPB5</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPB5</THDKey>
+    		<Description>Parametersysteem</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP51</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP51</THDKey>
+    		<Description>Salary Tax</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP53</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP53</THDKey>
+    		<Description>Salary Tax</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP55</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP55</THDKey>
+    		<Description>Salary Tax</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P45</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P45</THDKey>
+    		<Description>Groups Criterion Type</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P47</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P47</THDKey>
+    		<Description>Groups</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P81</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P81</THDKey>
+    		<Description>Group Adjustments</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P83</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P83</THDKey>
+    		<Description>Group Adjustments Create</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BFP05</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BFP05</THDKey>
+    		<Description>Code</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP75</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP75</THDKey>
+    		<Description>Repertory Acerta Consult</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP79</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP79</THDKey>
+    		<Description>Aggregations</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BFP25</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BFP25</THDKey>
+    		<Description>Ess Configuration</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BFP27</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BFP27</THDKey>
+    		<Description>Ess Employee Data</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BFP23</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BFP23</THDKey>
+    		<Description>ESS Request Approval</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP05</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP05</THDKey>
+    		<Description>ESS Presence And Absence</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP25</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP25</THDKey>
+    		<Description>ESS Expenses</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BBP13</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BBP13</THDKey>
+    		<Description>IAM Portal Applications</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BBP15</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BBP15</THDKey>
+    		<Description>IAM Portal Links</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BRP11</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BRP11</THDKey>
+    		<Description>Attachments</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BRP13</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BRP13</THDKey>
+    		<Description>Attachments</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BRP15</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BRP15</THDKey>
+    		<Description>Attachments</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B2P31</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B2P31</THDKey>
+    		<Description>IXS</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B2P33</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B2P33</THDKey>
+    		<Description>IXS</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B2P35</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B2P35</THDKey>
+    		<Description>IXS</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPD1</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPD1</THDKey>
+    		<Description>Signals</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPD3</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPD3</THDKey>
+    		<Description>Signals</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPD5</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPD5</THDKey>
+    		<Description>Comments</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPD7</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPD7</THDKey>
+    		<Description>Comments</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVPD9</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVPD9</THDKey>
+    		<Description>Signals</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P91</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P91</THDKey>
+    		<Description>Model Documents</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>B1P99</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>B1P99</THDKey>
+    		<Description>Health Check Page</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>BVP83</LOGTPSKD>
+    		<ConnectorType>REST</ConnectorType>
+    		<PoolKey>RestPool</PoolKey>
+    		<ISDKey>RestISD</ISDKey>
+    		<THDKey>BVP83</THDKey>
+    		<Description>Multiple Error messages</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>DB2ACERTASP</LOGTPSKD>
+    		<ConnectorType>JDBC</ConnectorType>
+    		<PoolKey>DB2ACERTASPPool</PoolKey>
+    		<ISDKey>DB2ACERTASPISD</ISDKey>
+    		<THDKey>DB2ACERTASP</THDKey>
+    		<Description>DB2 BLOB</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>ACERTABLOB</LOGTPSKD>
+    		<ConnectorType>JDBC</ConnectorType>
+    		<PoolKey>DB2ACERTABLOBPool1</PoolKey>
+    		<ISDKey>DB2ACERTABLOB</ISDKey>
+    		<THDKey>ACERTABLOB</THDKey>
+    		<Description>DB2 BLOB</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>DB2ACERTAL4</LOGTPSKD>
+    		<ConnectorType>JDBC</ConnectorType>
+    		<PoolKey>DB2ACERTAL4Pool1</PoolKey>
+    		<ISDKey>DB2ACERTAL4</ISDKey>
+    		<THDKey>DB2ACERTAL4</THDKey>
+    		<Description>Acerta L4 mainframe</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>FI_AGF_GET_INVOICES</LOGTPSKD>
+    		<ConnectorType>SOAP</ConnectorType>
+    		<PoolKey>SAPPool</PoolKey>
+    		<ISDKey>SAPISD</ISDKey>
+    		<THDKey>FI_AGF_GET_INVOICES</THDKey>
+    		<Description>SAP Invoice</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>DOF_GET_DOCUMENT</LOGTPSKD>
+    		<ConnectorType>SOAP</ConnectorType>
+    		<PoolKey>DOFPool</PoolKey>
+    		<ISDKey>DOFISD</ISDKey>
+    		<THDKey>DOF_GET_DOCUMENT</THDKey>
+    		<Description>DOF GetDocument</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>DOF_GENERATE_DOCUMENT</LOGTPSKD>
+    		<ConnectorType>SOAP</ConnectorType>
+    		<PoolKey>DOFPool</PoolKey>
+    		<ISDKey>DOFISD</ISDKey>
+    		<THDKey>DOF_GENERATE_DOCUMENT</THDKey>
+    		<Description>DOF GenerateDocument</Description>
+    	</record>
+    	<record>
+    		<LOGTPSKD>SCRIPTURAENGAGE_DOC</LOGTPSKD>
+    		<ConnectorType>HTTP</ConnectorType>
+    		<PoolKey>ScripturaPool</PoolKey>
+    		<ISDKey>SCRIPTURAISD</ISDKey>
+    		<THDKey>SCRIPTURAENGAGE_DOC</THDKey>
+    		<Description>REST Document</Description>
+    	</record>
+    </table>
+  log4j.xml: |
+    <?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+    <log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+        <appender name="console" class="org.apache.log4j.ConsoleAppender">
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern"
+                       value="%d{yyyy-MM-dd HH:mm:ss} %-5p [USER=%X{principalId}::SESS=%X{sessionId}::REQ=%X{requestId}] %c{1}:%L - %m%n"/>
+            </layout>
+        </appender>
+
+        <appender name="file" class="org.apache.log4j.rolling.RollingFileAppender">
+            <param name="append" value="false"/>
+            <rollingPolicy class="org.apache.log4j.rolling.FixedWindowRollingPolicy">
+                <param name="ActiveFileName" value="${catalina.base}/logs/application.log"/>
+                <param name="FileNamePattern" value="${catalina.base}/logs/application-%i.log.gz"/>
+                <param name="MinIndex" value="1"/>
+                <param name="MaxIndex" value="10"/>
+            </rollingPolicy>
+            <triggeringPolicy class="org.apache.log4j.rolling.SizeBasedTriggeringPolicy">
+                <param name="MaxFileSize" value="524288000"/>
+            </triggeringPolicy>
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern"
+                       value="%d{yyyy-MM-dd HH:mm:ss} %-5p [USER=%X{principalId}::SESS=%X{sessionId}::REQ=%X{requestId}] %c{1}:%L - %m%n"/>
+            </layout>
+        </appender>
+
+        <appender name="backendTraceLog" class="org.apache.log4j.rolling.RollingFileAppender">
+            <param name="append" value="false"/>
+            <rollingPolicy class="org.apache.log4j.rolling.FixedWindowRollingPolicy">
+                <param name="ActiveFileName" value="${catalina.base}/logs/applicationE2J.log"/>
+                <param name="FileNamePattern" value="${catalina.base}/logs/applicationE2J-%i.log.gz"/>
+                <param name="MinIndex" value="1"/>
+                <param name="MaxIndex" value="10"/>
+            </rollingPolicy>
+            <triggeringPolicy class="org.apache.log4j.rolling.SizeBasedTriggeringPolicy">
+                <param name="MaxFileSize" value="524288000"/>
+            </triggeringPolicy>
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern"
+                       value="%d{yyyy-MM-dd HH:mm:ss} %-5p [USER=%X{principalId}::AGREEMENTNUMBER=%X{agreementNumber}::LASTNAME=%X{name}::FIRSTNAME=%X{firstName}::STARTDATE=%X{startDate}::ENDDATE=%X{endDate}::PARTY=%X{acertaKey}::SERVICERECEIVERNUMBER=%X{servicereceiverNumber}::SERVICEPROVIDERNUMBER=%X{serviceproviderNumber}::SESS=%X{sessionId}::REQ=%X{requestId}] %c{1}:%L - %m%n"/>
+            </layout>
+
+        </appender>
+
+        <logger name="be.acerta.frontend.aes.filter">-->
+            <level value="info"/>
+        </logger>
+
+        <logger name="be.acerta.frontend.aes.controller.menu">
+            <level value="info"/>
+        </logger>
+
+
+        <logger name="com.kbc.logger.functional.CMD" additivity="false">
+            <level value="info"/>
+        </logger>
+
+        <logger name="com.kbc.logger.functional.E2E" additivity="false">
+            <level value="info"/>
+        </logger>
+
+        <logger name="com.kbc.logger.functional.REQ" additivity="false">
+            <level value="info"/>
+        </logger>
+
+        <logger name="com.kbc.logger.functional.SEC" additivity="false">
+            <level value="info"/>
+        </logger>
+
+        <!-- Ignore useless warnings about Spring bean destruction -->
+        <logger name="org.springframework.webflow.scope">
+            <level value="OFF"/>
+        </logger>
+
+        <!-- Ignore pre-instantiating/destroying singletons  -->
+        <logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory">
+            <level value="WARN"/>
+        </logger>
+
+        <logger name="org.springframework.beans.factory.support.DefaultSingletonBeanRegistry">
+            <level value="WARN"/>
+        </logger>
+
+        <logger name="be.acerta.frontend.ais.logging.AcertaLoggingFlowExecutionListener">
+            <level value="trace"/>
+        </logger>
+
+        <!--Suppress following log warnings to make log more compact and readable (PRODUCTION ONLY)-->
+        <logger name="org.springframework.beans.factory.xml">
+            <level value="OFF"/>
+        </logger>
+        <logger name="com.kbc.agf.websecurity.logging">
+            <level value="OFF"/>
+        </logger>
+        <logger name="com.kbc.agf.codemanager.reader">
+            <level value="OFF"/>
+        </logger>
+        <logger name="org.springframework.security.core.userdetails.memory">
+            <level value="OFF"/>
+        </logger>
+        <logger name="com.kbc.agf.web.servlet">
+            <level value="OFF"/>
+        </logger>
+        <logger name="be.acerta.frontend.aes.authorisation">
+            <level value="OFF"/>
+        </logger>
+        <logger name="com.kbc.agf.resourcecatalog.resolver">
+            <level value="OFF"/>
+        </logger>
+        <logger name="com.kbc.agf.web.interceptor">
+            <level value="OFF"/>
+        </logger>
+
+        <logger name="com.kbc.agf.businesstype.ServerSideValidation">
+            <level value="ERROR"/>
+        </logger>
+        <logger name="com.kbc.agf.websecurity.rules.input.RuleRegExCheck">
+            <level value="OFF"/>
+        </logger>
+
+
+        <logger name="be.acerta.frontend.connector.ims">
+            <level value="TRACE"/>
+        </logger>
+
+        <logger name="LogE2J" additivity="false">
+            <level value="TRACE"/>
+            <appender-ref ref="backendTraceLog"/>
+        </logger>
+
+        <logger name="log4j.category.org.dozer.MappingProcessor">
+            <level value="INFO"/>
+        </logger>
+
+        <root>
+            <level value="INFO"/>
+            <appender-ref ref="console"/>
+            <appender-ref ref="file"/>
+            <appender-ref ref="backendTraceLog"/>
+        </root>
+
+    </log4j:configuration>
+  THD.xml: |
+    <table>
+    	<record>
+    		<THDKey>BDP09</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BDP11</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BDP13</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BFP21</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BFP23</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BOP21</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BOP23</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BOP25</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BOP27</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BOP41</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BOP47</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P07</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P05</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P01</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P03</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP21</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP31</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP35</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP33</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP53</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP71</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP73</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP77</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP81</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP87</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P13</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P15</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P17</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P19</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P49</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P11</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P55</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P57</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P59</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P61</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P63</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P65</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P67</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P41</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P43</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P51</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P53</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P69</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P85</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P87</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P93</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P89</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP85</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P75</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P71</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P73</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P77</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP03</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP11</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP13</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP15</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP17</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP19</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP07</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP01</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P21</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P23</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P25</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P27</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1PA1</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P31</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P33</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P35</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P37</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1PA7</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P39</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP51</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP77</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P29</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP35</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP37</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP89</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP09</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP39</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1PA3</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1PA5</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B2P21</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B2P23</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B2P25</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BAP36</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BAP35</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BAP43</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BAP53</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BAP61</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPA1</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPA3</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPA5</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPC1</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPC3</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPC5</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B2P41</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPB1</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPB3</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPB5</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP51</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP53</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP55</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P45</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P47</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P81</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P83</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BFP05</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP75</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP79</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BFP25</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BFP27</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BFP23</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP05</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP25</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BBP13</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BBP15</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BRP11</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BRP13</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BRP15</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B2P31</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B2P33</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B2P35</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPD1</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPD3</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPD5</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPD7</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVPD9</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P91</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>B1P99</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>BVP83</THDKey>
+    		<ConnectorType>REST</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName></FileName>
+    		<HTTPHeader></HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>DB2ACERTASP</THDKey>
+    		<ConnectorType>JDBC</ConnectorType>
+    	</record>
+    	<record>
+    		<THDKey>ACERTABLOB</THDKey>
+    		<ConnectorType>JDBC</ConnectorType>
+    	</record>
+    	<record>
+    		<THDKey>DB2ACERTAL4</THDKey>
+    		<ConnectorType>JDBC</ConnectorType>
+    	</record>
+    	<record>
+    		<THDKey>FI_AGF_GET_INVOICES</THDKey>
+    		<ConnectorType>SOAP</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName>/sap/bc/soap/rfc?sap-client=120</FileName>
+    		<HTTPHeader>[Authorization: Basic QUdGVVNFUjpyZXN1Zmdh][Content-Type: text/xml; charset=utf-8][SOAPAction: ""]</HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>DOF_GET_DOCUMENT</THDKey>
+    		<ConnectorType>SOAP</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName>/Request.svc</FileName>
+    		<HTTPHeader>[Content-Type: text/xml; charset=UTF-8][SOAPAction:http://Acerta/DocumentServices/Request/Request/GetDocument]</HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>DOF_GENERATE_DOCUMENT</THDKey>
+    		<ConnectorType>SOAP</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName>/Request.svc</FileName>
+    		<HTTPHeader>[Content-Type: text/xml; charset=UTF-8][SOAPAction:http://Acerta/DocumentServices/Request/Request/GenerateDocument]</HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    	<record>
+    		<THDKey>SCRIPTURAENGAGE_DOC</THDKey>
+    		<ConnectorType>HTTP</ConnectorType>
+    		<DoInput>true</DoInput>
+    		<DoOutput>true</DoOutput>
+    		<FileName>/web/deploy-formulier</FileName>
+    		<HTTPHeader>[Content-Type: text/xml; charset=utf-8]</HTTPHeader>
+    		<ParameterString></ParameterString>
+    	</record>
+    </table>
+  workplace.properties: |
+    # Logout link
+    logout=https://clientaccess.acerta.be/pkmslogout
+
+    # session lost link
+    session.lost.link=https://clientaccess.acerta.be/
+
+    # Tivoli link
+    tivoli_link=https://clientaccess.acerta.be/
+
+    #Help files
+    help.base=http://www.acerta.be
+    help.handleiding=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employee.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employee.search=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employee.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employee.customfields=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employee.familymember=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.employer.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employer.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employer.paymentschedule.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employer.customfield.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.employment.contract.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employment.contract.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.presence.absence.calendar=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.calendar.list=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.calendar.year=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.ind.adjustment.overview=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.presence.absence.collective.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.collective.overview=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.collective.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.presence.absence.counter=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.counter.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.presence.absence.countersdefinition.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.countersdefinition.search=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.countersdefinition.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.presence.absence.workschedule.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.workschedule.overview=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.presence.absence.workschedule.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.processed.calendar=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.salary.processing.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.salary.processing.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.salary.processing.logging.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.salary.processing.search=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.overview.corrections=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.salary.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.processed.salary.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.iam.user.profile=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.repertory.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.retrieve.preferences=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.update.loon=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.update.prestatie=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.update.resultaat=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.organisation.group.adjustment.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.organisation.group.adjustment.consult=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.organisation.group.adjustment.overview=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.organisation.group.criterion.overview=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.organisation.group.criterion.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.organisation.group.overview=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.organisation.group.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.employment.contract.search=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.employer.salaryscale=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employer.search=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.employee.rolemanagement=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employee.rolemanagement.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.employee.standin=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.repertory.ess.client.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.ess.client.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.ess.client.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.ess.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.ess.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.repertory.ess.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.request.definitions.create=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.request.definitions.search=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+    help.handleiding.request.definitions.update=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.performed.calendar.retrieve=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.ess.configuration=nl:143174359/file/;fr:155840272/file/;en:191871104/file/
+
+    help.handleiding.poa.search=nl:179343643/file/;fr:179343641/file/
+    help.handleiding.poa.create=nl:179343643/file/;fr:179343641/file/
+
+    # GOTO configuration
+    goto.config=B1200002;B12S0003;goToDetailAgreement;retrieveEmploymentContract,BV100001;BV1S0023;goToDetailCalendarEnd;retrieveCalendarPresenceAbsence,BV300009;BV3S0016;goToDetailCalendarProcessed;retrieveCalendarProcessed,BV100002;BV1S0032;goToDetailCounters;overviewCounter,BV200001;BV2S0002;goToDetailSalary;salary,BV300010;BV3S0012;goToDetailProcessedSalary;retrieveProcessedSalary;apolloProcessedSalaryLink,B1000002;B10S0004;goToDetailEmployee;updateEmployee
+
+    # LDAP config
+    ldap.bind-pwd={obf2}wSQP1Xj6ANBATaopcQiaw82iz3PeQMHmlfGLeBqRHqo\=
+    ldap.bind-dn=cn\=acertafeed,o\=acerta,c\=be
+    ldap.mgmt-version=6.1.1
+    ldap.ssl-enable=true
+    ldap.svrs=s2a9001m.be.srv.dev.sys\:636\:readwrite\:5;
+    local_domain=Default
+    ldap.mgmt=true
+    mgmt_domain=Default
+
+    #MAIL
+    mail.receiver=ptest001@roottst.int
+
+    versioninfo.show=true
+
+    menu.datecheck=true
+    channelSuffix=
+
+    #DB2 L4
+    db2l4.qualifier=GTDB2
+
+    #Doccle token management
+    doccle.token.management.api=http://bs0-api.global.dns:8230/api/SocSec/Validator/Request
+    document.viewer.api=http://metadata-api.global.dns/api/MetaData/SearchMetaData
+    document.viewer.api2=http://bm2-contextdata-api.global.dns/api/SAPDocument
+    document.viewer.employerDocument=http://bm2-contextdata-api.global.dns/api/WerkgeverDocument
+    document.viewer.employeeDocument=http://bm2-contextdata-api.global.dns/api/WerknemerDocument
+
+    #OIG
+    #oig.host=195.0.32.60
+    oig.host=mfsspg.global.dns
+    oig.numberOfEnvironments=1
+    oig.port-env1=2004
+    oig.userid-env1=GSDTGCN
+    oig.password-env1=OIGA5763
+    oig.library=GPATO76
+    oig.maxSession=10
+    oig.poolTimeout=5000
+
+    #Ventouris
+    ventouris.volmachten.user=VolmachtWSUser
+    ventouris.volmachten.password=Ventouris!
+    ventouris.volmachten.endpoint=https://acerta-ventouris-acc.cegeka.be/Service/VolmachtBeheerService
+
+    #OfficeService
+    officeServiceUrl= http://afw.global.dns/AFW/curo/officeService/getOfficeById?id=
+
+    #Power of attorney e-mail preferences
+    poa.preferences.url=http://se-processing.global.dns:13542/web/preferenceapi
+    poa.preferences.multi.url=http://se-processing.global.dns:13542/web/preferenceapi-multi
+
+    #IBMMQ
+    responsehost=ASCSIT02.global.dns
+    responseport=1417
+    responsequeuemanager=ASCSIT02
+    responsechannel=CKB.CLI.ASCSIT02.01
+    responsequeue=ASC.VOLM.01.RESPONSE.LQ
+
+    myusername=
+    mypassword=
+
+    docsyshost=ASCSIT02.global.dns
+    docsysport=1417
+    docsysqueuemanager=ASCSIT02
+    docsyschannel=DOC.CLI.ASCSIT02.01
+    docsysqueue=ASC.DOC.DOCMGT.IN.ADB.EXTREQ.01.LQ
+
+    documentsvc = http://adb-request.global.dns/request.svc
+    documentportName = BasicHttpBinding_Request
+    documentserviceName = Request
+    documentnamespaceUri = http://Acerta/DocumentServices/Request
+    documentwsdlDocumentUrl = classpath:documentservice/requestDocument.wsdl
+    documentserviceinterface = be.acerta.frontend.transaction.poa.shared.webservices.generated.adb.requestDocument.Request
+    documentcountry = BE
+    documentlanguage = nl
+    documentuserName = sConnect
+    documentapplicationId = 41bf83e9-f663-4d25-9cd8-9562b94614e9
+    documentlogging = true
+
+    #RZS-site
+    rsz.link=https://wwwsim.socialsecurity.be/app004/webdimona/dimona2
+
+    #Apollo salaries url
+    apollo.salaries.url=https://clientaccess.acerta.be/OPD/frontend/index.html#/wages
+
+    #Apollo processedSalary url
+    apollo.processedSalary.url=https://clientaccess.acerta.be/OPD/frontend/index.html?lang={LANGUAGE}#/wages?agreementNumber={AGREEMENT_NUMBER}
+
+    #ConneXt
+    connext.url=http://localhost:3000
+    connext.path.template=#/employer/{KEY}?lang={LANGUAGE}
+
+    #Import
+    temporary.import.files.directory=/tmp/connect
+
+    #Dicco rest api
+    dicco.rest.api.baseurl=http://dicco-backend.global.dns/dicco-rest/
+    dicco.rest.api.agreements=v1/agreements

@@ -1,0 +1,11 @@
+apiVersion: v2
+appVersion: 1.36.0
+dependencies:
+- condition: axon-server.enabled
+  name: axon-server
+  repository: https://jdlabsco.github.io/axon-server-helm/repo
+  version: 0.0.2
+description: Helm chart for ce-calendar-timespend-backend
+name: ce-calendar-timespend-backend
+type: application
+version: 1.41.4

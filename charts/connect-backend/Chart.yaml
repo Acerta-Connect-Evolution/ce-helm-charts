@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.0.1
+description: Connect Backend aka DICCO
+name: connect-backend
+type: application
+version: 0.0.25
