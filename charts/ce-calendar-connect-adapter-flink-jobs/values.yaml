@@ -1,0 +1,59 @@
+# Default values for job.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  environment: []
+
+## Job image
+image:
+  repository: "nexus.global.dns:8443/acerta-dev/ce/calendar-connect-adapter-flink-jobs"
+  #tag is set by chart's appVersion
+  pullPolicy: IfNotPresent
+
+initContainers:
+  waitForFlink:
+    enabled: true
+    endpoint: ""
+
+
+uselessPod:
+  enabled: true
+
+## Job configurations
+backoffLimit: 4
+restartPolicy: Never
+
+# By default, fullname uses '{{ .Release.Name }}-{{ .Chart.Name }}'. This
+# overrides that and uses the given string instead.
+# fullnameOverride: "some-name"
+
+# This adds a prefix
+# fullnamePrefix: "pre-"
+# This appends a suffix
+# fullnameSuffix: "-suf"
+
+annotations:
+  "helm.sh/hook": post-install
+  "helm.sh/hook-weight": "-5"
+  "helm.sh/hook-delete-policy": hook-succeeded
+
+#environment:
+#  - name: VAR1
+#    value: value1
+#  - name: VAR2
+#    value: value2
+
+## define resources
+#resources:
+#  limits:
+#    cpu: 2
+#    memory: 2000Mi
+#  requests:
+#    cpu: 500m
+#    memory: 500Mi
+
+securityContext:
+  runAsUser: 
+  runAsGroup:
+  fsGroup:

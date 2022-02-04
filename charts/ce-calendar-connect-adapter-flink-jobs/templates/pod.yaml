@@ -1,0 +1,12 @@
+{{- if .Values.uselessPod.enabled }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: useless-pod
+spec:
+  containers:
+    - name: useless-pod
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+      command: [ "/bin/sh","-c" ]
+      args: [ "tail -f /dev/null" ]
+{{- end }}

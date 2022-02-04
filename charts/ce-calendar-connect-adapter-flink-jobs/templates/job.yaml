@@ -1,0 +1,82 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "job.fullname" . }}
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  template:
+    spec:
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}
+    {{- end }}
+    {{- if .Values.securityContext.runAsUser }}
+      securityContext:
+        runAsUser: {{ .Values.securityContext.runAsUser }}
+        {{- if .Values.securityContext.runAsGroup }}
+        runAsGroup: {{ .Values.securityContext.runAsGroup }}
+        {{- end }}
+        {{- if .Values.securityContext.fsGroup }}
+        fsGroup: {{ .Values.securityContext.fsGroup }}
+        {{- end }}
+    {{- end }}
+      {{- if .Values.initContainers.waitForFlink.enabled }}
+      initContainers:
+        - name: wait-for-flink
+          image: nexus.global.dns:8443/ce/wait-for-pulsar-schemas:1.0
+          args: [ '{{ .Values.initContainers.waitForFlink.endpoint }}' ]
+      {{- end }}
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+        name: {{ template "job.fullname" . }}
+
+        command: [ "/bin/bash", "-c" ]
+        # plz note the semicolons below ! - https://kubernetes.io/docs/tasks/inject-data-application/_print/
+        args:
+          - echo "Posting & running flink jobs...";
+            flink run -m $FLINK_JOBMANAGER_ADDRESS /app/agreement.jar --PULSAR_BROKER_HOST $PULSAR_BROKER_HOST;
+            flink run -m $FLINK_JOBMANAGER_ADDRESS /app/employer.jar --PULSAR_BROKER_HOST $PULSAR_BROKER_HOST;
+            flink run -m $FLINK_JOBMANAGER_ADDRESS /app/timespend.jar --PULSAR_BROKER_HOST $PULSAR_BROKER_HOST;
+#        {{- if .Values.command }}
+#        #command: {{ .Values.command }}
+#        command:
+#          - "/bin/bash"
+#          - "-c"
+#          - "{{ .Values.command.script | trim }}"
+#        {{- end }}
+#
+#        {{- if .Values.command }}
+#        args: {{ .Values.command.args }}
+#        {{- end }}
+
+        env:
+        {{- range concat (.Values.global.environment) (.Values.environment | default list)}}
+          - name: {{ .name | quote}}
+            value: {{ .value | quote }}
+        {{- end }}
+
+        {{- with .Values.resources }}
+        resources:
+{{ toYaml . | indent 10 }}
+        {{- end }}
+        {{- with .Values.volumeMounts }}
+        volumeMounts:
+{{ toYaml . | indent 8 }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      restartPolicy: {{ .Values.restartPolicy }}
+  backoffLimit: {{ .Values.backoffLimit }}
