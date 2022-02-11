@@ -33,10 +33,10 @@ spec:
               service:
                 name: {{ $fullName }}-jobmanager
                 port:
-                  number: ui
+                  number: 8081
               {{- else }}
               serviceName: {{ $fullName }}
-              servicePort: ui
+              servicePort: 8081
               {{- end }}
         {{- end }}
   {{- end }}
