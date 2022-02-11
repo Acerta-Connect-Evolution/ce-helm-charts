@@ -148,6 +148,53 @@ entries:
   connect-evolution:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2022-02-11T14:04:30.899911984Z"
+    dependencies:
+    - condition: ce-calendar-timespend-backend.enabled
+      name: ce-calendar-timespend-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.45.0
+    - condition: ce-calendar-timespend-frontend.enabled
+      name: ce-calendar-timespend-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.30.0
+    - condition: connect-backend.enabled
+      name: connect-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.0.25
+    - condition: connect-frontend.enabled
+      name: connect-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.3.0
+    - condition: mssql-latest.enabled
+      name: mssql-latest
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.2.1
+    - condition: elasticsearch.enabled
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.14.0
+    - condition: pulsar-standalone.enabled
+      name: pulsar-standalone
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.0.7
+    - condition: flink.enabled
+      name: flink
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.2.3
+    - condition: ce-calendar-connect-adapter-flink-jobs.enabled
+      name: ce-calendar-connect-adapter-flink-jobs
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.23.0
+    description: Helm chart for connect evolution application
+    digest: b1324661a7f38baa587be0131823c2a0e5df82c5a14564fd3ef748cb81740e90
+    name: connect-evolution
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-evolution-1.20.0/connect-evolution-1.20.0.tgz
+    version: 1.20.0
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2022-02-04T13:03:35.647909757Z"
     dependencies:
     - condition: ce-calendar-timespend-backend.enabled
@@ -232,6 +279,24 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/elasticsearch-7.15.0/elasticsearch-7.15.0.tgz
     version: 7.15.0
   flink:
+  - apiVersion: v1
+    appVersion: 1.11.2
+    created: "2022-02-11T14:04:31.067725579Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: https://charts.helm.sh/incubator
+      version: 2.0.0
+    description: Chart for Apache Flink
+    digest: e71b78396c7ef100b1c447fc78bab6f40de4fab492c8056fde49889bfa7084cc
+    home: https://github.com/riskfocus/helm-charts-public
+    maintainers:
+    - email: charts-maintainers@riskfocus.com
+      name: charts-maintainers
+    name: flink
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/flink-0.2.4/flink-0.2.4.tgz
+    version: 0.2.4
   - apiVersion: v1
     appVersion: 1.11.2
     created: "2022-02-04T12:47:15.903738044Z"
@@ -356,4 +421,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-02-11T10:11:32.753254197Z"
+generated: "2022-02-11T14:04:31.067761479Z"
