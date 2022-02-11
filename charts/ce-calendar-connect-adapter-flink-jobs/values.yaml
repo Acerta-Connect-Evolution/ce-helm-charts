@@ -7,7 +7,7 @@ global:
 
 ## Job image
 image:
-  repository: "nexus.global.dns:8443/acerta-dev/ce/calendar-connect-adapter-flink-jobs"
+  repository: "nexus.global.dns:8443/acerta-connect-evolution/calendar-connect-adapter-flink-jobs"
   #tag is set by chart's appVersion
   pullPolicy: IfNotPresent
 

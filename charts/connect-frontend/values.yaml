@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-dev/ce/connect-frontend
+  repository: nexus.global.dns:8443/acerta-connect-evolution/connect-frontend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
 

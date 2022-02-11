@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-dev/ce/calendar-timespend-service
+  repository: nexus.global.dns:8443/acerta-connect-evolution/calendar-timespend-service
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""

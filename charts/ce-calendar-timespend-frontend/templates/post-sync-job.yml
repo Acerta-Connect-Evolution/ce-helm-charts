@@ -18,7 +18,7 @@ spec:
             - --location
             - --request
             - POST
-            - 'https://api.github.com/repos/Acerta-DEV/ce-calendar-timespend-frontend/dispatches'
+            - 'https://api.github.com/repos/Acerta-Connect-Evolution/ce-calendar-timespend-frontend/dispatches'
             - --header
             - 'Authorization: token $(GITHUB_TOKEN)'
             - --header

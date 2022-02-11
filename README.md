@@ -18,4 +18,4 @@ You can then run `helm search repo ce-helm` to see the charts.
 
 ## Custom images
 
-We defined some custom images that the charts refer to. They can be found in [ce-images](https://github.com/Acerta-DEV/ce-images).
+We defined some custom images that the charts refer to. They can be found in [ce-images](https://github.com/Acerta-Connect-Evolution/ce-images).
