@@ -119,6 +119,7 @@ extraEnv: {}
 
 axon-server:
   enabled: false
+  nameOverride: calendar-timespend-axon-server
   image:
     tag: "4.5.6"
   extraEnvs:
