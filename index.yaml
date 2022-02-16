@@ -689,6 +689,16 @@ entries:
   mssql-latest:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-02-16T07:30:42.624521696Z"
+    description: MS SQL Server 2019
+    digest: e32b9059e0f7e3efefe2f33196e61fbcf5f4b85dc6366251ff19cacb4e3a6cac
+    name: mssql-latest
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/mssql-latest-0.3.2/mssql-latest-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-02-16T07:24:29.120124159Z"
     description: MS SQL Server 2019
     digest: 5aabeeba128f3a379be1c7cb9113cd7e6f9d4e48ab25698018a3f562bd82ede9
@@ -770,4 +780,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-02-16T07:24:29.120195762Z"
+generated: "2022-02-16T07:30:42.624596397Z"
