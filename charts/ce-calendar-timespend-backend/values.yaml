@@ -111,7 +111,6 @@ env:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS
   pulsar:
-    enabled: true
     broker:
       url: PULSAR_BROKER_URL
 

@@ -93,8 +93,6 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
-            - name: PULSAR_ENABLED
-              value: '{{ .Values.env.pulsar.enabled }}'
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             {{- range $key, $value := $.Values.extraEnv }}
