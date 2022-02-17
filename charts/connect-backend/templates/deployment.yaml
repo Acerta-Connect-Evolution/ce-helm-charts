@@ -56,8 +56,8 @@ spec:
               value: {{ .Values.sql.username }}
             - name: SQL_PASSWORD
               value: {{ .Values.sql.password }}
-            - name: SQL_URL
-              value: {{ .Values.sql.url}}
+            - name: SQL_HOST
+              value: {{ .Values.sql.host}}
             - name: SQL_CATALOG
               value: {{ .Values.sql.catalog }}
             - name: ENVIRONMENT

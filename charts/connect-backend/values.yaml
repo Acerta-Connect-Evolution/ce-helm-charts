@@ -85,7 +85,7 @@ affinity: {}
 sql:
   username: egl_app
   password: changeme
-  url: foo.com:1433
+  host: foo.com:1433
   catalog: bar
 environment: "TST"
 spring:
