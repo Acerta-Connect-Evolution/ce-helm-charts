@@ -768,6 +768,23 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-frontend-0.3.0/connect-frontend-0.3.0.tgz
     version: 0.3.0
+  elastic-search:
+  - apiVersion: v1
+    appVersion: 7.15.0
+    created: "2022-02-17T11:57:45.555181524Z"
+    description: Official Elastic helm chart for Elasticsearch
+    digest: 347d81fec63a64258aefcc8ff8e158c1e0df43cf108516718ca1d48ade16dddf
+    home: https://github.com/elastic/helm-charts
+    icon: https://helm.elastic.co/icons/elasticsearch.png
+    maintainers:
+    - email: helm-charts@elastic.co
+      name: Elastic
+    name: elastic-search
+    sources:
+    - https://github.com/elastic/elasticsearch
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/elastic-search-7.15.1/elastic-search-7.15.1.tgz
+    version: 7.15.1
   elasticsearch:
   - apiVersion: v1
     appVersion: 7.15.0
@@ -994,4 +1011,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-02-17T09:58:27.308184841Z"
+generated: "2022-02-17T11:57:45.555318224Z"
