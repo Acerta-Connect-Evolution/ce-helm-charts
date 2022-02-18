@@ -7,13 +7,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - name: p-6123-6123-tcp
-      port: 6123
+    - port: {{ .Values.service.port }}
+      targetPort: 8080
       protocol: TCP
-      targetPort: 6123
-    - name: p-8081-8081-tcp
-      port: 8081
-      protocol: TCP
-      targetPort: 8081
+      name: http
   selector:
     {{- include "mychart.selectorLabels" . | nindent 4 }}

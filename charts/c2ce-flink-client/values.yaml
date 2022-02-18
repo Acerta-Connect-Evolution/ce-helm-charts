@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-connect-evolution/calendar-timespend-service
+  repository: nexus.global.dns:8443/acerta-connect-evolution/c2ce-flink-client
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -10,11 +10,6 @@ imagePullSecrets:
   - name: regcred
 nameOverride: ""
 fullnameOverride: ""
-
-initContainers:
-  waitForPulsar:
-    enabled: true
-    topics: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -29,9 +24,6 @@ podAnnotations: {}
 
 podSecurityContext: {}
 # fsGroup: 2000
-
-postSyncJob:
-  enabled: false
 
 securityContext: {}
   # capabilities:
@@ -67,11 +59,11 @@ resources: # {}
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   requests:
-    cpu: 250m
+    cpu: "250m"
     memory: "384Mi"
   limits:
-    cpu: "500m"
-    memory: "1024Mi"
+    cpu: "250m"
+    memory: "512Mi"
 
 autoscaling:
   enabled: false
@@ -86,54 +78,4 @@ tolerations: []
 
 affinity: {}
 
-sealedsecret:
-  initdatasource:
-    username:
-    password:
-  datasource:
-    username:
-    password:
-
-
-env:
-  dicco:
-    url: DICCO_URL
-  datasource:
-    jdbcurl: DATASOURCE_JDBC-URL
-    databasename: DATASOURCE_DATABASE-NAME
-  spring:
-    profiles:
-      active: default
-    elasticsearch:
-      rest:
-        uris: SPRING_ELASTICSEARCH_REST_URIS
-  axon:
-    axonserver:
-      servers: AXON_AXONSERVER_SERVERS
-  pulsar:
-    broker:
-      url: PULSAR_BROKER_URL
-
 extraEnv: {}
-
-axon-server:
-  enabled: false
-  nameOverride: calendar-timespend-axon-server
-  image:
-    tag: "4.5.6"
-  extraEnvs:
-    - name: AXONIQ_AXONSERVER_DEVMODE_ENABLED
-      value: "true"
-    - name: AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED
-      value: "true"
-    - name: AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUSENABLED
-      value: "true"
-  persistence:
-    enabled: true
-    accessModes: [ ReadWriteOnce ]
-    eventstoreStorage:
-      size: 1Gi
-    dataStorage:
-      size: 1Gi
-    logStorage:
-      size: 1Gi
