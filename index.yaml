@@ -432,6 +432,53 @@ entries:
   connect-evolution:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2022-02-18T15:42:40.583223446Z"
+    dependencies:
+    - condition: ce-calendar-timespend-backend.enabled
+      name: ce-calendar-timespend-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.52.1
+    - condition: ce-calendar-timespend-frontend.enabled
+      name: ce-calendar-timespend-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.34.0
+    - condition: connect-backend.enabled
+      name: connect-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.0.27
+    - condition: connect-frontend.enabled
+      name: connect-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.3.0
+    - condition: mssql-latest.enabled
+      name: mssql-latest
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.2.1
+    - condition: elasticsearch.enabled
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.14.0
+    - condition: pulsar-standalone.enabled
+      name: pulsar-standalone
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.0.7
+    - condition: flink.enabled
+      name: flink
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.2.3
+    - condition: c2ce-flink-client.enabled
+      name: c2ce-flink-client
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.5.0
+    description: Helm chart for connect evolution application
+    digest: b1caddc473716be6bcc2978cbe6acb9cae65ca0c9845372229f23d69dbf4aa87
+    name: connect-evolution
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-evolution-1.35.2/connect-evolution-1.35.2.tgz
+    version: 1.35.2
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2022-02-18T15:41:23.378646859Z"
     dependencies:
     - condition: ce-calendar-timespend-backend.enabled
@@ -1258,4 +1305,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-02-18T15:41:23.378839161Z"
+generated: "2022-02-18T15:42:40.583511064Z"
