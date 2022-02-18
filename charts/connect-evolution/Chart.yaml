@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.31.0
+version: 1.32.0
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.52.1
@@ -37,7 +37,7 @@ dependencies:
     version: 0.2.3
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: flink.enabled
-  - name: ce-calendar-connect-adapter-flink-jobs
-    version: 0.25.0
+  - name: c2ce-flink-client
+    version: 1.2.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: ce-calendar-connect-adapter-flink-jobs.enabled
+    condition: c2ce-flink-client.enabled
