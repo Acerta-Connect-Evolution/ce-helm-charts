@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   c2ce-flink-client:
   - apiVersion: v2
+    appVersion: 1.34.0
+    created: "2022-02-22T12:50:51.850121085Z"
+    description: Helm chart for c2ce Flink Client
+    digest: b3d53ff1426b3eec7c5c72c746877d3589f6c795eb2c2fd14fa46c860b1024ee
+    name: c2ce-flink-client
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/c2ce-flink-client-1.18.0/c2ce-flink-client-1.18.0.tgz
+    version: 1.18.0
+  - apiVersion: v2
     appVersion: 1.33.0
     created: "2022-02-22T12:48:26.846577407Z"
     description: Helm chart for c2ce Flink Client
@@ -565,53 +575,6 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-backend-0.0.25/connect-backend-0.0.25.tgz
     version: 0.0.25
   connect-evolution:
-  - apiVersion: v2
-    appVersion: "1.0"
-    created: "2022-02-22T12:50:31.342204853Z"
-    dependencies:
-    - condition: ce-calendar-timespend-backend.enabled
-      name: ce-calendar-timespend-backend
-      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-      version: 1.52.1
-    - condition: ce-calendar-timespend-frontend.enabled
-      name: ce-calendar-timespend-frontend
-      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-      version: 0.34.0
-    - condition: connect-backend.enabled
-      name: connect-backend
-      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-      version: 0.0.27
-    - condition: connect-frontend.enabled
-      name: connect-frontend
-      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-      version: 0.3.0
-    - condition: mssql-latest.enabled
-      name: mssql-latest
-      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-      version: 0.2.1
-    - condition: elasticsearch.enabled
-      name: elasticsearch
-      repository: https://helm.elastic.co
-      version: 7.14.0
-    - condition: pulsar-standalone.enabled
-      name: pulsar-standalone
-      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-      version: 1.0.7
-    - condition: flink.enabled
-      name: flink
-      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-      version: 0.2.6
-    - condition: c2ce-flink-client.enabled
-      name: c2ce-flink-client
-      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-      version: 1.17.0
-    description: Helm chart for connect evolution application
-    digest: 972b6dd468288ba95a5aa467ab06c5d38188ae8d8fa78abe52613aac900286a5
-    name: connect-evolution
-    type: application
-    urls:
-    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-evolution-1.42.0/connect-evolution-1.42.0.tgz
-    version: 1.42.0
   - apiVersion: v2
     appVersion: "1.0"
     created: "2022-02-22T11:11:52.348530538Z"
@@ -1769,4 +1732,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-02-22T12:50:31.342708553Z"
+generated: "2022-02-22T12:50:51.850553909Z"
