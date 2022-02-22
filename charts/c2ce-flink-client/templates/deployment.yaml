@@ -41,13 +41,13 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /actuator/health/liveness
+              path: flink-client/actuator/health/liveness
               port: http
             failureThreshold: 1
             periodSeconds: 10
           startupProbe:
             httpGet:
-              path: /actuator/health/liveness
+              path: flink-client/actuator/health/liveness
               port: http
             failureThreshold: 30
             periodSeconds: 5
