@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 1.35.0
+appVersion: 1.36.0
 description: Helm chart for c2ce Flink Client
 name: c2ce-flink-client
 type: application
-version: 1.20.0
+version: 1.21.0
