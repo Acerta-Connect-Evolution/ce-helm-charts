@@ -38,6 +38,6 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: flink.enabled
   - name: c2ce-flink-client
-    version: 1.20.0
+    version: 1.21.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: c2ce-flink-client.enabled
