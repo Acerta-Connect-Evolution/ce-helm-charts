@@ -65,7 +65,7 @@ data:
             <ConnectorType>REST</ConnectorType>
             <Description>Test</Description>
             <ErrorCountThreshold>10</ErrorCountThreshold>
-            <HostName>connect-backend-calendar-timespend-tst</HostName>
+            <HostName>connect-backend-connect-evolution</HostName>
             <PortNumber>8080</PortNumber>
             <Path>/dicco-rest/executepim</Path>
             <Status>on</Status>
