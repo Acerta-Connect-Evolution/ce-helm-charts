@@ -100,5 +100,8 @@ env:
   axon:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS
+  webcomponent:
+    wss:
+      url: WEBCOMPONENT_WSS_URL
 
 extraEnv: {}
