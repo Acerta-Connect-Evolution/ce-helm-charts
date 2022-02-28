@@ -26,7 +26,7 @@ spec:
             - --header
             - 'Content-Type: application/json'
             - --data
-            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-backend", "chartVersion" : "1.65.0", "appVersion" : "1.58.0", "closedPRTitle" : "jeffreyquickenac-patch-4"}}'
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-backend", "chartVersion" : "1.66.0", "appVersion" : "1.59.0", "closedPRTitle" : "jeffreyquickenac-patch-5"}}'
           env:
             - name: GITHUB_TOKEN
               valueFrom:
