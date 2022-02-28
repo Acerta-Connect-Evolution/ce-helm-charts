@@ -248,6 +248,21 @@ entries:
     version: 0.23.0
   ce-calendar-timespend-backend:
   - apiVersion: v2
+    appVersion: 1.62.0
+    created: "2022-02-28T13:03:25.453633868Z"
+    dependencies:
+    - condition: axon-server.enabled
+      name: axon-server
+      repository: https://jdlabsco.github.io/axon-server-helm/repo
+      version: 0.0.2
+    description: Helm chart for ce-calendar-timespend-backend
+    digest: 48077fd19b897363ac976d47988af6e289e89b64849178bbe101aedc5df8c845
+    name: ce-calendar-timespend-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.69.0/ce-calendar-timespend-backend-1.69.0.tgz
+    version: 1.69.0
+  - apiVersion: v2
     appVersion: 1.61.0
     created: "2022-02-28T12:49:32.201451867Z"
     dependencies:
@@ -2425,4 +2440,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-02-28T12:49:32.202209977Z"
+generated: "2022-02-28T13:03:25.454263272Z"
