@@ -30,5 +30,5 @@ pulsar-standalone:
 flink:
   enabled: false
 
-ce-calendar-connect-adapter-flink-jobs:
-  enabled: false
+c2ce-flink-client:
+  enabled: true

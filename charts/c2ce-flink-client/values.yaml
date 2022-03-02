@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/ce/flink-client
+  repository: nexus.global.dns:8443/acerta-connect-evolution/c2ce-flink-client
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -35,7 +35,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-#  port: 8090
+  port: 8080
 
 ingress:
   enabled: true
@@ -59,11 +59,11 @@ resources: # {}
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   requests:
-    cpu: 250m
+    cpu: "250m"
     memory: "384Mi"
   limits:
-    cpu: "500m"
-    memory: "1024Mi"
+    cpu: "250m"
+    memory: "512Mi"
 
 autoscaling:
   enabled: false
@@ -78,14 +78,4 @@ tolerations: []
 
 affinity: {}
 
-env:
-  flink:
-    jobmanager:
-      host: FLINK_JOBMANAGER_HOST
-    init:
-      pulsar:
-        host: FLINK_INIT_PULSAR_HOST
-        broker:
-          port: FLINK_INIT_PULSAR_BROKER_PORT
-        admin:
-          port: FLINK_INIT_PULSAR_ADMIN_PORT
+extraEnv: {}
