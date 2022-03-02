@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pulsar-pod
+spec:
+  containers:
+    - name: useless-pod
+      image: apachepulsar/pulsar-all:2.7.2
+      command: [ "/bin/sh","-c" ]
+      args: [ "tail -f /dev/null" ]
