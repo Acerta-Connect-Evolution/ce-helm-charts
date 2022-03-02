@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
     - name: useless-pod
-      image: apachepulsar/pulsar-all:2.7.2
+      image: nexus.global.dns:8443/acerta-connect-evolution/pulsar-client
       command: [ "/bin/sh","-c" ]
       args: [ "tail -f /dev/null" ]
