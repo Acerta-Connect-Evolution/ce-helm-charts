@@ -5,6 +5,37 @@ metadata:
 spec:
   containers:
     - name: pulsar-pod
-      image: nexus.global.dns:8443/acerta-connect-evolution/pulsar-client:0.0.7
+      image: nexus.global.dns:8443/acerta-connect-evolution/pulsar-client:0.0.8
       command: [ "/bin/sh","-c" ]
       args: [ "tail -f /dev/null" ]
+      env:
+        - name: DEBEZIUM_TENANT
+          value: connect-evolution
+        - name: DEBEZIUM_NAMESPACE
+          value: calendar
+        - name: DEBEZIUM_NAME
+          value: debezium-mssql-source
+        - name: DEBEZIUM_CONFIGS_DATABASE_HOSTNAME
+          value: t-sqldicco.global.dns
+        - name: DEBEZIUM_CONFIGS_DATABASE_PORT
+          value: 1433
+        - name: DEBEZIUM_CONFIGS_DATABASE_USER
+          value: DICCO_REST_user
+        - name: DEBEZIUM_CONFIGS_DATABASE_PASSWORD
+          value: ygoeqseoyg96Tg7TFeDrtFeeeg6465987hrre
+        - name: DEBEZIUM_CONFIGS_DATABASE_DBNAME
+          value: DICCO
+        - name: DEBEZIUM_CONFIGS_DATABASE_SERVER_NAME
+          value: DICCO
+        - name: DEBEZIUM_CONFIGS_DATABASE_TABLE_INCLUDE_LIST
+          value: ACERTA.GBTEMC01
+        - name: DEBEZIUM_CONFIGS_SNAPSHOT_MODE
+          value: initial
+        - name: DEBEZIUM_CONFIGS_SNAPSHOT_ISOLATION_MODE
+          value: read_committed
+        - name: DEBEZIUM_CONFIGS_TOPIC_NAMESPACE
+          value: connect-evolution/calendar
+        - name: DEBEZIUM_CONFIGS_PULSAR_SERVICE_HOST
+          value: pulsar-broker
+        - name: DEBEZIUM_CONFIGS_PULSAR_SERVICE_PORT
+          value: 6650
