@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
     - name: pulsar-pod
-      image: nexus.global.dns:8443/acerta-connect-evolution/pulsar-client:0.0.3
+      image: nexus.global.dns:8443/acerta-connect-evolution/pulsar-client:0.0.4
       command: [ "/bin/sh","-c" ]
       args: [ "tail -f /dev/null" ]
