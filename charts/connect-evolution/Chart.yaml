@@ -30,7 +30,7 @@ dependencies:
     repository: https://helm.elastic.co
     condition: elasticsearch.enabled
   - name: pulsar-standalone
-    version: 1.1.1
+    version: 1.1.2
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-standalone.enabled
   - name: flink
