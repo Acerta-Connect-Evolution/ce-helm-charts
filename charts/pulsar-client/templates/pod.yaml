@@ -5,10 +5,18 @@ metadata:
 spec:
   containers:
     - name: pulsar-pod
-      image: nexus.global.dns:8443/acerta-connect-evolution/pulsar-client:0.0.9
+      image: nexus.global.dns:8443/acerta-connect-evolution/pulsar-client:0.0.10
       command: [ "/bin/sh","-c" ]
       args: [ "tail -f /dev/null" ]
       env:
+        - name: PULSAR_ADMIN_URL
+          value: http://pulsar-proxy.ce-pulsar:8080
+        - name: PULSAR_HEALTH_URL
+          value: http://pulsar-proxy.ce-pulsar:8080/admin/v2/brokers/health
+        - name: PULSAR_TENANT
+          value: connect-evolution
+        - name: PULSAR_NAMESPACE
+          value: calendar
         - name: DEBEZIUM_TENANT
           value: connect-evolution
         - name: DEBEZIUM_NAMESPACE
