@@ -3,4 +3,4 @@ appVersion: "2.8.0"
 description: Helm chart for Pulsar Standalone
 name: pulsar-standalone
 type: application
-version: 1.1.1
+version: 1.1.2
