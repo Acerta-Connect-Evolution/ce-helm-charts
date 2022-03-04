@@ -49,7 +49,7 @@ spec:
           - name: DEBEZIUM_CONFIGS_DATABASE_HOSTNAME
             value: {{ .Values.env.debezium.configs.database.hostname }}
           - name: DEBEZIUM_CONFIGS_DATABASE_PORT
-            value: {{ .Values.env.debezium.configs.database.port }}
+            value: "{{ .Values.env.debezium.configs.database.port }}"
           - name: DEBEZIUM_CONFIGS_DATABASE_USER
             value: {{ .Values.env.debezium.configs.database.user }}
           - name: DEBEZIUM_CONFIGS_DATABASE_PASSWORD
@@ -69,7 +69,7 @@ spec:
           - name: DEBEZIUM_CONFIGS_PULSAR_SERVICE_HOST
             value: {{ .Values.env.debezium.configs.pulsar.service.host }}
           - name: DEBEZIUM_CONFIGS_PULSAR_SERVICE_PORT
-            value: {{ .Values.env.debezium.configs.pulsar.service.port }}
+            value: "{{ .Values.env.debezium.configs.pulsar.service.port }}"
         {{- range concat (.Values.global.environment) (.Values.environment | default list)}}
           - name: {{ .name | quote}}
             value: {{ .value | quote }}
