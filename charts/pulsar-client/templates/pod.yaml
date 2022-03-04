@@ -18,7 +18,7 @@ spec:
         - name: DEBEZIUM_CONFIGS_DATABASE_HOSTNAME
           value: t-sqldicco.global.dns
         - name: DEBEZIUM_CONFIGS_DATABASE_PORT
-          value: 1433
+          value: "1433"
         - name: DEBEZIUM_CONFIGS_DATABASE_USER
           value: DICCO_REST_user
         - name: DEBEZIUM_CONFIGS_DATABASE_PASSWORD
@@ -38,4 +38,4 @@ spec:
         - name: DEBEZIUM_CONFIGS_PULSAR_SERVICE_HOST
           value: pulsar-broker
         - name: DEBEZIUM_CONFIGS_PULSAR_SERVICE_PORT
-          value: 6650
+          value: "6650"

@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "0.0.8"
 description: Apache Pulsar Client
 name: pulsar-client
-version: 1.0.8
+version: 1.0.9
