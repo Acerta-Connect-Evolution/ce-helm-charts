@@ -32,7 +32,7 @@ spec:
 
         command: [ "/bin/bash", "-c" ]
         args:
-          - /init.sh && tail -f /dev/null
+          - /init.sh
         env:
           - name: PULSAR_ADMIN_URL
             value: {{ .Values.env.pulsar.admin.url }}
