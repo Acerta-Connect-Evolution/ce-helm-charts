@@ -1,0 +1,99 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "job.fullname" . }}
+spec:
+  template:
+    spec:
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}
+    {{- end }}
+    {{- if .Values.securityContext.runAsUser }}
+      securityContext:
+        runAsUser: {{ .Values.securityContext.runAsUser }}
+        {{- if .Values.securityContext.runAsGroup }}
+        runAsGroup: {{ .Values.securityContext.runAsGroup }}
+        {{- end }}
+        {{- if .Values.securityContext.fsGroup }}
+        fsGroup: {{ .Values.securityContext.fsGroup }}
+        {{- end }}
+    {{- end }}
+      {{- if .Values.initContainers.waitForFlink.enabled }}
+      initContainers:
+        - name: wait-for-flink
+          image: nexus.global.dns:8443/acerta-connect-evolution/wait-for-url:1.0
+          args: [ '{{ .Values.initContainers.waitForPulsar.endpoint }}' ]
+      {{- end }}
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+        name: {{ template "job.fullname" . }}
+
+        command: [ "/bin/bash", "-c" ]
+        args:
+          - /init.sh
+        env:
+          - name: PULSAR_ADMIN_URL
+            value: {{ .Values.env.pulsar.admin.url }}
+          - name: PULSAR_TENANT
+            value: {{ .Values.env.pulsar.tenant }}
+          - name: PULSAR_NAMESPACE
+            value: {{ .Values.env.pulsar.namespace }}
+          - name: DEBEZIUM_TENANT
+            value: {{ .Values.env.debezium.tenant }}
+          - name: DEBEZIUM_NAMESPACE
+            value: {{ .Values.env.debezium.namespace }}
+          - name: DEBEZIUM_NAME
+            value: {{ .Values.env.debezium.name }}
+          - name: DEBEZIUM_CONFIGS_DATABASE_HOSTNAME
+            value: {{ .Values.env.debezium.configs.database.hostname }}
+          - name: DEBEZIUM_CONFIGS_DATABASE_PORT
+            value: {{ .Values.env.debezium.configs.database.port }}
+          - name: DEBEZIUM_CONFIGS_DATABASE_USER
+            value: {{ .Values.env.debezium.configs.database.user }}
+          - name: DEBEZIUM_CONFIGS_DATABASE_PASSWORD
+            value: {{ .Values.env.debezium.configs.database.password }}
+          - name: DEBEZIUM_CONFIGS_DATABASE_DBNAME
+            value: {{ .Values.env.debezium.configs.database.dbname }}
+          - name: DEBEZIUM_CONFIGS_DATABASE_SERVER_NAME
+            value: {{ .Values.env.debezium.configs.database.server.name }}
+          - name: DEBEZIUM_CONFIGS_DATABASE_TABLE_INCLUDE_LIST
+            value: {{ .Values.env.debezium.configs.database.table.include.list }}
+          - name: DEBEZIUM_CONFIGS_SNAPSHOT_MODE
+            value: {{ .Values.env.debezium.configs.snapshot.mode }}
+          - name: DEBEZIUM_CONFIGS_SNAPSHOT_ISOLATION_MODE
+            value: {{ .Values.env.debezium.configs.snapshot.isolation.mode }}
+          - name: DEBEZIUM_CONFIGS_TOPIC_NAMESPACE
+            value: {{ .Values.env.debezium.configs.topic.namespace }}
+          - name: DEBEZIUM_CONFIGS_PULSAR_SERVICE_HOST
+            value: {{ .Values.env.debezium.configs.pulsar.service.host }}
+          - name: DEBEZIUM_CONFIGS_PULSAR_SERVICE_PORT
+            value: {{ .Values.env.debezium.configs.pulsar.service.port }}
+        {{- range concat (.Values.global.environment) (.Values.environment | default list)}}
+          - name: {{ .name | quote}}
+            value: {{ .value | quote }}
+        {{- end }}
+
+        {{- with .Values.resources }}
+        resources:
+{{ toYaml . | indent 10 }}
+        {{- end }}
+        {{- with .Values.volumeMounts }}
+        volumeMounts:
+{{ toYaml . | indent 8 }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      restartPolicy: {{ .Values.restartPolicy }}
+  backoffLimit: {{ .Values.backoffLimit }}
