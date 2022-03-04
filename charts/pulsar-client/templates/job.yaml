@@ -19,9 +19,9 @@ spec:
         fsGroup: {{ .Values.securityContext.fsGroup }}
         {{- end }}
     {{- end }}
-      {{- if .Values.initContainers.waitForFlink.enabled }}
+      {{- if .Values.initContainers.waitForPulsar.enabled }}
       initContainers:
-        - name: wait-for-flink
+        - name: wait-for-pulsar
           image: nexus.global.dns:8443/acerta-connect-evolution/wait-for-url:1.0
           args: [ '{{ .Values.initContainers.waitForPulsar.endpoint }}' ]
       {{- end }}
