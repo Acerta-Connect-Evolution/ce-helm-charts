@@ -38,7 +38,7 @@ spec:
           command:
             - /bin/bash
             - -c
-            - /pulsar/bin/init.sh & bin/pulsar standalone
+            - bin/pulsar standalone
           ports:
             - containerPort: 6650
               protocol: TCP
