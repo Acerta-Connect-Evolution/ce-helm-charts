@@ -1,88 +1,85 @@
-# Default values for job.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+replicaCount: 1
 
-global:
-  environment: []
-
-## Job image
 image:
-  repository: "nexus.global.dns:8443/acerta-connect-evolution/pulsar-client"
-  #tag is set by chart's appVersion
+  repository: nexus.global.dns:8443/acerta-connect-evolution/pulsar-client
   pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
 
-initContainers:
-  waitForPulsar:
-    enabled: true
-    endpoint: ""
+imagePullSecrets:
+  - name: regcred
+nameOverride: ""
+fullnameOverride: ""
 
-## Job configurations
-backoffLimit: 4
-restartPolicy: Never
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
 
-# By default, fullname uses '{{ .Release.Name }}-{{ .Chart.Name }}'. This
-# overrides that and uses the given string instead.
-# fullnameOverride: "some-name"
+podAnnotations: {}
 
-# This adds a prefix
-# fullnamePrefix: "pre-"
-# This appends a suffix
-# fullnameSuffix: "-suf"
+podSecurityContext: {}
+# fsGroup: 2000
 
-annotations:
-  "helm.sh/hook": post-install
-  "helm.sh/hook-weight": "-5"
-  "helm.sh/hook-delete-policy": hook-succeeded
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+# runAsUser: 1000
 
-#environment:
-#  - name: VAR1
-#    value: value1
-#  - name: VAR2
-#    value: value2
+service:
+  type: ClusterIP
+  port: 8080
 
-## define resources
-#resources:
-#  limits:
-#    cpu: 2
-#    memory: 2000Mi
-#  requests:
-#    cpu: 500m
-#    memory: 500Mi
+ingress:
+  enabled: true
+  className: ""
+  annotations:
+  # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
-securityContext:
-  runAsUser:
-  runAsGroup:
-  fsGroup:
+resources: # {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  requests:
+    cpu: "250m"
+    memory: "384Mi"
+  limits:
+    cpu: "250m"
+    memory: "512Mi"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraEnv: {}
 
 env:
   pulsar:
-    admin:
-      url: PULSAR_ADMIN_URL
-    tenant: PULSAR_TENANT
-    namespace: PULSAR_NAMESPACE
-  debezium:
-    tenant: DEBEZIUM_TENANT
-    namespace: DEBEZIUM_NAMESPACE
-    name: DEBEZIUM_NAME
-    configs:
-      database:
-        hostname: DEBEZIUM_CONFIGS_DATABASE_HOSTNAME
-        port: DEBEZIUM_CONFIGS_DATABASE_PORT
-        user: DEBEZIUM_CONFIGS_DATABASE_USER
-        password: DEBEZIUM_CONFIGS_DATABASE_PASSWORD
-        dbname: DEBEZIUM_CONFIGS_DATABASE_DBNAME
-        server:
-          name: DEBEZIUM_CONFIGS_DATABASE_SERVER_NAME
-        table:
-          include:
-            list: DEBEZIUM_CONFIGS_DATABASE_TABLE_INCLUDE_LIST
-      snapshot:
-        mode: DEBEZIUM_CONFIGS_SNAPSHOT_MODE
-        isolation:
-          mode: DEBEZIUM_CONFIGS_SNAPSHOT_ISOLATION_MODE
-      topic:
-        namespace: DEBEZIUM_CONFIGS_TOPIC_NAMESPACE
-      pulsar:
-        service:
-          host: DEBEZIUM_CONFIGS_PULSAR_SERVICE_HOST
-          port: DEBEZIUM_CONFIGS_PULSAR_SERVICE_PORT
+    admin-url: PULSAR_ADMIN-URL
