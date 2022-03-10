@@ -2890,16 +2890,6 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/gabschart-14.0.0/gabschart-14.0.0.tgz
     version: 14.0.0
-  init-job:
-  - apiVersion: v1
-    appVersion: latest
-    created: "2022-03-10T07:45:33.19770356Z"
-    description: Init job
-    digest: 83648540e86911d0baeee3fd3c825f15710fa1cb3522ea6d7c20d711a695a522
-    name: init-job
-    urls:
-    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/init-job-1.0.0/init-job-1.0.0.tgz
-    version: 1.0.0
   kafdrop:
   - apiVersion: v1
     appVersion: 3.27.0
@@ -3006,14 +2996,14 @@ entries:
   pulsar-client:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-03-10T07:45:33.337343034Z"
+    created: "2022-03-10T07:46:20.968100358Z"
     description: Helm chart for Pulsar Client
-    digest: 5b5062e4f07dc152ae96c23ba5957b32b001c86d82f4ca96bc5bafa6fe24ae7a
+    digest: b50ef8afa079bbf293cca5b58d2d7642493282772a343e51b78b138f4af4b748
     name: pulsar-client
     type: application
     urls:
-    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-client-3.0.0/pulsar-client-3.0.0.tgz
-    version: 3.0.0
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-client-3.1.0/pulsar-client-3.1.0.tgz
+    version: 3.1.0
   - apiVersion: v1
     appVersion: 0.0.18
     created: "2022-03-09T07:47:12.084125898Z"
@@ -3262,4 +3252,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-03-10T07:45:33.338291539Z"
+generated: "2022-03-10T07:46:20.969154571Z"
