@@ -2890,6 +2890,16 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/gabschart-14.0.0/gabschart-14.0.0.tgz
     version: 14.0.0
+  init-job:
+  - apiVersion: v1
+    appVersion: latest
+    created: "2022-03-10T07:58:14.667844304Z"
+    description: Init job
+    digest: 75d7a527e7783063941047359d43a22dc1acd48b60865d7d46c4bbf7796a5fd8
+    name: init-job
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/init-job-1.0.1/init-job-1.0.1.tgz
+    version: 1.0.1
   kafdrop:
   - apiVersion: v1
     appVersion: 3.27.0
@@ -3252,4 +3262,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-03-10T07:46:20.969154571Z"
+generated: "2022-03-10T07:58:14.669199484Z"
