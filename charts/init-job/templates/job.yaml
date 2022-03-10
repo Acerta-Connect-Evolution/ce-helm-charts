@@ -32,7 +32,7 @@ spec:
         command:
           - "sh"
           - "-c"
-          - {{- toYaml .Values.script }}
+          - "{{- .Values.script }}"
         env:
         {{- range concat (.Values.global.environment) (.Values.environment | default list)}}
           - name: {{ .name | quote}}
