@@ -35,3 +35,6 @@ c2ce-flink-client:
 
 pulsar-client:
   enabled: true
+
+pulsar-init-job:
+  enabled: true
