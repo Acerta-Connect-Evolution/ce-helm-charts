@@ -82,4 +82,4 @@ extraEnv: {}
 
 env:
   pulsar:
-    admin-url: PULSAR_ADMIN-URL
+    adminurl: PULSAR_ADMIN-URL

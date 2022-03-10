@@ -56,7 +56,7 @@ spec:
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
             - name: PULSAR_ADMIN-URL
-              value: {{ .Values.env.pulsar.admin-url }}
+              value: {{ .Values.env.pulsar.adminurl }}
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
