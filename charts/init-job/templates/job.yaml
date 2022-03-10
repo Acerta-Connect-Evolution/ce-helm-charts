@@ -30,7 +30,7 @@ spec:
         imagePullPolicy: {{ .Values.image.imagePullPolicy }}
         name: {{ template "job.fullname" . }}
         command:
-          - "/bin/bash"
+          - "/bin/sh"
           - "-c"
           - |
             {{- toYaml .Values.script | nindent 12 }}
