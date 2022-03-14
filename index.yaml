@@ -3285,6 +3285,15 @@ entries:
   init-job:
   - apiVersion: v1
     appVersion: latest
+    created: "2022-03-14T12:19:58.334735564Z"
+    description: Init job
+    digest: f9bca8f808eb266ecc3cc496e0609b69611918f79d24ac9f49717e1d7eb7a5d5
+    name: init-job
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/init-job-1.0.12/init-job-1.0.12.tgz
+    version: 1.0.12
+  - apiVersion: v1
+    appVersion: latest
     created: "2022-03-14T12:14:35.576987401Z"
     description: Init job
     digest: 3a2051650547fb1d0e4a9035e7ad301cd256ed52b7a7bd0437f6e46a98f62319
@@ -3864,4 +3873,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-03-14T12:16:31.257662803Z"
+generated: "2022-03-14T12:19:58.335809571Z"
