@@ -46,7 +46,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-client.enabled
   - name: init-job
-    version: 1.0.8
+    version: 1.0.9
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-init-job.enabled
     alias: pulsar-init-job
