@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: apachepulsar/pulsar-all:2.9.0
+  repository: apachepulsar/pulsar-all
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
