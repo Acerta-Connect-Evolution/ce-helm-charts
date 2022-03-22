@@ -82,25 +82,24 @@ extraEnv: {}
 
 env:
   testSupport:
-    proceedOnError: true
-    pulsarClientUrl: http://pulsar-client:8080
-    flinkClientUrl: http://c2ce-flink-client:8080
-    elasticSearchUrl: http://elasticsearch-master:9200
+    proceedOnError: PROCEED-ON-ERROR
+    pulsarClientUrl: PULSAR-CLIENT-URL
+    flinkClientUrl: FLINK-CLIENT-URL
+    elasticSearchUrl: ELASTIC-SEARCH-URL
     resetCdc:
-      enabled: true
+      enabled: RESET-CDC_ENABLED
       datasource:
-        url: jdbc:sqlserver://mssql-latest:1433;sendStringParametersAsUnicode=false;databaseName=cdc
-        username: user_cdc
-        password: CdcPass123
-
+        url: DATASOURCE_URL
+        username: DATASOURCE_USERNAME
+        password: DATASOURCE_PASSWORD
     microservices:
       calendarTimespend:
-        name: calendar-timespend
-        axonUrl: http://axon-server-1:8024
-        serviceUrl: http://backend-service-url-1
-        pulsarContext: calendar-timespend
-        elasticSearchContext: calendar-timespend
+        name: NAME
+        axonUrl: AXON-URL
+        serviceUrl: SERVICE-URL
+        pulsarContext: PULSAR-CONTEXT
+        elasticSearchContext: ELASTIC-SEARCH-CONTEXT
         datasource:
-          url: jdbc:sqlserver://mssql-latest:1433;sendStringParametersAsUnicode=false;databaseName=calendar_timespend
-          username: user_calendar_timespend
-          password: CalendarTimespendPass123
+          url: DATASOURCE_URL
+          username: DATASOURCE_USERNAME
+          password: DATASOURCE_PASSWORD
