@@ -92,8 +92,10 @@ env:
         url: jdbc:sqlserver://mssql-latest:1433;sendStringParametersAsUnicode=false;databaseName=cdc
         username: user_cdc
         password: CdcPass123
+
     microservices:
-      - name: calendar-timespend
+      calendarTimespend:
+        name: calendar-timespend
         axonUrl: http://axon-server-1:8024
         serviceUrl: http://backend-service-url-1
         pulsarContext: calendar-timespend

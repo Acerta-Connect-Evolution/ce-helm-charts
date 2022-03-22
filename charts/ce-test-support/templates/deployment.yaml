@@ -72,21 +72,21 @@ spec:
             - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_PASSWORD
               value: {{ .Values.env.test.support.resetCdc.datasource.password }}
             - name: TEST_SUPPORT_MICROSERVICES_0_NAME
-              value: {{ .Values.env.test.support.microservices[0].name }}
+              value: {{ .Values.env.test.support.microservices.calendarTimespend.name }}
             - name: TEST_SUPPORT_MICROSERVICES_0_AXON-URL
-              value: {{ .Values.env.test.support.microservices[0].axonUrl }}
+              value: {{ .Values.env.test.support.microservices.calendarTimespend.axonUrl }}
             - name: TEST_SUPPORT_MICROSERVICES_0_SERVICE-URL
-              value: {{ .Values.env.test.support.microservices[0].serviceUrl }}
+              value: {{ .Values.env.test.support.microservices.calendarTimespend.serviceUrl }}
             - name: TEST_SUPPORT_MICROSERVICES_0_PULSAR-CONTEXT
-              value: {{ .Values.env.test.support.microservices[0].pulsarContext }}
+              value: {{ .Values.env.test.support.microservices.calendarTimespend.pulsarContext }}
             - name: TEST_SUPPORT_MICROSERVICES_0_ELASTIC-SEARCH-CONTEXT
-              value: {{ .Values.env.test.support.microservices[0].elasticSearchContext }}
+              value: {{ .Values.env.test.support.microservices.calendarTimespend.elasticSearchContext }}
             - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_URL
-              value: {{ .Values.env.test.support.microservices[0].datasource.url }}
+              value: {{ .Values.env.test.support.microservices.calendarTimespend.datasource.url }}
             - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_USERNAME
-              value: {{ .Values.env.test.support.microservices[0].datasource.username }}
+              value: {{ .Values.env.test.support.microservices.calendarTimespend.datasource.username }}
             - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_PASSWORD
-              value: {{ .Values.env.test.support.microservices[0].datasource.password }}
+              value: {{ .Values.env.test.support.microservices.calendarTimespend.datasource.password }}
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
