@@ -56,38 +56,37 @@ spec:
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
             - name: TEST_SUPPORT_PROCEED-ON-ERROR
-              value: {{ .Values.env.test.support.proceed-on-error }}
+              value: {{ .Values.env.test.support.proceedOnError }}
             - name: TEST_SUPPORT_PULSAR-CLIENT-URL
-              value: {{ .Values.env.test.support.pulsar-client-url }}
+              value: {{ .Values.env.test.support.pulsarClientUrl }}
             - name: TEST_SUPPORT_FLINK-CLIENT-URL
-              value: {{ .Values.env.test.support.flink-client-url }}
+              value: {{ .Values.env.test.support.flinkClientUrl }}
             - name: TEST_SUPPORT_ELASTIC-SEARCH-URL
-              value: {{ .Values.env.test.support.elastic-search-url }}
+              value: {{ .Values.env.test.support.elasticSearchUrl }}
             - name: TEST_SUPPORT_RESET-CDC_ENABLED
-              value: {{ .Values.env.test.support.reset-cdc.enabled }}
+              value: {{ .Values.env.test.support.resetCdc.enabled }}
             - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_URL
-              value: {{ .Values.env.test.support.reset-cdc.datasource.url }}
+              value: {{ .Values.env.test.support.resetCdc.datasource.url }}
             - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_USERNAME
-              value: {{ .Values.env.test.support.reset-cdc.datasource.username }}
+              value: {{ .Values.env.test.support.resetCdc.datasource.username }}
             - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_PASSWORD
-              value: {{ .Values.env.test.support.reset-cdc.datasource.password }}
+              value: {{ .Values.env.test.support.resetCdc.datasource.password }}
             - name: TEST_SUPPORT_MICROSERVICES_0_NAME
               value: {{ .Values.env.test.support.microservices[0].name }}
             - name: TEST_SUPPORT_MICROSERVICES_0_AXON-URL
-              value: {{ .Values.env.test.support.microservices[0].axon-url }}
+              value: {{ .Values.env.test.support.microservices[0].axonUrl }}
             - name: TEST_SUPPORT_MICROSERVICES_0_SERVICE-URL
-              value: {{ .Values.env.test.support.microservices[0].service-url }}
+              value: {{ .Values.env.test.support.microservices[0].serviceUrl }}
             - name: TEST_SUPPORT_MICROSERVICES_0_PULSAR-CONTEXT
-              value: {{ .Values.env.test.support.microservices[0].pulsar-context }}
+              value: {{ .Values.env.test.support.microservices[0].pulsarContext }}
             - name: TEST_SUPPORT_MICROSERVICES_0_ELASTIC-SEARCH-CONTEXT
-              value: {{ .Values.env.test.support.microservices[0].elastic-search-context }}
+              value: {{ .Values.env.test.support.microservices[0].elasticSearchContext }}
             - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_URL
               value: {{ .Values.env.test.support.microservices[0].datasource.url }}
             - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_USERNAME
               value: {{ .Values.env.test.support.microservices[0].datasource.username }}
             - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_PASSWORD
               value: {{ .Values.env.test.support.microservices[0].datasource.password }}
-
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
