@@ -963,6 +963,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-frontend-0.27.0/ce-calendar-timespend-frontend-0.27.0.tgz
     version: 0.27.0
+  ce-test-support:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-03-22T11:12:41.67010086Z"
+    description: Helm chart for ce-test-support
+    digest: 12bdf96c25fc0566075a1b6cf7ad0cbe76ad5ea033923cfe82d04f9038e507a9
+    name: ce-test-support
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-test-support-1.0.0/ce-test-support-1.0.0.tgz
+    version: 1.0.0
   connect-backend:
   - apiVersion: v2
     appVersion: 0.0.1
@@ -4384,4 +4395,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-03-21T15:26:53.867597319Z"
+generated: "2022-03-22T11:12:41.671093669Z"
