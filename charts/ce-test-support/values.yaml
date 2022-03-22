@@ -81,7 +81,7 @@ affinity: {}
 extraEnv: {}
 
 env:
-  test.support:
+  testSupport:
     proceedOnError: true
     pulsarClientUrl: http://pulsar-client:8080
     flinkClientUrl: http://c2ce-flink-client:8080
