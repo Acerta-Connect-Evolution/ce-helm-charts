@@ -1,0 +1,108 @@
+{{- /* @formatter:off */}}
+  {{- $fullName := include "mychart.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "mychart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "mychart.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "mychart.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: actuator/health/liveness
+              port: http
+            failureThreshold: 1
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: actuator/health/liveness
+              port: http
+            failureThreshold: 30
+            periodSeconds: 5
+
+          # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
+          # dummy foo-bar added to make op 'add' in patch work correctly
+          env:
+            - name: TEST_SUPPORT_PROCEED-ON-ERROR
+              value: {{ .Values.env.test.support.proceed-on-error }}
+            - name: TEST_SUPPORT_PULSAR-CLIENT-URL
+              value: {{ .Values.env.test.support.pulsar-client-url }}
+            - name: TEST_SUPPORT_FLINK-CLIENT-URL
+              value: {{ .Values.env.test.support.flink-client-url }}
+            - name: TEST_SUPPORT_ELASTIC-SEARCH-URL
+              value: {{ .Values.env.test.support.elastic-search-url }}
+            - name: TEST_SUPPORT_RESET-CDC_ENABLED
+              value: {{ .Values.env.test.support.reset-cdc.enabled }}
+            - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_URL
+              value: {{ .Values.env.test.support.reset-cdc.datasource.url }}
+            - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_USERNAME
+              value: {{ .Values.env.test.support.reset-cdc.datasource.username }}
+            - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_PASSWORD
+              value: {{ .Values.env.test.support.reset-cdc.datasource.password }}
+            - name: TEST_SUPPORT_MICROSERVICES_0_NAME
+              value: {{ .Values.env.test.support.microservices[0].name }}
+            - name: TEST_SUPPORT_MICROSERVICES_0_AXON-URL
+              value: {{ .Values.env.test.support.microservices[0].axon-url }}
+            - name: TEST_SUPPORT_MICROSERVICES_0_SERVICE-URL
+              value: {{ .Values.env.test.support.microservices[0].service-url }}
+            - name: TEST_SUPPORT_MICROSERVICES_0_PULSAR-CONTEXT
+              value: {{ .Values.env.test.support.microservices[0].pulsar-context }}
+            - name: TEST_SUPPORT_MICROSERVICES_0_ELASTIC-SEARCH-CONTEXT
+              value: {{ .Values.env.test.support.microservices[0].elastic-search-context }}
+            - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_URL
+              value: {{ .Values.env.test.support.microservices[0].datasource.url }}
+            - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_USERNAME
+              value: {{ .Values.env.test.support.microservices[0].datasource.username }}
+            - name: TEST_SUPPORT_MICROSERVICES_0_DATASOURCE_PASSWORD
+              value: {{ .Values.env.test.support.microservices[0].datasource.password }}
+
+            {{- range $key, $value := $.Values.extraEnv }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
