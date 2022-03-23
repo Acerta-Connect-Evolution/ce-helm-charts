@@ -82,12 +82,12 @@ extraEnv: {}
 
 env:
   testSupport:
-    proceedOnError: "true"
+    proceedOnError: true
     pulsarClientUrl: PULSAR-CLIENT-URL
     flinkClientUrl: FLINK-CLIENT-URL
     elasticSearchUrl: ELASTIC-SEARCH-URL
     resetCdc:
-      enabled: "true"
+      enabled: true
       datasource:
         url: DATASOURCE_URL
         username: DATASOURCE_USERNAME

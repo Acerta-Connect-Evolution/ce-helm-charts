@@ -56,7 +56,7 @@ spec:
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
             - name: TEST_SUPPORT_PROCEED-ON-ERROR
-              value: {{ .Values.env.testSupport.proceedOnError }}
+              value: {{ .Values.env.testSupport.proceedOnError | quote }}
             - name: TEST_SUPPORT_PULSAR-CLIENT-URL
               value: {{ .Values.env.testSupport.pulsarClientUrl }}
             - name: TEST_SUPPORT_FLINK-CLIENT-URL
@@ -64,7 +64,7 @@ spec:
             - name: TEST_SUPPORT_ELASTIC-SEARCH-URL
               value: {{ .Values.env.testSupport.elasticSearchUrl }}
             - name: TEST_SUPPORT_RESET-CDC_ENABLED
-              value: {{ .Values.env.testSupport.resetCdc.enabled }}
+              value: {{ .Values.env.testSupport.resetCdc.enabled | quote }}
             - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_URL
               value: {{ .Values.env.testSupport.resetCdc.datasource.url }}
             - name: TEST_SUPPORT_RESET-CDC_DATASOURCE_USERNAME
