@@ -38,3 +38,6 @@ pulsar-client:
 
 pulsar-init-job:
   enabled: true
+
+ce-test-support:
+  enabled: true
