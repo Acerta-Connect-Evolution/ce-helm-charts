@@ -976,6 +976,16 @@ entries:
   ce-test-support:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-03-24T09:08:01.487879072Z"
+    description: Helm chart for ce-test-support
+    digest: e2aa7206de75260bd9cd0d9f82625de740732cea520c1eb04805a1fe2eb6fdca
+    name: ce-test-support
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-test-support-1.10.0/ce-test-support-1.10.0.tgz
+    version: 1.10.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-03-23T08:17:36.801619618Z"
     description: Helm chart for ce-test-support
     digest: 9ce5695703ddc489322cb5bbc74b76579bad88a24baf868d9634d2402f4672c7
@@ -4661,4 +4671,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-03-23T13:01:55.161885395Z"
+generated: "2022-03-24T09:08:01.490478636Z"
