@@ -81,25 +81,26 @@ affinity: {}
 extraEnv: {}
 
 env:
-  testSupport:
-    proceedOnError: true
-    pulsarClientUrl: PULSAR-CLIENT-URL
-    flinkClientUrl: FLINK-CLIENT-URL
-    elasticSearchUrl: ELASTIC-SEARCH-URL
-    resetCdc:
-      enabled: true
-      datasource:
-        url: DATASOURCE_URL
-        username: DATASOURCE_USERNAME
-        password: DATASOURCE_PASSWORD
-    microservices:
-      calendarTimespend:
-        name: NAME
-        axonUrl: AXON-URL
-        serviceUrl: SERVICE-URL
-        pulsarContext: PULSAR-CONTEXT
-        elasticSearchContext: ELASTIC-SEARCH-CONTEXT
+  test:
+    support:
+      proceedOnError: true
+      pulsarClientUrl: PULSAR-CLIENT-URL
+      flinkClientUrl: FLINK-CLIENT-URL
+      elasticSearchUrl: ELASTIC-SEARCH-URL
+      resetCdc:
+        enabled: true
         datasource:
           url: DATASOURCE_URL
           username: DATASOURCE_USERNAME
           password: DATASOURCE_PASSWORD
+      microservices:
+        calendarTimespend:
+          name: NAME
+          axonUrl: AXON-URL
+          serviceUrl: SERVICE-URL
+          pulsarContext: PULSAR-CONTEXT
+          elasticSearchContext: ELASTIC-SEARCH-CONTEXT
+          datasource:
+            url: DATASOURCE_URL
+            username: DATASOURCE_USERNAME
+            password: DATASOURCE_PASSWORD
