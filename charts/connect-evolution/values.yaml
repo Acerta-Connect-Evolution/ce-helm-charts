@@ -38,3 +38,12 @@ pulsar-client:
 
 pulsar-init-job:
   enabled: true
+
+cdc-db-init-job:
+  enabled: true
+  image:
+    repository: nexus.global.dns:8443/acerta-dev/mssql-client
+  initContainers:
+    waitForUrl:
+      enabled: true
+      endpoint: ""
