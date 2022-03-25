@@ -39,6 +39,9 @@ pulsar-client:
 pulsar-init-job:
   enabled: true
 
+ce-test-support:
+  enabled: true
+
 cdc-db-init-job:
   enabled: true
   image:
