@@ -13,8 +13,14 @@ image:
 
 initContainers:
   waitForUrl:
-    enabled: true
+    enabled: false
     endpoint: ""
+  waitForMssql:
+    enabled: false
+    server:
+      host: ""
+      user: ""
+      password: ""
 
 ## Job configurations
 backoffLimit: 4
