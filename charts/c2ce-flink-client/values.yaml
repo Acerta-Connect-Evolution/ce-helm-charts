@@ -79,3 +79,10 @@ tolerations: []
 affinity: {}
 
 extraEnv: {}
+
+env:
+  flink:
+    jobmanager:
+      url: FLINK_JOBMANAGER_URL
+  pulsar:
+    url: PULSAR_URL
