@@ -59,38 +59,3 @@ securityContext:
   runAsUser:
   runAsGroup:
   fsGroup:
-
-env:
-  pulsar:
-    client:
-      url: PULSAR_CLIENT_URL
-    admin:
-      url: PULSAR_ADMIN_URL
-    tenant: PULSAR_TENANT
-    namespace: PULSAR_NAMESPACE
-  debezium:
-    tenant: DEBEZIUM_TENANT
-    namespace: DEBEZIUM_NAMESPACE
-    name: DEBEZIUM_NAME
-    configs:
-      database:
-        hostname: DEBEZIUM_CONFIGS_DATABASE_HOSTNAME
-        port: DEBEZIUM_CONFIGS_DATABASE_PORT
-        user: DEBEZIUM_CONFIGS_DATABASE_USER
-        password: DEBEZIUM_CONFIGS_DATABASE_PASSWORD
-        dbname: DEBEZIUM_CONFIGS_DATABASE_DBNAME
-        server:
-          name: DEBEZIUM_CONFIGS_DATABASE_SERVER_NAME
-        table:
-          include:
-            list: DEBEZIUM_CONFIGS_DATABASE_TABLE_INCLUDE_LIST
-      snapshot:
-        mode: DEBEZIUM_CONFIGS_SNAPSHOT_MODE
-        isolation:
-          mode: DEBEZIUM_CONFIGS_SNAPSHOT_ISOLATION_MODE
-      topic:
-        namespace: DEBEZIUM_CONFIGS_TOPIC_NAMESPACE
-      pulsar:
-        service:
-          host: DEBEZIUM_CONFIGS_PULSAR_SERVICE_HOST
-          port: DEBEZIUM_CONFIGS_PULSAR_SERVICE_PORT
