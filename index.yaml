@@ -3,6 +3,16 @@ entries:
   c2ce-flink-client:
   - apiVersion: v2
     appVersion: 1.43.0
+    created: "2022-03-31T10:15:03.74368215Z"
+    description: Helm chart for c2ce Flink Client
+    digest: 0a1a46d4aa72c3dafe6445cddbfe0c01ccbf551f8c51b4932fb361a39b8eadcd
+    name: c2ce-flink-client
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/c2ce-flink-client-1.30.2/c2ce-flink-client-1.30.2.tgz
+    version: 1.30.2
+  - apiVersion: v2
+    appVersion: 1.43.0
     created: "2022-03-31T08:23:51.49373145Z"
     description: Helm chart for c2ce Flink Client
     digest: 09d30954d71fef317823d39629eff5724f4ecec87d3f19d7af833930a1201248
@@ -1089,6 +1099,16 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-frontend-0.27.0/ce-calendar-timespend-frontend-0.27.0.tgz
     version: 0.27.0
   ce-test-support:
+  - apiVersion: v2
+    appVersion: 1.5.0
+    created: "2022-03-31T10:15:03.974257442Z"
+    description: Helm chart for ce-test-support
+    digest: aa9b9c59d076c5644d07377aa1923f056dfe6c98becc8ca88d2d7101aa717d18
+    name: ce-test-support
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-test-support-1.16.2/ce-test-support-1.16.2.tgz
+    version: 1.16.2
   - apiVersion: v2
     appVersion: 1.5.0
     created: "2022-03-31T08:00:27.947777015Z"
@@ -6047,6 +6067,16 @@ entries:
   pulsar-client:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-03-31T10:15:04.207619222Z"
+    description: Helm chart for Pulsar Client
+    digest: d8dd26ac140429d9760a2f1fbae40836a687788f2f4a08fd1421fd7848e349c8
+    name: pulsar-client
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-client-3.17.3/pulsar-client-3.17.3.tgz
+    version: 3.17.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2022-03-31T07:45:43.427539623Z"
     description: Helm chart for Pulsar Client
     digest: ed58b9adb1177b7aea8e349890cfa825ddf20c1228da918fa4f56816c9b675e9
@@ -6523,4 +6553,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-03-31T10:11:07.468761214Z"
+generated: "2022-03-31T10:15:04.209691586Z"
