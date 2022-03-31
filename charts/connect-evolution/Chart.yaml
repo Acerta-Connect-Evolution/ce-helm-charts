@@ -51,7 +51,7 @@ dependencies:
     condition: pulsar-init-job.enabled
     alias: pulsar-init-job
   - name: ce-test-support
-    version: 1.14.0
+    version: 1.15.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-test-support.enabled
   - name: init-job
