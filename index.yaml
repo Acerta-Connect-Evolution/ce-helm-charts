@@ -3,6 +3,16 @@ entries:
   c2ce-flink-client:
   - apiVersion: v2
     appVersion: 1.43.0
+    created: "2022-03-31T08:23:51.49373145Z"
+    description: Helm chart for c2ce Flink Client
+    digest: 09d30954d71fef317823d39629eff5724f4ecec87d3f19d7af833930a1201248
+    name: c2ce-flink-client
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/c2ce-flink-client-1.30.1/c2ce-flink-client-1.30.1.tgz
+    version: 1.30.1
+  - apiVersion: v2
+    appVersion: 1.43.0
     created: "2022-03-30T09:02:38.304074282Z"
     description: Helm chart for c2ce Flink Client
     digest: bd1d7d0bb6a9659d5875e734fd7c272bfacb5025088e38385fa8fa18f30a0dda
@@ -6138,4 +6148,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-03-31T08:08:13.957864975Z"
+generated: "2022-03-31T08:23:51.495775219Z"
