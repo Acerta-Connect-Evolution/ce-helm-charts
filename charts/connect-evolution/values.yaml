@@ -1,10 +1,30 @@
 ce-calendar-timespend-backend:
   enabled: true
-  axon-server:
-    enabled: true
 
 ce-calendar-timespend-frontend:
   enabled: true
+
+axon-server-calendar-timespend:
+  enabled: false
+  nameOverride: axon-server-calendar-timespend
+  image:
+    tag: "4.5.6"
+  extraEnvs:
+    - name: AXONIQ_AXONSERVER_DEVMODE_ENABLED
+      value: "true"
+    - name: AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED
+      value: "true"
+    - name: AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUSENABLED
+      value: "true"
+  persistence:
+    enabled: true
+    accessModes: [ ReadWriteOnce ]
+    eventstoreStorage:
+      size: 1Gi
+    dataStorage:
+      size: 1Gi
+    logStorage:
+      size: 1Gi
 
 connect-backend:
   enabled: true

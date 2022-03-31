@@ -115,25 +115,3 @@ env:
       url: PULSAR_BROKER_URL
 
 extraEnv: {}
-
-axon-server:
-  enabled: false
-  nameOverride: calendar-timespend-axon-server
-  image:
-    tag: "4.5.6"
-  extraEnvs:
-    - name: AXONIQ_AXONSERVER_DEVMODE_ENABLED
-      value: "true"
-    - name: AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED
-      value: "true"
-    - name: AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUSENABLED
-      value: "true"
-  persistence:
-    enabled: true
-    accessModes: [ ReadWriteOnce ]
-    eventstoreStorage:
-      size: 1Gi
-    dataStorage:
-      size: 1Gi
-    logStorage:
-      size: 1Gi
