@@ -83,3 +83,4 @@ extraEnv: {}
 env:
   pulsar:
     adminurl: PULSAR_ADMIN-URL
+    allowedclusters: standalone

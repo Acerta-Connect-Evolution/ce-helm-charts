@@ -57,6 +57,8 @@ spec:
           env:
             - name: PULSAR_ADMIN-URL
               value: {{ .Values.env.pulsar.adminurl }}
+            - name: PULSAR_ALLOWED-CLUSTERS
+              value: {{ .Values.env.pulsar.allowedclusters }}
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
