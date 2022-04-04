@@ -3,9 +3,9 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: savepoints-data
-{{- if .Values.persistence.annotations }}
+{{- if .Values.sharedPersistence.annotations }}
   annotations:
-{{ toYaml .Values.persistence.annotations | indent 4 }}
+{{ toYaml .Values.sharedPersistence.annotations | indent 4 }}
 {{- end }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -13,14 +13,14 @@ metadata:
     heritage: "{{ .Release.Service }}"
 spec:
   accessModes:
-    - {{ .Values.persistence.dataAccessMode | quote }}
+    - {{ .Values.sharedPersistence.dataAccessMode | quote }}
   resources:
     requests:
-      storage: {{ .Values.persistence.dataSize | quote }}
-{{- if .Values.persistence.storageClass }}
-{{- if (eq "-" .Values.persistence.storageClass) }}
+      storage: {{ .Values.sharedPersistence.dataSize | quote }}
+{{- if .Values.sharedPersistence.storageClass }}
+{{- if (eq "-" .Values.sharedPersistence.storageClass) }}
   storageClassName: ""
 {{- else }}
-  storageClassName: "{{ .Values.persistence.storageClass }}"
+  storageClassName: "{{ .Values.sharedPersistence.storageClass }}"
 {{- end }}
 {{- end }}
