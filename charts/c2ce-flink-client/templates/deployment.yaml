@@ -59,6 +59,10 @@ spec:
               value: {{ .Values.env.flink.jobmanager.url }}
             - name: PULSAR_URL
               value: {{ .Values.env.pulsar.url }}
+            - name: PULSAR_SERVICE-PORT
+              value: {{ .Values.env.pulsar.servicePort }}
+            - name: PULSAR_ADMIN-PORT
+              value: {{ .Values.env.pulsar.adminPort }}
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}

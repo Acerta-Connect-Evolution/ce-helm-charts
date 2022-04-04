@@ -86,3 +86,5 @@ env:
       url: FLINK_JOBMANAGER_URL
   pulsar:
     url: PULSAR_URL
+    servicePort: 6650
+    adminPort: 8080
