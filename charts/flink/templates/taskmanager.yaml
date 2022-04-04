@@ -96,6 +96,8 @@ spec:
           volumeMounts:
             - name: flink-config-volume
               mountPath: {{ .Values.flink.workDir }}/conf
+            - name: savepoints-data-volume
+              mountPath: /opt/savepoints
           {{- if and .Values.taskmanager.persistent.enabled .Values.taskmanager.statefulset }}
             - name: taskmanager-data
               mountPath: {{ .Values.taskmanager.persistent.mountPath }}
@@ -143,6 +145,9 @@ spec:
               - key: masters
                 path: masters
               {{- end }}
+        - name: savepoints-data-volume
+          persistentVolumeClaim:
+            claimName: savepoints-data
       {{- range .Values.secrets.kubernetesSecrets }}
         - name: {{ include "flink.fullname" $ }}-{{ .name }}
           secret:
