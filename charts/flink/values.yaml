@@ -338,6 +338,6 @@ secrets:
 
 sharedPersistence:
   savepoints:
-    storageClass: ""
-    dataAccessMode: ReadWriteOnce
+    storageClass: "azurefile"
+    dataAccessMode: ReadWriteMany
     dataSize: 1Gi
