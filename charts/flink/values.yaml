@@ -335,3 +335,8 @@ secrets:
     # env2: encypted_env2
     sealedSecretEnvsAnnotations:
       sealedsecrets.bitnami.com/namespace-wide: true
+
+sharedPersistence:
+  storageClass: ""
+  dataAccessMode: ReadWriteOnce
+  dataSize: 1Gi
