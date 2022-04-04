@@ -337,6 +337,7 @@ secrets:
       sealedsecrets.bitnami.com/namespace-wide: true
 
 sharedPersistence:
-  storageClass: ""
-  dataAccessMode: ReadWriteOnce
-  dataSize: 1Gi
+  savepoints:
+    storageClass: ""
+    dataAccessMode: ReadWriteOnce
+    dataSize: 1Gi
