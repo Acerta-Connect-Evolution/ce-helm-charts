@@ -97,7 +97,7 @@ spec:
             - name: flink-config-volume
               mountPath: {{ .Values.flink.workDir }}/conf
             - name: savepoints-data-volume
-              mountPath: /opt/savepoints
+              mountPath: {{ .Values.flink.workDir }}/opt/savepoints
           {{- if and .Values.taskmanager.persistent.enabled .Values.taskmanager.statefulset }}
             - name: taskmanager-data
               mountPath: {{ .Values.taskmanager.persistent.mountPath }}
