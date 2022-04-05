@@ -129,7 +129,7 @@ spec:
               subPath: masters
               {{- end }}
             - name: savepoints-data-volume
-              mountPath: {{ .Values.flink.workDir }}/opt/savepoints
+              mountPath: /flink_state/savepoints
           {{- range $secret := .Values.secrets.kubernetesSecrets }}
             {{- if $secret.mountPath }}
               {{- if $secret.keys }}
