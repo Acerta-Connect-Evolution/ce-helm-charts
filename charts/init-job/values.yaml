@@ -59,3 +59,5 @@ securityContext:
   runAsUser:
   runAsGroup:
   fsGroup:
+env:
+  TZ: "Europe/Brussels"
