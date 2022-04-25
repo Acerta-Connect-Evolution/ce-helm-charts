@@ -63,6 +63,8 @@ spec:
               value: {{ .Values.env.debezium.configs.database.table.include.list }}
             - name: DEBEZIUM_CONFIGS_SNAPSHOT_MODE
               value: {{ .Values.env.debezium.configs.snapshot.mode }}
+            - name: TZ
+              value: "Europe/Brussels"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
