@@ -16,6 +16,9 @@ axon-server-calendar-timespend:
       value: "true"
     - name: AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUSENABLED
       value: "true"
+  java:
+    jvmOptions:
+      timezoneOptions: "-Duser.timezone=Europe/Brussels"
   persistence:
     enabled: true
     accessModes: [ ReadWriteOnce ]
@@ -43,6 +46,9 @@ elasticsearch:
   minimumMasterNodes: 1
   volumeClaimTemplate.resources.requests.storage: 1Gi
   sysctlInitContainer.enabled: false
+  extraEnvs:
+    - name: TZ
+      value: Europe/Brussels
 
 pulsar-standalone:
   enabled: false
