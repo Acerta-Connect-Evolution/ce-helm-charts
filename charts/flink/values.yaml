@@ -156,7 +156,7 @@ jobmanager:
       $FLINK_HOME/bin/jobmanager.sh start-foreground;
   # Additional param for JVM to support security.properties override
   # check configMap for more information
-  jvmArgs: "-Djava.security.properties={{ .Values.flink.workDir }}/conf/security.properties"
+  jvmArgs: "-Djava.security.properties={{ .Values.flink.workDir }}/conf/security.properties -Duser.timezone=Europe/Brussels"
   # extraEnvs passes envs to Jobmanagers
   extraEnvs: []
   ports:
@@ -231,7 +231,7 @@ taskmanager:
   statefulset: true
   # Additional param for JVM to support security.properties override
   # check configMap for more information
-  jvmArgs: "-Djava.security.properties={{ .Values.flink.workDir }}/conf/security.properties"
+  jvmArgs: "-Djava.security.properties={{ .Values.flink.workDir }}/conf/security.properties -Duser.timezone=Europe/Brussels"
   # extraEnvs passes envs to Taskmanagers
   extraEnvs: []
   ports:
