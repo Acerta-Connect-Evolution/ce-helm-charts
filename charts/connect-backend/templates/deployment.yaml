@@ -54,6 +54,8 @@ spec:
           env:
             - name: TZ
               value: "Europe/Brussels"
+            - name: SQL_USERNAME
+              value: {{ .Values.sql.username }}
             - name: SQL_PASSWORD
               value: {{ .Values.sql.password }}
             - name: SQL_HOST
