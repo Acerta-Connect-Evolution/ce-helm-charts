@@ -52,8 +52,8 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-            - name: SQL_USERNAME
-              value: {{ .Values.sql.username }}
+            - name: TZ
+              value: "Europe/Brussels"
             - name: SQL_PASSWORD
               value: {{ .Values.sql.password }}
             - name: SQL_HOST

@@ -53,6 +53,9 @@ spec:
             periodSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: TZ
+              value: "Europe/Brussels"
           volumeMounts:
             - name: config-volume
               mountPath: /usr/local/tomcat/external
