@@ -1442,6 +1442,16 @@ entries:
   connect-backend:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2022-04-28T14:32:37.601367816Z"
+    description: Connect Backend aka DICCO
+    digest: 1a83cbb3b7e4515b70f1fcc3d026856d63f9b9ba8741fd9aa95ac38ba15ba8bb
+    name: connect-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-backend-0.0.31/connect-backend-0.0.31.tgz
+    version: 0.0.31
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2022-04-28T09:46:53.629893179Z"
     description: Connect Backend aka DICCO
     digest: 72ed6ec3fd8c045923768dd020a35e611d75ee22766e033c901b89a674ced345
@@ -8649,4 +8659,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-04-28T14:01:09.426711253Z"
+generated: "2022-04-28T14:32:37.603417215Z"
