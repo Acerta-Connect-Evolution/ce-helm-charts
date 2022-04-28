@@ -19,7 +19,7 @@ dependencies:
     condition: axon-server-calendar-timespend.enabled
     alias: axon-server-calendar-timespend
   - name: connect-backend
-    version: 0.0.30
+    version: 0.0.31
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: connect-backend.enabled
   - name: connect-frontend
