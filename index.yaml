@@ -1230,6 +1230,16 @@ entries:
     version: 0.27.0
   ce-test-support:
   - apiVersion: v2
+    appVersion: 1.8.0
+    created: "2022-04-28T09:46:53.491861464Z"
+    description: Helm chart for ce-test-support
+    digest: 546c9842b2d4e7c160a5beb1f5fbe4bdc611d913c7296dd6d3c597f9a79b231b
+    name: ce-test-support
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-test-support-1.20.0/ce-test-support-1.20.0.tgz
+    version: 1.20.0
+  - apiVersion: v2
     appVersion: 1.7.0
     created: "2022-04-22T09:43:13.275719996Z"
     description: Helm chart for ce-test-support
@@ -1432,6 +1442,16 @@ entries:
   connect-backend:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2022-04-28T09:46:53.629893179Z"
+    description: Connect Backend aka DICCO
+    digest: 72ed6ec3fd8c045923768dd020a35e611d75ee22766e033c901b89a674ced345
+    name: connect-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-backend-0.0.30/connect-backend-0.0.30.tgz
+    version: 0.0.30
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2022-02-25T10:15:10.999387706Z"
     description: Connect Backend aka DICCO
     digest: 0e96bc70593b2348b78b80d729f8b4e42ac16c618a94014ef961493831eee54e
@@ -1481,6 +1501,76 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-backend-0.0.25/connect-backend-0.0.25.tgz
     version: 0.0.25
   connect-evolution:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2022-04-28T09:46:53.794300948Z"
+    dependencies:
+    - condition: ce-calendar-timespend-backend.enabled
+      name: ce-calendar-timespend-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.80.0
+    - condition: ce-calendar-timespend-frontend.enabled
+      name: ce-calendar-timespend-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.40.0
+    - alias: axon-server-calendar-timespend
+      condition: axon-server-calendar-timespend.enabled
+      name: axon-server
+      repository: https://jdlabsco.github.io/axon-server-helm/repo
+      version: 0.0.2
+    - condition: connect-backend.enabled
+      name: connect-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.0.29
+    - condition: connect-frontend.enabled
+      name: connect-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.5.2
+    - condition: mssql-latest.enabled
+      name: mssql-latest
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.2.1
+    - condition: elasticsearch.enabled
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.14.0
+    - condition: pulsar-standalone.enabled
+      name: pulsar-standalone
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.1.6
+    - condition: flink.enabled
+      name: flink
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.2.6
+    - condition: c2ce-flink-client.enabled
+      name: c2ce-flink-client
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.35.0
+    - condition: pulsar-client.enabled
+      name: pulsar-client
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 3.24.0
+    - alias: pulsar-init-job
+      condition: pulsar-init-job.enabled
+      name: init-job
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.0.16
+    - condition: ce-test-support.enabled
+      name: ce-test-support
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.18.0
+    - alias: cdc-db-init-job
+      condition: cdc-db-init-job.enabled
+      name: init-job
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.0.16
+    description: Helm chart for connect evolution application
+    digest: 4fb029dd31fe610c3a56d2484068e6b7edd2a00587189de52dca1dc133dafe16
+    name: connect-evolution
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-evolution-1.112.0/connect-evolution-1.112.0.tgz
+    version: 1.112.0
   - apiVersion: v2
     appVersion: "1.0"
     created: "2022-04-22T13:13:31.835567492Z"
@@ -7199,6 +7289,16 @@ entries:
   connect-frontend:
   - apiVersion: v2
     appVersion: 21.14.0
+    created: "2022-04-28T09:46:53.91798409Z"
+    description: A Helm chart for Connect UI
+    digest: a53ebab50e62cde2782b680e610ba4f2ef70bc43e4f3dba1658a2662c026f78f
+    name: connect-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-frontend-0.5.3/connect-frontend-0.5.3.tgz
+    version: 0.5.3
+  - apiVersion: v2
+    appVersion: 21.14.0
     created: "2022-02-25T10:24:44.8625979Z"
     description: A Helm chart for Connect UI
     digest: a6e27a5cd621c415d6c3e764e171dcc265cc9999c1724a4870e147ac2c83d56b
@@ -8409,4 +8509,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-04-27T13:03:21.174987698Z"
+generated: "2022-04-28T09:46:53.920448589Z"
