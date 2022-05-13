@@ -8337,6 +8337,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/kafdrop-0.1.0/kafdrop-0.1.0.tgz
     version: 0.1.0
+  mijn-dossier:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-05-13T13:25:32.598831749Z"
+    description: Helm chart for mijn-dossier
+    digest: 92b8f91b4848938661af0c6fb7ea1b957510f57a05f73c9b5bf04aa0df5a4353
+    name: mijn-dossier
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/mijn-dossier-1.0.0/mijn-dossier-1.0.0.tgz
+    version: 1.0.0
   mssql-latest:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -9019,4 +9030,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-05-13T09:01:11.905354144Z"
+generated: "2022-05-13T13:25:32.600881387Z"
