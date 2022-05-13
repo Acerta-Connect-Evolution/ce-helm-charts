@@ -8340,6 +8340,16 @@ entries:
   mijn-dossier:
   - apiVersion: v2
     appVersion: 8.0.0
+    created: "2022-05-13T15:07:13.319829917Z"
+    description: Helm chart for mijn-dossier
+    digest: 0521eab79337e14b7734fb3eefc0aeea7c5b9c493cfacb0cfadbf30b04a8e106
+    name: mijn-dossier
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/mijn-dossier-1.5.0/mijn-dossier-1.5.0.tgz
+    version: 1.5.0
+  - apiVersion: v2
+    appVersion: 8.0.0
     created: "2022-05-13T14:55:03.775710816Z"
     description: Helm chart for mijn-dossier
     digest: 11533e7969d08e1171aed138294ca9d7f38db24ac081bf1e97606b741ada44ca
@@ -9070,4 +9080,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-05-13T14:55:03.777999343Z"
+generated: "2022-05-13T15:07:13.322310067Z"
