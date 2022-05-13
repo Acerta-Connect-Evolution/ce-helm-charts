@@ -61,41 +61,13 @@ spec:
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
-            - name: DICCO_URL
-              value: {{ .Values.env.dicco.url }}
-            - name: DATASOURCE_JDBC-URL
-              value: {{ .Values.env.datasource.jdbcurl }}
-            - name: DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.datasource.databasename }}
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
-            - name: SPRING_ELASTICSEARCH_REST_URIS
-              value: {{ .Values.env.spring.elasticsearch.rest.uris }}
-            - name: AXON_AXONSERVER_SERVERS
-              value: {{ .Values.env.axon.axonserver.servers }}
-            - name: SPRING_INIT-DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-init-datasource-cred
-                  key: username
-            - name: SPRING_INIT-DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-init-datasource-cred
-                  key: password
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: username
-            - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-datasource-cred
-                  key: password
-            - name: PULSAR_BROKER_URL
-              value: {{ .Values.env.pulsar.broker.url }}
-            {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
