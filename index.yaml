@@ -1,5 +1,21 @@
 apiVersion: v1
 entries:
+  axon-server:
+  - apiVersion: v2
+    appVersion: 4.3.5
+    created: "2022-06-02T06:56:47.862918278Z"
+    description: Zero-configuration message router and event store for Axon
+    digest: dd0731b3d888748feea04a861b8cbbd154a684b5bc9d1318e81d927b130b578b
+    home: https://axoniq.io/product-overview/axon-server
+    keywords:
+    - axoniq
+    - axon
+    - axon-server
+    name: axon-server
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/axon-server-0.0.3/axon-server-0.0.3.tgz
+    version: 0.0.3
   c2ce-flink-client:
   - apiVersion: v2
     appVersion: 1.49.0
@@ -9340,4 +9356,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-05-30T06:54:10.224698261Z"
+generated: "2022-06-02T06:56:47.865127009Z"
