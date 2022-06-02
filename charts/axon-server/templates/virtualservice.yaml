@@ -1,0 +1,64 @@
+{{- /* @formatter:off */}}
+{{- if .Values.virtualservices.enabled -}}
+
+{{- $fullName := include "axon-server.fullname" . -}}
+{{- $labels := include "axon-server.labels" . -}}
+{{- $svcPort := .Values.service.gui.port -}}
+
+{{- range $index, $service := .Values.virtualservices.services }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ $fullName }}-{{ $index }}
+  labels:
+    {{- $labels | nindent 4 }}
+spec:
+  hosts:
+  {{- range $service.hosts }}
+  - {{ . }}
+  {{- end }}
+  gateways:
+  {{- range $service.gateways }}
+  - {{ . }}
+  {{- end }}
+
+  http:
+  - route:
+    - destination:
+        {{- if $service.targetHost }}
+        host: {{ $service.targetHost }}
+        {{- else }}
+        host: {{ $fullName | quote }}
+        {{- end }}
+        port:
+          {{- if $service.targetPort }}
+          number: {{ $service.targetPort }}
+          {{- else }}
+          number: {{ $svcPort }}
+          {{- end }}
+    {{- if $service.gatewayPort }}
+    match:
+    - port: {{ $service.gatewayPort }}
+    {{- end }}
+
+  # Todo: support custom routes from values here
+
+  #- route:
+  #  - destination:
+  #      {{- if $service.targetHost }}
+  #      host: {{ $service.targetHost }}
+  #      {{- else }}
+  #      host: {{ $fullName | quote }}
+  #      {{- end }}
+  #      port:
+  #        {{- if $service.targetPort }}
+  #        number: {{ $service.targetPort }}
+  #        {{- else }}
+  #        number: {{ $svcPort }}
+  #        {{- end }}
+  # Todo: inject SSO route if Keycloak gatekeeper proxy is enabled
+
+---
+{{- end }}
+
+{{- end -}}

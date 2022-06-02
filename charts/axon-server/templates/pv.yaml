@@ -1,0 +1,23 @@
+{{- /* @formatter:off */}}
+{{- if false -}}
+# Not supported yet
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ template "axon-server.fullname" . }}-pv
+  labels:
+    {{- include "axon-server.labels" . | nindent 4 }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.storageSize }}
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    {{- if not .Values.persistence.existingClaim }}
+    namespace: {{ .Release.Namespace }}
+    name: {{ template "axon-server.fullname" . }}-pvc
+    {{- else }}
+    namespace: {{ .Values.persistence.existingClaim.namespace }}
+    name: {{ .Values.persistence.existingClaim.name }}
+    {{- end }}
+{{- end }}

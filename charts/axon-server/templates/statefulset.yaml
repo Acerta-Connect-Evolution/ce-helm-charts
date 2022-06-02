@@ -1,0 +1,214 @@
+{{- /* @formatter:off */}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "axon-server.fullname" . }}
+  labels:
+    {{- include "axon-server.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ template "axon-server.name" . }}
+  replicas: {{ .Values.replicaCount }}
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      {{- include "axon-server.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "axon-server.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      {{- end }}
+      serviceAccountName: {{ include "axon-server.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.extraInitContainers }}
+      initContainers:
+        {{- toYaml .Values.extraInitContainers | nindent 8 }}
+      {{- end }}
+      containers:
+        {{- if .Values.extraSidecarContainers }}
+          {{- toYaml .Values.extraSidecarContainers | nindent 8 }}
+        {{- end }}
+        - name: server
+          env:
+            - name: SERVER_PORT
+              value: {{ .Values.service.gui.port | quote }}
+            - name: AXONIQ_AXONSERVER_PORT
+              value: {{ .Values.service.grpc.port | quote }}
+            - name: JAVA_TOOL_OPTIONS
+              value: {{ include "axon-server.finalJvmOptions" . }}
+            #- name: AXONIQ_AXONSERVER_NAME
+            #  value: "tbd statefulset container name?"
+            #- name: AXONIQ_AXONSERVER_HOSTNAME
+            #  value: "tbd statefulset container name?"
+            {{- if not (eq .Values.image.repository "axoniq/axonserver") }}
+            - name: AXONIQ_LICENSE
+              value: "/axonserveree/license/axoniq.license"
+            {{- end }}
+            {{- if .Values.serverDomain }}
+            - name: AXONIQ_AXONSERVER_DOMAIN
+              value:  {{ .Values.serverDomain }}
+            {{- end }}
+            {{- if .Values.config.accessControl.enabled }}
+            - name: AXONIQ_AXONSERVER_ACCESSCONTROL_ENABLED
+              value: true
+            - name: AXONIQ_AXONSERVER_ACCESSCONTROL_TOKEN
+              value: {{- .Values.config.accessControl.token }}
+            {{- end }}
+            {{- if .Values.extraEnvs }}
+              {{- toYaml .Values.extraEnvs | nindent 12 }}
+            {{- end }}
+          {{- if (or .Values.postStart .Values.preStop) }}
+          lifecycle:
+            {{- if .Values.postStart }}
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", {{ .Values.postStart | quote }}]
+            {{- end }}
+            {{- if .Values.preStop }}
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", {{ .Values.preStop | quote }}]
+            {{- end }}
+          {{- end }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: grpc-port
+              containerPort: {{ .Values.service.grpc.port }}
+              protocol: TCP
+            - name: http-gui
+              containerPort: {{ .Values.service.gui.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /actuator/info
+              port: http-gui
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 30
+          readinessProbe:
+            httpGet:
+              path: /actuator/info
+              port: http-gui
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 1
+            failureThreshold: 30
+          volumeMounts:
+          - name: tmp
+            mountPath: /tmp
+          {{- if eq .Values.image.repository "axoniq/axonserver" }}
+          - name: data
+            mountPath: /data
+          - name: eventstore
+            mountPath: /eventdata
+          - name: log
+            mountPath: /log
+          {{- if .Values.configMapServerProperties }}
+          - name: config
+            mountPath: /config
+            readOnly: true
+            configMap:
+              name: axonserver-properties
+          {{- end }}
+          {{- else }}
+          - name: data
+            mountPath: /axonserveree/data
+          - name: events
+            mountPath: /axonserveree/events
+          - name: log
+            mountPath: /axonserveree/log
+          {{- if .Values.configMapServerProperties }}
+          - name: config
+            mountPath: /axonserveree/config
+            readOnly: true
+            configMap:
+              name: axonserver-properties
+          {{- end }}
+          - name: system-token
+            mountPath: /axonserveree/security
+            readOnly: true
+          - name: license
+            mountPath: /axonserveree/license
+            readOnly: true
+          {{- end }}
+          {{- if .Values.extraVolumeMounts }}
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      {{ if not .Values.persistence.enabled }}
+      - name: data
+        emptyDir: {}
+      - name: eventstore
+        emptyDir: {}
+      - name: log
+        emptyDir: {}
+      {{ end }}
+  {{- if .Values.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: eventstore
+      spec:
+        accessModes: {{ .Values.persistence.accessModes }}
+        {{- if .Values.persistence.storageClassName }}
+        storageClassName: {{ .Values.persistence.storageClassName }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.eventstoreStorage.size }}
+    - metadata:
+        name: data
+      spec:
+        accessModes: {{ .Values.persistence.accessModes }}
+        {{- if .Values.persistence.storageClassName }}
+        storageClassName: {{ .Values.persistence.storageClassName }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.dataStorage.size }}
+    - metadata:
+        name: log
+      spec:
+        accessModes: {{ .Values.persistence.accessModes }}
+        {{- if .Values.persistence.storageClassName }}
+        storageClassName: {{ .Values.persistence.storageClassName }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.logStorage.size }}
+    {{- if .Values.extraVolumeClaimTemplates }}
+      {{- toYaml .Values.extraVolumeClaimTemplates | nindent 4 }}
+    {{- end }}
+  {{- end }}
