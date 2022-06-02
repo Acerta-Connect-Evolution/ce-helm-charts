@@ -5,7 +5,7 @@ home: https://axoniq.io/product-overview/axon-server
 description: Zero-configuration message router and event store for Axon
 type: application
 
-version: 0.0.3
+version: 0.0.4
 appVersion: 4.3.5
 
 keywords:
