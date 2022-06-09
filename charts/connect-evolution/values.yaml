@@ -70,3 +70,6 @@ ce-test-support:
 
 cdc-db-init-job:
   enabled: true
+
+ce-ff4j-server:
+  enabled: true
