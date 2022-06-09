@@ -1444,6 +1444,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-frontend-0.27.0/ce-calendar-timespend-frontend-0.27.0.tgz
     version: 0.27.0
+  ce-ff4j-server:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2022-06-09T11:58:36.266702204Z"
+    description: Helm chart for ce-ff4j-server
+    digest: b7d83df40617bcc3998a372dd2f8bbfab78cdbcffc3325ac964890ff1dbc339a
+    name: ce-ff4j-server
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-ff4j-server-1.0.0/ce-ff4j-server-1.0.0.tgz
+    version: 1.0.0
   ce-test-support:
   - apiVersion: v2
     appVersion: 1.9.0
@@ -9396,4 +9407,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-06-02T15:13:48.970437982Z"
+generated: "2022-06-09T11:58:36.269104817Z"
