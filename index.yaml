@@ -9568,6 +9568,16 @@ entries:
     version: 2.7.5
   pulsar-client:
   - apiVersion: v2
+    appVersion: 1.26.0
+    created: "2022-06-14T08:10:30.470865097Z"
+    description: Helm chart for Pulsar Client
+    digest: 5164baf8f5a5853df4f9df67f2bb9efa3ac77c0b14932f758c4835220c3ddacf
+    name: pulsar-client
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-client-3.28.0/pulsar-client-3.28.0.tgz
+    version: 3.28.0
+  - apiVersion: v2
     appVersion: 1.25.0
     created: "2022-06-10T09:05:01.378731777Z"
     description: Helm chart for Pulsar Client
@@ -10165,4 +10175,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-06-13T11:19:48.261308053Z"
+generated: "2022-06-14T08:10:30.474263499Z"
