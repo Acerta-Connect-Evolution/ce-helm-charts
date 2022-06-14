@@ -1466,6 +1466,16 @@ entries:
     version: 0.27.0
   ce-ff4j-server:
   - apiVersion: v2
+    appVersion: 1.5.0
+    created: "2022-06-14T16:12:57.814184624Z"
+    description: Helm chart for ce-ff4j-server
+    digest: 9c3b86cedb03a0cfa6c9d23ebad3a028cfb2e3ecbb4abbc5cf0573f1952fc14e
+    name: ce-ff4j-server
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-ff4j-server-1.6.0/ce-ff4j-server-1.6.0.tgz
+    version: 1.6.0
+  - apiVersion: v2
     appVersion: 1.4.0
     created: "2022-06-14T16:00:22.482615149Z"
     description: Helm chart for ce-ff4j-server
@@ -10417,4 +10427,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-06-14T16:02:04.564407162Z"
+generated: "2022-06-14T16:12:57.816980302Z"
