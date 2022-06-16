@@ -1,3 +1,4 @@
+{{- /* @formatter:off */}}
 # https://carlos.mendible.com/2019/02/10/kubernetes-mount-file-pod-with-configmap/
 apiVersion: v1
 kind: ConfigMap
@@ -65,7 +66,7 @@ data:
             <ConnectorType>REST</ConnectorType>
             <Description>Test</Description>
             <ErrorCountThreshold>10</ErrorCountThreshold>
-            <HostName>connect-backend-connect-evolution</HostName>
+            <HostName>{{ .Values.api.service }}</HostName>
             <PortNumber>8080</PortNumber>
             <Path>/dicco-rest/executepim</Path>
             <Status>on</Status>
