@@ -115,8 +115,6 @@ spec:
           - name: config
             mountPath: /config
             readOnly: true
-            configMap:
-              name: axonserver-properties
           {{- if .Values.extraVolumeMounts }}
             {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
           {{- end }}
@@ -140,6 +138,9 @@ spec:
         emptyDir: {}
       - name: storage
         emptyDir: {}
+      - name: config
+        configMap:
+          name: axonserver-properties
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
