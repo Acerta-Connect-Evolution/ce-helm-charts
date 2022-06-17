@@ -73,30 +73,7 @@ persistence:
 
   accessModes:  [ReadWriteOnce]
   ## Storage Capacities for persistent volumes
-  # Storage capacity for the 'data' directory, which is used to hold things such as the flow.xml.gz, configuration, state, etc.
-  eventstoreStorage:
-    size: 16Gi
-  # Storage capacity for
-  dataStorage:
-    size: 3Gi
-
-  logStorage:
-    size: 3Gi
-
-  storageSize: 8Gi
-  ## If defined, storageClass: <storageClass>
-  ## If set to "-", storageClass: "", which disables dynamic provisioning
-  ## If undefined (the default) or set to null, no storageClass spec is
-  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
-  ##   GKE, AWS & OpenStack)
-  ##
-  # existingClaim:
-  # annotations:
-  #  "helm.sh/resource-policy": keep
-  # storageClass: "-"
-  # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
-  # pdName: nexus-data-disk
-  # fsType: ext4
+  size: 3Gi
 
 ## Lifecycle handlers:
 ##   https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
