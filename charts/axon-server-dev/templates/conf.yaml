@@ -1,0 +1,13 @@
+{{- /* @formatter:off */}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: axonserver-properties
+data:
+  conf.properties: |
+    axoniq.axonserver.devmode.enabled=true
+    axoniq.axonserver.event.storage=/storage/data
+    axoniq.axonserver.snapshot.storage=/storage/data
+    axoniq.axonserver.controldb-path=/storage/data
+    axoniq.axonserver.replication.log-storage-folder=/storage/log
+    axoniq.axonserver.accesscontrol.token-dir=/storage/security

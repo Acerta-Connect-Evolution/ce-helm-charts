@@ -1,0 +1,14 @@
+apiVersion: v2
+name: axon-server-dev
+
+home: https://axoniq.io/product-overview/axon-server
+description: AxonServer to be used in Development Workbench (eg less volumes)
+type: application
+
+version: 0.0.1
+appVersion: 4.5.6
+
+keywords:
+- axoniq
+- axon
+- axon-server
