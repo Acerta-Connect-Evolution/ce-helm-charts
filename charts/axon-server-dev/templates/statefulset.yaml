@@ -58,6 +58,18 @@ spec:
               value: "/storage/log"
             - name: AXONIQ_AXONSERVER_ACCESSCONTROL_TOKEN-DIR
               value: "/storage/security"
+            - name: AXONIQ_AXONSERVER_PID-FILE-LOCATION
+              value: "/storage/data"
+            - name: AXONIQ_AXONSERVER_PLUGIN-PACKAGE-DIRECTORY
+              value: "/storage/data/plugins/bundles"
+            - name: AXONIQ_AXONSERVER_PLUGIN-CACHE-DIRECTORY
+              value: "/storage/data/plugins/cache"
+            - name: LOGGING_FILE
+              value: "/storage/data/axonserver.log"
+            - name: LOGGING_FILE_MAX-HISTORY
+              value: "10"
+            - name: LOGGING_FILE_MAX-SIZE
+              value: "10MB"
             {{- if not (eq .Values.image.repository "axoniq/axonserver") }}
             - name: AXONIQ_LICENSE
               value: "/axonserveree/license/axoniq.license"
