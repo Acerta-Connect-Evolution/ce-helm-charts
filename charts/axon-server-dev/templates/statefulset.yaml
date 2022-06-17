@@ -116,8 +116,10 @@ spec:
             timeoutSeconds: 1
             failureThreshold: 30
           volumeMounts:
-          - name: storage
-            mountPath: /storage
+            - name: tmp
+              mountPath: /tmp
+            - name: storage
+              mountPath: /storage
           {{- if .Values.extraVolumeMounts }}
             {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
           {{- end }}
