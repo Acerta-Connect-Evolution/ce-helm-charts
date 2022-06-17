@@ -48,10 +48,16 @@ spec:
               value: {{ .Values.service.grpc.port | quote }}
             - name: JAVA_TOOL_OPTIONS
               value: {{ include "axon-server.finalJvmOptions" . }}
-            #- name: AXONIQ_AXONSERVER_NAME
-            #  value: "tbd statefulset container name?"
-            #- name: AXONIQ_AXONSERVER_HOSTNAME
-            #  value: "tbd statefulset container name?"
+            - name: AXONIQ_AXONSERVER_EVENT_STORAGE
+              value: "/storage/data"
+            - name: AXONIQ_AXONSERVER_SNAPSHOT_STORAGE
+              value: "/storage/data"
+            - name: AXONIQ_AXONSERVER_CONTROLDB-PATH
+              value: "/storage/data"
+            - name: AXONIQ_AXONSERVER_REPLICATION_LOG-STORAGE-FOLDER
+              value: "/storage/log"
+            - name: AXONIQ_AXONSERVER_ACCESSCONTROL_TOKEN-DIR
+              value: "/storage/security"
             {{- if not (eq .Values.image.repository "axoniq/axonserver") }}
             - name: AXONIQ_LICENSE
               value: "/axonserveree/license/axoniq.license"
@@ -112,9 +118,6 @@ spec:
           volumeMounts:
           - name: storage
             mountPath: /storage
-          - name: config
-            mountPath: /config
-            readOnly: true
           {{- if .Values.extraVolumeMounts }}
             {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
           {{- end }}
@@ -138,9 +141,7 @@ spec:
         emptyDir: {}
       - name: storage
         emptyDir: {}
-      - name: config
-        configMap:
-          name: axonserver-properties
+
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:

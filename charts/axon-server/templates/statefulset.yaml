@@ -62,7 +62,7 @@ spec:
             {{- end }}
             {{- if .Values.config.accessControl.enabled }}
             - name: AXONIQ_AXONSERVER_ACCESSCONTROL_ENABLED
-              value: true
+              value: "true"
             - name: AXONIQ_AXONSERVER_ACCESSCONTROL_TOKEN
               value: {{- .Values.config.accessControl.token }}
             {{- end }}
