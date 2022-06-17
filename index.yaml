@@ -3,6 +3,21 @@ entries:
   axon-server:
   - apiVersion: v2
     appVersion: 4.3.5
+    created: "2022-06-17T11:23:38.478793093Z"
+    description: Zero-configuration message router and event store for Axon
+    digest: b0714fae0105aa3fa324ef6b34168ac9e7bd2b1a64790a76fddc4dd07cfedb97
+    home: https://axoniq.io/product-overview/axon-server
+    keywords:
+    - axoniq
+    - axon
+    - axon-server
+    name: axon-server
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/axon-server-0.0.6/axon-server-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: 4.3.5
     created: "2022-06-02T07:29:53.656013493Z"
     description: Zero-configuration message router and event store for Axon
     digest: 48dada23fd5852770cdd4467aa24efe67fd1129dd92265932eb073be81200a5c
@@ -47,6 +62,21 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/axon-server-0.0.3/axon-server-0.0.3.tgz
     version: 0.0.3
   axon-server-dev:
+  - apiVersion: v2
+    appVersion: 4.5.12
+    created: "2022-06-17T11:23:38.590258056Z"
+    description: AxonServer to be used in Development Workbench (eg less volumes)
+    digest: 256aaae851fad3fcc245d21f521889dda75d0aee506c4467d2b4c8f11630bc89
+    home: https://axoniq.io/product-overview/axon-server
+    keywords:
+    - axoniq
+    - axon
+    - axon-server
+    name: axon-server-dev
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/axon-server-dev-0.0.3/axon-server-dev-0.0.3.tgz
+    version: 0.0.3
   - apiVersion: v2
     appVersion: 4.5.6
     created: "2022-06-17T10:49:38.723181728Z"
@@ -10626,4 +10656,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-06-17T10:49:38.726174728Z"
+generated: "2022-06-17T11:23:38.593747499Z"
