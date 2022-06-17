@@ -46,6 +46,22 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/axon-server-0.0.3/axon-server-0.0.3.tgz
     version: 0.0.3
+  axon-server-dev:
+  - apiVersion: v2
+    appVersion: 4.5.6
+    created: "2022-06-17T10:38:11.55472383Z"
+    description: AxonServer to be used in Development Workbench (eg less volumes)
+    digest: 0b4305494778263e5ba899340e997e6915365bc288eaca484795c0269267a44f
+    home: https://axoniq.io/product-overview/axon-server
+    keywords:
+    - axoniq
+    - axon
+    - axon-server
+    name: axon-server-dev
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/axon-server-dev-0.0.1/axon-server-dev-0.0.1.tgz
+    version: 0.0.1
   c2ce-flink-client:
   - apiVersion: v2
     appVersion: 1.49.0
@@ -10595,4 +10611,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-06-16T09:42:31.073662407Z"
+generated: "2022-06-17T10:38:11.563444886Z"
