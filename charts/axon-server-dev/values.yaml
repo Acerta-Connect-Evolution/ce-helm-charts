@@ -51,6 +51,10 @@ service:
     type: ClusterIP
     port: 8124
 
+uiservice:
+  annotations:
+    #dev.okteto.com/generate-host: "true"
+
 ingress:
   enabled: true
   className: ""

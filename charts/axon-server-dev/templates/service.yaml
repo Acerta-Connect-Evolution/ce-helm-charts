@@ -22,6 +22,10 @@ metadata:
   name: {{ include "axon-server.fullname" . }}
   labels:
     {{- include "axon-server.labels" . | nindent 4 }}
+  {{- with .Values.uiservice.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.gui.type }}
   ports:
