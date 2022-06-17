@@ -64,6 +64,21 @@ entries:
   axon-server-dev:
   - apiVersion: v2
     appVersion: 4.5.12
+    created: "2022-06-17T12:08:17.707771139Z"
+    description: AxonServer to be used in Development Workbench (eg less volumes)
+    digest: e3e08616005af232e2ee4f57d0381f6ffda750f5a1b1fa3565659bee37a658f0
+    home: https://axoniq.io/product-overview/axon-server
+    keywords:
+    - axoniq
+    - axon
+    - axon-server
+    name: axon-server-dev
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/axon-server-dev-0.0.6/axon-server-dev-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: 4.5.12
     created: "2022-06-17T11:54:31.321117643Z"
     description: AxonServer to be used in Development Workbench (eg less volumes)
     digest: 1f19113b50b9af539b4f76b2a23a52e5c805d36486e6c53978ff3f2c5ad84d96
@@ -10706,4 +10721,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-06-17T12:04:29.703219077Z"
+generated: "2022-06-17T12:08:17.710745943Z"
