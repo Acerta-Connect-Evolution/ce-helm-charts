@@ -138,6 +138,8 @@ spec:
       volumes:
       - name: tmp
         emptyDir: {}
+      - name: storage
+        emptyDir: {}
   {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
