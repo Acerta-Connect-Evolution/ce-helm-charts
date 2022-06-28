@@ -99,6 +99,9 @@ env:
   axon:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS
+  pulsar:
+    broker:
+      url: PULSAR_BROKER_URL
   webcomponent:
     wss:
       url: WEBCOMPONENT_WSS_URL
