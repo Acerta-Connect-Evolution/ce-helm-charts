@@ -54,12 +54,12 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
-            - name: SPRING_ELASTICSEARCH_REST_URIS
-              value: {{ .Values.env.spring.elasticsearch.rest.uris }}
+            - name: SPRING_ELASTICSEARCH_URIS
+              value: {{ .Values.env.spring.elasticsearch.uris }}
             - name: AXON_AXONSERVER_SERVERS
               value: {{ .Values.env.axon.axonserver.servers }}
-            - name: SPRING_DATASOURCE_URL
-              value: {{ .Values.env.spring.datasource.url }}
+            - name: SPRING_DATASOURCE_JDBC-URL
+              value: {{ .Values.env.spring.datasource.jdbcurl }}
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:

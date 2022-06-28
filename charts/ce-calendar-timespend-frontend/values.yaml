@@ -91,10 +91,9 @@ env:
     profiles:
       active: default
     elasticsearch:
-      rest:
-        uris: SPRING_ELASTICSEARCH_REST_URIS
+      uris: SPRING_ELASTICSEARCH_URIS
     datasource:
-      url: SPRING_DATASOURCE_URL
+      jdbcurl: SPRING_DATASOURCE_JDBCURL
       username: SPRING_DATASOURCE_USERNAME
       password: SPRING_DATASOURCE_PASSWORD
   axon:

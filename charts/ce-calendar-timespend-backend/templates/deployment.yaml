@@ -69,8 +69,8 @@ spec:
               value: {{ .Values.env.datasource.databasename }}
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
-            - name: SPRING_ELASTICSEARCH_REST_URIS
-              value: {{ .Values.env.spring.elasticsearch.rest.uris }}
+            - name: SPRING_ELASTICSEARCH_URIS
+              value: {{ .Values.env.spring.elasticsearch.uris }}
             - name: AXON_AXONSERVER_SERVERS
               value: {{ .Values.env.axon.axonserver.servers }}
             - name: SPRING_INIT-DATASOURCE_USERNAME

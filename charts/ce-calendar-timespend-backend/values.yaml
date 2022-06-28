@@ -105,8 +105,7 @@ env:
     profiles:
       active: default
     elasticsearch:
-      rest:
-        uris: SPRING_ELASTICSEARCH_REST_URIS
+      uris: SPRING_ELASTICSEARCH_URIS
   axon:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS
