@@ -606,6 +606,16 @@ entries:
   ce-calendar-timespend-backend:
   - apiVersion: v2
     appVersion: 1.101.0
+    created: "2022-06-28T09:35:17.754883484Z"
+    description: Helm chart for ce-calendar-timespend-backend
+    digest: b011f328d0df89791710564facc17f7405e4cf4795d04b5ca75e340f7d2cde99
+    name: ce-calendar-timespend-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.109.0/ce-calendar-timespend-backend-1.109.0.tgz
+    version: 1.109.0
+  - apiVersion: v2
+    appVersion: 1.101.0
     created: "2022-06-27T13:03:33.872621928Z"
     description: Helm chart for ce-calendar-timespend-backend
     digest: a9fca73a4c1a2c303f50ac8c1b72dbd65f4adec3ca573de40f226db01c2c84d6
@@ -1515,6 +1525,16 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.41.4/ce-calendar-timespend-backend-1.41.4.tgz
     version: 1.41.4
   ce-calendar-timespend-frontend:
+  - apiVersion: v2
+    appVersion: 1.49.0
+    created: "2022-06-28T09:35:17.89588788Z"
+    description: Helm chart for ce-calendar-timespend-frontend
+    digest: fc98702386abe1d3c67e63466b1fa787bb6aa5d76cc5ae234de934ad57771bee
+    name: ce-calendar-timespend-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-frontend-0.47.0/ce-calendar-timespend-frontend-0.47.0.tgz
+    version: 0.47.0
   - apiVersion: v2
     appVersion: 1.49.0
     created: "2022-06-28T09:15:46.655979012Z"
@@ -11962,4 +11982,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-06-28T09:18:13.222825482Z"
+generated: "2022-06-28T09:35:17.899509582Z"
