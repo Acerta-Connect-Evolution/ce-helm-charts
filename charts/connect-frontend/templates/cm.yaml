@@ -2620,6 +2620,9 @@ data:
   workplace.properties: |
     # Logout link
     logout=https://clientaccess.acerta.be/pkmslogout
+    
+    #Connect Evolution
+    connect.evolution.path={{ .Values.connect.evolution.uri }}
 
     # session lost link
     session.lost.link=https://clientaccess.acerta.be/
