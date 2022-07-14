@@ -26,7 +26,7 @@ spec:
             - --header
             - 'Content-Type: application/json'
             - --data
-            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-backend", "chartVersion" : "1.125.0", "appVersion" : "1.117.0", "closedPRTitle" : "feature/ACECEV-444"}}'
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-backend", "chartVersion" : "1.126.0", "appVersion" : "1.118.0", "closedPRTitle" : "feature/assign-schedule-wait-for-employer-agreement"}}'
           env:
             - name: GITHUB_TOKEN
               valueFrom:
