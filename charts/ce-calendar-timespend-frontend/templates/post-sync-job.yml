@@ -26,7 +26,7 @@ spec:
             - --header
             - 'Content-Type: application/json'
             - --data
-            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-frontend", "chartVersion" : "0.86.0", "appVersion" : "1.88.0", "closedPRTitle" : "release/1.10.0"}}'
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-frontend", "chartVersion" : "0.87.0", "appVersion" : "1.89.0", "closedPRTitle" : "feature/fix-dissa-entries-input-calendar"}}'
           env:
             - name: GITHUB_TOKEN
               valueFrom:
