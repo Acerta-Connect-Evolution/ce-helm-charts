@@ -2446,6 +2446,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-ff4j-server-1.0.0/ce-ff4j-server-1.0.0.tgz
     version: 1.0.0
+  ce-payroll-annualleavecertificate-backend:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-07-18T13:33:37.432416617Z"
+    description: Helm chart for ce-payroll-annualleavecertificate
+    digest: f198c148f96d06944f9a5fa76466dd1efa5d7a5d44a943a49dd7122b8cf2d8b9
+    name: ce-payroll-annualleavecertificate-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-payroll-annualleavecertificate-backend-0.1.0/ce-payroll-annualleavecertificate-backend-0.1.0.tgz
+    version: 0.1.0
   ce-test-support:
   - apiVersion: v2
     appVersion: 1.9.0
@@ -15834,4 +15845,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-07-15T13:46:36.225076627Z"
+generated: "2022-07-18T13:33:37.440525284Z"
