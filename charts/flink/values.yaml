@@ -94,7 +94,7 @@ flink:
     backend:
     # These values are default excludes file pathes
     # https://ci.apache.org/projects/flink/flink-docs-stable/dev/stream/state/checkpointing.html#related-config-options
-    params: |+
+    params: |
       state.checkpoints.dir: file:///flink_state/checkpoints
       state.savepoints.dir: file:///flink_state/savepoints
       state.backend.async: true
