@@ -2458,6 +2458,16 @@ entries:
     version: 1.0.0
   ce-payroll-annualleavecertificate-backend:
   - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-07-25T11:58:18.460880732Z"
+    description: Helm chart for ce-payroll-annualleavecertificate
+    digest: 7daa6107cdd160d31845d526250dde25367bf16ae7ed73be302e5e079fcc0677
+    name: ce-payroll-annualleavecertificate-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-payroll-annualleavecertificate-backend-0.3.0/ce-payroll-annualleavecertificate-backend-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.0.1
     created: "2022-07-25T09:12:59.619598329Z"
     description: Helm chart for ce-payroll-annualleavecertificate
@@ -16059,4 +16069,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-07-25T09:12:59.624498707Z"
+generated: "2022-07-25T11:58:18.46469486Z"
