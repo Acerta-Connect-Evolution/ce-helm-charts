@@ -6,8 +6,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-labels:
-  appType: springboot
+appType: springboot
 
 imagePullSecrets:
   - name: regcred
