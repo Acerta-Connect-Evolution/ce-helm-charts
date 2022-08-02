@@ -186,7 +186,7 @@ spec:
           persistentVolumeClaim:
             claimName: savepoints-data
           {{ end }}
-          {{ - if .Values.sharedPersistence.checkpoints.enabled }}
+          {{- if .Values.sharedPersistence.checkpoints.enabled }}
         - name: checkpoints-data-volume
           persistentVolumeClaim:
             claimName: checkpoints-data
