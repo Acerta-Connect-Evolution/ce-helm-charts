@@ -48,9 +48,9 @@ spec:
       storage: {{ .Values.sharedPersistence.checkpoints.dataSize | quote }}
 {{- if .Values.sharedPersistence.checkpoints.storageClass }}
 {{- if (eq "-" .Values.sharedPersistence.checkpoints.storageClass) }}
-storageClassName: ""
+  storageClassName: ""
   {{- else }}
-storageClassName: "{{ .Values.sharedPersistence.checkpoints.storageClass }}"
+  storageClassName: "{{ .Values.sharedPersistence.checkpoints.storageClass }}"
 {{- end }}
 {{- end }}
 {{- end }}
