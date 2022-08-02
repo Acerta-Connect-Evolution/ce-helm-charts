@@ -338,6 +338,12 @@ secrets:
 
 sharedPersistence:
   savepoints:
+    enabled: true
+    storageClass: "azurefile"
+    dataAccessMode: ReadWriteMany
+    dataSize: 1Gi
+  checkpoints:
+    enabled: true
     storageClass: "azurefile"
     dataAccessMode: ReadWriteMany
     dataSize: 1Gi

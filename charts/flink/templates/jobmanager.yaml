@@ -128,8 +128,14 @@ spec:
               mountPath: {{ .Values.flink.workDir }}/conf/masters
               subPath: masters
               {{- end }}
+              {{- if .Values.sharedPersistence.savepoints.enabled }}
             - name: savepoints-data-volume
               mountPath: /flink_state/savepoints
+              {{- end }}
+              {{- if .Values.sharedPersistence.checkpoints.enabled }}
+            - name: checkpoints-data-volume
+              mountPath: /flink_state/checkpoints
+              {{- end }}
           {{- range $secret := .Values.secrets.kubernetesSecrets }}
             {{- if $secret.mountPath }}
               {{- if $secret.keys }}
@@ -175,9 +181,16 @@ spec:
               - key: masters
                 path: masters
               {{- end }}
+          {{- if .Values.sharedPersistence.savepoints.enabled }}
         - name: savepoints-data-volume
           persistentVolumeClaim:
             claimName: savepoints-data
+          {{ end }}
+          {{ - if .Values.sharedPersistence.checkpoints.enabled }}
+        - name: checkpoints-data-volume
+          persistentVolumeClaim:
+            claimName: checkpoints-data
+          {{ end }}
       {{- range .Values.secrets.kubernetesSecrets }}
         - name: {{ include "flink.fullname" $ }}-{{ .name }}
           secret:
