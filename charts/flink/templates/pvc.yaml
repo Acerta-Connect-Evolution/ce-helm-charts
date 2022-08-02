@@ -32,14 +32,14 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: checkpoints-data
-  {{- if .Values.sharedPersistence.checkpoints.annotations }}
-annotations:
-  {{ toYaml .Values.sharedPersistence.checkpoints.annotations | indent 4 }}
-  {{- end }}
-labels:
-  chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-  release: "{{ .Release.Name }}"
-  heritage: "{{ .Release.Service }}"
+{{- if .Values.sharedPersistence.checkpoints.annotations }}
+  annotations:
+{{ toYaml .Values.sharedPersistence.checkpoints.annotations | indent 4 }}
+{{- end }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
 spec:
   accessModes:
     - {{ .Values.sharedPersistence.checkpoints.dataAccessMode | quote }}
