@@ -15163,6 +15163,24 @@ entries:
   flink:
   - apiVersion: v1
     appVersion: 1.11.2
+    created: "2022-08-02T09:27:08.392366357Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: https://charts.helm.sh/incubator
+      version: 2.0.0
+    description: Chart for Apache Flink
+    digest: 3864b6ea0d90fec6cda890b54bc3655d157b00643a9c80377e784dfc026bdf9c
+    home: https://github.com/riskfocus/helm-charts-public
+    maintainers:
+    - email: charts-maintainers@riskfocus.com
+      name: charts-maintainers
+    name: flink
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/flink-0.3.1/flink-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v1
+    appVersion: 1.11.2
     created: "2022-08-02T08:55:32.525126696Z"
     dependencies:
     - condition: zookeeper.enabled
@@ -16513,4 +16531,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-08-02T09:11:29.751607406Z"
+generated: "2022-08-02T09:27:08.397113964Z"
