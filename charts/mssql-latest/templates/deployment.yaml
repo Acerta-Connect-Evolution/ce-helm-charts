@@ -49,7 +49,7 @@ spec:
           volumeMounts:
            - name: mssqldb
              mountPath: /var/opt/mssql
-             {{- if .Values.persistence.userdbSeparteClaim }}
+             {{- if .Values.persistence.userdbSeparateClaim }}
            - name: mssqluserdb
              mountPath: /var/opt/mssql/userdata
              {{- end }}
@@ -67,7 +67,7 @@ spec:
        - name: mssqldb
          persistentVolumeClaim:
           claimName: mssql-data
-       {{- if .Values.persistence.userdbSeparteClaim }}
+       {{- if .Values.persistence.userdbSeparateClaim }}
        - name: mssqluserdb
          persistentVolumeClaim:
           claimName: mssql-userdb

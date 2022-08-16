@@ -3,4 +3,4 @@ name: mssql-latest
 description: MS SQL Server 2019
 type: application
 version: 0.3.5
-appVersion: 1.16.0
+appVersion: 1.17.0

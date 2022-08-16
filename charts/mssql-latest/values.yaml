@@ -61,4 +61,4 @@ persistence:
   tempSeparateClaim: true
   userdbaccessMode: ReadWriteOnce
   userdbsize: 1Gi
-  userdbSeparteClaim: true
+  userdbSeparateClaim: true

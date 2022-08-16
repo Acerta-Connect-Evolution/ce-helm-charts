@@ -33,7 +33,7 @@ spec:
   storageClassName: "{{ .Values.persistence.storageClass }}"
 {{- end }}
 {{- end }}
-{{- if .Values.persistence.userdbSeparteClaim }}
+{{- if .Values.persistence.userdbSeparateClaim }}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
