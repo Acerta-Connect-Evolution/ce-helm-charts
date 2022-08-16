@@ -169,6 +169,16 @@ entries:
     version: 0.0.1
   c2ce-flink-client:
   - apiVersion: v2
+    appVersion: 1.52.0
+    created: "2022-08-16T12:11:13.595102847Z"
+    description: Helm chart for c2ce Flink Client
+    digest: a92a2ca5e01229f11c9f6786eaa84e0b41855e9e979ad03b1586e9546db81855
+    name: c2ce-flink-client
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/c2ce-flink-client-1.39.0/c2ce-flink-client-1.39.0.tgz
+    version: 1.39.0
+  - apiVersion: v2
     appVersion: 1.51.0
     created: "2022-07-25T14:34:24.395087571Z"
     description: Helm chart for c2ce Flink Client
@@ -614,16 +624,6 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-connect-adapter-flink-jobs-0.23.0/ce-calendar-connect-adapter-flink-jobs-0.23.0.tgz
     version: 0.23.0
   ce-calendar-timespend-backend:
-  - apiVersion: v2
-    appVersion: 1.124.0
-    created: "2022-08-16T12:10:51.380545307Z"
-    description: Helm chart for ce-calendar-timespend-backend
-    digest: cf0f08e6ab1294f66d5673c9e5cd05b49121db875b40388fd9ce3b8b4d239b13
-    name: ce-calendar-timespend-backend
-    type: application
-    urls:
-    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.133.0/ce-calendar-timespend-backend-1.133.0.tgz
-    version: 1.133.0
   - apiVersion: v2
     appVersion: 1.123.0
     created: "2022-08-02T08:40:53.318962633Z"
@@ -16943,4 +16943,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-08-16T12:10:51.385091566Z"
+generated: "2022-08-16T12:11:13.600201612Z"
