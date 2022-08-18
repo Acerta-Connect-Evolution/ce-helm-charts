@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: apachepulsar/pulsar-all
+  repository: nexus.global.dns:8443/acerta-connect-evolution/pulsar-standalone2.10.1-custom
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
