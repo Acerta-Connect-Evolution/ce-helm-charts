@@ -17156,6 +17156,16 @@ entries:
     version: 1.0.0
   pulsar-standalone:
   - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-08-18T11:38:48.13974127Z"
+    description: Helm chart for Pulsar Standalone
+    digest: 9e4cf59f50da7288c21473ae4fa61a962900afeec6922c37f22edc1b797155aa
+    name: pulsar-standalone
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-3.0.0/pulsar-standalone-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: 2.10.1
     created: "2022-08-16T07:42:55.803122876Z"
     description: Helm chart for Pulsar Standalone
@@ -17245,4 +17255,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-08-18T11:03:51.243540463Z"
+generated: "2022-08-18T11:38:48.147302505Z"
