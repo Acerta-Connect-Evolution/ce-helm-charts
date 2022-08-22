@@ -45,7 +45,7 @@ securityContext:
 
 service:
   gui:
-    type: LoadBalancer
+    type: ClusterIP
     port: 8024
   grpc:
     type: ClusterIP
