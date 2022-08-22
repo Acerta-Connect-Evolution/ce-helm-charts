@@ -640,6 +640,16 @@ entries:
     version: 0.23.0
   ce-calendar-timespend-backend:
   - apiVersion: v2
+    appVersion: 1.142.0
+    created: "2022-08-22T13:44:58.733904815Z"
+    description: Helm chart for ce-calendar-timespend-backend
+    digest: 930664824a551f70b81e94f2294952d564b78de52d9bacb2a1ca2ff03f3ab21c
+    name: ce-calendar-timespend-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.151.0/ce-calendar-timespend-backend-1.151.0.tgz
+    version: 1.151.0
+  - apiVersion: v2
     appVersion: 1.141.0
     created: "2022-08-22T12:05:44.986585725Z"
     description: Helm chart for ce-calendar-timespend-backend
@@ -18012,4 +18022,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-08-22T13:27:38.855486848Z"
+generated: "2022-08-22T13:44:58.738619143Z"
