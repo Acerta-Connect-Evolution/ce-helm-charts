@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: 0.8.0
-description: Helm chart for ce-payroll-annualleavecertificate
-name: ce-payroll-annualleavecertificate-backend
-type: application
-version: 0.12.0
