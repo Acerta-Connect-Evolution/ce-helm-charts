@@ -2622,7 +2622,11 @@ data:
     logout=https://clientaccess.acerta.be/pkmslogout
     
     #Connect Evolution
-    connect.evolution.path={{ .Values.connect.evolution.uri }}
+    ce.calendar.timespend.path={{ .Values.ce.calendar.timespend.path }}
+    ce.vacation.certificate.path={{ .Values.ce.vacation.certificate.path }}
+    ce.ff4j.api.url={{ .Values.ce.ff4j.api.url }}
+    ce.ff4j.username={{ .Values.ce.ff4j.username }}
+    ce.ff4j.password={{ .Values.ce.ff4j.password }}
 
     # session lost link
     session.lost.link=https://clientaccess.acerta.be/
