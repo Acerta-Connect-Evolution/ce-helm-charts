@@ -22,12 +22,7 @@ axon-server-calendar-timespend:
   persistence:
     enabled: true
     accessModes: [ ReadWriteOnce ]
-    eventstoreStorage:
-      size: 1Gi
-    dataStorage:
-      size: 1Gi
-    logStorage:
-      size: 1Gi
+    size: 3Gi
 
 connect-backend:
   enabled: true
