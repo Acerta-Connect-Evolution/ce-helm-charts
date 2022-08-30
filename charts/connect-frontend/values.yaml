@@ -66,6 +66,19 @@ connect:
   evolution:
     uri: CONNECT_EVOLUTION_URI # Fill in with the URI of the evolution webcomponents
 
+ce:
+  calendar:
+    timespend:
+      path: CE_CALENDAR_TIMESPEND_PATH
+  vacation:
+    certificate:
+      path: CE_VACATION_CERTIFICATE_PATH
+  ff4j:
+    api:
+      url: FF4J_API_URL
+    username: FF4J_USERNAME
+    password: FF4J_PASSWORD
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little

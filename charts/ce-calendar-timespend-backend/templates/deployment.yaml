@@ -95,6 +95,8 @@ spec:
                   key: password
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
+            - name: FF4J_API_URL
+              value: {{ .Values.env.ff4j.api.url }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}

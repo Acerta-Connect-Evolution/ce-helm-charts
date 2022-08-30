@@ -46,7 +46,7 @@ podSecurityContext:
   fsGroup: 10001
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 1433
 
 persistence:
