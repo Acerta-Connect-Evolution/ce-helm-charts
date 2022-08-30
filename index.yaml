@@ -3,6 +3,21 @@ entries:
   axon-server:
   - apiVersion: v2
     appVersion: 4.5.12
+    created: "2022-08-30T09:40:36.259170787Z"
+    description: AxonServer to be used in Development Workbench (eg less volumes)
+    digest: c6a7bc5b0154885dae2a72bec55af2e42209192ac6db6ee3b5f3fda73bd2f3e6
+    home: https://axoniq.io/product-overview/axon-server
+    keywords:
+    - axoniq
+    - axon
+    - axon-server
+    name: axon-server
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/axon-server-1.0.0/axon-server-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 4.5.12
     created: "2022-08-22T13:27:38.850803797Z"
     description: AxonServer to be used in Development Workbench (eg less volumes)
     digest: 2cfe6e71b5c6ab4b6a8cdab8b07b719ed0458307c670462a1e5268c083e68d22
@@ -17416,6 +17431,16 @@ entries:
   connect-frontend:
   - apiVersion: v2
     appVersion: 22.19.0
+    created: "2022-08-30T09:40:36.532164018Z"
+    description: A Helm chart for Connect UI
+    digest: 0f5d7a6de750832bec5812989d194ba3e31bd25bcde5d316ec62de3b31774512
+    name: connect-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-frontend-0.22.1/connect-frontend-0.22.1.tgz
+    version: 0.22.1
+  - apiVersion: v2
+    appVersion: 22.19.0
     created: "2022-08-30T08:46:15.610389987Z"
     description: A Helm chart for Connect UI
     digest: 69be12a77e376eb3df749070c7f91c3a807a4f55a5743073b600a7c688e22a66
@@ -19135,4 +19160,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-08-30T08:47:34.070022117Z"
+generated: "2022-08-30T09:40:36.549656811Z"
