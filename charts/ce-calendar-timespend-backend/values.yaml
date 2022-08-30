@@ -114,5 +114,8 @@ env:
   pulsar:
     broker:
       url: PULSAR_BROKER_URL
+  ff4j:
+    api:
+      url: FF4J_API_URL
 
 extraEnv: {}
