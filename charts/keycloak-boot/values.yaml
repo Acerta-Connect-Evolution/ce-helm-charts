@@ -35,7 +35,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 8080
+  port: 8083
 
 ingress:
   enabled: true
@@ -68,7 +68,7 @@ resources: # {}
 autoscaling:
   enabled: false
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 10
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
@@ -79,8 +79,3 @@ tolerations: []
 affinity: {}
 
 extraEnv: {}
-
-env:
-  keycloak-boot:
-#    elasticSearchUrl: FF4J-SERVER.ELASTIC-SEARCH-URL
-#    elasticSearchContext: FF4J-SERVER.ELASTIC-SEARCH-CONTEXT
