@@ -1,4 +1,6 @@
-# Readme.md
+# MS SQL Latest
+
+Copied from: https://github.com/opdev/mssqlserver-operator-chart.git
 
 This HELM chart is a sample "as-is" chart provided for reference to help guide with SQL Server deployment on Kubernetes cluster. 
  
