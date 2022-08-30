@@ -18331,6 +18331,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/kafdrop-0.1.0/kafdrop-0.1.0.tgz
     version: 0.1.0
+  keycloak-boot:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2022-08-30T14:33:53.082901378Z"
+    description: Helm chart for keycloak-boot
+    digest: 438c02394443175dcbaa4a10181b97050e71bff252efa683fbfd7d9437cdaa64
+    name: keycloak-boot
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/keycloak-boot-1.0.1/keycloak-boot-1.0.1.tgz
+    version: 1.0.1
   mijn-dossier:
   - apiVersion: v2
     appVersion: 8.3.0
@@ -19244,4 +19255,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-08-30T14:07:59.244894031Z"
+generated: "2022-08-30T14:33:53.090477328Z"
