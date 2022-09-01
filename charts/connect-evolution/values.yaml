@@ -68,3 +68,6 @@ cdc-db-init-job:
 
 ce-ff4j-server:
   enabled: true
+
+ce-payroll-vacationcertificate:
+  enabled: true
