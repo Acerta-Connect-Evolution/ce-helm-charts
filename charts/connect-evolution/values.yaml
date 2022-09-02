@@ -71,3 +71,6 @@ ce-ff4j-server:
 
 ce-payroll-vacationcertificate:
   enabled: true
+
+ce-webcomponents:
+  enabled: true
