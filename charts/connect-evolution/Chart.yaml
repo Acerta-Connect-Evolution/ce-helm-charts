@@ -23,7 +23,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: connect-backend.enabled
   - name: connect-frontend
-    version: 0.33.0
+    version: 0.34.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: connect-frontend.enabled
   - name: mssql-latest
