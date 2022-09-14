@@ -22269,6 +22269,35 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/keycloak-boot-1.0.1/keycloak-boot-1.0.1.tgz
     version: 1.0.1
+  mariadb:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 10.6.9
+    created: "2022-09-14T12:58:04.252119407Z"
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: 151de72a53e290d8ae6bd415d2085b8eef9992ea89c246c59ad24c4c09c59c38
+    home: https://github.com/bitnami/charts/tree/master/bitnami/mariadb
+    icon: https://bitnami.com/assets/stacks/mariadb/img/mariadb-stack-220x234.png
+    keywords:
+    - mariadb
+    - mysql
+    - database
+    - sql
+    - prometheus
+    maintainers:
+    - name: Bitnami
+      url: https://github.com/bitnami/charts
+    name: mariadb
+    sources:
+    - https://github.com/bitnami/containers/tree/main/bitnami/mariadb
+    - https://github.com/prometheus/mysqld_exporter
+    - https://mariadb.org
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/mariadb-11.3.0/mariadb-11.3.0.tgz
+    version: 11.3.0
   mijn-dossier:
   - apiVersion: v2
     appVersion: 8.3.0
@@ -23182,4 +23211,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-09-14T06:38:52.91538493Z"
+generated: "2022-09-14T12:58:04.259840427Z"
