@@ -74,3 +74,6 @@ ce-payroll-vacationcertificate:
 
 ce-webcomponents:
   enabled: true
+
+mariadb:
+  enabled: true
