@@ -103,6 +103,8 @@ env:
   datasource:
     jdbcurl: DATASOURCE_JDBC-URL
     databasename: DATASOURCE_DATABASE-NAME
+  axonds:
+    jdbcurl: AXONDS_JDBC-URL
   spring:
     profiles:
       active: default
