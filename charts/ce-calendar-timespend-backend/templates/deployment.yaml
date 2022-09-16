@@ -67,6 +67,8 @@ spec:
               value: {{ .Values.env.datasource.jdbcurl }}
             - name: DATASOURCE_DATABASE-NAME
               value: {{ .Values.env.datasource.databasename }}
+            - name: AXONDS_JDBC-URL
+              value: {{ .Values.env.axonds.jdbcurl }}
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
             - name: SPRING_ELASTICSEARCH_URIS
