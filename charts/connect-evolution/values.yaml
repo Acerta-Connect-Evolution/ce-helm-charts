@@ -76,4 +76,4 @@ ce-webcomponents:
   enabled: true
 
 mariadb:
-  enabled: true
+  enabled: false
