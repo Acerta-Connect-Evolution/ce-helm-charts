@@ -3408,6 +3408,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-payroll-vacationcertificate-0.12.0/ce-payroll-vacationcertificate-0.12.0.tgz
     version: 0.12.0
+  ce-repertoriumservice:
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2022-09-21T20:53:16.771532451Z"
+    description: Helm chart for ce-repertoriumservice
+    digest: 96f753c480daa32f43f8c6bda691f5200d1067cb20610f5e01b235d81063e685
+    name: ce-repertoriumservice
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-repertoriumservice-0.3.0/ce-repertoriumservice-0.3.0.tgz
+    version: 0.3.0
   ce-test-support:
   - apiVersion: v2
     appVersion: 1.9.0
@@ -24663,4 +24674,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-09-21T20:52:23.699207674Z"
+generated: "2022-09-21T20:53:16.77861348Z"
