@@ -75,5 +75,8 @@ ce-payroll-vacationcertificate:
 ce-webcomponents:
   enabled: true
 
+ce-repertoriumservice:
+  enabled: true
+
 mariadb:
   enabled: false
