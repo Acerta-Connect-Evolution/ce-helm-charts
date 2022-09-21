@@ -3240,6 +3240,16 @@ entries:
   ce-payroll-vacationcertificate:
   - apiVersion: v2
     appVersion: 0.23.0
+    created: "2022-09-21T16:47:15.180217782Z"
+    description: Helm chart for ce-payroll-vacationcertificate
+    digest: eabed83bdb90e43d9074a953a83ef521db2881ed9a0d157eab3635c37cb0128f
+    name: ce-payroll-vacationcertificate
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-payroll-vacationcertificate-0.28.0/ce-payroll-vacationcertificate-0.28.0.tgz
+    version: 0.28.0
+  - apiVersion: v2
+    appVersion: 0.23.0
     created: "2022-09-21T16:35:06.087495081Z"
     description: Helm chart for ce-payroll-vacationcertificate
     digest: 9a594f00c1a6ff841fb7f6f736b2bc5e20054061d161a10929e7f51db4a62b88
@@ -24395,4 +24405,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-09-21T16:35:06.094133836Z"
+generated: "2022-09-21T16:47:15.188361692Z"
