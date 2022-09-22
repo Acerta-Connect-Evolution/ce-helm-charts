@@ -26,7 +26,7 @@ spec:
             - --header
             - 'Content-Type: application/json'
             - --data
-            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-repertoriumservice", "chartVersion" : "0.5.0", "appVersion" : "0.4.0", "closedPRTitle" : "testrelease"}}'
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-repertoriumservice", "chartVersion" : "0.6.0", "appVersion" : "0.5.0", "closedPRTitle" : "fix"}}'
           env:
             - name: GITHUB_TOKEN
               valueFrom:
