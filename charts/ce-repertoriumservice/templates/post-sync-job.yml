@@ -1,0 +1,38 @@
+{{- if .Values.postSyncJob.enabled }}
+  {{- $fullName := include "mychart.fullname" . -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ $fullName }}-post-sync
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  template:
+    spec:
+      containers:
+        - name: post-sync
+          image: curlimages/curl
+          command:
+            - curl
+            - --location
+            - --request
+            - POST
+            - 'https://api.github.com/repos/Acerta-Connect-Evolution/ce-repertoriumservice/dispatches'
+            - --header
+            - 'Authorization: token $(GITHUB_TOKEN)'
+            - --header
+            - 'Accept: application/vnd.github.v3+json'
+            - --header
+            - 'Content-Type: application/json'
+            - --data
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-repertoriumservice", "chartVersion" : "1.167.0", "appVersion" : "1.161.0", "closedPRTitle" : "feature/ACECEV-365"}}'
+          env:
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: github-token
+                  key: token
+      restartPolicy: Never
+  backoffLimit: 2
+{{- end }}
