@@ -25,6 +25,9 @@ podAnnotations: {}
 podSecurityContext: {}
 # fsGroup: 2000
 
+postSyncJob:
+  enabled: false
+
 securityContext: {}
   # capabilities:
   #   drop:
