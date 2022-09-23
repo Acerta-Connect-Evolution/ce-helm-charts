@@ -26,7 +26,7 @@ spec:
             - --header
             - 'Content-Type: application/json'
             - --data
-            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-backend", "chartVersion" : "1.167.3", "appVersion" : "1.160.8", "closedPRTitle" : ""}}'
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-backend", "chartVersion" : "1.167.4", "appVersion" : "1.160.10", "closedPRTitle" : ""}}'
           env:
             - name: GITHUB_TOKEN
               valueFrom:
