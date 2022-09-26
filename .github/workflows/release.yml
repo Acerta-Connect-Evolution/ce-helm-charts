@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 'hotfix/**'
 
 concurrency: ci-${{ github.ref }}
 
