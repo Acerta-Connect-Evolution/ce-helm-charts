@@ -26,7 +26,7 @@ spec:
             - --header
             - 'Content-Type: application/json'
             - --data
-            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-payroll-vacationcertificate", "chartVersion" : "0.30.0", "appVersion" : "0.25.0", "closedPRTitle" : "ACECEV-560"}}'
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-payroll-vacationcertificate", "chartVersion" : "0.31.0", "appVersion" : "0.26.0", "closedPRTitle" : "ACECEV-574"}}'
           env:
             - name: GITHUB_TOKEN
               valueFrom:
