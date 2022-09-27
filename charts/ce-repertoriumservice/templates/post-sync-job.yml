@@ -26,7 +26,7 @@ spec:
             - --header
             - 'Content-Type: application/json'
             - --data
-            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-repertoriumservice", "chartVersion" : "0.7.0", "appVersion" : "0.6.0", "closedPRTitle" : "fix"}}'
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-repertoriumservice", "chartVersion" : "0.8.0", "appVersion" : "0.7.0", "closedPRTitle" : "feature/ACECEV-365"}}'
           env:
             - name: GITHUB_TOKEN
               valueFrom:
