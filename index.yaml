@@ -26982,6 +26982,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/frontend-service-gateway-1.0.0/frontend-service-gateway-1.0.0.tgz
     version: 1.0.0
+  frontend-services-gateway:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2022-09-27T18:23:50.844326329Z"
+    description: Helm chart for frontend-services-gateway
+    digest: 72b86a8b4436b3b55a6a84fee9823ec1251fcc71584520766f06fc78dc4e8ab2
+    name: frontend-services-gateway
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/frontend-services-gateway-1.0.0/frontend-services-gateway-1.0.0.tgz
+    version: 1.0.0
   gabschart:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -28239,4 +28250,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-09-27T18:20:13.116293269Z"
+generated: "2022-09-27T18:23:50.851557011Z"
