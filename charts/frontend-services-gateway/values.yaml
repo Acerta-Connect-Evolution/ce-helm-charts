@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-connect-evolution/frontend-service-gateway
+  repository: nexus.global.dns:8443/acerta-connect-evolution/frontend-services-gateway
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -35,7 +35,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 8083
+  port: 8086
 
 ingress:
   enabled: true
