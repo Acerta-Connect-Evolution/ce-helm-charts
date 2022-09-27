@@ -26971,6 +26971,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/flink-client-1.1.0/flink-client-1.1.0.tgz
     version: 1.1.0
+  frontend-service-gateway:
+  - apiVersion: v2
+    appVersion: 1.0.1
+    created: "2022-09-27T18:20:13.10867887Z"
+    description: Helm chart for frontend-service-gateway
+    digest: 6497ad01f954ceef9afd0d4cde8878f6f3dd1607feb15832261e78cefb62d251
+    name: frontend-service-gateway
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/frontend-service-gateway-1.0.0/frontend-service-gateway-1.0.0.tgz
+    version: 1.0.0
   gabschart:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -28228,4 +28239,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-09-27T17:57:26.044253348Z"
+generated: "2022-09-27T18:20:13.116293269Z"
