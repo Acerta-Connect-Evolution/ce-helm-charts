@@ -78,7 +78,9 @@ tolerations: []
 
 affinity: {}
 
-extraEnv: {}
+extraEnv:
+  - key: REALM_IMPORT_FILE
+    value: "file:///config/acerta-realm.json"
 
 acerta_realm_json:
   {
