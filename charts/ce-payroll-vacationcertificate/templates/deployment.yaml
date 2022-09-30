@@ -81,6 +81,8 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
+            - name: WEBCOMPONENT_HTTPS_URL
+              value: {{ .Values.env.webcomponent.https.url }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}

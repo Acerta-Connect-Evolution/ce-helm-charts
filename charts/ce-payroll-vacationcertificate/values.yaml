@@ -101,5 +101,8 @@ env:
   spring:
     profiles:
       active: default
+  webcomponent:
+    https:
+      url: WEBCOMPONENT_HTTPS_URL
 
 extraEnv: {}
