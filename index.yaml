@@ -3520,16 +3520,6 @@ entries:
   ce-payroll-vacationcertificate:
   - apiVersion: v2
     appVersion: 0.27.0
-    created: "2022-09-30T09:40:40.015619397Z"
-    description: Helm chart for ce-payroll-vacationcertificate
-    digest: f5e0a24bb3b31b4b7c30cd3a3d04bcfb2f7688df05e7169066c8eb5ee5cfc4d6
-    name: ce-payroll-vacationcertificate
-    type: application
-    urls:
-    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-payroll-vacationcertificate-0.33.0/ce-payroll-vacationcertificate-0.33.0.tgz
-    version: 0.33.0
-  - apiVersion: v2
-    appVersion: 0.27.0
     created: "2022-09-29T16:46:40.62685824Z"
     description: Helm chart for ce-payroll-vacationcertificate
     digest: 82da358d02d883245d78c0d4fb1c37f8877f97c5f72c5a080b503b3579ca425b
@@ -26902,6 +26892,16 @@ entries:
     version: 1.14.3
   connect-frontend:
   - apiVersion: v2
+    appVersion: 22.10.1
+    created: "2022-09-30T09:40:58.811203511Z"
+    description: A Helm chart for Connect UI
+    digest: a41ee27f63aee24e45da5e347419abaf1bf57f341fd7802158d4ba71f5f22f59
+    name: connect-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-frontend-0.36.8/connect-frontend-0.36.8.tgz
+    version: 0.36.8
+  - apiVersion: v2
     appVersion: 22.10.0
     created: "2022-09-30T09:12:24.250739234Z"
     description: A Helm chart for Connect UI
@@ -29044,4 +29044,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-09-30T09:40:40.026253634Z"
+generated: "2022-09-30T09:40:58.81815724Z"
