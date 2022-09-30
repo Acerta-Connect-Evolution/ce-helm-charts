@@ -4082,6 +4082,16 @@ entries:
     version: 1.1.0
   ce-webcomponents:
   - apiVersion: v2
+    appVersion: 1.14.0
+    created: "2022-09-30T14:07:23.51106474Z"
+    description: Helm chart for ce-webcomponents
+    digest: e7b907b4746e462594671da773c0c0e0c30f7ee40dd6c33dbd3f09341e159b44
+    name: ce-webcomponents
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-webcomponents-0.15.0/ce-webcomponents-0.15.0.tgz
+    version: 0.15.0
+  - apiVersion: v2
     appVersion: 1.13.0
     created: "2022-09-30T13:48:56.073863363Z"
     description: Helm chart for ce-webcomponents
@@ -30044,4 +30054,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-09-30T13:51:32.474253397Z"
+generated: "2022-09-30T14:07:23.520254934Z"
