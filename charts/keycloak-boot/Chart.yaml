@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 1.5.1
+appVersion: 1.6.0
 description: Helm chart for keycloak-boot
 name: keycloak-boot
 type: application
-version: 1.6.1
+version: 1.7.0
