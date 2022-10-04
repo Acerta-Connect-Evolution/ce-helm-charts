@@ -78,10 +78,10 @@ tolerations: []
 
 affinity: {}
 
-extraEnv:
-  REALM_IMPORT_FILE : "file:///config/acerta-realm.json"
-  GATEWAY_SUBDOMAIN_SUFFIX: "-foo"
-  GATEWAY_DOMAIN: ".tst.connectevolution.global.dns"
+extraEnv: {}
+  # REALM_IMPORT_FILE: "file:///config/acerta-realm.json"
+  # GATEWAY_SUBDOMAIN_SUFFIX: "-foo"
+  # GATEWAY_DOMAIN: ".tst.connectevolution.global.dns"
 
 acerta_realm_json:
   {
