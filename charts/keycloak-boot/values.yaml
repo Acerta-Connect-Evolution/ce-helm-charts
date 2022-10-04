@@ -79,8 +79,9 @@ tolerations: []
 affinity: {}
 
 extraEnv:
-  - key: REALM_IMPORT_FILE
-    value: "file:///config/acerta-realm.json"
+  REALM_IMPORT_FILE : "file:///config/acerta-realm.json"
+  GATEWAY_SUBDOMAIN_SUFFIX: "-foo"
+  GATEWAY_DOMAIN: ".tst.connectevolution.global.dns"
 
 acerta_realm_json:
   {
@@ -755,7 +756,6 @@ acerta_realm_json:
         "clientAuthenticatorType": "client-secret",
         "secret": "**********",
         "redirectUris": [
-          "http://localhost:8082/new-client/login/oauth2/code/custom",
           "http://localhost:8089/",
           "http://localhost:8089/auth/redirect/"
         ],
@@ -816,7 +816,7 @@ acerta_realm_json:
         "clientAuthenticatorType": "client-secret",
         "secret": "0e082231-a70d-48e8-b8a5-fbfb743041b6",
         "redirectUris": [
-          "http://localhost:8082/*",
+          "https://frontend-services-gateway${GATEWAY_SUBDOMAIN_SUFFIX}${GATEWAY_DOMAIN}/*",
           "http://localhost:8087/*"
         ],
         "webOrigins": [],

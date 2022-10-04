@@ -96,8 +96,8 @@ sealedsecret:
 
 env:
   datasource:
-    jdbcurl: DATASOURCE_JDBC-URL
-    databasename: DATASOURCE_DATABASE-NAME
+    jdbc-url: DATASOURCE_JDBC-URL
+    database-name: DATASOURCE_DATABASE-NAME
   spring:
     profiles:
       active: default
