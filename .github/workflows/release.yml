@@ -6,12 +6,16 @@ on:
       - main
       - 'hotfix/**'
 
-concurrency: ci-${{ github.ref }}
+concurrency: ci-sequential
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Sleep 1 minute
+        run: sleep 60s
+        # temp? fix to let preceding releases finish
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
