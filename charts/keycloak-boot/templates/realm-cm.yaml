@@ -6,4 +6,4 @@ metadata:
     {{- include "mychart.labels" . | nindent 4 }}
 data:
   acerta-realm.json: |
-    {{ .Values.acerta_realm_json | toJson }}
+    {{ .Values.acerta_realm_json | toJson | quote }}
