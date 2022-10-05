@@ -4,6 +4,6 @@ metadata:
   name: realm-{{ include "mychart.fullname" . }}
   labels:
     {{- include "mychart.labels" . | nindent 4 }}
+# https://stackoverflow.com/questions/71147077/helm-overwrite-configuration-from-json-files-is-there-a-better-way
 data:
-  acerta-realm.json: |
-      {{ .Values.acerta_realm_json }}
+  acerta-realm.json: {{ toYaml .Values.acerta_realm_json | indent 4 }}
