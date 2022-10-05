@@ -78,5 +78,5 @@ ce-webcomponents:
 ce-repertoriumservice:
   enabled: true
 
-mariadb:
-  enabled: false
+ce-balances:
+  enabled: true
