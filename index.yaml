@@ -30794,6 +30794,16 @@ entries:
   keycloak-boot:
   - apiVersion: v2
     appVersion: 1.7.0
+    created: "2022-10-05T11:50:46.402308684Z"
+    description: Helm chart for keycloak-boot
+    digest: b86a13eb07d6439ed4d415b799abdfd826b3cea81cb45939a5c7663adcf59458
+    name: keycloak-boot
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/keycloak-boot-1.8.1/keycloak-boot-1.8.1.tgz
+    version: 1.8.1
+  - apiVersion: v2
+    appVersion: 1.7.0
     created: "2022-10-04T14:28:16.33707112Z"
     description: Helm chart for keycloak-boot
     digest: 3d291a5f8257867e9acfc2d39c2726dc2363c90d18ca6df7d2bb1461591320b2
@@ -31934,4 +31944,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-10-05T10:42:55.453824757Z"
+generated: "2022-10-05T11:50:46.409873045Z"
