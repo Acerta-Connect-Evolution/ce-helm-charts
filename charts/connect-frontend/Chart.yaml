@@ -3,4 +3,4 @@ appVersion: 22.12.1
 description: A Helm chart for Connect UI
 name: connect-frontend
 type: application
-version: 0.36.24
+version: 0.36.25
