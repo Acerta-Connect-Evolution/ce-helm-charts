@@ -2627,7 +2627,7 @@ data:
     ce.ff4j.api.url={{ .Values.ce.ff4j.api.url }}
     ce.ff4j.username={{ .Values.ce.ff4j.username }}
     ce.ff4j.password={{ .Values.ce.ff4j.password }}
-	ce.wc.path={{ .Values.ce.wc.path }}
+    ce.wc.path={{ .Values.ce.wc.path }}
 
     # session lost link
     session.lost.link=https://clientaccess.acerta.be/
