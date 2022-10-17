@@ -78,6 +78,8 @@ ce:
       url: FF4J_API_URL
     username: FF4J_USERNAME
     password: FF4J_PASSWORD
+  wc:
+    path: CE_WC_PATH
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
