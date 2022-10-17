@@ -4061,6 +4061,16 @@ entries:
     version: 0.12.0
   ce-repertoriumservice:
   - apiVersion: v2
+    appVersion: 0.8.0
+    created: "2022-10-17T12:44:55.02308832Z"
+    description: Helm chart for ce-repertoriumservice
+    digest: 84d84ec156a5668c66bf9a2c0c7820788d416ab8a5156d7d3a71c2a1c53a3754
+    name: ce-repertoriumservice
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-repertoriumservice-0.9.0/ce-repertoriumservice-0.9.0.tgz
+    version: 0.9.0
+  - apiVersion: v2
     appVersion: 0.7.0
     created: "2022-09-27T12:57:03.963756486Z"
     description: Helm chart for ce-repertoriumservice
@@ -35505,4 +35515,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-10-17T11:31:55.321491693Z"
+generated: "2022-10-17T12:44:55.033240073Z"
