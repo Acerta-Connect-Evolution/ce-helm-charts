@@ -6,11 +6,11 @@ type: application
 version: 1.409.0
 dependencies:
   - name: ce-calendar-timespend-backend
-    version: 1.175.0
+    version: 1.176.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-backend.enabled
   - name: ce-calendar-timespend-frontend
-    version: 0.114.0
+    version: 0.115.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-frontend.enabled
   - name: axon-server
