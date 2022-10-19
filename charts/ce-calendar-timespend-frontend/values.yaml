@@ -11,6 +11,9 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: ""
 
+appType: springboot
+axon_springcloud: true
+
 serviceAccount:
   #  Specifies whether a service account should be created
   create: true
@@ -105,5 +108,10 @@ env:
   webcomponent:
     wss:
       url: WEBCOMPONENT_WSS_URL
+  ff4j:
+    api:
+      url: FF4J_API_URL
+  repertorium:
+    url: REPERTORIUM_URL
 
 extraEnv: {}

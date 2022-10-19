@@ -74,6 +74,10 @@ spec:
               value: {{ .Values.env.pulsar.broker.url }}
             - name: WEBCOMPONENT_WSS_URL
               value: {{ .Values.env.webcomponent.wss.url }}
+            - name: FF4J_API_URL
+              value: {{ .Values.env.ff4j.api.url }}
+            - name: REPERTORIUM_URL
+              value: {{ .Values.env.repertorium.url }}
             {{- if .Values.extraEnvs }}
             {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
