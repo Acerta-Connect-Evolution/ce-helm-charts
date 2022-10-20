@@ -2624,6 +2624,7 @@ data:
     #Connect Evolution
     ce.calendar.timespend.path={{ .Values.ce.calendar.timespend.path }}
     ce.vacation.certificate.path={{ .Values.ce.vacation.certificate.path }}
+    ce.balances.path={{ .Values.ce.balances.path }}
     ce.ff4j.api.url={{ .Values.ce.ff4j.api.url }}
     ce.ff4j.username={{ .Values.ce.ff4j.username }}
     ce.ff4j.password={{ .Values.ce.ff4j.password }}

@@ -73,6 +73,8 @@ ce:
   vacation:
     certificate:
       path: CE_VACATION_CERTIFICATE_PATH
+  balances:
+    path: CE_BALANCES_PATH
   ff4j:
     api:
       url: FF4J_API_URL
