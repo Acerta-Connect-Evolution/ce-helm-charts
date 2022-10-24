@@ -64,6 +64,10 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-api-client-secret
                   key: api-client-secret
+            - name: API_TOKEN_URI
+              value: {{ .Values.env.spring.security.oauth2.client.provider.balances-api.token-uri }}
+            - name: API_BASE_URL
+              value: {{ .Values.env.external.balances-api.client.base-url }}
             - name: WEBCOMPONENT_HTTPS_URL
               value: {{ .Values.env.webcomponent.https.url }}
             {{- if .Values.extraEnvs }}

@@ -92,6 +92,14 @@ env:
             balances-api:
               client-id: API_CLIENT_ID
               client-secret: API_CLIENT_SECRET_SS
+          provider:
+            balances-api:
+              token-uri: API_TOKEN_URI
+  external:
+    balances-api:
+      client:
+        base-url: API_BASE_URL
+
   webcomponent:
     https:
       url: WEBCOMPONENT_HTTPS_URL
