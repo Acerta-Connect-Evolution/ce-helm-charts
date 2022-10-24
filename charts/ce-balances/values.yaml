@@ -81,5 +81,20 @@ tolerations: []
 
 affinity: {}
 
+env:
+  spring:
+    profiles:
+      active: default
+    security:
+      oauth2:
+        client:
+          registration:
+            balances-api:
+              client-id: API_CLIENT_ID
+              client-secret: API_CLIENT_SECRET_SS
+  webcomponent:
+    https:
+      url: WEBCOMPONENT_HTTPS_URL
+
 extraEnv: {}
 
