@@ -57,17 +57,17 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
-            - name: API_CLIENT_ID
-              value: {{ .Values.env.spring.security.oauth2.client.registration.balances-api.client-id }}
-            - name: API_CLIENT_SECRET_SS
+            - name: EXTERNAL_BALANCESAPI_CLIENT_CLIENTID
+              value: {{ .Values.env.external.balancesApi.oauth2.clientId }}
+            - name: EXTERNAL_BALANCESAPI_CLIENT_CLIENTSECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-api-client-secret
-                  key: api-client-secret
-            - name: API_TOKEN_URI
-              value: {{ .Values.env.spring.security.oauth2.client.provider.balances-api.token-uri }}
-            - name: API_BASE_URL
-              value: {{ .Values.env.external.balances-api.client.base-url }}
+                  key: apiClientSecret
+            - name: EXTERNAL_BALANCESAPI_CLIENT_TOKENURI
+              value: {{ .Values.env.external.balancesApi.oauth2.tokenUri }}
+            - name: EXTERNAL_BALANCESAPI_CLIENT_BASEURL
+              value: {{ .Values.env.external.balancesApi.baseUrl }}
             - name: WEBCOMPONENT_HTTPS_URL
               value: {{ .Values.env.webcomponent.https.url }}
             {{- if .Values.extraEnvs }}
