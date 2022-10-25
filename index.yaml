@@ -671,6 +671,16 @@ entries:
   ce-balances:
   - apiVersion: v2
     appVersion: 0.7.0
+    created: "2022-10-25T07:48:41.313395443Z"
+    description: Helm chart for ce-balances
+    digest: 876d0cb4e3d890bb69987d5dcb4805b3554b50253afea7fba38811195cea0edb
+    name: ce-balances
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-balances-0.10.0/ce-balances-0.10.0.tgz
+    version: 0.10.0
+  - apiVersion: v2
+    appVersion: 0.7.0
     created: "2022-10-25T06:35:01.737915215Z"
     description: Helm chart for ce-balances
     digest: 0b7b4e1c020cf3496f13a492985e4465ea3097bfae66a9195881afe489154e1c
@@ -37745,4 +37755,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-10-25T06:41:05.337242198Z"
+generated: "2022-10-25T07:48:41.323970798Z"
