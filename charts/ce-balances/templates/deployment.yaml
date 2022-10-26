@@ -70,6 +70,8 @@ spec:
               value: {{ .Values.env.external.balancesApi.baseUrl }}
             - name: WEBCOMPONENT_HTTPS_URL
               value: {{ .Values.env.webcomponent.https.url }}
+            - name: FF4J_API_URL
+              value: {{ .Values.env.ff4j.api.url }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
