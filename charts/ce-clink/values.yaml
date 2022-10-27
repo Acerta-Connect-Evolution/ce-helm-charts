@@ -102,7 +102,7 @@ env:
     databasename: DATASOURCE_DATABASE-NAME
   redis:
     host: REDIS_HOST
-    port: REDIS_PORT
+    port: 6379
     password: REDIS_PASSWORD
   spring:
     profiles:
