@@ -3576,6 +3576,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-frontend-0.27.0/ce-calendar-timespend-frontend-0.27.0.tgz
     version: 0.27.0
+  ce-clink:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-10-27T07:41:43.457726726Z"
+    description: Helm chart for ce-clink
+    digest: 4e1f4c4c0a05b5a2a31232b4679fab58c82906a31c271e33bf0e2703c8e08548
+    name: ce-clink
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-clink-0.0.1/ce-clink-0.0.1.tgz
+    version: 0.0.1
   ce-ff4j-server:
   - apiVersion: v2
     appVersion: 1.13.0
@@ -38755,4 +38766,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-10-26T13:51:57.121991901Z"
+generated: "2022-10-27T07:41:43.468677315Z"
