@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-connect-evolution/ce-balances
+  repository: nexus.global.dns:8443/acerta-connect-evolution/ce-balances-service
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -81,28 +81,24 @@ tolerations: []
 
 affinity: {}
 
+# Default env variable values, to be overwritten in argo config
 env:
   spring:
     profiles:
       active: default
-    security:
-      oauth2:
-        client:
-          registration:
-            balances-api:
-              client-id: API_CLIENT_ID
-              client-secret: API_CLIENT_SECRET_SS
-          provider:
-            balances-api:
-              token-uri: API_TOKEN_URI
   external:
-    balances-api:
-      client:
-        base-url: API_BASE_URL
-
+    balancesApi:
+      baseUrl: API_BASE_URL_DEFAULT
+      oauth2:
+        clientId: API_CLIENT_ID_DEFAULT
+        clientSecret: API_CLIENT_SECRET_SS_DEFAULT
+        tokenUri: API_TOKEN_URI_DEFAULT
   webcomponent:
     https:
       url: WEBCOMPONENT_HTTPS_URL
+  ff4j:
+    api:
+      url: FF4J_API_URL
 
 extraEnv: {}
 
