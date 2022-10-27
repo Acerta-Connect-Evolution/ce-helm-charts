@@ -3579,6 +3579,16 @@ entries:
   ce-clink:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2022-10-27T08:05:45.619363825Z"
+    description: Helm chart for ce-clink
+    digest: 60400488490f2f3947912d95ea450c1367dc0a781c236338b62f9d7c7beeff2d
+    name: ce-clink
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-clink-0.1.1/ce-clink-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2022-10-27T07:54:46.651325021Z"
     description: Helm chart for ce-clink
     digest: 6e2d4d3266e7170c98ec78eafa70cd7b931992c064e3230ba260ed1afccf81d1
@@ -38964,4 +38974,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-10-27T07:57:26.509470806Z"
+generated: "2022-10-27T08:05:45.629991291Z"
