@@ -104,6 +104,9 @@ env:
     host: REDIS_HOST
     port: 6379
     password: REDIS_PASSWORD
+  pulsar:
+    broker:
+      url: PULSAR_BROKER_URL
   spring:
     profiles:
       active: default

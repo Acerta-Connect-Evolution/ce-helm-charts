@@ -86,6 +86,8 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
+            - name: PULSAR_BROKER_URL
+              value: {{ .Values.env.pulsar.broker.url }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
