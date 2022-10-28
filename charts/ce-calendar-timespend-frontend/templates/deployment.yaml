@@ -72,8 +72,8 @@ spec:
                   key: password
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
-            - name: WEBCOMPONENT_WSS_URL
-              value: {{ .Values.env.webcomponent.wss.url }}
+            - name: WEBCOMPONENT_HOST
+              value: {{ .Values.env.webcomponent.host }}
             - name: FF4J_API_URL
               value: {{ .Values.env.ff4j.api.url }}
             - name: REPERTORIUM_URL
