@@ -3788,6 +3788,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-ff4j-server-1.0.0/ce-ff4j-server-1.0.0.tgz
     version: 1.0.0
+  ce-init-load:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2022-11-01T19:43:38.531071439Z"
+    description: Helm chart for ce-init-load
+    digest: 496fd3a2b4ed1ea0be2007d5b232da5edf4643b897c0ac3d7f0c9bdd73568886
+    name: ce-init-load
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-init-load-0.0.1/ce-init-load-0.0.1.tgz
+    version: 0.0.1
   ce-payroll-annualleavecertificate-backend:
   - apiVersion: v2
     appVersion: 0.8.0
@@ -40118,4 +40129,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-10-31T10:15:01.681116706Z"
+generated: "2022-11-01T19:43:38.542605818Z"
