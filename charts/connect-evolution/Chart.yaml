@@ -88,3 +88,7 @@ dependencies:
     version: 0.1.2
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-clink.enabled
+  - name: ce-init-load
+    version: 0.0.1
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-init-load.enabled

@@ -83,3 +83,6 @@ ce-balances:
 
 ce-clink:
   enabled: true
+
+ce-init-load:
+  enabled: true
