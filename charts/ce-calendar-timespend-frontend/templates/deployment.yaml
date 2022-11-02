@@ -78,6 +78,22 @@ spec:
               value: {{ .Values.env.ff4j.api.url }}
             - name: REPERTORIUM_URL
               value: {{ .Values.env.repertorium.url }}
+
+            - name: MANAGEMENT_SERVER_PORT
+              value: '8081'
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://tempo.tempo:4317
+            - name: OTEL_SERVICE_NAME
+              value: {{ include "mychart.fullname" . }}
+            - name: KUBE_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: pod=$(KUBE_POD_NAME),namespace={{ .Release.Namespace }}
+            - name: OTEL_METRICS_EXPORTER
+              value: none
+
             {{- if .Values.extraEnvs }}
             {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
