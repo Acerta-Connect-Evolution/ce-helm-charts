@@ -1,15 +1,23 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-connect-evolution/ce-balances-service
+  repository: nexus.global.dns:8443/acerta-connect-evolution/init-load
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
+
+appType: springboot
+axon_springcloud: true
 
 imagePullSecrets:
   - name: regcred
 nameOverride: ""
 fullnameOverride: ""
+
+initContainers:
+  waitForPulsar:
+    enabled: true
+    topics: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -33,7 +41,7 @@ securityContext: {}
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
+# runAsNonRoot: true
 # runAsUser: 1000
 
 service:
@@ -62,10 +70,10 @@ resources: # {}
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   #  requests:
-  #    cpu: "250m"
+  #    cpu: 250m
   #    memory: "384Mi"
   #  limits:
-  #    cpu: "250m"
+  #    cpu: "500m"
   #    memory: "512Mi"
 
 autoscaling:
@@ -81,24 +89,35 @@ tolerations: []
 
 affinity: {}
 
-# Default env variable values, to be overwritten in argo config
+sealedsecret:
+  redis:
+    password:
+  datasource:
+    username:
+    password:
+  initdatasource:
+    username:
+    password:
+  diccodatasource:
+    username:
+    password:
+
 env:
+  datasource:
+    jdbcurl: DATASOURCE_JDBC-URL
+    databasename: DATASOURCE_DATABASE-NAME
+  diccodatasource:
+    jdbcurl: DICCO-DATASOURCE_JDBC-URL
+    databasename: DICCO-DATASOURCE_DATABASE-NAME
+  redis:
+    host: REDIS_HOST
+    port: 6379
+    password: REDIS_PASSWORD
+  pulsar:
+    broker:
+      url: PULSAR_BROKER_URL
   spring:
     profiles:
       active: default
-  external:
-    balancesApi:
-      baseUrl: API_BASE_URL_DEFAULT
-      oauth2:
-        clientId: API_CLIENT_ID_DEFAULT
-        clientSecret: API_CLIENT_SECRET_SS_DEFAULT
-        tokenUri: API_TOKEN_URI_DEFAULT
-  webcomponent:
-    https:
-      url: WEBCOMPONENT_HTTPS_URL
-  ff4j:
-    api:
-      url: FF4J_API_URL
 
 extraEnv: {}
-

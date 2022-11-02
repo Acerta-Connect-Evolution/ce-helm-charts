@@ -80,3 +80,9 @@ ce-repertoriumservice:
 
 ce-balances:
   enabled: true
+
+ce-clink:
+  enabled: true
+
+ce-init-load:
+  enabled: true

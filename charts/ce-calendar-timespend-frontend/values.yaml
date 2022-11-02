@@ -106,8 +106,7 @@ env:
     broker:
       url: PULSAR_BROKER_URL
   webcomponent:
-    wss:
-      url: WEBCOMPONENT_WSS_URL
+    host: WEBCOMPONENT_HOST
   ff4j:
     api:
       url: FF4J_API_URL
