@@ -40627,4 +40627,28 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-standalone-1.0.7/pulsar-standalone-1.0.7.tgz
     version: 1.0.7
-generated: "2022-11-02T13:41:29.820574211Z"
+  tempo:
+  - apiVersion: v2
+    appVersion: 1.5.0
+    created: "2022-11-03T11:00:19.581074878Z"
+    description: Grafana Tempo Single Binary Mode
+    digest: b6c5859bf755cf9ca96401fc0ab1f0b12ffe03f076bce9c0b139c0bf5c6e0137
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/tempo/master/docs/tempo/website/logo_and_name.png
+    maintainers:
+    - email: number101010@gmail.com
+      name: joe-elliott
+    - email: 9215868@gmail.com
+      name: swartz-k
+    - name: annanay25
+    - name: mdisibio
+    - name: dgzlopes
+    - name: mapno
+    name: tempo
+    sources:
+    - https://github.com/grafana/tempo
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
+    version: 0.16.3
+generated: "2022-11-03T11:00:19.593462994Z"
