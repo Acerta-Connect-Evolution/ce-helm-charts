@@ -3679,6 +3679,16 @@ entries:
   ce-clink:
   - apiVersion: v2
     appVersion: 1.2.0
+    created: "2022-11-10T07:49:25.972711385Z"
+    description: Helm chart for ce-clink
+    digest: 3ac0b7887dc98ba6e9d235c7adf87d184a096ce142ff960ecc7f735136b888bb
+    name: ce-clink
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-clink-0.3.0/ce-clink-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: 1.2.0
     created: "2022-11-09T15:02:40.206174846Z"
     description: Helm chart for ce-clink
     digest: af556735b69a1032b07ad8d0ec900e5c97d14d756c29fcfcc0cae04170dccc38
@@ -3859,6 +3869,16 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-ff4j-server-1.0.0/ce-ff4j-server-1.0.0.tgz
     version: 1.0.0
   ce-init-load:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-11-10T07:49:26.177811456Z"
+    description: Helm chart for ce-init-load
+    digest: d4251f1d7ecad490ba3a272d3483e5a43097f8147e5ccab3118cd4c0b402372b
+    name: ce-init-load
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-init-load-0.3.0/ce-init-load-0.3.0.tgz
+    version: 0.3.0
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2022-11-10T07:12:01.258010604Z"
@@ -41912,4 +41932,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-11-10T07:15:52.386912899Z"
+generated: "2022-11-10T07:49:26.193091549Z"
