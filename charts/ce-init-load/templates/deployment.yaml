@@ -71,11 +71,11 @@ spec:
               value: {{ .Values.env.diccodatasource.jdbcurl }}
             - name: DICCO-DATASOURCE_DATABASE-NAME
               value: {{ .Values.env.diccodatasource.databasename }}
-            - name: REDIS_HOST
-              value: {{ .Values.env.redis.host }}
-            - name: REDIS_PORT
-              value: {{ .Values.env.redis.port | quote }}
-            - name: REDIS_PASSWORD
+            - name: SPRING_REDIS_HOST
+              value: {{ .Values.env.spring.redis.host }}
+            - name: SPRING_REDIS_PORT
+              value: {{ .Values.env.spring.redis.port | quote }}
+            - name: SPRING_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-redis-cred

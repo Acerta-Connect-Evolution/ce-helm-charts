@@ -67,11 +67,11 @@ spec:
               value: {{ .Values.env.datasource.jdbcurl }}
             - name: DATASOURCE_DATABASE-NAME
               value: {{ .Values.env.datasource.databasename }}
-            - name: REDIS_HOST
-              value: {{ .Values.env.redis.host }}
-            - name: REDIS_PORT
-              value: {{ .Values.env.redis.port | quote }}
-            - name: REDIS_PASSWORD
+            - name: SPRING_REDIS_HOST
+              value: {{ .Values.env.spring.redis.host }}
+            - name: SPRING_REDIS_PORT
+              value: {{ .Values.env.spring.redis.port | quote }}
+            - name: SPRING_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-redis-cred

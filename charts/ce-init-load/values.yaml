@@ -109,14 +109,14 @@ env:
   diccodatasource:
     jdbcurl: DICCO-DATASOURCE_JDBC-URL
     databasename: DICCO-DATASOURCE_DATABASE-NAME
-  redis:
-    host: REDIS_HOST
-    port: 6379
-    password: REDIS_PASSWORD
   pulsar:
     broker:
       url: PULSAR_BROKER_URL
   spring:
+    redis:
+      host: REDIS_HOST
+      port: 6379
+      password: REDIS_PASSWORD
     profiles:
       active: default
 
