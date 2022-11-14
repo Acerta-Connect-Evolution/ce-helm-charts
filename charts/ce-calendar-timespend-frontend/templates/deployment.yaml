@@ -78,6 +78,14 @@ spec:
               value: {{ .Values.env.ff4j.api.url }}
             - name: REPERTORIUM_URL
               value: {{ .Values.env.repertorium.url }}
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: {{ .Values.env.otel.exporter.otlp.endpoint }}
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: {{ .Values.env.otel.exporter.otlp.protocol }}
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: {{ .Values.env.otel.resource.attributes }}
+            - name: OTEL_METRICS_EXPORTER
+              value: {{ .Values.env.otel.metrics.exporter }}
             {{- if .Values.extraEnvs }}
             {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
