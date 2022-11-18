@@ -4220,6 +4220,16 @@ entries:
     version: 1.0.0
   ce-init-load:
   - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2022-11-18T09:52:11.516657381Z"
+    description: Helm chart for ce-init-load
+    digest: 3990130f9274b47e3777d90965a5c6250ba61a781faa4a33081ef5bdc719a47e
+    name: ce-init-load
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-init-load-0.5.0/ce-init-load-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
     appVersion: 0.2.0
     created: "2022-11-10T14:25:17.220640485Z"
     description: Helm chart for ce-init-load
@@ -46390,4 +46400,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-11-18T09:38:12.400832236Z"
+generated: "2022-11-18T09:52:11.533798532Z"
