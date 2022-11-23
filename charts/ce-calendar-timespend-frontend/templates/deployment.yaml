@@ -70,6 +70,10 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
+            - name: AXONDS_JDBC-URL
+              value: {{ .Values.env.axonds.jdbcurl }}
+            - name: AXONDS_DATABASE-NAME
+              value: {{ .Values.env.axonds.databasename }}
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             - name: WEBCOMPONENT_HOST

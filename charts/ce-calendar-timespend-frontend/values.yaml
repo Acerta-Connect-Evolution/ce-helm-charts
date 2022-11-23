@@ -99,6 +99,9 @@ env:
       jdbcurl: SPRING_DATASOURCE_JDBCURL
       username: SPRING_DATASOURCE_USERNAME
       password: SPRING_DATASOURCE_PASSWORD
+  axonds:
+    jdbcurl: AXONDS_JDBC-URL
+    databasename: AXONDS_DATABASE-NAME
   axon:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS
