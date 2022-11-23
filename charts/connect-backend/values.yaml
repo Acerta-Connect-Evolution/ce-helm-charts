@@ -91,6 +91,6 @@ environment: "TST"
 spring:
   profiles:
     active: "ce-tst"
-cloudConfigUri: "http://transversal-spring-cloud-config-server.tst.k8s.global.dns"
+cloudConfigUri: "http://transversal-spring-cloud-config-server.tst.k8s.global.dns:80"
 
 extraEnv: {}
