@@ -8,7 +8,7 @@ image:
   repository: nexus.global.dns:8443/dicco/dicco-oltp
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "2022.10.12"
+  tag: "2022.10.5"
 
 imagePullSecrets:
   - name: "regcred"
@@ -91,6 +91,6 @@ environment: "TST"
 spring:
   profiles:
     active: "ce-tst"
-cloudConfigUri: "http://transversal-spring-cloud-config-server.tst.k8s.global.dns"
+cloudConfigUri: "http://transversal-spring-cloud-config-server.tst.k8s.global.dns:80"
 
 extraEnv: {}
