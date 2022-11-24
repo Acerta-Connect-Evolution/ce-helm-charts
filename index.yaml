@@ -6037,6 +6037,16 @@ entries:
   connect-backend:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2022-11-24T07:20:58.934518371Z"
+    description: Connect Backend aka DICCO
+    digest: 666ac7aaef433db861a076fd43bd8bb8203c3359d0fcd7affce58b98c9eba9ac
+    name: connect-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-backend-0.0.38/connect-backend-0.0.38.tgz
+    version: 0.0.38
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2022-11-23T14:26:19.624881378Z"
     description: Connect Backend aka DICCO
     digest: c2a7f9bb4790c0bb81de23d5a07080b966d187d50b589e36fedb9469f6ad39f5
@@ -52400,4 +52410,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-11-23T16:28:11.878807875Z"
+generated: "2022-11-24T07:20:58.949421352Z"
