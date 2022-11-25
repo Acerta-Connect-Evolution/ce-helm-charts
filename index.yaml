@@ -5553,6 +5553,16 @@ entries:
     version: 0.12.0
   ce-repertoriumservice:
   - apiVersion: v2
+    appVersion: 0.16.0
+    created: "2022-11-25T12:31:45.884613776Z"
+    description: Helm chart for ce-repertoriumservice
+    digest: db82a4f91c5612bf9650dcc92f9299ca5fd375357f05b3afa950f3a6852d5776
+    name: ce-repertoriumservice
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-repertoriumservice-0.17.0/ce-repertoriumservice-0.17.0.tgz
+    version: 0.17.0
+  - apiVersion: v2
     appVersion: 0.15.0
     created: "2022-11-17T18:01:45.483605487Z"
     description: Helm chart for ce-repertoriumservice
@@ -54668,4 +54678,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-11-25T11:21:00.92270881Z"
+generated: "2022-11-25T12:31:45.899629325Z"
