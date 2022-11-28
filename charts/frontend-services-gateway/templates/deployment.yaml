@@ -59,6 +59,14 @@ spec:
             failureThreshold: 30
             periodSeconds: 5
           env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: {{ .Values.env.otel.exporter.otlp.endpoint }}
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: {{ .Values.env.otel.exporter.otlp.protocol }}
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: {{ .Values.env.otel.resource.attributes }}
+            - name: OTEL_METRICS_EXPORTER
+              value: {{ .Values.env.otel.metrics.exporter }}
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}

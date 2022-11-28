@@ -36,6 +36,17 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 8087
+env:
+  otel:
+    exporter:
+      otlp:
+        endpoint: OTEL_EXPORTER_OTLP_ENDPOINT
+        protocol: OTEL_EXPORTER_OTLP_PROTOCOL
+    resource:
+      attributes: OTEL_RESOURCE_ATTRIBUTES
+    metrics:
+      exporter: OTEL_METRICS_EXPORTER
+extraEnv: {}
 
 ingress:
   enabled: false
