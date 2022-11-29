@@ -54364,6 +54364,16 @@ entries:
   frontend-services-gateway:
   - apiVersion: v2
     appVersion: 1.9.1
+    created: "2022-11-29T15:16:20.215368697Z"
+    description: Helm chart for frontend-services-gateway
+    digest: d2d7fec7e581034aad223f41923130265c1784d66837668bf3cef21015b901e8
+    name: frontend-services-gateway
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/frontend-services-gateway-1.10.1/frontend-services-gateway-1.10.1.tgz
+    version: 1.10.1
+  - apiVersion: v2
+    appVersion: 1.9.1
     created: "2022-11-28T20:27:27.612353075Z"
     description: Helm chart for frontend-services-gateway
     digest: 6619466e08a5436b0c9cf81c84dee5452344256e6802a94c7c8473ea8fe071e7
@@ -55926,4 +55936,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-11-29T13:52:55.523635897Z"
+generated: "2022-11-29T15:16:20.227954269Z"
