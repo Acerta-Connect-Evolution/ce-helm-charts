@@ -36,6 +36,8 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 8087
+  annotations:
+    # dev.okteto.com/auto-ingress: "true"
 env:
   otel:
     exporter:

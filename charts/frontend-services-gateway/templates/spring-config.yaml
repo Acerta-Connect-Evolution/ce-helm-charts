@@ -4,6 +4,5 @@ metadata:
   name: application-yml-{{ include "mychart.fullname" . }}
   labels:
     {{- include "mychart.labels" . | nindent 4 }}
-# https://stackoverflow.com/questions/71147077/helm-overwrite-configuration-from-json-files-is-there-a-better-way
 data:
   application.yml: {{ toYaml .Values.application_yml | indent 4 }}
