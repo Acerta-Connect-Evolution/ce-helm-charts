@@ -39,10 +39,16 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-
-          # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
-          # dummy foo-bar added to make op 'add' in patch work correctly
           env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: {{ .Values.env.otel.exporter.otlp.endpoint }}
+            - name: OTEL_EXPORTER_OTLP_PROTOCOL
+              value: {{ .Values.env.otel.exporter.otlp.protocol }}
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: {{ .Values.env.otel.resource.attributes }}
+            - name: OTEL_METRICS_EXPORTER
+              value: {{ .Values.env.otel.metrics.exporter }}
+
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
