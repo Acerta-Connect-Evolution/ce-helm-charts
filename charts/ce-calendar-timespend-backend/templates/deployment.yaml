@@ -97,6 +97,16 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
+            - name: SPRING_AXONDS_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-axonds-cred
+                  key: username
+            - name: SPRING_AXONDS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-axonds-cred
+                  key: password
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             - name: FF4J_API_URL

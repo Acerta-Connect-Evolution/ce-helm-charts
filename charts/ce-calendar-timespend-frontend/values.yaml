@@ -88,6 +88,9 @@ sealedsecret:
   datasource:
     username:
     password:
+  axonds:
+    username:
+    password:
 
 env:
   spring:
