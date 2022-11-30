@@ -53579,6 +53579,16 @@ entries:
     version: 1.14.3
   connect-frontend:
   - apiVersion: v2
+    appVersion: 22.12.19
+    created: "2022-11-30T15:26:26.54142399Z"
+    description: A Helm chart for Connect UI
+    digest: 271a84dd6adb173d337293e075f7c6be0b38b653c9a852d67f9fee2dc98ed670
+    name: connect-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-frontend-0.36.52/connect-frontend-0.36.52.tgz
+    version: 0.36.52
+  - apiVersion: v2
     appVersion: 22.12.18
     created: "2022-11-25T10:38:03.145367046Z"
     description: A Helm chart for Connect UI
@@ -56468,4 +56478,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-11-30T15:24:25.510775465Z"
+generated: "2022-11-30T15:26:26.554778963Z"
