@@ -113,8 +113,6 @@ spec:
               value: {{ .Values.env.pulsar.broker.url }}
             - name: FF4J_API_URL
               value: {{ .Values.env.ff4j.api.url }}
-            {{- if .Values.extraEnvs }}
-              {{- toYaml .Values.extraEnvs | nindent 12 }}
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: {{ .Values.env.otel.exporter.otlp.endpoint }}
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
@@ -124,6 +122,8 @@ spec:
             - name: OTEL_METRICS_EXPORTER
               value: {{ .Values.env.otel.metrics.exporter }}
 
+            {{- if .Values.extraEnvs }}
+              {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
