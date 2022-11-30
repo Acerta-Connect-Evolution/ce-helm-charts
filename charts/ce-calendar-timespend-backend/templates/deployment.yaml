@@ -67,10 +67,6 @@ spec:
               value: {{ .Values.env.datasource.jdbcurl }}
             - name: DATASOURCE_DATABASE-NAME
               value: {{ .Values.env.datasource.databasename }}
-            - name: AXONDS_JDBC-URL
-              value: {{ .Values.env.axonds.jdbcurl }}
-            - name: AXONDS_DATABASE-NAME
-              value: {{ .Values.env.axonds.databasename }}
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
             - name: SPRING_ELASTICSEARCH_URIS
@@ -97,6 +93,7 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
+            {{- if contains "dbeventstore" .Values.env.spring.profiles.active }}
             - name: SPRING_AXONDS_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -107,6 +104,11 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-axonds-cred
                   key: password
+            - name: AXONDS_JDBC-URL
+              value: {{ .Values.env.axonds.jdbcurl }}
+            - name: AXONDS_DATABASE-NAME
+              value: {{ .Values.env.axonds.databasename }}
+            {{- end }}
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             - name: FF4J_API_URL

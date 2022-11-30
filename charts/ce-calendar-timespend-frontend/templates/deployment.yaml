@@ -70,6 +70,7 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
+            {{- if contains "dbeventstore" .Values.env.spring.profiles.active }}
             - name: SPRING_AXONDS_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -84,6 +85,7 @@ spec:
               value: {{ .Values.env.axonds.jdbcurl }}
             - name: AXONDS_DATABASE-NAME
               value: {{ .Values.env.axonds.databasename }}
+              {{- end }}
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             - name: WEBCOMPONENT_HOST
