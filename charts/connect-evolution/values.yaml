@@ -8,7 +8,7 @@ axon-server-calendar-timespend:
   enabled: false
   nameOverride: axon-server-calendar-timespend
   image:
-    tag: "4.5.6"
+    tag: "4.6.7-dev"
   extraEnvs:
     - name: AXONIQ_AXONSERVER_DEVMODE_ENABLED
       value: "true"
@@ -85,4 +85,7 @@ ce-clink:
   enabled: true
 
 ce-init-load:
+  enabled: true
+
+frontend-services-gateway:
   enabled: true
