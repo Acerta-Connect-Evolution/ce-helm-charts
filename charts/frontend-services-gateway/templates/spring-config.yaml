@@ -1,7 +1,32 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+rules:
+  - apiGroups: [""] # "" indicates the core API group
+    resources: ["pods","configmaps","endpoints","services"]
+    verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "mychart.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "mychart.serviceAccountName" . }}
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: application-yml-{{ include "mychart.fullname" . }}
+  name: frontend-services-gateway
   labels:
     {{- include "mychart.labels" . | nindent 4 }}
 data:
