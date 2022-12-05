@@ -4728,6 +4728,16 @@ entries:
     version: 0.27.0
   ce-clink:
   - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-12-05T14:25:28.795488939Z"
+    description: Helm chart for ce-clink
+    digest: fc2eb1560259a50a684dd356cefddb5a91bfa04c32dea7e86b89e7180434d842
+    name: ce-clink
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-clink-0.17.0/ce-clink-0.17.0.tgz
+    version: 0.17.0
+  - apiVersion: v2
     appVersion: 1.15.0
     created: "2022-12-02T11:06:07.849891855Z"
     description: Helm chart for ce-clink
@@ -59944,4 +59954,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-12-05T13:14:21.903449303Z"
+generated: "2022-12-05T14:25:28.809924212Z"
