@@ -49,7 +49,7 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: http
-            failureThreshold: 30
+            failureThreshold: 100
             periodSeconds: 5
 
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
