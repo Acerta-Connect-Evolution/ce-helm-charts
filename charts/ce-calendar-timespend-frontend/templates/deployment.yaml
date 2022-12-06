@@ -58,8 +58,10 @@ spec:
               value: {{ .Values.env.spring.elasticsearch.uris }}
             - name: AXON_AXONSERVER_SERVERS
               value: {{ .Values.env.axon.axonserver.servers }}
-            - name: SPRING_DATASOURCE_JDBC-URL
-              value: {{ .Values.env.spring.datasource.jdbcurl }}
+            - name: DATASOURCE_JDBC-URL
+              value: {{ .Values.env.datasource.jdbcurl }}
+            - name: DATASOURCE_DATABASE-NAME
+              value: {{ .Values.env.datasource.databasename }}
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
