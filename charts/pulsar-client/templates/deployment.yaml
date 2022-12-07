@@ -60,7 +60,7 @@ spec:
             - name: PULSAR_ALLOWED-CLUSTERS
               value: {{ .Values.env.pulsar.allowedclusters }}
             {{- if .Values.sealedsecret.debezium.config.database.dicco.password }}
-            - name: SPRING_DATASOURCE_PASSWORD
+            - name: DEBEZIUM_CONFIG_DATABASE_DICCO_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-debezium-dicco-cred
