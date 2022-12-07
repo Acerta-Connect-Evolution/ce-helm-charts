@@ -80,6 +80,13 @@ affinity: {}
 
 extraEnv: {}
 
+sealedsecret:
+  debezium:
+    config:
+      database:
+        dicco:
+          password:
+
 env:
   pulsar:
     adminurl: PULSAR_ADMIN-URL
