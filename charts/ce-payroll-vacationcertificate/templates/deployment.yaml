@@ -49,8 +49,8 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: http
-            failureThreshold: 100
-            periodSeconds: 5
+            failureThreshold: 999
+            periodSeconds: 10
 
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
