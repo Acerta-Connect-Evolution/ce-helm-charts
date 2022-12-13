@@ -93,22 +93,16 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
-            {{- if contains "dbeventstore" .Values.env.spring.profiles.active }}
-            - name: SPRING_AXONDS_USERNAME
+            - name: SPRING_LIQUIBASE_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ $fullName }}-axonds-cred
+                  name: {{ $fullName }}-liquibase-datasource-cred
                   key: username
-            - name: SPRING_AXONDS_PASSWORD
+            - name: SPRING_LIQUIBASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ $fullName }}-axonds-cred
+                  name: {{ $fullName }}-liquibase-datasource-cred
                   key: password
-            - name: AXONDS_JDBC-URL
-              value: {{ .Values.env.axonds.jdbcurl }}
-            - name: AXONDS_DATABASE-NAME
-              value: {{ .Values.env.axonds.databasename }}
-            {{- end }}
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             - name: FF4J_API_URL

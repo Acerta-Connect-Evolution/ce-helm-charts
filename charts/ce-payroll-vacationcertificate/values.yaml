@@ -92,6 +92,9 @@ sealedsecret:
   datasource:
     username:
     password:
+  liquibasedatasource:
+    username:
+    password:
 
 
 env:
