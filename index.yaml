@@ -919,6 +919,28 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-balances-0.1.0/ce-balances-0.1.0.tgz
     version: 0.1.0
+  ce-calendar-balance-backend:
+  - apiVersion: v2
+    appVersion: 0.0.0
+    created: "2022-12-14T09:08:32.662306804Z"
+    description: Helm chart for ce-calendar-balance-backend
+    digest: 24f3b8366ee401b42c160e7a6bc286e1426bcfadb392521c06d26a18346cc5ed
+    name: ce-calendar-balance-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-balance-backend-0.1.0/ce-calendar-balance-backend-0.1.0.tgz
+    version: 0.1.0
+  ce-calendar-balance-frontend:
+  - apiVersion: v2
+    appVersion: 0.0.0
+    created: "2022-12-14T09:08:32.841775658Z"
+    description: Helm chart for ce-calendar-balance-frontend
+    digest: 84ec60386afc0ad58b970bb63eab381c633179aab9da960c3d721a91c000ba80
+    name: ce-calendar-balance-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-balance-frontend-0.1.0/ce-calendar-balance-frontend-0.1.0.tgz
+    version: 0.1.0
   ce-calendar-connect-adapter-flink-jobs:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -65998,4 +66020,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-12-14T08:47:09.831432396Z"
+generated: "2022-12-14T09:08:32.865548894Z"
