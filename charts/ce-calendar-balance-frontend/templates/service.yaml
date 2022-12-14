@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+    appType: {{ .Values.appType }}
+    axon_springcloud: {{ .Values.axon_springcloud }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 7000
+      name: rsocket
+      protocol: TCP
+      targetPort: 7000
+    - port: 5106
+      name: debug
+      protocol: TCP
+      targetPort: 5106
+  selector:
+    {{- include "mychart.selectorLabels" . | nindent 4 }}
