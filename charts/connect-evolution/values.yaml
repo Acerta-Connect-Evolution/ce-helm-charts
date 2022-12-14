@@ -89,3 +89,9 @@ ce-init-load:
 
 frontend-services-gateway:
   enabled: true
+
+ce-calendar-balance-backend:
+  enabled: false
+
+ce-calendar-balance-frontend:
+  enabled: false
