@@ -8,7 +8,7 @@ image:
   repository: nexus.global.dns:8443/dicco/dicco-oltp
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "2022.12.2-SNAPSHOT"
+  tag: "2022.12.11"
 
 imagePullSecrets:
   - name: "regcred"
