@@ -962,6 +962,16 @@ entries:
     version: 0.1.0
   ce-calendar-balance-frontend:
   - apiVersion: v2
+    appVersion: 0.8.0
+    created: "2022-12-19T15:34:06.415174041Z"
+    description: Helm chart for ce-calendar-balance-frontend
+    digest: 61f790703b2528b68825ddac454abaaf50f80e968ae208588f58352c5d43f9d6
+    name: ce-calendar-balance-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-balance-frontend-0.8.0/ce-calendar-balance-frontend-0.8.0.tgz
+    version: 0.8.0
+  - apiVersion: v2
     appVersion: 0.7.0
     created: "2022-12-19T12:07:58.846312455Z"
     description: Helm chart for ce-calendar-balance-frontend
@@ -69530,4 +69540,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-12-19T13:41:05.425706823Z"
+generated: "2022-12-19T15:34:06.431958787Z"
