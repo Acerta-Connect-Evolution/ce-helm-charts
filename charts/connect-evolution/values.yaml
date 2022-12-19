@@ -94,4 +94,4 @@ ce-calendar-balance-backend:
   enabled: true
 
 ce-calendar-balance-frontend:
-  enabled: false
+  enabled: true
