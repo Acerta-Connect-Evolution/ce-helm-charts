@@ -96,7 +96,7 @@ sealedsecret:
   datasource:
     username:
     password:
-  axonds:
+  liquibasedatasource:
     username:
     password:
 
@@ -107,9 +107,6 @@ env:
   datasource:
     jdbcurl: DATASOURCE_JDBC-URL
     databasename: DATASOURCE_DATABASE-NAME
-  axonds:
-    jdbcurl: AXONDS_JDBC-URL
-    databasename: AXONDS_DATABASE-NAME
   spring:
     profiles:
       active: default

@@ -88,17 +88,11 @@ sealedsecret:
   datasource:
     username:
     password:
-  axonds:
-    username:
-    password:
 
 env:
   datasource:
     jdbcurl: SPRING_DATASOURCE_JDBCURL
     databasename:
-  axonds:
-    jdbcurl: AXONDS_JDBC-URL
-    databasename: AXONDS_DATABASE-NAME
   spring:
     profiles:
       active: default

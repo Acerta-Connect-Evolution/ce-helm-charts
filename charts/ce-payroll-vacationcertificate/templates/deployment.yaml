@@ -81,6 +81,16 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
+            - name: SPRING_LIQUIBASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-liquibase-datasource-cred
+                  key: username
+            - name: SPRING_LIQUIBASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-liquibase-datasource-cred
+                  key: password
             - name: WEBCOMPONENT_HTTPS_URL
               value: {{ .Values.env.webcomponent.https.url }}
             - name: PULSAR_BROKER_URL
