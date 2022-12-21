@@ -1139,6 +1139,16 @@ entries:
   ce-calendar-timespend-backend:
   - apiVersion: v2
     appVersion: 1.224.0
+    created: "2022-12-21T08:28:40.92326982Z"
+    description: Helm chart for ce-calendar-timespend-backend
+    digest: e1b1c83bfde3637a91784b8b1f844ea6cfd77aa5335c92f0ccee4c6945dff6a0
+    name: ce-calendar-timespend-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.226.0/ce-calendar-timespend-backend-1.226.0.tgz
+    version: 1.226.0
+  - apiVersion: v2
+    appVersion: 1.224.0
     created: "2022-12-15T16:57:05.936073275Z"
     description: Helm chart for ce-calendar-timespend-backend
     digest: d87f7d4e26dcc6d350afbe1fb7476541f11f45fdfa5248512a108d2e9eb59d80
@@ -3498,6 +3508,16 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.41.4/ce-calendar-timespend-backend-1.41.4.tgz
     version: 1.41.4
   ce-calendar-timespend-frontend:
+  - apiVersion: v2
+    appVersion: 1.202.0
+    created: "2022-12-21T08:28:41.07866445Z"
+    description: Helm chart for ce-calendar-timespend-frontend
+    digest: 14aa1d9db73095d525bf333ea2f3b40adbfd5a9f8903173f1a9f0799d15a9981
+    name: ce-calendar-timespend-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-frontend-0.198.0/ce-calendar-timespend-frontend-0.198.0.tgz
+    version: 0.198.0
   - apiVersion: v2
     appVersion: 1.202.0
     created: "2022-12-19T12:46:48.946783998Z"
@@ -5903,6 +5923,16 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-payroll-annualleavecertificate-backend-0.1.0/ce-payroll-annualleavecertificate-backend-0.1.0.tgz
     version: 0.1.0
   ce-payroll-vacationcertificate:
+  - apiVersion: v2
+    appVersion: 0.69.0
+    created: "2022-12-21T08:28:41.211562308Z"
+    description: Helm chart for ce-payroll-vacationcertificate
+    digest: a715e2b815dd650c20cc0466942e982c78c8b51e692a475c913e69fd622538ba
+    name: ce-payroll-vacationcertificate
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-payroll-vacationcertificate-0.78.0/ce-payroll-vacationcertificate-0.78.0.tgz
+    version: 0.78.0
   - apiVersion: v2
     appVersion: 0.69.0
     created: "2022-12-12T08:43:50.669629685Z"
@@ -70490,4 +70520,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-12-21T07:22:20.398939705Z"
+generated: "2022-12-21T08:28:41.227429848Z"
