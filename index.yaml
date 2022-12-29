@@ -5641,6 +5641,16 @@ entries:
     version: 0.0.1
   ce-ff4j-server:
   - apiVersion: v2
+    appVersion: 1.17.0
+    created: "2022-12-29T14:16:42.710201644Z"
+    description: Helm chart for ce-ff4j-server
+    digest: 4b15393f7db930c3bd6df5dc34c1db95c46c355a52edd9e0d5433a87522f117b
+    name: ce-ff4j-server
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-ff4j-server-1.17.0/ce-ff4j-server-1.17.0.tgz
+    version: 1.17.0
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2022-12-15T17:07:05.90349563Z"
     description: Helm chart for ce-ff4j-server
@@ -73040,4 +73050,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2022-12-29T10:29:27.745104503Z"
+generated: "2022-12-29T14:16:42.727426614Z"
