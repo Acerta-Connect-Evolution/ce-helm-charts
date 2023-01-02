@@ -7247,6 +7247,16 @@ entries:
     version: 1.1.0
   ce-webcomponents:
   - apiVersion: v2
+    appVersion: 1.32.0
+    created: "2023-01-02T08:24:33.986306476Z"
+    description: Helm chart for ce-webcomponents
+    digest: 1cee9f47659bf01fed3b343225b058a007101ad56b9830e5d0d4da459b92aabc
+    name: ce-webcomponents
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-webcomponents-0.33.0/ce-webcomponents-0.33.0.tgz
+    version: 0.33.0
+  - apiVersion: v2
     appVersion: 1.31.0
     created: "2022-12-19T10:32:51.15345696Z"
     description: Helm chart for ce-webcomponents
@@ -73520,4 +73530,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-01-02T07:19:38.029267663Z"
+generated: "2023-01-02T08:24:34.004873995Z"
