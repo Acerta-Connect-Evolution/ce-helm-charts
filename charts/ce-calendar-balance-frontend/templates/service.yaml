@@ -5,7 +5,6 @@ metadata:
   labels:
     {{- include "mychart.labels" . | nindent 4 }}
     appType: {{ .Values.appType }}
-    axon_springcloud: {{ .Values.axon_springcloud }}
 spec:
   type: {{ .Values.service.type }}
   ports:

@@ -4,6 +4,7 @@ metadata:
   name: {{ include "mychart.fullname" . }}
   labels:
     {{- include "mychart.labels" . | nindent 4 }}
+    appType: {{ .Values.appType }}
 spec:
   type: {{ .Values.service.type }}
   ports:
