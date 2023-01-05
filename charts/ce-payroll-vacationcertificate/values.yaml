@@ -96,7 +96,6 @@ sealedsecret:
     username:
     password:
   redis:
-    username:
     password:
   ff4j:
     username:

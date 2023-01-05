@@ -91,11 +91,6 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
                   key: password
-            - name: SPRING_REDIS_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-redis-cred
-                  key: username
             - name: SPRING_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
