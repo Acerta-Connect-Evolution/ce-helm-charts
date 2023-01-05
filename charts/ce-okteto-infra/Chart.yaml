@@ -1,0 +1,52 @@
+apiVersion: v2
+appVersion: '1.0'
+description: Helm chart for connect evolution infrastructure on Okteto
+name: ce-okteto-infra
+type: application
+version: 0.1.0
+dependencies:
+  - name: mssql-latest
+    version: 0.3.6
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: mssql-latest.enabled
+  - name: elasticsearch
+    version: 7.14.0
+    repository: https://helm.elastic.co
+    condition: elasticsearch.enabled
+  - name: redis
+    version: 17.3.7
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+  - name: pulsar-standalone
+    version: 3.0.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: pulsar-standalone.enabled
+  - name: pulsar-client
+    version: 3.41.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: pulsar-client.enabled
+  - name: init-job
+    version: 1.0.16
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: pulsar-init-job.enabled
+    alias: pulsar-init-job
+  - name: ce-ff4j-server
+    version: 1.18.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-ff4j-server.enabled
+  - name: ce-repertoriumservice
+    version: 0.24.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-repertoriumservice.enabled
+  - name: ce-clink
+    version: 0.19.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-clink.enabled
+  - name: ce-init-load
+    version: 0.15.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-init-load.enabled
+  - name: frontend-services-gateway
+    version: 1.35.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: frontend-services-gateway.enabled
