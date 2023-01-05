@@ -1219,6 +1219,16 @@ entries:
   ce-calendar-timespend-backend:
   - apiVersion: v2
     appVersion: 1.235.0
+    created: "2023-01-05T14:18:47.208551892Z"
+    description: Helm chart for ce-calendar-timespend-backend
+    digest: 4ea5de75c356270872204d986599b1411a6d9b5bcb58314af64103cc81a611fe
+    name: ce-calendar-timespend-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.238.0/ce-calendar-timespend-backend-1.238.0.tgz
+    version: 1.238.0
+  - apiVersion: v2
+    appVersion: 1.235.0
     created: "2023-01-05T13:16:26.095069739Z"
     description: Helm chart for ce-calendar-timespend-backend
     digest: c4a659918f65a6d33d20699a5080a97f36dc93959eef893519b4fd1e7f1a7bc7
@@ -3700,6 +3710,16 @@ entries:
   ce-calendar-timespend-frontend:
   - apiVersion: v2
     appVersion: 1.212.0
+    created: "2023-01-05T14:18:47.389809536Z"
+    description: Helm chart for ce-calendar-timespend-frontend
+    digest: 6afd3d1810affcfd4993e9536ad4755667305865854294aa185902b9b8aad7ca
+    name: ce-calendar-timespend-frontend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-frontend-0.212.0/ce-calendar-timespend-frontend-0.212.0.tgz
+    version: 0.212.0
+  - apiVersion: v2
+    appVersion: 1.212.0
     created: "2023-01-05T13:53:03.277302621Z"
     description: Helm chart for ce-calendar-timespend-frontend
     digest: 7943d5072b6aa342a4f3d2c0e4cb2ece4c4be370c4516cf48562b99b796c88e9
@@ -5581,6 +5601,16 @@ entries:
   ce-clink:
   - apiVersion: v2
     appVersion: 1.18.0
+    created: "2023-01-05T14:18:47.572702316Z"
+    description: Helm chart for ce-clink
+    digest: 7d66c558b6b7ba09025604af024b9794ddb97d8a53098020e2356ca1c4c9fbf2
+    name: ce-clink
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-clink-0.20.0/ce-clink-0.20.0.tgz
+    version: 0.20.0
+  - apiVersion: v2
+    appVersion: 1.18.0
     created: "2022-12-08T14:57:33.756294786Z"
     description: Helm chart for ce-clink
     digest: f5fed18b9b738082b679992d7b1a08cd25816844e440f106492d0dd0bcd2d563
@@ -5981,6 +6011,16 @@ entries:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-ff4j-server-1.0.0/ce-ff4j-server-1.0.0.tgz
     version: 1.0.0
   ce-init-load:
+  - apiVersion: v2
+    appVersion: 0.14.0
+    created: "2023-01-05T14:18:47.765905525Z"
+    description: Helm chart for ce-init-load
+    digest: 18c222c957c17f58ed1ad1b0eb4db82ab612ffd534e949983150a4f8337cbab4
+    name: ce-init-load
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-init-load-0.16.0/ce-init-load-0.16.0.tgz
+    version: 0.16.0
   - apiVersion: v2
     appVersion: 0.14.0
     created: "2022-12-08T15:05:32.087156624Z"
@@ -75657,4 +75697,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-01-05T14:02:17.765667797Z"
+generated: "2023-01-05T14:18:47.787008796Z"
