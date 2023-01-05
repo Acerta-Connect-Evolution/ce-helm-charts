@@ -99,7 +99,7 @@ spec:
             - name: FF4J_API_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ $fullName }}-ff4J-cred
+                  name: {{ $fullName }}-ff4j-cred
                   key: username
             - name: FF4J_API_PASSWORD
               valueFrom:
