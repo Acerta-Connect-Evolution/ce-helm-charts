@@ -75,6 +75,10 @@ spec:
               value: {{ .Values.env.axon.axonserver.servers }}
             - name: SPRING_REDIS_HOST
               value: {{ .Values.env.spring.redis.host }}
+            - name: SPRING_REDIS_PORT
+              value: {{ .Values.env.spring.redis.port }}
+            - name: SPRING_REDIS_PASSWORD
+              value: {{ .Values.env.spring.redis.password }}
             - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
