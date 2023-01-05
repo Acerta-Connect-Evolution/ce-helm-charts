@@ -7,7 +7,6 @@ image:
   tag: ""
 
 appType: springboot
-axon_springcloud: true
 
 imagePullSecrets:
   - name: regcred
