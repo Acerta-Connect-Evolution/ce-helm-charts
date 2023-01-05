@@ -111,6 +111,8 @@ env:
       active: default
     elasticsearch:
       uris: SPRING_ELASTICSEARCH_URIS
+    redis:
+      host: SPRING_REDIS_HOST
   axon:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS

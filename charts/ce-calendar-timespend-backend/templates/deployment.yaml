@@ -73,6 +73,8 @@ spec:
               value: {{ .Values.env.spring.elasticsearch.uris }}
             - name: AXON_AXONSERVER_SERVERS
               value: {{ .Values.env.axon.axonserver.servers }}
+            - name: SPRING_REDIS_HOST
+              value: {{ .Values.env.spring.redis.host }}
             - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
