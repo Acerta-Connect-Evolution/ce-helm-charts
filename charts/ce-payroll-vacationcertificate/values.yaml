@@ -95,6 +95,12 @@ sealedsecret:
   liquibasedatasource:
     username:
     password:
+  redis:
+    username:
+    password:
+  ff4j:
+    username:
+    password:
 
 
 env:
@@ -104,6 +110,8 @@ env:
   spring:
     profiles:
       active: default
+    redis:
+      host: REDIS_HOST
   webcomponent:
     https:
       url: WEBCOMPONENT_HTTPS_URL
