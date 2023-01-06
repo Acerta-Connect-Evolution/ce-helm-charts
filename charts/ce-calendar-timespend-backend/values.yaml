@@ -111,6 +111,10 @@ env:
       active: default
     elasticsearch:
       uris: SPRING_ELASTICSEARCH_URIS
+    redis:
+      host: SPRING_REDIS_HOST
+      port: 6379
+      password: SPRING_REDIS_PASSWORD
   axon:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS

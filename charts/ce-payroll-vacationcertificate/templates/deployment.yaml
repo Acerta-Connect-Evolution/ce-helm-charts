@@ -91,12 +91,29 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
                   key: password
+            - name: SPRING_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-redis-cred
+                  key: password
+            - name: FF4J_API_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-ff4j-cred
+                  key: username
+            - name: FF4J_API_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-ff4j-cred
+                  key: password
             - name: WEBCOMPONENT_HTTPS_URL
               value: {{ .Values.env.webcomponent.https.url }}
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             - name: FF4J_API_URL
               value: {{ .Values.env.ff4j.api.url }}
+            - name: SPRING_REDIS_HOST
+              value: {{ .Values.env.spring.redis.host }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
