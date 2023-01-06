@@ -74,7 +74,7 @@ spec:
             - name: SPRING_REDIS_HOST
               value: {{ .Values.env.spring.redis.host }}
             - name: SPRING_REDIS_PORT
-              value: {{ .Values.env.spring.redis.port }}
+              value: {{ .Values.env.spring.redis.port | quote}}
             - name: SPRING_REDIS_PASSWORD
               value: {{ .Values.env.spring.redis.password }}
             - name: SPRING_INIT-DATASOURCE_USERNAME
