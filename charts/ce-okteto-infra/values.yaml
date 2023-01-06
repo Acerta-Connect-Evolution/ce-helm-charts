@@ -1,6 +1,6 @@
 mssql-latest:
-
-  enabled: true
+  fullnameOverride: mssql-latest
+  enabled: false
   persistence:
     dataSize: 1Gi
     userlogSeparateClaim: false
@@ -8,7 +8,8 @@ mssql-latest:
     userdbSeparateClaim: false
 
 elasticsearch:
-  enabled: true
+  fullnameOverride: elasticsearch-master
+  enabled: false
   image: nexus.global.dns:8443/acerta-dev/elasticsearch
   imageTag: 7.15.0
   replicas: 1
@@ -18,35 +19,75 @@ elasticsearch:
   extraEnvs:
     - name: TZ
       value: Europe/Brussels
+  ingress:
+    className: ""
+    enabled: true
+    annotations:
+      dev.okteto.com/generate-host: "true"
+      kubernetes.io/ingress.class: nginx
 
 redis:
-  enabled: true
+  fullnameOverride: redis
+  enabled: false
   architecture: standalone
   global:
     redis:
       password: Admin123
 
 pulsar-standalone:
-  enabled: true
+  fullnameOverride: pulsar-standalone
+  enabled: false
+  ingress:
+    className: ""
+    enabled: true
+    annotations:
+      dev.okteto.com/generate-host: "true"
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "2048Mi"
+    limits:
+      memory: "4096Mi"
+      cpu: "1000m"
 
 pulsar-client:
-  enabled: true
+  fullnameOverride: pulsar-client
+  enabled: false
   env:
     pulsar:
       adminurl: http://pulsar-standalone:8080
-      allowedclusters: pulsar
+      allowedclusters: standalone
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
 
 ce-ff4j-server:
+  fullnameOverride: ce-ff4j-server
+  enabled: false
   env:
     ff4jserver:
       elasticSearchUrl: http://elasticsearch-master:9200
       elasticSearchContext: not_used_yet
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
 
 ce-repertoriumservice:
-  enabled: true
+  fullnameOverride: ce-repertoriumservice
+  enabled: false
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
 
 ce-clink:
-  enabled: true
+  fullnameOverride: ce-clink
+  enabled: false
   extraEnvs:
     - name: CE_TECHNICAL_USER
       value: JF21626
@@ -70,7 +111,8 @@ ce-clink:
       password: AgBHwhIOzsNJtDY3kDH10HUK6iBR8oGGmGPTfX5BVgDkumBOdNqVAC57w5gwqQhoEqumQPqvddwNNckJFLUJn+Of0QN5Fapjxf/ae2HIv5uIxX/y2bWkX5V27p6PFVOXlfQb03D2T5gpJHhTH7/G/+pBgm/ymnqM0RrcxzuNOmnUzLbVfqcJPI5Gsaya2IRWVkgn9ZKLmrupFkavnBmTCLoLtG0cMu9TqkHf0npN6SgVY2V0w3bKXxKnBEF0uqIQLtsze2CTdGF8iBjTZF7gKRkksZYe6kehg9lmKQqizetwYPm7Rvj4aVTi4iPd3hFuH9Qtngeltoo5Q9X6iP7WLdVlz0Bal+LVHnjA18ExgQ/EE0Tz0XjaZVuQungtalV47WOCRo33qnci6KZSR2cPyv7i6NrefZfrCscr5gAubsk2ItwYvc+N9pHVTbxtzDCEMI36byONM/WH/UagDQleYQ2Fc9s8ddMFDhVFH8Uq89k16MIQ/0Q1glp2KXiWLw95NmPREntck2Zmt09vG6WUU0lsNoAtK5/PQ6cvs1i/7t4fRpi5Nn9xEEVxHR62vW9y5kYrAJb+uZ6NdW4Ia32gRhh/gU830So3Qdm0ZqQBO4uyObsAq1HLxJcK0rb+XxfeQRI25Jl9g4sLzK3qIMK6OMTlcrEn/mPJnRcffCkoPu0DDD4EwRZHr86EZwPXdlx2cwlI1MlUIQlDCkrdd5Pq13CgELoo
 
 ce-init-load:
-  enabled: true
+  fullnameOverride: ce-init-load
+  enabled: false
   env:
     spring:
       redis:
@@ -83,7 +125,7 @@ ce-init-load:
       databasename: DICCO
     pulsar:
       broker:
-        url: pulsar://pulsar-standadlone:6650
+        url: pulsar://pulsar-standalone:6650
     sealedsecret:
       redis:
         password: AgAR3+/FzJqdwWoipRaeGmFOcA4BPnOjTckOTBiZF7GONwfn3Dgj72R6M+3LCp02OpSpfRqNZcVkMq3u7j5y6h8R0n7FCa3lPpbSoIEa5jDSJP4FjMEiFyjYJjBVdjnI0kSLpxxKnDqqXu3c8Y/NACCmna5vP1LpPfH/KVqVYpsDtQjONuxdRiYhifNXmJXA/WB9uWxFSorznUHhq0OgvShWJjIAbjxUHaq6zsQrBEFGUaAL2tzlccU3W70tYwWahwtw7vEdT0YCgDO0B0cg2QWvFbqkZfH06xKloUCEOXMU0WlkDc/JuzIbCGnv7c5Si6PUOiLQJS/ghfWvSd/bMkhWUbBOhLkSvWMRpiHY2iy88D8+e3+GEzTsoY14M8BxGy8zjj8rApGxYZWaQRCdLirH+pUjB+3KLK/Xh3OLP8HLvx2ALlbk7PbZh72p4I10C1WgLsgat0kRJ4fmEzhN+6mBBaOUUuVvgzW7iJVgaASumziazDbJB7WYOICEIbKBc7JVyBUuSMWTlWP8AxMUG6XZqwTPAs8sm1gSkrm0pjteCGJkXFHCyCb8WszJVhLo2k2s09Z1DbNcNqewaWfzGhAbw8XdZmKe3FF4u8fUc4YpDwqyCv2t5/UV1ZfvkEWkDGHHwEzANsD5miPWPzGIQn50BCORJtRa1WSnfBDepUu54Mo6Ankax1Kj6nAssDVN5r4SZwI8VoIChQ==
@@ -98,7 +140,8 @@ ce-init-load:
         password: AgBHwhIOzsNJtDY3kDH10HUK6iBR8oGGmGPTfX5BVgDkumBOdNqVAC57w5gwqQhoEqumQPqvddwNNckJFLUJn+Of0QN5Fapjxf/ae2HIv5uIxX/y2bWkX5V27p6PFVOXlfQb03D2T5gpJHhTH7/G/+pBgm/ymnqM0RrcxzuNOmnUzLbVfqcJPI5Gsaya2IRWVkgn9ZKLmrupFkavnBmTCLoLtG0cMu9TqkHf0npN6SgVY2V0w3bKXxKnBEF0uqIQLtsze2CTdGF8iBjTZF7gKRkksZYe6kehg9lmKQqizetwYPm7Rvj4aVTi4iPd3hFuH9Qtngeltoo5Q9X6iP7WLdVlz0Bal+LVHnjA18ExgQ/EE0Tz0XjaZVuQungtalV47WOCRo33qnci6KZSR2cPyv7i6NrefZfrCscr5gAubsk2ItwYvc+N9pHVTbxtzDCEMI36byONM/WH/UagDQleYQ2Fc9s8ddMFDhVFH8Uq89k16MIQ/0Q1glp2KXiWLw95NmPREntck2Zmt09vG6WUU0lsNoAtK5/PQ6cvs1i/7t4fRpi5Nn9xEEVxHR62vW9y5kYrAJb+uZ6NdW4Ia32gRhh/gU830So3Qdm0ZqQBO4uyObsAq1HLxJcK0rb+XxfeQRI25Jl9g4sLzK3qIMK6OMTlcrEn/mPJnRcffCkoPu0DDD4EwRZHr86EZwPXdlx2cwlI1MlUIQlDCkrdd5Pq13CgELoo
 
 pulsar-init-job:
-  enabled: true
+  fullnameOverride: pulsar-init-job
+  enabled: false
   initContainers:
     waitForUrl:
       enabled: true
@@ -148,88 +191,87 @@ pulsar-init-job:
     echo "Namespace Created"
 
 frontend-services-gateway:
-  enabled: true
+  fullnameOverride: frontend-services-gateway
+  enabled: false
   application_yml: |
     spring:
-      spring:
-        # profile 'always-active' should always be active :) as the corresponding application-always-active.yml (in gateway jar)
-        # contains some config that is always needed under normal circumstances. We pushed that config to the application-always-active.yml
-        # to remove unnecessary clutter from the application.yml file.
-        profiles:
-          active: always-active #, nosecurity
-        redis:
-          host: redis-master
-          port: 6379
-          password: Admin123
-        security:
-          oauth2:
-            client:
-              provider:
-                keycloak:
-                  issuer-uri: https://keycloak-boot-${OKTETO_NAMESPACE}.tst.connectevolution.global.dns/auth/realms/acerta
-                  token-uri: https://keycloak-boot-${OKTETO_NAMESPACE}.tst.connectevolution.global.dns/auth/realms/acerta/protocol/openid-connect/token
-                  authorization-uri: https://keycloak-boot-${OKTETO_NAMESPACE}.tst.connectevolution.global.dns/auth/realms/acerta/protocol/openid-connect/auth
-              registration:
-                ce-gateway:
-                  provider: keycloak
-                  client-id: ce-gateway
-                  client-secret: Bl5oJEkQgYadCXlNRny1YNCzZOfz7qC0
-                  redirect-uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.tst.connectevolution.global.dns/login/oauth2/code/ce-gateway
-                  scope:
-                    - openid
-                    - email
-                    - profile
-                    - roles
-
-        cloud:
-          gateway:
-            default-filters:
-              - TokenRelay
-              - RemoveRequestHeader=Cookie
-            routes:
-              - id: heartbeat
-                uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.tst.connectevolution.global.dns
-                order: 1000
-                predicates:
-                  - Path=/heartbeat
-                filters:
-                  - RewritePath=/heartbeat, /session-refresh
-              - id: gateway-amf
-                uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.tst.connectevolution.global.dns
-                order: 1000
-                predicates:
-                  - Path=/AMF/**
-                filters:
-                  - RewritePath=/AMF/(?<segment>.*), /$\{segment}
-              - id: calendar-timespend-frontend-rsocket
-                uri: ws://ce-calendar-timespend-frontend:7000
-                order: 1000
-                predicates:
-                  - Path=/calendar-timespend/socket
-                filters:
-                  - RewritePath=/calendar-timespend/socket, /socket
-              - id: calendar-timespend-frontend-everything-else
-                uri: http://ce-calendar-timespend-frontend:8080
-                order: 2000
-                predicates:
-                  - Path=/calendar-timespend/**
-                filters:
-                  - RewritePath=/calendar-timespend/(?<segment>.*), /$\{segment}
-              - id: ff4j
-                uri: http://ce-ff4j-server:8080
-                order: 10
-                predicates:
-                  - Path=/ff4j/**
-                filters:
-                  - RewritePath=/ff4j/(?<segment>.*), /$\{segment}
-      ---
-      acerta:
-        keycloak:
-          registration-service-name: ce-gateway
+      # profile 'always-active' should always be active :) as the corresponding application-always-active.yml (in gateway jar)
+      # contains some config that is always needed under normal circumstances. We pushed that config to the application-always-active.yml
+      # to remove unnecessary clutter from the application.yml file.
+      profiles:
+        active: always-active #, nosecurity
+      redis:
+        host: redis-master
+        port: 6379
+        password: Admin123
+      security:
+        oauth2:
+          client:
+            provider:
+              keycloak:
+                issuer-uri: https://keycloak-boot-kristof86.tst.connectevolution.global.dns/auth/realms/acerta
+                token-uri: https://keycloak-boot-kristof86.tst.connectevolution.global.dns/auth/realms/acerta/protocol/openid-connect/token
+                authorization-uri: https://keycloak-boot-kristof86.tst.connectevolution.global.dns/auth/realms/acerta/protocol/openid-connect/auth
+            registration:
+              ce-gateway:
+                provider: keycloak
+                client-id: ce-gateway
+                client-secret: Bl5oJEkQgYadCXlNRny1YNCzZOfz7qC0
+                redirect-uri: https://frontend-services-gateway-kristof86.tst.connectevolution.global.dns/login/oauth2/code/ce-gateway
+                scope:
+                  - openid
+                  - email
+                  - profile
+                  - roles
+      cloud:
         gateway:
-          keep-alive-path: /keep-alive/index.html
-          logout-uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.tst.connectevolution.global.dns/authenticate
-          session-timeout: 90
+          default-filters:
+            - TokenRelay
+            - RemoveRequestHeader=Cookie
+          routes:
+            - id: heartbeat
+              uri: https://frontend-services-gateway-kristof86.tst.connectevolution.global.dns
+              order: 1000
+              predicates:
+                - Path=/heartbeat
+              filters:
+                - RewritePath=/heartbeat, /session-refresh
+            - id: gateway-amf
+              uri: https://frontend-services-gateway-kristof86.tst.connectevolution.global.dns
+              order: 1000
+              predicates:
+                - Path=/AMF/**
+              filters:
+                - RewritePath=/AMF/(?<segment>.*), /$\{segment}
+            - id: calendar-timespend-frontend-rsocket
+              uri: ws://ce-calendar-timespend-frontend:7000
+              order: 1000
+              predicates:
+                - Path=/calendar-timespend/socket
+              filters:
+                - RewritePath=/calendar-timespend/socket, /socket
+            - id: calendar-timespend-frontend-everything-else
+              uri: http://ce-calendar-timespend-frontend:8080
+              order: 2000
+              predicates:
+                - Path=/calendar-timespend/**
+              filters:
+                - RewritePath=/calendar-timespend/(?<segment>.*), /$\{segment}
+            - id: ff4j
+              uri: http://ce-ff4j-server:8080
+              order: 10
+              predicates:
+                - Path=/ff4j/**
+              filters:
+                - RewritePath=/ff4j/(?<segment>.*), /$\{segment}
+    ---
+    acerta:
+      keycloak:
+        registration-service-name: ce-gateway
+      gateway:
+        keep-alive-path: /keep-alive/index.html
+        logout-uri: https://frontend-services-gateway-kristof86.tst.connectevolution.global.dns/authenticate
+        session-timeout: 90
 
 keycloak-boot:
   enabled: true
@@ -289,6 +331,44 @@ keycloak-boot:
       "quickLoginCheckMilliSeconds": 1000,
       "maxDeltaTimeSeconds": 43200,
       "failureFactor": 30,
+      "users":[
+         {
+            "username":"klant",
+            "enabled":true,
+            "credentials":[
+               {
+                  "type":"password",
+                  "value":"klant",
+                  "temporary": false
+               }
+            ],
+            "attributes":{
+               "user_code":"klant",
+               "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+            },
+            "realmRoles":[
+               "user"
+            ]
+         },
+         {
+            "username":"acertaan",
+            "enabled":true,
+            "credentials":[
+               {
+                  "type":"password",
+                  "value":"acertaan",
+                  "temporary": false
+               }
+            ],
+            "attributes":{
+               "user_code":"acertaan",
+               "authorized_list": "[{\"acertaKey\":\"00000000000\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+            },
+            "realmRoles":[
+               "user"
+            ]
+         }
+      ],
       "roles": {
         "realm": [
           {
@@ -316,13 +396,13 @@ keycloak-boot:
             "composite": true,
             "composites": {
               "realm": [
-                "offline_access",
-                "uma_authorization"
+                  "offline_access",
+                  "uma_authorization"
               ],
               "client": {
                 "account": [
-                  "manage-account",
-                  "view-profile"
+                    "manage-account",
+                    "view-profile"
                 ]
               }
             },
@@ -377,7 +457,7 @@ keycloak-boot:
               "composites": {
                 "client": {
                   "realm-management": [
-                    "query-clients"
+                      "query-clients"
                   ]
                 }
               },
@@ -483,24 +563,24 @@ keycloak-boot:
               "composites": {
                 "client": {
                   "realm-management": [
-                    "view-clients",
-                    "view-authorization",
-                    "query-groups",
-                    "manage-realm",
-                    "query-clients",
-                    "manage-clients",
-                    "view-realm",
-                    "manage-identity-providers",
-                    "create-client",
-                    "manage-users",
-                    "view-identity-providers",
-                    "query-users",
-                    "query-realms",
-                    "view-users",
-                    "impersonation",
-                    "manage-authorization",
-                    "manage-events",
-                    "view-events"
+                      "view-clients",
+                      "view-authorization",
+                      "query-groups",
+                      "manage-realm",
+                      "query-clients",
+                      "manage-clients",
+                      "view-realm",
+                      "manage-identity-providers",
+                      "create-client",
+                      "manage-users",
+                      "view-identity-providers",
+                      "query-users",
+                      "query-realms",
+                      "view-users",
+                      "impersonation",
+                      "manage-authorization",
+                      "manage-events",
+                      "view-events"
                   ]
                 }
               },
@@ -534,8 +614,8 @@ keycloak-boot:
               "composites": {
                 "client": {
                   "realm-management": [
-                    "query-users",
-                    "query-groups"
+                      "query-users",
+                      "query-groups"
                   ]
                 }
               },
@@ -582,7 +662,6 @@ keycloak-boot:
           ],
           "security-admin-console": [],
           "admin-cli": [],
-          "ce-gateway-service": [],
           "account-console": [],
           "broker": [
             {
@@ -595,6 +674,7 @@ keycloak-boot:
               "attributes": {}
             }
           ],
+          "ce-gateway": [],
           "account": [
             {
               "id": "8daa8096-d14e-4d1c-ad1f-83f822016aa1",
@@ -604,7 +684,7 @@ keycloak-boot:
               "composites": {
                 "client": {
                   "account": [
-                    "manage-account-links"
+                      "manage-account-links"
                   ]
                 }
               },
@@ -647,7 +727,7 @@ keycloak-boot:
               "composites": {
                 "client": {
                   "account": [
-                    "view-consent"
+                      "view-consent"
                   ]
                 }
               },
@@ -683,7 +763,7 @@ keycloak-boot:
           "path": "/golden_customers",
           "attributes": {},
           "realmRoles": [
-            "gold"
+              "gold"
           ],
           "clientRoles": {},
           "subGroups": []
@@ -694,7 +774,7 @@ keycloak-boot:
           "path": "/silver_customers",
           "attributes": {},
           "realmRoles": [
-            "silver"
+              "silver"
           ],
           "clientRoles": {},
           "subGroups": []
@@ -709,7 +789,7 @@ keycloak-boot:
         "containerId": "acerta"
       },
       "requiredCredentials": [
-        "password"
+          "password"
       ],
       "otpPolicyType": "totp",
       "otpPolicyAlgorithm": "HmacSHA1",
@@ -718,12 +798,12 @@ keycloak-boot:
       "otpPolicyLookAheadWindow": 1,
       "otpPolicyPeriod": 30,
       "otpSupportedApplications": [
-        "FreeOTP",
-        "Google Authenticator"
+          "FreeOTP",
+          "Google Authenticator"
       ],
       "webAuthnPolicyRpEntityName": "keycloak",
       "webAuthnPolicySignatureAlgorithms": [
-        "ES256"
+          "ES256"
       ],
       "webAuthnPolicyRpId": "",
       "webAuthnPolicyAttestationConveyancePreference": "not specified",
@@ -735,7 +815,7 @@ keycloak-boot:
       "webAuthnPolicyAcceptableAaguids": [],
       "webAuthnPolicyPasswordlessRpEntityName": "keycloak",
       "webAuthnPolicyPasswordlessSignatureAlgorithms": [
-        "ES256"
+          "ES256"
       ],
       "webAuthnPolicyPasswordlessRpId": "",
       "webAuthnPolicyPasswordlessAttestationConveyancePreference": "not specified",
@@ -749,7 +829,7 @@ keycloak-boot:
         {
           "clientScope": "offline_access",
           "roles": [
-            "offline_access"
+              "offline_access"
           ]
         }
       ],
@@ -758,7 +838,7 @@ keycloak-boot:
           {
             "client": "account-console",
             "roles": [
-              "manage-account"
+                "manage-account"
             ]
           }
         ]
@@ -776,7 +856,7 @@ keycloak-boot:
           "clientAuthenticatorType": "client-secret",
           "secret": "**********",
           "redirectUris": [
-            "/realms/acerta/account/*"
+              "/realms/acerta/account/*"
           ],
           "webOrigins": [],
           "notBefore": 0,
@@ -794,16 +874,16 @@ keycloak-boot:
           "fullScopeAllowed": false,
           "nodeReRegistrationTimeout": 0,
           "defaultClientScopes": [
-            "web-origins",
-            "roles",
-            "profile",
-            "email"
+              "web-origins",
+              "roles",
+              "profile",
+              "email"
           ],
           "optionalClientScopes": [
-            "address",
-            "phone",
-            "offline_access",
-            "microprofile-jwt"
+              "address",
+              "phone",
+              "offline_access",
+              "microprofile-jwt"
           ]
         },
         {
@@ -818,7 +898,7 @@ keycloak-boot:
           "clientAuthenticatorType": "client-secret",
           "secret": "**********",
           "redirectUris": [
-            "/realms/acerta/account/*"
+              "/realms/acerta/account/*"
           ],
           "webOrigins": [],
           "notBefore": 0,
@@ -848,16 +928,16 @@ keycloak-boot:
             }
           ],
           "defaultClientScopes": [
-            "web-origins",
-            "roles",
-            "profile",
-            "email"
+              "web-origins",
+              "roles",
+              "profile",
+              "email"
           ],
           "optionalClientScopes": [
-            "address",
-            "phone",
-            "offline_access",
-            "microprofile-jwt"
+              "address",
+              "phone",
+              "offline_access",
+              "microprofile-jwt"
           ]
         },
         {
@@ -886,16 +966,16 @@ keycloak-boot:
           "fullScopeAllowed": false,
           "nodeReRegistrationTimeout": 0,
           "defaultClientScopes": [
-            "web-origins",
-            "roles",
-            "profile",
-            "email"
+              "web-origins",
+              "roles",
+              "profile",
+              "email"
           ],
           "optionalClientScopes": [
-            "address",
-            "phone",
-            "offline_access",
-            "microprofile-jwt"
+              "address",
+              "phone",
+              "offline_access",
+              "microprofile-jwt"
           ]
         },
         {
@@ -924,193 +1004,32 @@ keycloak-boot:
           "fullScopeAllowed": false,
           "nodeReRegistrationTimeout": 0,
           "defaultClientScopes": [
-            "web-origins",
-            "roles",
-            "profile",
-            "email"
+              "web-origins",
+              "roles",
+              "profile",
+              "email"
           ],
           "optionalClientScopes": [
-            "address",
-            "phone",
-            "offline_access",
-            "microprofile-jwt"
-          ]
-        },
-        {
-          "id": "b88ce206-63d6-43b6-87c9-ea09d8c02f32",
-          "clientId": "newClient",
-          "surrogateAuthRequired": false,
-          "enabled": true,
-          "alwaysDisplayInConsole": false,
-          "clientAuthenticatorType": "client-secret",
-          "secret": "**********",
-          "redirectUris": [
-            "http://localhost:8089/",
-            "http://localhost:8089/auth/redirect/"
-          ],
-          "webOrigins": [
-            "+"
-          ],
-          "notBefore": 0,
-          "bearerOnly": false,
-          "consentRequired": false,
-          "standardFlowEnabled": true,
-          "implicitFlowEnabled": true,
-          "directAccessGrantsEnabled": true,
-          "serviceAccountsEnabled": false,
-          "publicClient": false,
-          "frontchannelLogout": false,
-          "protocol": "openid-connect",
-          "attributes": {
-            "saml.assertion.signature": "false",
-            "saml.force.post.binding": "false",
-            "saml.multivalued.roles": "false",
-            "saml.encrypt": "false",
-            "saml.server.signature": "false",
-            "saml.server.signature.keyinfo.ext": "false",
-            "exclude.session.state.from.auth.response": "false",
-            "saml_force_name_id_format": "false",
-            "saml.client.signature": "false",
-            "tls.client.certificate.bound.access.tokens": "false",
-            "saml.authnstatement": "false",
-            "display.on.consent.screen": "false",
-            "saml.onetimeuse.condition": "false"
-          },
-          "authenticationFlowBindingOverrides": {},
-          "fullScopeAllowed": true,
-          "nodeReRegistrationTimeout": -1,
-          "defaultClientScopes": [
-            "profile"
-          ],
-          "optionalClientScopes": [
-            "web-origins",
-            "address",
-            "read",
-            "phone",
-            "roles",
-            "offline_access",
-            "microprofile-jwt",
-            "write",
-            "email"
-          ]
-        },
-        {
-          "id": "6a4bfbd0-576d-4778-af56-56f876647355",
-          "clientId": "realm-management",
-          "name": "${client_realm-management}",
-          "surrogateAuthRequired": false,
-          "enabled": true,
-          "alwaysDisplayInConsole": false,
-          "clientAuthenticatorType": "client-secret",
-          "secret": "**********",
-          "redirectUris": [],
-          "webOrigins": [],
-          "notBefore": 0,
-          "bearerOnly": true,
-          "consentRequired": false,
-          "standardFlowEnabled": true,
-          "implicitFlowEnabled": false,
-          "directAccessGrantsEnabled": false,
-          "serviceAccountsEnabled": false,
-          "publicClient": false,
-          "frontchannelLogout": false,
-          "protocol": "openid-connect",
-          "attributes": {},
-          "authenticationFlowBindingOverrides": {},
-          "fullScopeAllowed": false,
-          "nodeReRegistrationTimeout": 0,
-          "defaultClientScopes": [
-            "web-origins",
-            "roles",
-            "profile",
-            "email"
-          ],
-          "optionalClientScopes": [
-            "address",
-            "phone",
-            "offline_access",
-            "microprofile-jwt"
-          ]
-        },
-        {
-          "id": "8e358d2f-b085-4243-8e6e-c175431e5eeb",
-          "clientId": "security-admin-console",
-          "name": "${client_security-admin-console}",
-          "rootUrl": "${authAdminUrl}",
-          "baseUrl": "/admin/acerta/console/",
-          "surrogateAuthRequired": false,
-          "enabled": true,
-          "alwaysDisplayInConsole": false,
-          "clientAuthenticatorType": "client-secret",
-          "secret": "**********",
-          "redirectUris": [
-            "/admin/acerta/console/*"
-          ],
-          "webOrigins": [
-            "+"
-          ],
-          "notBefore": 0,
-          "bearerOnly": false,
-          "consentRequired": false,
-          "standardFlowEnabled": true,
-          "implicitFlowEnabled": false,
-          "directAccessGrantsEnabled": false,
-          "serviceAccountsEnabled": false,
-          "publicClient": true,
-          "frontchannelLogout": false,
-          "protocol": "openid-connect",
-          "attributes": {
-            "pkce.code.challenge.method": "S256"
-          },
-          "authenticationFlowBindingOverrides": {},
-          "fullScopeAllowed": false,
-          "nodeReRegistrationTimeout": 0,
-          "protocolMappers": [
-            {
-              "id": "9cfca9ee-493d-4b5e-8170-2d364149de59",
-              "name": "locale",
-              "protocol": "openid-connect",
-              "protocolMapper": "oidc-usermodel-attribute-mapper",
-              "consentRequired": false,
-              "config": {
-                "userinfo.token.claim": "true",
-                "user.attribute": "locale",
-                "id.token.claim": "true",
-                "access.token.claim": "true",
-                "claim.name": "locale",
-                "jsonType.label": "String"
-              }
-            }
-          ],
-          "defaultClientScopes": [
-            "web-origins",
-            "roles",
-            "profile",
-            "email"
-          ],
-          "optionalClientScopes": [
-            "address",
-            "phone",
-            "offline_access",
-            "microprofile-jwt"
+              "address",
+              "phone",
+              "offline_access",
+              "microprofile-jwt"
           ]
         },
         {
           "id": "5898f71f-b91e-4c3f-9c86-48de0e8665c4",
-          "clientId": "ce-gateway-service",
-          "name": "CE Gateway Service",
+          "clientId": "ce-gateway",
+          "name": "CE Gateway",
           "surrogateAuthRequired": false,
           "enabled": true,
           "alwaysDisplayInConsole": false,
           "clientAuthenticatorType": "client-secret",
-          "secret": "0e082231-a70d-48e8-b8a5-fbfb743041b6",
+          "secret": "Bl5oJEkQgYadCXlNRny1YNCzZOfz7qC0",
           "redirectUris": [
-            "https://frontend-services-gateway${GATEWAY_SUBDOMAIN_SUFFIX}${GATEWAY_DOMAIN}/*",
-            "http://localhost:4200/*",
-            "http://localhost:8087/*"
+              "*"
           ],
           "webOrigins": [
-            "*"
+              "*"
           ],
           "notBefore": 0,
           "bearerOnly": false,
@@ -1157,6 +1076,36 @@ keycloak-boot:
           "nodeReRegistrationTimeout": -1,
           "protocolMappers": [
             {
+              "id": "3b1b3ad6-8919-471d-aa93-5cbbecedeab9",
+              "name": "authorized_list",
+              "protocol": "openid-connect",
+              "protocolMapper": "oidc-usermodel-attribute-mapper",
+              "consentRequired": false,
+              "config": {
+                "userinfo.token.claim": "true",
+                "user.attribute": "authorized_list",
+                "id.token.claim": "true",
+                "access.token.claim": "false",
+                "claim.name": "authorized_list",
+                "jsonType.label": "JSON"
+              }
+            },
+            {
+              "id": "a6cd32cb-3de4-4d48-9a6e-6e12474c9bf0",
+              "name": "user_code",
+              "protocol": "openid-connect",
+              "protocolMapper": "oidc-usermodel-attribute-mapper",
+              "consentRequired": false,
+              "config": {
+                "userinfo.token.claim": "false",
+                "user.attribute": "user_code",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "user_code",
+                "jsonType.label": "String"
+              }
+            },
+            {
               "id": "008d32b5-ea7b-4739-89af-e90fe137bda9",
               "name": "realm roles",
               "protocol": "openid-connect",
@@ -1172,16 +1121,175 @@ keycloak-boot:
             }
           ],
           "defaultClientScopes": [
-            "web-origins",
-            "roles",
-            "profile",
-            "email"
+              "web-origins",
+              "roles",
+              "profile",
+              "email"
           ],
           "optionalClientScopes": [
-            "address",
-            "phone",
-            "offline_access",
-            "microprofile-jwt"
+              "address",
+              "phone",
+              "offline_access",
+              "microprofile-jwt"
+          ]
+        },
+        {
+          "id": "b88ce206-63d6-43b6-87c9-ea09d8c02f32",
+          "clientId": "newClient",
+          "surrogateAuthRequired": false,
+          "enabled": true,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "secret": "**********",
+          "redirectUris": [
+              "http://localhost:8089/",
+              "http://localhost:8089/auth/redirect/"
+          ],
+          "webOrigins": [
+              "+"
+          ],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": true,
+          "directAccessGrantsEnabled": true,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "openid-connect",
+          "attributes": {
+            "saml.assertion.signature": "false",
+            "saml.force.post.binding": "false",
+            "saml.multivalued.roles": "false",
+            "saml.encrypt": "false",
+            "saml.server.signature": "false",
+            "saml.server.signature.keyinfo.ext": "false",
+            "exclude.session.state.from.auth.response": "false",
+            "saml_force_name_id_format": "false",
+            "saml.client.signature": "false",
+            "tls.client.certificate.bound.access.tokens": "false",
+            "saml.authnstatement": "false",
+            "display.on.consent.screen": "false",
+            "saml.onetimeuse.condition": "false"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": true,
+          "nodeReRegistrationTimeout": -1,
+          "defaultClientScopes": [
+              "profile"
+          ],
+          "optionalClientScopes": [
+              "web-origins",
+              "address",
+              "read",
+              "phone",
+              "roles",
+              "offline_access",
+              "microprofile-jwt",
+              "write",
+              "email"
+          ]
+        },
+        {
+          "id": "6a4bfbd0-576d-4778-af56-56f876647355",
+          "clientId": "realm-management",
+          "name": "${client_realm-management}",
+          "surrogateAuthRequired": false,
+          "enabled": true,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "secret": "**********",
+          "redirectUris": [],
+          "webOrigins": [],
+          "notBefore": 0,
+          "bearerOnly": true,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": false,
+          "frontchannelLogout": false,
+          "protocol": "openid-connect",
+          "attributes": {},
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": false,
+          "nodeReRegistrationTimeout": 0,
+          "defaultClientScopes": [
+              "web-origins",
+              "roles",
+              "profile",
+              "email"
+          ],
+          "optionalClientScopes": [
+              "address",
+              "phone",
+              "offline_access",
+              "microprofile-jwt"
+          ]
+        },
+        {
+          "id": "8e358d2f-b085-4243-8e6e-c175431e5eeb",
+          "clientId": "security-admin-console",
+          "name": "${client_security-admin-console}",
+          "rootUrl": "${authAdminUrl}",
+          "baseUrl": "/admin/acerta/console/",
+          "surrogateAuthRequired": false,
+          "enabled": true,
+          "alwaysDisplayInConsole": false,
+          "clientAuthenticatorType": "client-secret",
+          "secret": "**********",
+          "redirectUris": [
+              "/admin/acerta/console/*"
+          ],
+          "webOrigins": [
+              "+"
+          ],
+          "notBefore": 0,
+          "bearerOnly": false,
+          "consentRequired": false,
+          "standardFlowEnabled": true,
+          "implicitFlowEnabled": false,
+          "directAccessGrantsEnabled": false,
+          "serviceAccountsEnabled": false,
+          "publicClient": true,
+          "frontchannelLogout": false,
+          "protocol": "openid-connect",
+          "attributes": {
+            "pkce.code.challenge.method": "S256"
+          },
+          "authenticationFlowBindingOverrides": {},
+          "fullScopeAllowed": false,
+          "nodeReRegistrationTimeout": 0,
+          "protocolMappers": [
+            {
+              "id": "9cfca9ee-493d-4b5e-8170-2d364149de59",
+              "name": "locale",
+              "protocol": "openid-connect",
+              "protocolMapper": "oidc-usermodel-attribute-mapper",
+              "consentRequired": false,
+              "config": {
+                "userinfo.token.claim": "true",
+                "user.attribute": "locale",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "locale",
+                "jsonType.label": "String"
+              }
+            }
+          ],
+          "defaultClientScopes": [
+              "web-origins",
+              "roles",
+              "profile",
+              "email"
+          ],
+          "optionalClientScopes": [
+              "address",
+              "phone",
+              "offline_access",
+              "microprofile-jwt"
           ]
         }
       ],
@@ -1714,18 +1822,18 @@ keycloak-boot:
         }
       ],
       "defaultDefaultClientScopes": [
-        "roles",
-        "role_list",
-        "web-origins",
-        "email",
-        "profile",
-        "acr"
+          "roles",
+          "role_list",
+          "web-origins",
+          "email",
+          "profile",
+          "acr"
       ],
       "defaultOptionalClientScopes": [
-        "offline_access",
-        "address",
-        "phone",
-        "microprofile-jwt"
+          "offline_access",
+          "address",
+          "phone",
+          "microprofile-jwt"
       ],
       "browserSecurityHeaders": {
         "contentSecurityPolicyReportOnly": "",
@@ -1739,7 +1847,7 @@ keycloak-boot:
       "smtpServer": {},
       "eventsEnabled": false,
       "eventsListeners": [
-        "jboss-logging"
+          "jboss-logging"
       ],
       "enabledEventTypes": [],
       "adminEventsEnabled": false,
@@ -1756,7 +1864,7 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "allow-default-scopes": [
-                "true"
+                  "true"
               ]
             }
           },
@@ -1768,7 +1876,7 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "allow-default-scopes": [
-                "true"
+                  "true"
               ]
             }
           },
@@ -1788,10 +1896,10 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "host-sending-registration-request-must-match": [
-                "true"
+                  "true"
               ],
               "client-uris-must-match": [
-                "true"
+                  "true"
               ]
             }
           },
@@ -1803,7 +1911,7 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "max-clients": [
-                "200"
+                  "200"
               ]
             }
           },
@@ -1815,14 +1923,14 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "allowed-protocol-mapper-types": [
-                "oidc-full-name-mapper",
-                "oidc-sha256-pairwise-sub-mapper",
-                "saml-role-list-mapper",
-                "saml-user-attribute-mapper",
-                "saml-user-property-mapper",
-                "oidc-address-mapper",
-                "oidc-usermodel-attribute-mapper",
-                "oidc-usermodel-property-mapper"
+                  "saml-role-list-mapper",
+                  "oidc-sha256-pairwise-sub-mapper",
+                  "oidc-address-mapper",
+                  "oidc-usermodel-attribute-mapper",
+                  "oidc-usermodel-property-mapper",
+                  "oidc-full-name-mapper",
+                  "saml-user-attribute-mapper",
+                  "saml-user-property-mapper"
               ]
             }
           },
@@ -1842,14 +1950,14 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "allowed-protocol-mapper-types": [
-                "saml-user-attribute-mapper",
-                "oidc-sha256-pairwise-sub-mapper",
-                "oidc-address-mapper",
-                "oidc-usermodel-attribute-mapper",
-                "saml-user-property-mapper",
-                "oidc-usermodel-property-mapper",
-                "oidc-full-name-mapper",
-                "saml-role-list-mapper"
+                  "oidc-address-mapper",
+                  "saml-user-property-mapper",
+                  "oidc-usermodel-attribute-mapper",
+                  "oidc-sha256-pairwise-sub-mapper",
+                  "saml-role-list-mapper",
+                  "oidc-full-name-mapper",
+                  "saml-user-attribute-mapper",
+                  "oidc-usermodel-property-mapper"
               ]
             }
           }
@@ -1862,7 +1970,7 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "priority": [
-                "100"
+                  "100"
               ]
             }
           },
@@ -1873,7 +1981,7 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "priority": [
-                "100"
+                  "100"
               ]
             }
           },
@@ -1884,10 +1992,10 @@ keycloak-boot:
             "subComponents": {},
             "config": {
               "priority": [
-                "100"
+                  "100"
               ],
               "algorithm": [
-                "HS256"
+                  "HS256"
               ]
             }
           }
@@ -1897,7 +2005,7 @@ keycloak-boot:
       "supportedLocales": [],
       "authenticationFlows": [
         {
-          "id": "06056d9a-946d-4f97-b1cb-1cc019d482f5",
+          "id": "9d605b35-3a11-42c4-8495-34f9b9f2d5f0",
           "alias": "Handle Existing Account",
           "description": "Handle what to do if there is existing account with same email/username like authenticated identity provider",
           "providerId": "basic-flow",
@@ -1923,7 +2031,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "7db52abe-b5b8-4f53-b94e-78dcab9fbb23",
+          "id": "da79e2bf-d481-4fad-b9b6-394a4eea4bc4",
           "alias": "Handle Existing Account - Alternatives - 0",
           "description": "Subflow of Handle Existing Account with alternative executions",
           "providerId": "basic-flow",
@@ -1949,7 +2057,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "f32870ab-7751-48a7-844c-20b51139666d",
+          "id": "ecaaa06c-f936-4464-98ed-596de4556ef7",
           "alias": "Verify Existing Account by Re-authentication",
           "description": "Reauthentication of existing account",
           "providerId": "basic-flow",
@@ -1975,7 +2083,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "ee978e47-e1e7-46f0-a3c8-cfdbed1c1c0a",
+          "id": "64f181cd-9af1-43fc-993b-ed2419698836",
           "alias": "Verify Existing Account by Re-authentication - auth-otp-form - Conditional",
           "description": "Flow to determine if the auth-otp-form authenticator should be used or not.",
           "providerId": "basic-flow",
@@ -2001,7 +2109,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "ac384e82-90d9-4b46-bd12-0aaae8f41792",
+          "id": "8725df09-55b5-4b27-a040-7f63fee15a6e",
           "alias": "browser",
           "description": "browser based authentication",
           "providerId": "basic-flow",
@@ -2043,7 +2151,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "c898f549-21d4-46a3-8478-09e863a8446a",
+          "id": "a3a45dd6-7e7c-4c3f-a25b-3cc62306b2e2",
           "alias": "clients",
           "description": "Base authentication for clients",
           "providerId": "client-flow",
@@ -2085,7 +2193,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "4ff5bce8-8e6c-4117-9954-9440010025c4",
+          "id": "11e49b01-dde1-4522-9e69-a2fa448c51f7",
           "alias": "direct grant",
           "description": "OpenID Connect Resource Owner Grant",
           "providerId": "basic-flow",
@@ -2119,7 +2227,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "c939c6e4-4f9b-407c-a89e-dd01e3621a95",
+          "id": "7fff6ebd-d169-451f-837f-2f53a5fb8def",
           "alias": "direct grant - direct-grant-validate-otp - Conditional",
           "description": "Flow to determine if the direct-grant-validate-otp authenticator should be used or not.",
           "providerId": "basic-flow",
@@ -2145,7 +2253,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "dc2f8fd2-6c92-4747-8d91-c6e63af61843",
+          "id": "9cdb755e-5e71-4ff1-a5fe-aefbd2991cf7",
           "alias": "docker auth",
           "description": "Used by Docker clients to authenticate against the IDP",
           "providerId": "basic-flow",
@@ -2163,7 +2271,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "70c1ab81-095f-43ba-b707-d7054bbf5bd0",
+          "id": "1bf28ab0-7962-4521-8f67-348093732593",
           "alias": "first broker login",
           "description": "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
           "providerId": "basic-flow",
@@ -2190,7 +2298,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "5a21a4d7-613a-486f-aa40-6960cccf3e33",
+          "id": "5ee31117-45a2-484d-ab38-63fea2e651c6",
           "alias": "first broker login - Alternatives - 0",
           "description": "Subflow of first broker login with alternative executions",
           "providerId": "basic-flow",
@@ -2217,7 +2325,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "f1d3cb2a-a49e-4abe-8368-6b895392850b",
+          "id": "ea2ca46c-7ecf-46b3-af8d-0a2c94568419",
           "alias": "forms",
           "description": "Username, password, otp and other auth forms.",
           "providerId": "basic-flow",
@@ -2243,7 +2351,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "a486c482-d48e-431d-869a-161e70c558d5",
+          "id": "faa7dfd3-bab1-4afb-b2a4-0d91d7df4bda",
           "alias": "forms - auth-otp-form - Conditional",
           "description": "Flow to determine if the auth-otp-form authenticator should be used or not.",
           "providerId": "basic-flow",
@@ -2269,7 +2377,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "9b876088-c80c-42f9-a605-e7e672218009",
+          "id": "3fd12954-9516-4901-af99-d0f933eef95a",
           "alias": "http challenge",
           "description": "An authentication flow based on challenge-response HTTP Authentication Schemes",
           "providerId": "basic-flow",
@@ -2311,7 +2419,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "1b68456a-27c9-4390-9b73-fbebd7a1666f",
+          "id": "f0adb91f-4b62-4df5-8de6-90c1e780a59a",
           "alias": "registration",
           "description": "registration flow",
           "providerId": "basic-flow",
@@ -2330,7 +2438,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "8522f72c-f2f0-421f-9d9e-c82d8378c37c",
+          "id": "a75f00a3-2ccd-44d6-959c-811aef3fd503",
           "alias": "registration form",
           "description": "registration form",
           "providerId": "form-flow",
@@ -2372,7 +2480,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "d722947e-a442-4858-b0b4-741c7a81a6be",
+          "id": "b5f4d9b1-8495-4f6e-b681-0937d5da7a09",
           "alias": "reset credentials",
           "description": "Reset credentials for a user if they forgot their password or something",
           "providerId": "basic-flow",
@@ -2414,7 +2522,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "b72625c9-ed27-431a-8753-e48f1d12e24e",
+          "id": "7c2279d5-313a-4ab9-a72c-5842d3dac592",
           "alias": "reset credentials - reset-otp - Conditional",
           "description": "Flow to determine if the reset-otp authenticator should be used or not.",
           "providerId": "basic-flow",
@@ -2440,7 +2548,7 @@ keycloak-boot:
           ]
         },
         {
-          "id": "2414e1ee-140e-4723-8825-cf6e62d36a43",
+          "id": "673ef72c-3593-49a7-8d7d-28871df5ac58",
           "alias": "saml ecp",
           "description": "SAML ECP Profile Authentication Flow",
           "providerId": "basic-flow",
@@ -2460,14 +2568,14 @@ keycloak-boot:
       ],
       "authenticatorConfig": [
         {
-          "id": "7ed8819f-c829-4ad0-a17e-12e2c7dce925",
+          "id": "8f093b0a-fec9-4ba8-9a75-bbcb721c2d05",
           "alias": "create unique user config",
           "config": {
             "require.password.update.after.registration": "false"
           }
         },
         {
-          "id": "bcb24237-6acd-46b4-95ad-5a9f8b9fd0f5",
+          "id": "9faaddc5-e193-4806-80f7-df2ce7b53675",
           "alias": "review profile config",
           "config": {
             "update.profile.on.first.login": "missing"
