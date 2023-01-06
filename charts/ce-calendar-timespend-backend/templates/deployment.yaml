@@ -76,7 +76,10 @@ spec:
             - name: SPRING_REDIS_PORT
               value: {{ .Values.env.spring.redis.port | quote}}
             - name: SPRING_REDIS_PASSWORD
-              value: {{ .Values.env.spring.redis.password }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-redis-cred
+                  key: password
             - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
