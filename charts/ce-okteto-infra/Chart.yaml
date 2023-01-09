@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.9.0
+version: 0.10.0
 dependencies:
   - name: mssql-latest
     version: 0.3.8
@@ -22,7 +22,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-standalone.enabled
   - name: pulsar-admin-console
-    version: 0.2.0
+    version: 0.3.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-admin-console.enabled
   - name: pulsar-client
