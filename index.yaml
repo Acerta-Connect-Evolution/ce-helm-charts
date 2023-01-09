@@ -77746,6 +77746,16 @@ entries:
   keycloak-boot:
   - apiVersion: v2
     appVersion: 1.7.0
+    created: "2023-01-09T15:02:05.706621307Z"
+    description: Helm chart for keycloak-boot
+    digest: f2f110698fa5b2c397ec4d26a6ccf6269d37afe28e426e33fa3244fbe23b534c
+    name: keycloak-boot
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/keycloak-boot-1.9.4/keycloak-boot-1.9.4.tgz
+    version: 1.9.4
+  - apiVersion: v2
+    appVersion: 1.7.0
     created: "2022-10-05T15:46:51.973034235Z"
     description: Helm chart for keycloak-boot
     digest: dcf5434142c10723d9c5cc83460743134cbe6d5b02f97031d8743db9b58a046c
@@ -79086,4 +79096,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-01-09T13:46:57.955775906Z"
+generated: "2023-01-09T15:02:05.723700805Z"
