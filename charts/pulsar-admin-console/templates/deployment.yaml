@@ -31,7 +31,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
         - name: config-volume
-          configmap:
+          configMap:
             name: config-{{ include "mychart.fullname" . }}
       containers:
         - name: {{ .Chart.Name }}
