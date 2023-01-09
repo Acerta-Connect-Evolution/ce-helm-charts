@@ -36,7 +36,7 @@ redis:
 
 pulsar-standalone:
   fullnameOverride: pulsar-standalone
-  enabled: false
+  enabled: true
   ingress:
     className: ""
     enabled: true
@@ -49,6 +49,17 @@ pulsar-standalone:
     limits:
       memory: "4096Mi"
       cpu: "1000m"
+
+pulsar-admin-console:
+  fullnameOverride: pulsar-admin-console
+  enabled: true
+  application_yml: |
+    {
+      "server_config": {
+        "pulsar_url": "http://pulsar-standalone:8080",
+        "websocket_url": "http://pulsar-standalone:8500"
+      }
+    }
 
 pulsar-client:
   fullnameOverride: pulsar-client
@@ -274,7 +285,7 @@ frontend-services-gateway:
         session-timeout: 90
 
 keycloak-boot:
-  enabled: true
+  enabled: false
   ingress:
     enabled: true
     className: ""
