@@ -10,5 +10,5 @@ data:
   acerta-realm.json: {{ toYaml .Values.acerta_realm_json | indent 4 }}
   {{- end }}
   {{- if not .Values.acerta_realm_json }}
-  acerta-realm.json: {{ toYaml .Values.acerta_realm_json | indent 4 }}
+  acerta-realm.json: {{ toYaml ($.Files.Get "config/realm.json") | indent 4 }}
   {{- end }}
