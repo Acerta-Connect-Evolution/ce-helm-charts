@@ -44,7 +44,7 @@ spec:
               mountPath: /home/appuser/config
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: 6454
               protocol: TCP
 #          livenessProbe:
 #            httpGet:
