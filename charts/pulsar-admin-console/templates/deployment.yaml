@@ -32,7 +32,7 @@ spec:
       volumes:
         - name: config-volume
           configmap:
-            name: config-{{ $fullName . }}
+            name: config-{{ include "mychart.fullname" . }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
