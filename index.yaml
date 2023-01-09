@@ -77711,6 +77711,15 @@ entries:
     version: 2.7.5
   pulsar-admin-console:
   - apiVersion: v2
+    created: "2023-01-09T09:20:25.942809871Z"
+    description: Pulsar Admin Console
+    digest: 500f64106bf6cc638a5ff3b24e08be53ae633dd6a98a125298f68b865f4d212b
+    name: pulsar-admin-console
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/pulsar-admin-console-0.8.0/pulsar-admin-console-0.8.0.tgz
+    version: 0.8.0
+  - apiVersion: v2
     created: "2023-01-09T09:13:48.322230718Z"
     description: Pulsar Admin Console
     digest: 7caf0ea64b6f5daa05368c22a4a13ba9980c66b1a59f10a984d58ad0c9c482f8
@@ -78579,4 +78588,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-01-09T09:16:16.531153696Z"
+generated: "2023-01-09T09:20:25.96928091Z"
