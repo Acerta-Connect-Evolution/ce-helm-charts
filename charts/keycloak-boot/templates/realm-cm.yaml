@@ -6,4 +6,9 @@ metadata:
     {{- include "mychart.labels" . | nindent 4 }}
 # https://stackoverflow.com/questions/71147077/helm-overwrite-configuration-from-json-files-is-there-a-better-way
 data:
+  {{- if .Values.acerta_realm_json }}
   acerta-realm.json: {{ toYaml .Values.acerta_realm_json | indent 4 }}
+  {{- end }}
+  {{- if not .Values.acerta_realm_json }}
+  acerta-realm.json: {{ $.Files.Get templates/real.json }}
+  {{- end }}
