@@ -1,6 +1,6 @@
 mssql-latest:
   fullnameOverride: mssql-latest
-  enabled: false
+  enabled: true
   persistence:
     dataSize: 1Gi
     userlogSeparateClaim: false
@@ -9,10 +9,10 @@ mssql-latest:
 
 elasticsearch:
   fullnameOverride: elasticsearch-master
-  enabled: false
+  enabled: true
   image: nexus.global.dns:8443/acerta-dev/elasticsearch
   imageTag: 7.15.0
-  replicas: 1
+  replicas: 2
   minimumMasterNodes: 1
   volumeClaimTemplate.resources.requests.storage: 1Gi
   sysctlInitContainer.enabled: false
@@ -28,7 +28,7 @@ elasticsearch:
 
 redis:
   fullnameOverride: redis
-  enabled: false
+  enabled: true
   architecture: standalone
   global:
     redis:
@@ -36,7 +36,7 @@ redis:
 
 pulsar-standalone:
   fullnameOverride: pulsar-standalone
-  enabled: false
+  enabled: true
   ingress:
     className: ""
     enabled: true
@@ -52,7 +52,7 @@ pulsar-standalone:
 
 pulsar-admin-console:
   fullnameOverride: pulsar-admin-console
-  enabled: false
+  enabled: true
   local_json: |
     {
         "auth_mode": "none",
@@ -112,7 +112,7 @@ pulsar-admin-console:
 
 pulsar-client:
   fullnameOverride: pulsar-client
-  enabled: false
+  enabled: true
   env:
     pulsar:
       adminurl: http://pulsar-standalone:8080
@@ -125,7 +125,7 @@ pulsar-client:
 
 ce-ff4j-server:
   fullnameOverride: ce-ff4j-server
-  enabled: false
+  enabled: true
   env:
     ff4jserver:
       elasticSearchUrl: http://elasticsearch-master:9200
@@ -138,7 +138,7 @@ ce-ff4j-server:
 
 ce-repertoriumservice:
   fullnameOverride: ce-repertoriumservice
-  enabled: false
+  enabled: true
   ingress:
     enabled: true
     className: ""
@@ -201,7 +201,7 @@ ce-init-load:
 
 pulsar-init-job:
   fullnameOverride: pulsar-init-job
-  enabled: false
+  enabled: true
   initContainers:
     waitForUrl:
       enabled: true
@@ -252,7 +252,7 @@ pulsar-init-job:
 
 frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
-  enabled: false
+  enabled: true
   application_yml: |
     spring:
       # profile 'always-active' should always be active :) as the corresponding application-always-active.yml (in gateway jar)
@@ -334,6 +334,7 @@ frontend-services-gateway:
         session-timeout: 90
 
 keycloak-boot:
+  fullnameOverride: keycloak-boot
   enabled: true
   ingress:
     enabled: true
