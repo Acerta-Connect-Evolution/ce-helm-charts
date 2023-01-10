@@ -1228,6 +1228,16 @@ entries:
     version: 0.23.0
   ce-calendar-timespend-backend:
   - apiVersion: v2
+    appVersion: 1.244.0
+    created: "2023-01-10T10:06:18.572765341Z"
+    description: Helm chart for ce-calendar-timespend-backend
+    digest: 391fe5a8a9e7378de0f543d2869ec70792ef592aea2968d4124948543a6d3baf
+    name: ce-calendar-timespend-backend
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-calendar-timespend-backend-1.248.0/ce-calendar-timespend-backend-1.248.0.tgz
+    version: 1.248.0
+  - apiVersion: v2
     appVersion: 1.243.0
     created: "2023-01-09T20:10:05.336252577Z"
     description: Helm chart for ce-calendar-timespend-backend
@@ -79730,4 +79740,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-01-10T10:04:09.108023489Z"
+generated: "2023-01-10T10:06:18.590982384Z"
