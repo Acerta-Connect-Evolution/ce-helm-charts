@@ -152,49 +152,7 @@ pulsar-init-job:
     waitForUrl:
       enabled: true
       endpoint: pulsar-standalone:8080/admin/v2/brokers/health;pulsar-client:8080/actuator/health
-  script: |
-    echo "Create Tenant [connect-evolution]"
-    curl -X 'POST' \
-      'http://pulsar-client:8080/api/v1/tenants/connect-evolution' \
-      -H 'accept: */*' \
-      -d ''
-    echo ""
-    echo "Tenant Created"
-    echo "Create Namespace [connect-evolution/calendar-acl-sync]"
-    curl -X 'POST' \
-      'http://pulsar-client:8080/api/v1/tenants/connect-evolution/namespaces/calendar-acl-sync' \
-      -H 'accept: */*' \
-      -d ''
-    echo ""
-    echo "Namespace Created"
-    echo "Create Tenant [everesst]"
-    curl -X 'POST' \
-      'http://pulsar-client:8080/api/v1/tenants/everesst' \
-      -H 'accept: */*' \
-      -d ''
-    echo ""
-    echo "Tenant Created"
-    echo "Create Namespace [everesst/payroll]"
-    curl -X 'POST' \
-      'http://pulsar-client:8080/api/v1/tenants/everesst/namespaces/payroll' \
-      -H 'accept: */*' \
-      -d ''
-    echo ""
-    echo "Namespace Created"
-    echo "Create Tenant [acerta]"
-    curl -X 'POST' \
-      'http://pulsar-client:8080/api/v1/tenants/acerta' \
-      -H 'accept: */*' \
-      -d ''
-    echo ""
-    echo "Tenant Created"
-    echo "Create Namespace [acerta/payroll]"
-    curl -X 'POST' \
-      'http://pulsar-client:8080/api/v1/tenants/acerta/namespaces/payroll' \
-      -H 'accept: */*' \
-      -d ''
-    echo ""
-    echo "Namespace Created"
+  script: ""
 
 frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
@@ -204,85 +162,7 @@ frontend-services-gateway:
     className: ""
     annotations:
       dev.okteto.com/generate-host: "true"
-  application_yml: |
-    spring:
-      # profile 'always-active' should always be active :) as the corresponding application-always-active.yml (in gateway jar)
-      # contains some config that is always needed under normal circumstances. We pushed that config to the application-always-active.yml
-      # to remove unnecessary clutter from the application.yml file.
-      profiles:
-        active: always-active #, nosecurity
-      redis:
-        host: redis-master
-        port: 6379
-        password: Admin123
-      security:
-        oauth2:
-          client:
-            provider:
-              keycloak:
-                issuer-uri: https://keycloak-boot-kristof86.tst.connectevolution.global.dns/auth/realms/acerta
-                token-uri: https://keycloak-boot-kristof86.tst.connectevolution.global.dns/auth/realms/acerta/protocol/openid-connect/token
-                authorization-uri: https://keycloak-boot-kristof86.tst.connectevolution.global.dns/auth/realms/acerta/protocol/openid-connect/auth
-            registration:
-              ce-gateway:
-                provider: keycloak
-                client-id: ce-gateway
-                client-secret: Bl5oJEkQgYadCXlNRny1YNCzZOfz7qC0
-                redirect-uri: https://frontend-services-gateway-kristof86.tst.connectevolution.global.dns/login/oauth2/code/ce-gateway
-                scope:
-                  - openid
-                  - email
-                  - profile
-                  - roles
-      cloud:
-        gateway:
-          default-filters:
-            - TokenRelay
-            - RemoveRequestHeader=Cookie
-          routes:
-            - id: heartbeat
-              uri: https://frontend-services-gateway-kristof86.tst.connectevolution.global.dns
-              order: 1000
-              predicates:
-                - Path=/heartbeat
-              filters:
-                - RewritePath=/heartbeat, /session-refresh
-            - id: gateway-amf
-              uri: https://frontend-services-gateway-kristof86.tst.connectevolution.global.dns
-              order: 1000
-              predicates:
-                - Path=/AMF/**
-              filters:
-                - RewritePath=/AMF/(?<segment>.*), /$\{segment}
-            - id: calendar-timespend-frontend-rsocket
-              uri: ws://ce-calendar-timespend-frontend:7000
-              order: 1000
-              predicates:
-                - Path=/calendar-timespend/socket
-              filters:
-                - RewritePath=/calendar-timespend/socket, /socket
-            - id: calendar-timespend-frontend-everything-else
-              uri: http://ce-calendar-timespend-frontend:8080
-              order: 2000
-              predicates:
-                - Path=/calendar-timespend/**
-              filters:
-                - RewritePath=/calendar-timespend/(?<segment>.*), /$\{segment}
-            - id: ff4j
-              uri: http://ce-ff4j-server:8080
-              order: 10
-              predicates:
-                - Path=/ff4j/**
-              filters:
-                - RewritePath=/ff4j/(?<segment>.*), /$\{segment}
-    ---
-    acerta:
-      keycloak:
-        registration-service-name: ce-gateway
-      gateway:
-        keep-alive-path: /keep-alive/index.html
-        logout-uri: https://frontend-services-gateway-kristof86.tst.connectevolution.global.dns/authenticate
-        session-timeout: 90
+  application_yml: ""
 
 keycloak-boot:
   fullnameOverride: keycloak-boot
