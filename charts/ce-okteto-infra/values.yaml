@@ -253,6 +253,11 @@ pulsar-init-job:
 frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
   enabled: true
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
   application_yml: |
     spring:
       # profile 'always-active' should always be active :) as the corresponding application-always-active.yml (in gateway jar)
