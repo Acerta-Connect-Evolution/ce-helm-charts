@@ -179,6 +179,7 @@ keycloak-boot:
     TZ: "Europe/Brussels"
 
 ce-webcomponents:
+  fullnameOverride: ce-webcomponents
   enabled: true
   image:
     tag: "latest"
