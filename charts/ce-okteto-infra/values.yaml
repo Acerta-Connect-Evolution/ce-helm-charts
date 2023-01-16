@@ -177,3 +177,8 @@ keycloak-boot:
     GATEWAY_SUBDOMAIN_SUFFIX: "-${OKTETO_NAMESPACE}"
     GATEWAY_DOMAIN: ".tst.connectevolution.global.dns"
     TZ: "Europe/Brussels"
+
+ce-webcomponents:
+  enabled: true
+  image:
+    tag: "latest"
