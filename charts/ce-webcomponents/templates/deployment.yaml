@@ -43,9 +43,8 @@ spec:
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
-            {{- range $key, $value := $.Values.extraEnv }}
-            - name: {{ $key }}
-              value: {{ $value | quote }}
+            {{- if .Values.extraEnvs }}
+              {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
