@@ -182,3 +182,8 @@ ce-webcomponents:
   enabled: true
   image:
     tag: "latest"
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
