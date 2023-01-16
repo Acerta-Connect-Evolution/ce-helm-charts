@@ -6774,6 +6774,66 @@ entries:
   ce-okteto-infra:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2023-01-16T13:03:53.637115334Z"
+    dependencies:
+    - condition: mssql-latest.enabled
+      name: mssql-latest
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.3.8
+    - condition: elasticsearch.enabled
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.3.7
+    - condition: pulsar-standalone.enabled
+      name: pulsar-standalone
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 3.2.0
+    - condition: pulsar-admin-console.enabled
+      name: pulsar-admin-console
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.9.0
+    - condition: pulsar-client.enabled
+      name: pulsar-client
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 3.41.0
+    - alias: pulsar-init-job
+      condition: pulsar-init-job.enabled
+      name: init-job
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.0.17
+    - condition: ce-ff4j-server.enabled
+      name: ce-ff4j-server
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.18.0
+    - condition: ce-repertoriumservice.enabled
+      name: ce-repertoriumservice
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.24.0
+    - condition: frontend-services-gateway.enabled
+      name: frontend-services-gateway
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.35.0
+    - condition: keycloak-boot.enabled
+      name: keycloak-boot
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.9.12
+    - condition: ce-webcomponents.enabled
+      name: ce-webcomponents
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.36.0
+    description: Helm chart for connect evolution infrastructure on Okteto
+    digest: 5bb5ca313fa119feeeeaf7f32f7fa89bc540642cf54ac3dba09056913503f04d
+    name: ce-okteto-infra
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-okteto-infra-0.24.0/ce-okteto-infra-0.24.0.tgz
+    version: 0.24.0
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2023-01-16T12:57:48.640345082Z"
     dependencies:
     - condition: mssql-latest.enabled
@@ -86909,4 +86969,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-01-16T12:57:48.659195691Z"
+generated: "2023-01-16T13:03:53.655515575Z"
