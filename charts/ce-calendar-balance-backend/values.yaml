@@ -89,6 +89,8 @@ tolerations: []
 affinity: {}
 
 sealedsecret:
+  redis:
+    password:
   initdatasource:
     username:
     password:
@@ -109,6 +111,9 @@ env:
       active: default
     elasticsearch:
       uris: SPRING_ELASTICSEARCH_URIS
+    redis:
+      host: REDIS_HOST
+      port: 6379
   axon:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS
