@@ -10407,6 +10407,116 @@ entries:
   connect-evolution:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2023-01-20T14:35:12.541021669Z"
+    dependencies:
+    - condition: ce-calendar-timespend-backend.enabled
+      name: ce-calendar-timespend-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.266.0
+    - condition: ce-calendar-timespend-frontend.enabled
+      name: ce-calendar-timespend-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.227.0
+    - alias: axon-server-calendar-timespend
+      condition: axon-server-calendar-timespend.enabled
+      name: axon-server
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.0.0
+    - condition: connect-backend.enabled
+      name: connect-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.0.32
+    - condition: connect-frontend.enabled
+      name: connect-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.36.73
+    - condition: mssql-latest.enabled
+      name: mssql-latest
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.3.6
+    - condition: elasticsearch.enabled
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.14.0
+    - condition: pulsar-standalone.enabled
+      name: pulsar-standalone
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 3.0.0
+    - condition: flink.enabled
+      name: flink
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.2.17
+    - condition: c2ce-flink-client.enabled
+      name: c2ce-flink-client
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.44.0
+    - condition: pulsar-client.enabled
+      name: pulsar-client
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 3.45.0
+    - alias: pulsar-init-job
+      condition: pulsar-init-job.enabled
+      name: init-job
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.0.16
+    - condition: ce-test-support.enabled
+      name: ce-test-support
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.23.0
+    - alias: cdc-db-init-job
+      condition: cdc-db-init-job.enabled
+      name: init-job
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.0.16
+    - condition: ce-ff4j-server.enabled
+      name: ce-ff4j-server
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.20.0
+    - condition: ce-payroll-vacationcertificate.enabled
+      name: ce-payroll-vacationcertificate
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.93.0
+    - condition: ce-webcomponents.enabled
+      name: ce-webcomponents
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.38.0
+    - condition: ce-repertoriumservice.enabled
+      name: ce-repertoriumservice
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.25.0
+    - condition: ce-balances.enabled
+      name: ce-balances
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.26.0
+    - condition: ce-clink.enabled
+      name: ce-clink
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.22.0
+    - condition: ce-init-load.enabled
+      name: ce-init-load
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.18.0
+    - condition: frontend-services-gateway.enabled
+      name: frontend-services-gateway
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 1.42.0
+    - condition: ce-calendar-balance-backend.enabled
+      name: ce-calendar-balance-backend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.19.0
+    - condition: ce-calendar-balance-frontend.enabled
+      name: ce-calendar-balance-frontend
+      repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+      version: 0.37.0
+    description: Helm chart for connect evolution application
+    digest: 039183f318039a17a60d4fbbcf292ae1e67a09ebe80e248356ae946832cfa37d
+    name: connect-evolution
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/connect-evolution-1.862.0/connect-evolution-1.862.0.tgz
+    version: 1.862.0
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2023-01-20T13:23:53.528219778Z"
     dependencies:
     - condition: ce-calendar-timespend-backend.enabled
@@ -92439,4 +92549,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-01-20T14:30:58.299009415Z"
+generated: "2023-01-20T14:35:12.563768705Z"
