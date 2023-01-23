@@ -154,6 +154,15 @@ pulsar-init-job:
       endpoint: pulsar-standalone:8080/admin/v2/brokers/health;pulsar-client:8080/actuator/health
   script: ""
 
+ff4j-init-job:
+  fullnameOverride: ff4j-init-job
+  enabled: true
+  initContainers:
+    waitForUrl:
+      enabled: true
+      endpoint: ce-ff4j-server:8080
+  script: ""
+
 frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
   enabled: true
