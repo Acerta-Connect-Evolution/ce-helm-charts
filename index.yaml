@@ -9888,6 +9888,16 @@ entries:
     version: 0.3.0
   ce-static-content:
   - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2023-01-30T13:07:21.03223619Z"
+    description: Helm chart for ce-static-content
+    digest: f640ef97a6321bf6ad33f49e186e2b06b4001f40063e859eece85d07f7728681
+    name: ce-static-content
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-static-content-0.3.0/ce-static-content-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     created: "2023-01-30T12:46:47.621070196Z"
     description: Helm chart for ce-static-content
     digest: ac7ddd94702c95c1fe973f5ebb10ed31fc4107ee05b68908c11b67475a30514a
@@ -95734,4 +95744,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-01-30T12:46:47.644573602Z"
+generated: "2023-01-30T13:07:21.057485236Z"
