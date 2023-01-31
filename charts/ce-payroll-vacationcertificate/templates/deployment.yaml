@@ -106,8 +106,8 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-ff4j-cred
                   key: password
-            - name: WEBCOMPONENT_HTTPS_URL
-              value: {{ .Values.env.webcomponent.https.url }}
+            - name: WEBCOMPONENT_HOST
+              value: {{ .Values.env.webcomponent.host }}
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             - name: FF4J_API_URL
