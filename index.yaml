@@ -6892,6 +6892,16 @@ entries:
   ce-connect-schedule-rollout:
   - apiVersion: v2
     appVersion: 0.3.0
+    created: "2023-02-01T15:05:40.314205861Z"
+    description: Helm chart for ce-connect-schedule-rollout
+    digest: cf38f4d49ce4da3ce37881cb188c58303408f257bac3d298e83b3b85132f005a
+    name: ce-connect-schedule-rollout
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-connect-schedule-rollout-0.5.0/ce-connect-schedule-rollout-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
+    appVersion: 0.3.0
     created: "2023-02-01T15:02:38.443314539Z"
     description: Helm chart for ce-connect-schedule-rollout
     digest: 41eed999790afc3d216d0a7097e10f60ba3512026004bc4936bebc051a57bc59
@@ -97685,4 +97695,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-02-01T15:02:38.67090703Z"
+generated: "2023-02-01T15:05:40.341043411Z"
