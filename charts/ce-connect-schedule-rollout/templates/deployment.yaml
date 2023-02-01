@@ -82,9 +82,9 @@ spec:
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
             - name: SCHEDULER_ENABLED
-              value: {{ .Values.env.scheduler.enabled }}
+              value: {{ .Values.env.scheduler.enabled | quote }}
             - name: SCHEDULER_CRON
-              value: {{ .Values.env.scheduler.cron }}
+              value: {{ .Values.env.scheduler.cron | quote}}
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
