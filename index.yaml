@@ -6889,6 +6889,17 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-clink-0.0.1/ce-clink-0.0.1.tgz
     version: 0.0.1
+  ce-connect-schedule-rollout:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-02-01T14:04:10.778016689Z"
+    description: Helm chart for ce-connect-schedule-rollout
+    digest: aa6509df96bb96879c3bf8e13b026eec1be59ed95794265d5f72ee78bf8df4b0
+    name: ce-connect-schedule-rollout
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-connect-schedule-rollout-0.1.0/ce-connect-schedule-rollout-0.1.0.tgz
+    version: 0.1.0
   ce-ff4j-server:
   - apiVersion: v2
     appVersion: 1.20.0
@@ -97434,4 +97445,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-02-01T13:43:45.557792037Z"
+generated: "2023-02-01T14:04:10.804639825Z"
