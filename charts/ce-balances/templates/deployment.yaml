@@ -68,8 +68,8 @@ spec:
               value: {{ .Values.env.external.balancesApi.oauth2.tokenUri }}
             - name: EXTERNAL_BALANCESAPI_CLIENT_BASEURL
               value: {{ .Values.env.external.balancesApi.baseUrl }}
-            - name: WEBCOMPONENT_HTTPS_URL
-              value: {{ .Values.env.webcomponent.https.url }}
+            - name: WEBCOMPONENT_HOST
+              value: {{ .Values.env.webcomponent.host }}
             - name: FF4J_API_URL
               value: {{ .Values.env.ff4j.api.url }}
             {{- if .Values.extraEnvs }}
