@@ -94,8 +94,7 @@ env:
         clientSecret: API_CLIENT_SECRET_SS_DEFAULT
         tokenUri: API_TOKEN_URI_DEFAULT
   webcomponent:
-    https:
-      url: WEBCOMPONENT_HTTPS_URL
+    host: WEBCOMPONENT_HOST
   ff4j:
     api:
       url: FF4J_API_URL
