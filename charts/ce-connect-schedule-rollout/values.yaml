@@ -100,26 +100,26 @@ sealedsecret:
     password:
 
 env:
-#  dicco:
-#    url: DICCO_URL
-#    user: DICCO_USER
-#  datasource:
-#    jdbcurl: DATASOURCE_JDBC-URL
-#    databasename: DATASOURCE_DATABASE-NAME
-#  batchdatasource:
-#    jdbcurl: BATCH-DATASOURCE_JDBC-URL
-#    databasename: BATCH-DATASOURCE_DATABASE-NAME
-#  axon:
-#    axonserver:
-#      servers: AXON_AXONSERVER_SERVERS
-#  pulsar:
-#    broker:
-#      url: PULSAR_BROKER_URL
-#  spring:
-#    profiles:
-#      active: default
-#    elasticsearch:
-#      uris: SPRING_ELASTICSEARCH_URIS
+  dicco:
+    url: DICCO_URL
+    user: DICCO_USER
+  datasource:
+    jdbcurl: DATASOURCE_JDBC-URL
+    databasename: DATASOURCE_DATABASE-NAME
+  batchdatasource:
+    jdbcurl: BATCH-DATASOURCE_JDBC-URL
+    databasename: BATCH-DATASOURCE_DATABASE-NAME
+  axon:
+    axonserver:
+      servers: AXON_AXONSERVER_SERVERS
+  pulsar:
+    broker:
+      url: PULSAR_BROKER_URL
+  spring:
+    profiles:
+      active: default
+    elasticsearch:
+      uris: SPRING_ELASTICSEARCH_URIS
   scheduler:
     enabled: SCHEDULER_ENABLED
     cron: SCHEDULER_CRON
