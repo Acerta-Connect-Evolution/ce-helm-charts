@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 0.1.0
+description: Helm chart for ce-connect-schedule-rollout
+name: ce-connect-schedule-rollout
+type: application
+version: 0.1.0
