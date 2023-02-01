@@ -670,6 +670,16 @@ entries:
     version: 1.1.0
   ce-balances:
   - apiVersion: v2
+    appVersion: 0.22.0
+    created: "2023-02-01T11:02:04.102012693Z"
+    description: Helm chart for ce-balances
+    digest: 70d0ad58f19c91845e3c2aa342e96b7226384c8aa13676f46cc5328cd42cf02c
+    name: ce-balances
+    type: application
+    urls:
+    - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/ce-balances-0.28.0/ce-balances-0.28.0.tgz
+    version: 0.28.0
+  - apiVersion: v2
     appVersion: 0.21.0
     created: "2023-02-01T08:14:00.93757756Z"
     description: Helm chart for ce-balances
@@ -96954,4 +96964,4 @@ entries:
     urls:
     - https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/tempo-0.16.3/tempo-0.16.3.tgz
     version: 0.16.3
-generated: "2023-02-01T08:18:17.243269679Z"
+generated: "2023-02-01T11:02:04.126500879Z"
