@@ -104,3 +104,7 @@ dependencies:
     version: 0.44.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-balance-frontend.enabled
+  - name: ce-connect-schedule-rollout
+    version: 0.2.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-connect-schedule-rollout.enabled

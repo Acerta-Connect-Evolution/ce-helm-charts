@@ -95,3 +95,6 @@ ce-calendar-balance-backend:
 
 ce-calendar-balance-frontend:
   enabled: true
+
+ce-connect-schedule-rollout:
+  enabled: true
