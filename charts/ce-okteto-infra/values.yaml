@@ -171,8 +171,7 @@ frontend-services-gateway:
     className: ""
     annotations:
       dev.okteto.com/generate-host: "true"
-  application_yml: | 
-    ff4j.api.url: http://ce-ff4j-server:8080/api/ff4j
+  application_yml: ""
 
 keycloak-boot:
   fullnameOverride: keycloak-boot
