@@ -13,10 +13,6 @@ dependencies:
     version: 0.213.2
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-frontend.enabled
-  - name: c2ce-flink-client
-    version: 1.44.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: c2ce-flink-client.enabled
   - name: pulsar-client
     version: 3.43.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts

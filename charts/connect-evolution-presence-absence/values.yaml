@@ -4,9 +4,6 @@ ce-calendar-timespend-backend:
 ce-calendar-timespend-frontend:
   enabled: true
 
-c2ce-flink-client:
-  enabled: true
-
 pulsar-client:
   enabled: true
 
