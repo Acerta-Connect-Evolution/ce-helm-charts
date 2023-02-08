@@ -48,6 +48,8 @@ spec:
               value: {{ .Values.env.otel.resource.attributes }}
             - name: OTEL_METRICS_EXPORTER
               value: {{ .Values.env.otel.metrics.exporter }}
+            - name: SPRING_PROFILES_ACTIVE
+              value: {{ .Values.env.spring.profiles.active }}
 
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}

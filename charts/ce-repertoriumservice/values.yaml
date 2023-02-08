@@ -93,6 +93,9 @@ env:
       attributes: OTEL_RESOURCE_ATTRIBUTES
     metrics:
       exporter: OTEL_METRICS_EXPORTER
+  spring:
+    profiles:
+      active: default
 
 extraEnv: {}
 
