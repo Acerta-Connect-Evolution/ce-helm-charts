@@ -22,13 +22,15 @@ spec:
       {{- if .Values.initContainers.waitForUrl.enabled }}
       initContainers:
         - name: wait-for-pulsar
-          image: nexus.global.dns:8443/acerta-connect-evolution/wait-for-url:1.0
+          image: "{{ .Values.initContainers.waitForPulsar.image.repository }}:{{ .Values.initContainers.waitForPulsar.image.tag }}"
+          imagePullPolicy: {{ .Values.initContainers.waitForPulsar.image.imagePullPolicy }}
           args: [ '{{ .Values.initContainers.waitForUrl.endpoint }}' ]
       {{- end }}
       {{- if .Values.initContainers.waitForMssql.enabled }}
       initContainers:
         - name: wait-for-mssql
-          image: nexus.global.dns:8443/acerta-connect-evolution/wait-for-mssql:4.0
+          image: "{{ .Values.initContainers.waitForMssql.image.repository }}:{{ .Values.initContainers.waitForMssql.image.tag }}"
+          imagePullPolicy: { { .Values.initContainers.waitForMssql.image.imagePullPolicy } }
           args: [ '{{ .Values.initContainers.waitForMssql.server.host }}', '{{ .Values.initContainers.waitForMssql.server.user }}', '{{ .Values.initContainers.waitForMssql.server.password }}' ]
       {{- end }}
       containers:
