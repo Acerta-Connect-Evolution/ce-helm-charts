@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.949.0
+version: 1.950.0
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.271.0
@@ -51,7 +51,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-client.enabled
   - name: init-job
-    version: 1.0.16
+    version: 1.0.20
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-init-job.enabled
     alias: pulsar-init-job
@@ -60,7 +60,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-test-support.enabled
   - name: init-job
-    version: 1.0.19
+    version: 1.0.20
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: cdc-db-init-job.enabled
     alias: cdc-db-init-job
