@@ -22,8 +22,8 @@ spec:
       {{- if .Values.initContainers.waitForUrl.enabled }}
       initContainers:
         - name: wait-for-pulsar
-          image: "{{ .Values.initContainers.waitForPulsar.image.repository }}:{{ .Values.initContainers.waitForPulsar.image.tag }}"
-          imagePullPolicy: {{ .Values.initContainers.waitForPulsar.image.imagePullPolicy }}
+          image: "{{ .Values.initContainers.waitForUrl.image.repository }}:{{ .Values.initContainers.waitForUrl.image.tag }}"
+          imagePullPolicy: {{ .Values.initContainers.waitForUrl.image.imagePullPolicy }}
           args: [ '{{ .Values.initContainers.waitForUrl.endpoint }}' ]
       {{- end }}
       {{- if .Values.initContainers.waitForMssql.enabled }}
