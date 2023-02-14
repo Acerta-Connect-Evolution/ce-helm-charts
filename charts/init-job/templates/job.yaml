@@ -30,7 +30,7 @@ spec:
       initContainers:
         - name: wait-for-mssql
           image: "{{ .Values.initContainers.waitForMssql.image.repository }}:{{ .Values.initContainers.waitForMssql.image.tag }}"
-          imagePullPolicy: { { .Values.initContainers.waitForMssql.image.imagePullPolicy } }
+          imagePullPolicy: {{ .Values.initContainers.waitForMssql.image.imagePullPolicy }}
           args: [ '{{ .Values.initContainers.waitForMssql.server.host }}', '{{ .Values.initContainers.waitForMssql.server.user }}', '{{ .Values.initContainers.waitForMssql.server.password }}' ]
       {{- end }}
       containers:
