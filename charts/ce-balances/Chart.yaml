@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 0.25.0
+appVersion: 0.26.0
 description: Helm chart for ce-balances
 name: ce-balances
 type: application
-version: 0.31.0
+version: 0.32.0
