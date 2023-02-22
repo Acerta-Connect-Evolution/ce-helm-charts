@@ -38,6 +38,11 @@ service:
   port: 8087
   annotations:
     # dev.okteto.com/auto-ingress: "true"
+
+sealedsecret:
+  gatewayclient:
+    secret:
+
 env:
   otel:
     exporter:

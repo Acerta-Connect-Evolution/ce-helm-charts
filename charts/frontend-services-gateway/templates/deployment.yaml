@@ -59,6 +59,11 @@ spec:
             failureThreshold: 30
             periodSeconds: 5
           env:
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_CE-GATEWAY_ClIENT-SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-gateway-client-secret
+                  key: secret
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: {{ .Values.env.otel.exporter.otlp.endpoint }}
             - name: OTEL_EXPORTER_OTLP_PROTOCOL
