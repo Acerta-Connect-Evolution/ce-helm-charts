@@ -113,7 +113,6 @@ env:
   ff4j:
     api:
       url: FF4J_API_URL
-
   ce-authorisation:
     chro:
       api:
