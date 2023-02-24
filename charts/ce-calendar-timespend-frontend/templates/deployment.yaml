@@ -76,8 +76,8 @@ spec:
               value: {{ .Values.env.pulsar.broker.url }}
             - name: WEBCOMPONENT_HOST
               value: {{ .Values.env.webcomponent.host }}
-            - name: CEAUTHORISATION_CHRO_API_GETCALENDARPERMISSIONS
-              value: {{ .Values.env.ce-authorisation.chro.api.get-calendar-permissions }}
+            - name: AUTHORISATION_CHRO_API_PERMISSIONS_URL
+              value: {{ .Values.env.authorisation.chro.api.permissions.url }}
             - name: FF4J_API_URL
               value: {{ .Values.env.ff4j.api.url }}
             - name: REPERTORIUM_URL
