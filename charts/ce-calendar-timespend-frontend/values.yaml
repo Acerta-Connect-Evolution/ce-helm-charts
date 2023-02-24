@@ -113,6 +113,10 @@ env:
   ff4j:
     api:
       url: FF4J_API_URL
+  ce-authorisation:
+    chro:
+      api:
+        get-calendar-permissions: CEAUTHORISATION_CHRO_API_GETCALENDARPERMISSIONS
   repertorium:
     url: REPERTORIUM_URL
   otel:
