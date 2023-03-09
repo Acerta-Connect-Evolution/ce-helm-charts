@@ -21,6 +21,7 @@ spec:
       {{- end }}
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
+        loki: connect
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
