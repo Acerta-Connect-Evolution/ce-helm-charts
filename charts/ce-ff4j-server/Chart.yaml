@@ -3,4 +3,4 @@ appVersion: 1.22.0
 description: Helm chart for ce-ff4j-server
 name: ce-ff4j-server
 type: application
-version: 1.22.0
+version: 1.23.0
