@@ -3,4 +3,4 @@ appVersion: 0.3.0
 description: Helm chart for ce-connect-schedule-rollout
 name: ce-connect-schedule-rollout
 type: application
-version: 0.5.0
+version: 0.7.0

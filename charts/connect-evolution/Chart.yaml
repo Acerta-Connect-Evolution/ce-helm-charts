@@ -3,14 +3,14 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.1036.0
+version: 1.1097.0
 dependencies:
   - name: ce-calendar-timespend-backend
-    version: 1.280.0
+    version: 1.291.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-backend.enabled
   - name: ce-calendar-timespend-frontend
-    version: 0.288.0
+    version: 0.310.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-frontend.enabled
   - name: axon-server
@@ -23,7 +23,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: connect-backend.enabled
   - name: connect-frontend
-    version: 0.36.80
+    version: 0.36.92
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: connect-frontend.enabled
   - name: mssql-latest
@@ -47,7 +47,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: c2ce-flink-client.enabled
   - name: pulsar-client
-    version: 3.45.0
+    version: 3.47.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-client.enabled
   - name: init-job
@@ -56,7 +56,7 @@ dependencies:
     condition: pulsar-init-job.enabled
     alias: pulsar-init-job
   - name: ce-test-support
-    version: 1.23.0
+    version: 1.25.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-test-support.enabled
   - name: init-job
@@ -65,46 +65,46 @@ dependencies:
     condition: cdc-db-init-job.enabled
     alias: cdc-db-init-job
   - name: ce-ff4j-server
-    version: 1.21.0
+    version: 1.24.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-ff4j-server.enabled
   - name: ce-payroll-vacationcertificate
-    version: 0.101.0
+    version: 0.103.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-payroll-vacationcertificate.enabled
   - name: ce-webcomponents
-    version: 0.43.0
+    version: 0.45.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-webcomponents.enabled
   - name: ce-repertoriumservice
-    version: 0.37.0
+    version: 0.40.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-repertoriumservice.enabled
   - name: ce-balances
-    version: 0.34.0
+    version: 0.36.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-balances.enabled
   - name: ce-clink
-    version: 0.24.0
+    version: 0.27.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-clink.enabled
   - name: ce-init-load
-    version: 0.19.0
+    version: 0.22.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-init-load.enabled
   - name: frontend-services-gateway
-    version: 1.74.0
+    version: 1.78.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
-    version: 0.24.0
+    version: 0.32.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-balance-backend.enabled
   - name: ce-calendar-balance-frontend
-    version: 0.48.0
+    version: 0.54.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-balance-frontend.enabled
   - name: ce-connect-schedule-rollout
-    version: 0.5.0
+    version: 0.7.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-connect-schedule-rollout.enabled

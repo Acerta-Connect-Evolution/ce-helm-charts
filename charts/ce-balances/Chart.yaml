@@ -3,4 +3,4 @@ appVersion: 0.28.0
 description: Helm chart for ce-balances
 name: ce-balances
 type: application
-version: 0.34.0
+version: 0.36.0

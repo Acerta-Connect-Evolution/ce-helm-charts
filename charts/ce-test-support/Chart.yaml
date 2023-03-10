@@ -3,4 +3,4 @@ appVersion: 1.12.0
 description: Helm chart for ce-test-support
 name: ce-test-support
 type: application
-version: 1.23.0
+version: 1.25.0
