@@ -3,4 +3,4 @@ appVersion: 1.7.0
 description: Helm chart for keycloak-boot
 name: keycloak-boot
 type: application
-version: 1.9.12
+version: 1.9.13
