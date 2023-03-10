@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 23.03.19
+appVersion: 23.03.20
 description: A Helm chart for Connect UI
 name: connect-frontend
 type: application
-version: 0.36.92
+version: 0.36.93
