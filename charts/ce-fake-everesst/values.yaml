@@ -35,7 +35,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 8087
+  port: 8080
   annotations:
     # dev.okteto.com/auto-ingress: "true"
 
