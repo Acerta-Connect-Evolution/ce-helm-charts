@@ -197,3 +197,44 @@ ce-webcomponents:
     className: ""
     annotations:
       dev.okteto.com/generate-host: "true"
+
+ce-fake-everesst:
+  fullnameOverride: ce-fake-everesst
+  enabled: true
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
+  application_yml: |
+    # Server
+    spring.application.name: ce-fake-everesst
+    server:
+      port: 8080
+      compression.enabled: true
+    
+    ---
+    # Actuator
+    management:
+      endpoint.health.show-details: always
+      endpoints.web.exposure.include: "*"
+    
+    ---
+    # Pulsar
+    pulsar:
+      enabled: true
+      broker.url: pulsar://pulsar-standalone:6650
+      defaults:
+        consumer:
+          tenant: acerta
+          namespace: payroll
+        producer:
+          tenant: everesst
+          namespace: payroll
+      consumers:
+        PulsarAdjustmentBookedIntegrationEventHandler:
+          subscription:
+            topic: employee-out-fake
+      producers:
+        WorktimePrioritizationCalculatedIntegrationEventPublisher:
+          topic: worktime
