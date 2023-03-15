@@ -124,6 +124,9 @@ env:
 loki:
   enabled: true
   # dev, tst, acc, prd
-  tenant: "dev"
+  tenant: "tst"
+tempo:
+  enabled: true
+  tenant: "tst"
 
 extraEnv: {}

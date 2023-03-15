@@ -15,15 +15,17 @@ spec:
       {{- include "mychart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.tempo.enabled }}
+        instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/default-sdk-{{ .Values.tempo.tenant }}"
       {{- end }}
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
         {{- if .Values.loki.enabled }}
         loki: connect-{{ .Values.loki.tenant }}
-        instrumentation.opentelemetry.io/inject-sdk: open-telemetry/default-sdk-{{ .Values.loki.tenant }}
         {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
