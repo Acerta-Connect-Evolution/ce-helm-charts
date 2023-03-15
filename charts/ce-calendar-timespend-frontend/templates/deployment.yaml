@@ -23,7 +23,7 @@ spec:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
         {{- if .Values.loki.enabled }}
         loki: connect-{{ .Values.loki.tenant }}
-        instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/default-sdk-{{ .Values.loki.tenant }}"
+        instrumentation.opentelemetry.io/inject-sdk: open-telemetry/default-sdk-{{ .Values.loki.tenant }}
         {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
