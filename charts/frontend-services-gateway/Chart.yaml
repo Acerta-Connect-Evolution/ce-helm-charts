@@ -3,4 +3,4 @@ appVersion: 1.77.0
 description: Helm chart for frontend-services-gateway
 name: frontend-services-gateway
 type: application
-version: 1.78.0
+version: 1.79.0
