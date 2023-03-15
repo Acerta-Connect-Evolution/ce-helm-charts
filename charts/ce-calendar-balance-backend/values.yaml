@@ -123,14 +123,12 @@ env:
   ff4j:
     api:
       url: FF4J_API_URL
-  otel:
-    exporter:
-      otlp:
-        endpoint: OTEL_EXPORTER_OTLP_ENDPOINT
-        protocol: OTEL_EXPORTER_OTLP_PROTOCOL
-    resource:
-      attributes: OTEL_RESOURCE_ATTRIBUTES
-    metrics:
-      exporter: OTEL_METRICS_EXPORTER
+loki:
+  enabled: true
+  # dev, tst, acc, prd
+  tenant: "tst"
+tempo:
+  enabled: true
+  tenant: "tst"
 
 extraEnv: {}

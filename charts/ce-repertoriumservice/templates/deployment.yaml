@@ -15,13 +15,18 @@ spec:
       {{- include "mychart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.tempo.enabled }}
+        instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/default-sdk-{{ .Values.tempo.tenant }}"
       {{- end }}
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
-        loki: connect
+        {{- if .Values.loki.enabled }}
+        loki: connect-{{ .Values.loki.tenant }}
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -41,17 +46,14 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: {{ .Values.env.otel.exporter.otlp.endpoint }}
-            - name: OTEL_EXPORTER_OTLP_PROTOCOL
-              value: {{ .Values.env.otel.exporter.otlp.protocol }}
-            - name: OTEL_RESOURCE_ATTRIBUTES
-              value: {{ .Values.env.otel.resource.attributes }}
+            - name: OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: OTEL_METRICS_EXPORTER
-              value: {{ .Values.env.otel.metrics.exporter }}
+              value: none
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
-
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
