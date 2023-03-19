@@ -60,6 +60,6 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-webcomponents.enabled
   - name: ce-fake-everesst
-    version: 0.4.0
+    version: 0.2.1
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-fake-everesst.enabled
