@@ -78,5 +78,13 @@ tolerations: []
 
 affinity: {}
 
+loki:
+  enabled: true
+  # dev, tst, acc, prd
+  tenant: "tst"
+tempo:
+  enabled: true
+  tenant: "tst"
+
 extraEnvs: {}
 

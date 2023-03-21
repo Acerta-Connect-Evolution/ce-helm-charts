@@ -119,5 +119,12 @@ env:
   ff4j:
     api:
       url: FF4J_API_URL
+loki:
+  enabled: true
+  # dev, tst, acc, prd
+  tenant: "tst"
+tempo:
+  enabled: true
+  tenant: "tst"
 
 extraEnv: {}
