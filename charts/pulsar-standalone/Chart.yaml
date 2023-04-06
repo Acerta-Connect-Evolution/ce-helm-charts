@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: "1.2.0"
+appVersion: "1.3.0"
 description: Helm chart for Pulsar Standalone
 name: pulsar-standalone
 type: application
-version: 3.2.0
+version: 3.3.0
