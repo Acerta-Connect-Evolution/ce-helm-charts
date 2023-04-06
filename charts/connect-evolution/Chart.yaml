@@ -3,14 +3,14 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.1205.0
+version: 1.1216.0
 dependencies:
   - name: ce-calendar-timespend-backend
-    version: 1.317.0
+    version: 1.320.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-backend.enabled
   - name: ce-calendar-timespend-frontend
-    version: 0.337.0
+    version: 0.340.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-frontend.enabled
   - name: axon-server
@@ -85,7 +85,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-balances.enabled
   - name: ce-clink
-    version: 0.31.0
+    version: 0.32.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-clink.enabled
   - name: ce-init-load
@@ -97,11 +97,11 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
-    version: 0.38.0
+    version: 0.40.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-balance-backend.enabled
   - name: ce-calendar-balance-frontend
-    version: 0.64.0
+    version: 0.66.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-balance-frontend.enabled
   - name: ce-connect-schedule-rollout
