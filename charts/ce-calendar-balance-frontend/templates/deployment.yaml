@@ -90,15 +90,16 @@ spec:
                   fieldPath: status.hostIP
             - name: OTEL_METRICS_EXPORTER
               value: none
-            - name: SPRING_REDIS_HOST
-              value: {{ .Values.env.spring.redis.host }}
-            - name: SPRING_REDIS_PORT
-              value: {{ .Values.env.spring.redis.port | quote }}
-            - name: SPRING_REDIS_PASSWORD
+            - name: SPRING_DATA_REDIS_HOST
+              value: {{ .Values.env.spring.data.redis.host }}
+            - name: SPRING_DATA_REDIS_PORT
+              value: {{ .Values.env.spring.data.redis.port | quote }}
+            - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-redis-cred
                   key: password
+
             {{- if .Values.extraEnvs }}
             {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}

@@ -100,8 +100,10 @@ env:
     elasticsearch:
       uris: SPRING_ELASTICSEARCH_URIS
     redis:
-      host: REDIS_HOST
-      port: 6379
+      data:
+        host: SPRING_DATA_REDIS_HOST
+        port: 6379
+        password: SPRING_DATA_REDIS_PASSWORD
   axon:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS

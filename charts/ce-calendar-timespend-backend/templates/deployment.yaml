@@ -77,15 +77,16 @@ spec:
               value: {{ .Values.env.spring.elasticsearch.uris }}
             - name: AXON_AXONSERVER_SERVERS
               value: {{ .Values.env.axon.axonserver.servers }}
-            - name: SPRING_REDIS_HOST
-              value: {{ .Values.env.spring.redis.host }}
-            - name: SPRING_REDIS_PORT
-              value: {{ .Values.env.spring.redis.port | quote}}
-            - name: SPRING_REDIS_PASSWORD
+            - name: SPRING_DATA_REDIS_HOST
+              value: {{ .Values.env.spring.data.redis.host }}
+            - name: SPRING_DATA_REDIS_PORT
+              value: {{ .Values.env.spring.data.redis.port | quote }}
+            - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-redis-cred
                   key: password
+
             - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
