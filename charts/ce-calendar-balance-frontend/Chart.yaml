@@ -3,4 +3,4 @@ appVersion: 3.0.0
 description: Helm chart for ce-calendar-balance-frontend
 name: ce-calendar-balance-frontend
 type: application
-version: 0.68.0
+version: 0.69.0
