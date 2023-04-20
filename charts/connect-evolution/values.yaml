@@ -98,3 +98,6 @@ ce-calendar-balance-frontend:
 
 ce-connect-schedule-rollout:
   enabled: true
+
+ce-authorization-service:
+  enabled: true
