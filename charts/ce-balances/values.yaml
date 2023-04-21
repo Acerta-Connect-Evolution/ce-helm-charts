@@ -6,6 +6,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+appType: springboot
+
 imagePullSecrets:
   - name: regcred
 nameOverride: ""
@@ -99,5 +101,12 @@ env:
     api:
       url: FF4J_API_URL
 
-extraEnv: {}
+loki:
+  enabled: true
+  # dev, tst, acc, prd
+  tenant: "tst"
+tempo:
+  enabled: true
+  tenant: "tst"
 
+extraEnv: {}
