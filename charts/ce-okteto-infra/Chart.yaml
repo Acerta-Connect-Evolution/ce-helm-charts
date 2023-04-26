@@ -40,11 +40,11 @@ dependencies:
     condition: ff4j-init-job.enabled
     alias: ff4j-init-job
   - name: ce-ff4j-server
-    version: 1.29.0
+    version: 1.30.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-ff4j-server.enabled
   - name: ce-repertoriumservice
-    version: 0.36.0
+    version: 0.52.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-repertoriumservice.enabled
   - name: frontend-services-gateway
