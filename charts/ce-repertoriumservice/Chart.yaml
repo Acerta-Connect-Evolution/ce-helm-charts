@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 0.48.0
+appVersion: 0.49.0
 description: Helm chart for ce-repertoriumservice
 name: ce-repertoriumservice
 type: application
-version: 0.54.0
+version: 0.55.0
