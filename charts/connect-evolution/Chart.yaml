@@ -77,7 +77,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-webcomponents.enabled
   - name: ce-repertoriumservice
-    version: 0.55.0
+    version: 0.56.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-repertoriumservice.enabled
   - name: ce-balances
