@@ -119,6 +119,8 @@ spec:
                   key: password
             - name: PULSAR_BROKER_URL
               value: {{ .Values.env.pulsar.broker.url }}
+            - name: PULSAR_FAKE
+              value: {{ .Values.env.pulsar.fake }}
             - name: FF4J_API_URL
               value: {{ .Values.env.ff4j.api.url }}
             - name: OTEL_AGENT

@@ -120,6 +120,7 @@ env:
     axonserver:
       servers: AXON_AXONSERVER_SERVERS
   pulsar:
+    fake: PULSAR_FAKE
     broker:
       url: PULSAR_BROKER_URL
   ff4j:
