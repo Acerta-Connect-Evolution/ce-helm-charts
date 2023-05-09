@@ -24,7 +24,6 @@ elasticsearch:
     enabled: true
     annotations:
       dev.okteto.com/generate-host: "true"
-      kubernetes.io/ingress.class: nginx
 
 redis:
   fullnameOverride: redis
