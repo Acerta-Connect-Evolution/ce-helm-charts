@@ -73,7 +73,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-payroll-vacationcertificate.enabled
   - name: ce-webcomponents
-    version: 0.51.0
+    version: 0.52.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-webcomponents.enabled
   - name: ce-repertoriumservice
