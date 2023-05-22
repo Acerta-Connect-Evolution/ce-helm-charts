@@ -43,8 +43,8 @@ grpc:
   port: 6565
 
 sealedsecret:
-  gatewayclient:
-    secret:
+  redis:
+    password:
 
 env:
   foo: "bar"
