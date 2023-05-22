@@ -39,6 +39,9 @@ service:
   annotations:
     # dev.okteto.com/auto-ingress: "true"
 
+grpc:
+  port: 6565
+
 sealedsecret:
   gatewayclient:
     secret:
