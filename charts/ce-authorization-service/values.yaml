@@ -47,7 +47,13 @@ sealedsecret:
     password:
 
 env:
-  foo: "bar"
+  spring:
+    data:
+      redis:
+        host: SPRING_DATA_REDIS_HOST
+        port: 6379
+        password: SPRING_DATA_REDIS_PASSWORD
+
 extraEnv: {}
 
 ingress:
