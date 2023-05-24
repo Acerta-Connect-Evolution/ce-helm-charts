@@ -63,6 +63,8 @@ spec:
              {{- end }}
            - name: mssql-config-volume
              mountPath: /var/opt/config
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       volumes:
        - name: mssqldb
          persistentVolumeClaim:
