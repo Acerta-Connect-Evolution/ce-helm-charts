@@ -59,6 +59,12 @@ spec:
             failureThreshold: 30
             periodSeconds: 5
           env:
+            - name: SPRING_DATA_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-redis-cred
+                  key: password
+
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}

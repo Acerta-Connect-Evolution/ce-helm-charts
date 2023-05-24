@@ -39,12 +39,21 @@ service:
   annotations:
     # dev.okteto.com/auto-ingress: "true"
 
+grpc:
+  port: 6565
+
 sealedsecret:
-  gatewayclient:
-    secret:
+  redis:
+    password:
 
 env:
-  foo: "bar"
+  spring:
+    data:
+      redis:
+        # host: filled in by argocd config
+        # port: filled in by argocd config
+        password: SPRING_DATA_REDIS_PASSWORD
+
 extraEnv: {}
 
 ingress:
