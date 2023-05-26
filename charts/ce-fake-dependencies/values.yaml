@@ -1,0 +1,103 @@
+ce-calendar-timespend-backend:
+  enabled: true
+
+ce-calendar-timespend-frontend:
+  enabled: true
+
+axon-server-calendar-timespend:
+  enabled: false
+  nameOverride: axon-server-calendar-timespend
+  image:
+    tag: "4.6.7-dev"
+  extraEnvs:
+    - name: AXONIQ_AXONSERVER_DEVMODE_ENABLED
+      value: "true"
+    - name: AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED
+      value: "true"
+    - name: AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUSENABLED
+      value: "true"
+  java:
+    jvmOptions:
+      timezoneOptions: "-Duser.timezone=Europe/Brussels"
+  persistence:
+    enabled: true
+    accessModes: [ ReadWriteOnce ]
+    size: 3Gi
+
+connect-backend:
+  enabled: true
+
+connect-frontend:
+  enabled: true
+
+mssql-latest:
+  enabled: false
+
+elasticsearch:
+  enabled: false
+  image: nexus.global.dns:8443/acerta-dev/elasticsearch
+  imageTag: 7.15.0
+  replicas: 1
+  minimumMasterNodes: 1
+  volumeClaimTemplate.resources.requests.storage: 1Gi
+  sysctlInitContainer.enabled: false
+  extraEnvs:
+    - name: TZ
+      value: Europe/Brussels
+
+pulsar-standalone:
+  enabled: false
+
+flink:
+  enabled: false
+
+c2ce-flink-client:
+  enabled: true
+
+pulsar-client:
+  enabled: true
+
+pulsar-init-job:
+  enabled: true
+
+ce-test-support:
+  enabled: true
+
+cdc-db-init-job:
+  enabled: true
+
+ce-ff4j-server:
+  enabled: true
+
+ce-payroll-vacationcertificate:
+  enabled: true
+
+ce-webcomponents:
+  enabled: true
+
+ce-repertoriumservice:
+  enabled: true
+
+ce-balances:
+  enabled: true
+
+ce-clink:
+  enabled: true
+
+ce-init-load:
+  enabled: true
+
+frontend-services-gateway:
+  enabled: true
+
+ce-calendar-balance-backend:
+  enabled: true
+
+ce-calendar-balance-frontend:
+  enabled: true
+
+ce-connect-schedule-rollout:
+  enabled: true
+
+ce-authorization-service:
+  enabled: true
