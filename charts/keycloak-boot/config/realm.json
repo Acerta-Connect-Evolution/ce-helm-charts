@@ -152,6 +152,132 @@
       ]
     },
     {
+      "username":"connect-6",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"connect-6",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"connect-7",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"connect-7",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"connect-8",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"connect-8",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"CE100001\",\"CE100002\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"connect-9",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"connect-9",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"CE100001\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"connect-10",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"connect-10",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"connect-11",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"connect-11",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"CE100001\",\"CE100002\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"connect-12",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"connect-12",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"CE100001\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
       "username":"chro-0",
       "enabled":true,
       "credentials":[
@@ -272,6 +398,114 @@
       "attributes":{
         "user_code":"chro-6",
         "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"DENY_MOCK_CHRO_ACCESS\",\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"chro-7",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"chro-7",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"LIMITED_MOCK_CHRO_ACCESS\",\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"chro-8",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"chro-8",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"LIMITED_MOCK_CHRO_ACCESS\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"chro-9",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"chro-9",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"LIMITED_MOCK_CHRO_ACCESS\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"B8000010\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"chro-10",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"chro-10",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"B8000010\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"chro-11",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"chro-11",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"CE100001\"]}]"
+      },
+      "realmRoles":[
+        "user"
+      ]
+    },
+    {
+      "username":"chro-12",
+      "enabled":true,
+      "credentials":[
+        {
+          "type":"password",
+          "value":"password",
+          "temporary": false
+        }
+      ],
+      "attributes":{
+        "user_code":"chro-12",
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\"]},{\"acertaKey\":\"employer-2\",\"actionCodes\":[\"B8000010\",\"DENY_MOCK_CHRO_ACCESS\"]}]"
       },
       "realmRoles":[
         "user"
