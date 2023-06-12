@@ -289,7 +289,7 @@
       ],
       "attributes":{
         "user_code":"chro-0",
-        "authorized_list": "[{\"acertaKey\":\"00000000000\",\"actionCodes\":[\"B8000010\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+        "authorized_list": "[{\"acertaKey\":\"00000000000\",\"actionCodes\":[\"B8000010\",\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
       },
       "realmRoles":[
         "user"
