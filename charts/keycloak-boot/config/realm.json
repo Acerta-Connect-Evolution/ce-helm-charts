@@ -325,7 +325,7 @@
       ],
       "attributes":{
         "user_code":"chro-2",
-        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"CE100001\",\"CE100002\",\"CE100003\"]}]"
       },
       "realmRoles":[
         "user"
@@ -343,7 +343,7 @@
       ],
       "attributes":{
         "user_code":"chro-3",
-        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"CE100001\",\"CE100002\"]}]"
       },
       "realmRoles":[
         "user"
@@ -361,7 +361,7 @@
       ],
       "attributes":{
         "user_code":"chro-4",
-        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"CE100001\"]}]"
       },
       "realmRoles":[
         "user"
@@ -379,7 +379,7 @@
       ],
       "attributes":{
         "user_code":"chro-5",
-        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\",\"CE100001\",\"CE100002\",\"CE100003\",\"CE100004\"]}]"
+        "authorized_list": "[{\"acertaKey\":\"employer-1\",\"actionCodes\":[\"B8000010\"]}]"
       },
       "realmRoles":[
         "user"
