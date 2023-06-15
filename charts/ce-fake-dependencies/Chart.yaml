@@ -3,9 +3,9 @@ appVersion: '1.0'
 description: Helm chart for connect evolution fake dependencies (mocks)
 name: ce-fake-dependencies
 type: application
-version: 0.3.0
+version: 0.4.0
 dependencies:
   - name: ce-fake-chro
-    version: 0.6.0
+    version: 0.7.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-fake-chro.enabled
