@@ -109,9 +109,9 @@ env:
   spring:
     profiles:
       active: default
-      pulsar:
-        broker:
-          url: PULSAR_BROKER_URL
+    pulsar:
+      broker:
+        url: PULSAR_BROKER_URL
 
 extraEnv: {}
 
