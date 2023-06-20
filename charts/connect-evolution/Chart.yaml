@@ -76,10 +76,10 @@ dependencies:
     version: 0.64.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-webcomponents.enabled
-  - name: ce-repertoriumservice
-    version: 0.62.0
+  - name: ce-calendar-repertorium
+    version: 1.0.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: ce-repertoriumservice.enabled
+    condition: ce-calendar-repertorium.enabled
   - name: ce-balances
     version: 0.40.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
