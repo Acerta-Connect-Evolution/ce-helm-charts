@@ -75,7 +75,7 @@ ce-payroll-vacationcertificate:
 ce-webcomponents:
   enabled: true
 
-ce-calendar-repertorium:
+ce-repertoriumservice:
   enabled: true
 
 ce-balances:
