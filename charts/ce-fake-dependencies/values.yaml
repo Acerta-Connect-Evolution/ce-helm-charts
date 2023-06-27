@@ -1,2 +1,7 @@
 ce-fake-chro:
+  fullnameOverride: ce-fake-chro
   enabled: true
+  ingress:
+    enabled: true
+    annotations:
+      dev.okteto.com/generate-host: "true"
