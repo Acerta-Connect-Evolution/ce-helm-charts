@@ -8,7 +8,7 @@ image:
   repository: nexus.global.dns:8443/dicco/dicco-oltp
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "2023.06.5"
+  tag: "2023.06.8"
 
 imagePullSecrets:
   - name: "regcred"
@@ -42,7 +42,7 @@ service:
   port: 8080
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
