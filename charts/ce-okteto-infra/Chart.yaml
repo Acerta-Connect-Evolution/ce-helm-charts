@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.68.0
+version: 0.69.0
 dependencies:
   - name: mssql-latest
     version: 0.3.8
@@ -63,3 +63,11 @@ dependencies:
     version: 0.12.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-fake-everesst.enabled
+  - name: ce-fake-chro
+    version: 0.7.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-fake-chro.enabled
+  - name: ce-authorization-service
+    version: 0.16.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-authorization-service.enabled

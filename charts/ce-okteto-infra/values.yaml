@@ -206,3 +206,23 @@ ce-fake-everesst:
     annotations:
       dev.okteto.com/generate-host: "true"
   application_yml: ""
+
+ce-fake-chro:
+  fullnameOverride: ce-fake-chro
+  enabled: true
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
+  application_yml: ""
+
+ce-authorization-service:
+  fullnameOverride: ce-authorization-service
+  enabled: true
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
+  application_yml: ""
