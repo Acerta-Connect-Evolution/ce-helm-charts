@@ -52,7 +52,6 @@ env:
       redis:
         # host: filled in by argocd config
         # port: filled in by argocd config
-        password: SPRING_DATA_REDIS_PASSWORD
 
 extraEnv: {}
 
