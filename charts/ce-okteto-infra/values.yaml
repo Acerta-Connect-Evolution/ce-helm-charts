@@ -223,7 +223,7 @@ ce-authorization-service:
   sealedsecret:
     redis:
       password: AgBvJecr46uhBJDSAlKeomWM4ztuqMrr3jvNWhd0cH6KLz/wPSvvz/Nq0Bga1ZZ82lv5SvDVnKixAEAGkUY0yxxPXUbxFEncficX/o0XGNUmRyMezCZBNbsk1T24Qqd5my0gkq2Rx0gVc/ja6eYx+mg71yV0MIjyJ51MeAeBq9Oe4/lsdN5W6g+6NXGeiOVhBhVehZzSxTBZcZZTu0QZ1vXVpCPctReBKeu2MmpNqyUO0kytNlM907i/CLdwea5710DjIiHqsXbIyipfzjyTPfI72KmizmkitpFIZMj9xIXnlRQp4gS82MaBFNBfouZ7PXyL1ECZG0anmEOQhrHhg6rRP9HChfbCnuDKVyXqw/XhaieFTLt8fdXHRMZOqVRt4jt8ZzEPgjPo/8zNcWCTgTfuqa2WVpqXTLGr8af0vQ/i5Tw2Zs+Pl2kPfsOj3sJfDSaCVAc67I3UPbvAQBK1yqYeE4Ci/xvJDMnvWqkirYo1j7xgb27iWIZ3Ez7iEUHMsNCYJGVOZRwWibgRVc04oOQzHTSdzUv7I739Lm9VJThdZBirnU4Jn2alc4nsP/VdgLiBfleXjmPf+rD++pGP/+j9FkAQh/0qC2sKot4ZtA5rYEdgVNMkm2QdwF/WU4gDaG+u1QM4VETFHGTUczuLNibwudfiTsYmmDJZ/iOQctBOT8r117IMkmuyWZV9Eyi3j+hEBgLUfvlcXA==
-  application.yml: |-
+  application_yml: |-
     spring:
       profiles:
         active: okteto, always-active
