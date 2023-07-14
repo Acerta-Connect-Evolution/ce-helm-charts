@@ -87,7 +87,5 @@ sealedsecret:
         dicco:
           password:
 
-env:
-  pulsar:
-    adminurl: PULSAR_ADMIN-URL
-    allowedclusters: standalone
+
+application_yml: ""

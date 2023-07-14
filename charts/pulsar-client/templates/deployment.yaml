@@ -32,6 +32,9 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -56,10 +59,6 @@ spec:
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
-            - name: PULSAR_ADMIN-URL
-              value: {{ .Values.env.pulsar.adminurl }}
-            - name: PULSAR_ALLOWED-CLUSTERS
-              value: {{ .Values.env.pulsar.allowedclusters }}
             {{- if .Values.sealedsecret.debezium.config.database.dicco.password }}
             - name: DEBEZIUM_CONFIG_DATABASE_DICCO_PASSWORD
               valueFrom:
