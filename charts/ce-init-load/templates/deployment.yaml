@@ -71,10 +71,6 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
-            - name: SPRING_DATA_REDIS_HOST
-              value: {{ .Values.env.spring.data.redis.host }}
-            - name: SPRING_DATA_REDIS_PORT
-              value: {{ .Values.env.spring.data.redis.port | quote }}
             - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
