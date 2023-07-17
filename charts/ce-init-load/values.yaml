@@ -101,6 +101,11 @@ sealedsecret:
     username:
     password:
 
+env:
+  spring:
+    profiles:
+      active: default
+
 extraEnv: {}
 
 application_yml: ""
