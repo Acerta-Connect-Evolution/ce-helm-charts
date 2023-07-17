@@ -109,8 +109,8 @@ pulsar-admin-console:
     annotations:
       dev.okteto.com/generate-host: "true"
 
-calendar-axon-server:
-  fullnameOverride: calendar-axon-server
+axon-server-calendar:
+  fullnameOverride: axon-server-calendar
   enabled: true
   image:
     # Note: the name of the repository is used throughout the chart to figure if we should configure for SE or EE
