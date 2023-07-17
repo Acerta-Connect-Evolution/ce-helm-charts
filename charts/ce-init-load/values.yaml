@@ -102,15 +102,6 @@ sealedsecret:
     password:
 
 env:
-  datasource:
-    jdbcurl: DATASOURCE_JDBC-URL
-    databasename: DATASOURCE_DATABASE-NAME
-  diccodatasource:
-    jdbcurl: DICCO-DATASOURCE_JDBC-URL
-    databasename: DICCO-DATASOURCE_DATABASE-NAME
-  pulsar:
-    broker:
-      url: PULSAR_BROKER_URL
   spring:
     data:
       redis:
@@ -121,3 +112,5 @@ env:
       active: default
 
 extraEnv: {}
+
+application_yml: ""
