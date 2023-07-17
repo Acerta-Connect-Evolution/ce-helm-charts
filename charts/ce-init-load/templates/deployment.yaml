@@ -71,14 +71,6 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
-            - name: DATASOURCE_JDBC-URL
-              value: {{ .Values.env.datasource.jdbcurl }}
-            - name: DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.datasource.databasename }}
-            - name: DICCO-DATASOURCE_JDBC-URL
-              value: {{ .Values.env.diccodatasource.jdbcurl }}
-            - name: DICCO-DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.diccodatasource.databasename }}
             - name: SPRING_DATA_REDIS_HOST
               value: {{ .Values.env.spring.data.redis.host }}
             - name: SPRING_DATA_REDIS_PORT
@@ -119,8 +111,6 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-dicco-datasource-cred
                   key: password
-            - name: PULSAR_BROKER_URL
-              value: {{ .Values.env.pulsar.broker.url }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
