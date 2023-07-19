@@ -109,6 +109,40 @@ pulsar-admin-console:
     annotations:
       dev.okteto.com/generate-host: "true"
 
+axon-server-calendar:
+  fullnameOverride: axon-server-calendar
+  enabled: true
+  image:
+    # Note: the name of the repository is used throughout the chart to figure if we should configure for SE or EE
+    # "axoniq/axonserver" is the SE Docker image. Any other (custom) image means that the chart will configure for EE
+    repository: axoniq/axonserver
+    pullPolicy: IfNotPresent
+    tag: "4.6.7-dev"
+  extraEnvs:
+    - name: AXONIQ_AXONSERVER_DEVMODE_ENABLED
+      value: "true"
+    - name: AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED
+      value: "true"
+    - name: AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUSENABLED
+      value: "true"
+    - name: AXONIQ_AXONSERVER_KEEP-ALIVE-TIME
+      value: "0"
+    - name: AXONIQ_AXONSERVER_KEEP-ALIVE-TIMEOUT
+      value: "604800000"
+    - name: AXONIQ_AXONSERVER_MIN-KEEP-ALIVE-TIME
+      value: "604800000"
+  persistence:
+    enabled: false
+    accessModes: [ ReadWriteOnce ]
+    size: 3Gi
+  java:
+    jvmOptions:
+      timezoneOptions: "-Duser.timezone=Europe/Brussels"
+  ingress:
+    enabled: true
+    annotations:
+      dev.okteto.com/generate-host: "true"
+
 pulsar-client:
   fullnameOverride: pulsar-client
   enabled: true
