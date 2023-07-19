@@ -69,8 +69,6 @@ spec:
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: {{ .Values.env.spring.profiles.active }}
             - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
