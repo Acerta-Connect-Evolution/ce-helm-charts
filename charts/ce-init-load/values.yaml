@@ -101,10 +101,7 @@ sealedsecret:
     username:
     password:
 
-env:
-  spring:
-    profiles:
-      active: default
+
 
 extraEnv: {}
 
