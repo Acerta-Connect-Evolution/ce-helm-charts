@@ -36,8 +36,15 @@ spec:
           image: nexus.global.dns:8443/ce/wait-for-pulsar-schemas:1.0
           args: ['{{ .Values.initContainers.waitForPulsar.topics }}']
       {{- end }}
+      volumes:
+        - configMap:
+            name: application-yml-{{ include "mychart.fullname" . }}
+          name: application-yml
       containers:
         - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -62,20 +69,6 @@ spec:
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: {{ .Values.env.spring.profiles.active }}
-            - name: DATASOURCE_JDBC-URL
-              value: {{ .Values.env.datasource.jdbcurl }}
-            - name: DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.datasource.databasename }}
-            - name: DICCO-DATASOURCE_JDBC-URL
-              value: {{ .Values.env.diccodatasource.jdbcurl }}
-            - name: DICCO-DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.diccodatasource.databasename }}
-            - name: SPRING_DATA_REDIS_HOST
-              value: {{ .Values.env.spring.data.redis.host }}
-            - name: SPRING_DATA_REDIS_PORT
-              value: {{ .Values.env.spring.data.redis.port | quote }}
             - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -112,8 +105,6 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-dicco-datasource-cred
                   key: password
-            - name: PULSAR_BROKER_URL
-              value: {{ .Values.env.pulsar.broker.url }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
