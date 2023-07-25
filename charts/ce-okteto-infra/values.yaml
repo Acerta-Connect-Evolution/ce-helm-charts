@@ -169,8 +169,8 @@ ce-ff4j-server:
     annotations:
       dev.okteto.com/generate-host: "true"
 
-ce-repertoriumservice:
-  fullnameOverride: ce-repertoriumservice
+ce-calendar-repertorium:
+  fullnameOverride: ce-calendar-repertorium
   enabled: true
   ingress:
     enabled: true
