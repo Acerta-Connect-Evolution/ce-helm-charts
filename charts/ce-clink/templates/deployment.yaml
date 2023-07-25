@@ -79,20 +79,20 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-redis-cred
                   key: password
-                  optional: true
+{{/*                  optional: true*/}}
 
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: username
-                  optional: true
+{{/*                  optional: true*/}}
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
-                  optional: true
+{{/*                  optional: true*/}}
             - name: OTEL_AGENT
               valueFrom:
                 fieldRef:
