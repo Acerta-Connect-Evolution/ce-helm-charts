@@ -95,7 +95,6 @@ sealedsecret:
     username:
     password:
 
-env:
 
 loki:
   enabled: true
