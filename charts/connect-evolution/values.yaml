@@ -51,9 +51,6 @@ pulsar-standalone:
 flink:
   enabled: false
 
-c2ce-flink-client:
-  enabled: true
-
 pulsar-client:
   enabled: true
 
