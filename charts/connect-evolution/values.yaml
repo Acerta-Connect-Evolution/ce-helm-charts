@@ -98,3 +98,6 @@ ce-connect-schedule-rollout:
 
 ce-authorization-service:
   enabled: true
+
+ce-connect:
+  enabled: true
