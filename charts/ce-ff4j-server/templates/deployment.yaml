@@ -35,8 +35,15 @@ spec:
       serviceAccountName: {{ include "mychart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - configMap:
+            name: application-yml-{{ include "mychart.fullname" . }}
+          name: application-yml
       containers:
         - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -61,8 +68,6 @@ spec:
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
-            - name: FF4J-SERVER_ELASTIC-SEARCH-URL
-              value: {{ .Values.env.ff4jserver.elasticSearchUrl }}
             - name: FF4J-SERVER_ELASTIC-SEARCH-CONTEXT
               value: {{ .Values.env.ff4jserver.elasticSearchContext }}
             - name: OTEL_AGENT
