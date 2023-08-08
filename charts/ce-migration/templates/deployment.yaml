@@ -62,14 +62,6 @@ spec:
 
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
-          calendaraxondatasource:
-            username:
-            password:
-          timespenddatasource:
-            username:
-            password:
-          balancedatasource:
-
           env:
             - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
