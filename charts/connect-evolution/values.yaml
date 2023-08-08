@@ -101,3 +101,6 @@ ce-authorization-service:
 
 ce-connect:
   enabled: true
+
+ce-migration:
+  enabled: true
