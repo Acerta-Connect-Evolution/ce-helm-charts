@@ -93,7 +93,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
-    version: 0.49.0
+    version: 0.50.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-balance-backend.enabled
   - name: ce-calendar-balance-frontend
