@@ -81,11 +81,17 @@ affinity: {}
 extraEnvs: {}
 
 sealedsecret:
-  debezium:
-    config:
-      database:
-        dicco:
-          password:
-
+  initdatasource:
+    username:
+    password:
+  calendaraxondatasource:
+    username:
+    password:
+  timespenddatasource:
+    username:
+    password:
+  balancedatasource:
+    username:
+    password:
 
 application_yml: ""

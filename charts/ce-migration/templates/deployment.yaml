@@ -62,14 +62,55 @@ spec:
 
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
+          calendaraxondatasource:
+            username:
+            password:
+          timespenddatasource:
+            username:
+            password:
+          balancedatasource:
+
           env:
-            {{- if .Values.sealedsecret.debezium.config.database.dicco.password }}
-            - name: DEBEZIUM_CONFIG_DATABASE_DICCO_PASSWORD
+            - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ $fullName }}-debezium-dicco-cred
+                  name: {{ $fullName }}-init-datasource-cred
+                  key: username
+            - name: SPRING_INIT-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-init-datasource-cred
                   key: password
-            {{- end }}
+            - name: SPRING_CALENDAR-AXON-DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-calendar-axon-datasource-cred
+                  key: username
+            - name: SPRING_CALENDAR-AXON-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-calendar-axon-datasource-cred
+                  key: password
+            - name: SPRING_TIMESPEND-DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-timespend-datasource-cred
+                  key: username
+            - name: SPRING_TIMESPEND-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-timespend-datasource-cred
+                  key: password
+            - name: SPRING_BALANCE-DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-balance-datasource-cred
+                  key: username
+            - name: SPRING_BALANCE-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-balance-datasource-cred
+                  key: password
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
