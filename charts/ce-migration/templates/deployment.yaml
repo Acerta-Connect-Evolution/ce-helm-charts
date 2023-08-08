@@ -81,6 +81,16 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-init-datasource-cred
                   key: password
+            - name: SPRING_LIQUIBASE-DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-liquibase-datasource-cred
+                  key: username
+            - name: SPRING_LIQUIBASE-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-liquibase-datasource-cred
+                  key: password
             - name: SPRING_CALENDAR-AXON-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:

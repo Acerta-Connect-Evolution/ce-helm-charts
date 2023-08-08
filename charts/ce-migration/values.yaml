@@ -84,6 +84,9 @@ sealedsecret:
   initdatasource:
     username:
     password:
+  liquibasedatasource:
+    username:
+    password:
   calendaraxondatasource:
     username:
     password:
