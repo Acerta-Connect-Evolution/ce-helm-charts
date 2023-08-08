@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.1460.0
+version: 1.1465.0
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.357.0
@@ -109,6 +109,6 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-authorization-service.enabled
   - name: ce-connect
-    version: 0.2.0
+    version: 0.7.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-connect.enabled
