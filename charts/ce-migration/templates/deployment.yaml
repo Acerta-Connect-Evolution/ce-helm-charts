@@ -73,12 +73,12 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-init-datasource-cred
                   key: password
-            - name: SPRING_LIQUIBASE-DATASOURCE_USERNAME
+            - name: SPRING_LIQUIBASE_USER
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
                   key: username
-            - name: SPRING_LIQUIBASE-DATASOURCE_PASSWORD
+            - name: SPRING_LIQUIBASE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
