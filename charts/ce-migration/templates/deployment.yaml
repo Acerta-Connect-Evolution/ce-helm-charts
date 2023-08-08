@@ -1,0 +1,89 @@
+{{- /* @formatter:off */}}
+  {{- $fullName := include "mychart.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "mychart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "mychart.selectorLabels" . | nindent 8 }}
+        loki: connect
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "mychart.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - configMap:
+            name: application-yml-{{ include "mychart.fullname" . }}
+          name: application-yml
+      containers:
+        - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: actuator/health/liveness
+              port: http
+            failureThreshold: 1
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: actuator/health/liveness
+              port: http
+            failureThreshold: 30
+            periodSeconds: 5
+
+          # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
+          # dummy foo-bar added to make op 'add' in patch work correctly
+          env:
+            {{- if .Values.sealedsecret.debezium.config.database.dicco.password }}
+            - name: DEBEZIUM_CONFIG_DATABASE_DICCO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-debezium-dicco-cred
+                  key: password
+            {{- end }}
+            {{- if .Values.extraEnvs }}
+              {{- toYaml .Values.extraEnvs | nindent 12 }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
