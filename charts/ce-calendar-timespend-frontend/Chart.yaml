@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 2.68.0
+appVersion: 2.69.0
 description: Helm chart for ce-calendar-timespend-frontend
 name: ce-calendar-timespend-frontend
 type: application
-version: 0.417.0
+version: 0.418.0
