@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.81.0
+version: 0.82.0
 dependencies:
   - name: mssql-latest
     version: 0.3.8
@@ -45,7 +45,7 @@ dependencies:
     condition: ff4j-init-job.enabled
     alias: ff4j-init-job
   - name: ce-ff4j-server
-    version: 1.32.0
+    version: 1.33.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-ff4j-server.enabled
   - name: ce-calendar-repertorium
