@@ -61,7 +61,7 @@ dependencies:
     condition: cdc-db-init-job.enabled
     alias: cdc-db-init-job
   - name: ce-ff4j-server
-    version: 1.32.0
+    version: 1.33.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-ff4j-server.enabled
   - name: ce-payroll-vacationcertificate
