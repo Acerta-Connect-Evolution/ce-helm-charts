@@ -109,7 +109,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-authorization-service.enabled
   - name: ce-connect
-    version: 0.8.0
+    version: 0.9.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-connect.enabled
   - name: ce-migration
