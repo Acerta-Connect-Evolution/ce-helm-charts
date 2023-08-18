@@ -15,8 +15,8 @@ spec:
       {{- include "mychart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- if .Values.tempo.enabled }}
@@ -76,6 +76,7 @@ spec:
                   fieldPath: status.hostIP
             - name: OTEL_METRICS_EXPORTER
               value: none
+
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}

@@ -3,4 +3,4 @@ appVersion: 2.6.0
 description: Helm chart for ce-authorization-service
 name: ce-authorization-service
 type: application
-version: 0.22.0
+version: 0.23.0
