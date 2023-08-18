@@ -53,6 +53,15 @@ env:
         # host: filled in by argocd config
         # port: filled in by argocd config
 
+loki:
+  enabled: true
+  # dev, tst, acc, prd
+  tenant: "tst"
+
+tempo:
+  enabled: true
+  tenant: "tst"
+
 extraEnv: {}
 
 ingress:
