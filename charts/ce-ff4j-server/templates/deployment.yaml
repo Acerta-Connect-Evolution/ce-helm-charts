@@ -68,10 +68,6 @@ spec:
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
-            - name: FF4J-SERVER_ELASTIC-SEARCH-URL
-              value: {{ .Values.env.ff4jserver.elasticSearchUrl }}
-            - name: FF4J-SERVER_ELASTIC-SEARCH-CONTEXT
-              value: {{ .Values.env.ff4jserver.elasticSearchContext }}
             - name: OTEL_AGENT
               valueFrom:
                 fieldRef:
