@@ -88,7 +88,4 @@ tempo:
 
 extraEnv: {}
 
-env:
-  ff4jserver:
-    elasticSearchUrl: FF4J-SERVER.ELASTIC-SEARCH-URL
-    elasticSearchContext: FF4J-SERVER.ELASTIC-SEARCH-CONTEXT
+application_yml: ""
