@@ -41,8 +41,15 @@ spec:
           image: nexus.global.dns:8443/ce/wait-for-pulsar-schemas:1.0
           args: ['{{ .Values.initContainers.waitForPulsar.topics }}']
       {{- end }}
+      volumes:
+        - configMap:
+            name: application-yml-{{ include "mychart.fullname" . }}
+          name: application-yml
       containers:
         - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -67,16 +74,6 @@ spec:
           # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
           # dummy foo-bar added to make op 'add' in patch work correctly
           env:
-            - name: DATASOURCE_JDBC-URL
-              value: {{ .Values.env.datasource.jdbcurl }}
-            - name: DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.datasource.databasename }}
-            - name: SPRING_PROFILES_ACTIVE
-              value: {{ .Values.env.spring.profiles.active }}
-            - name: SPRING_ELASTICSEARCH_URIS
-              value: {{ .Values.env.spring.elasticsearch.uris }}
-            - name: AXON_AXONSERVER_SERVERS
-              value: {{ .Values.env.axon.axonserver.servers }}
             - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -107,20 +104,12 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
                   key: password
-            - name: PULSAR_BROKER_URL
-              value: {{ .Values.env.pulsar.broker.url }}
-            - name: FF4J_API_URL
-              value: {{ .Values.env.ff4j.api.url }}
             - name: OTEL_AGENT
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: OTEL_METRICS_EXPORTER
               value: none
-            - name: SPRING_DATA_REDIS_HOST
-              value: {{ .Values.env.spring.data.redis.host }}
-            - name: SPRING_DATA_REDIS_PORT
-              value: {{ .Values.env.spring.data.redis.port | quote }}
             - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
