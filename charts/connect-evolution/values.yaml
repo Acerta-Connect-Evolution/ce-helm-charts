@@ -104,3 +104,6 @@ ce-connect:
 
 ce-migration:
   enabled: true
+
+ce-user-preference:
+  enabled: true
