@@ -291,14 +291,14 @@ ce-user-preference:
     liquibasedatasource:
       username: AgA3WCJHgLXeyTgLzn8pgYNB6GW45XsUunO7JA9VSj5YeWkajn9VuNeuxkDz+TDEsfVomK/jIw1SD8APi9IPXPS0ZI2cjxrg7B4r1YQXs7IRNGXX6RAXmrxF8chAdsa8AmvYH/BY4jlkOLpKKY8KAfpvb0PdEn+QEPd4iKhrOVFi3EUUCZtNnqXwmYCxnbQyHGRJF7ZvSadst4gF6qu8S5371nFHeVNpUC05znLwfd3wQc+VxZpMk1NPOvBAg0JORsoUkWBh2v24VqHBuwTprbPDfeSoEfANdcJqg9khVImiS6DkBA6TqdVycfVy9ds4Tg0dyTobLaOLNlOvAIoWOtxxdF/hsDn+IfoU899as2HRxjByUkUMDreT+HWkv39/Og83UHlmzpvl/Qkp/z3hRTD/tMhxK6RP5umk+GqxIgHLUNA3wQecZxpRbefF5Z77xBVKVQaljeI8JlEDUx58hPI7zFWqLhIU6DHVPRw7Cn0CAgUZmIU4rFMhaN1Lkoq97B7796ztWW7zUeHNH3BhCngOO9DLdWlFOxUKSJFV2GfLKBu+DYD4Me20+fOFb9d5qtLfxBnFBsf7jYsvWhp03lhMYuZQZrkEAnv9fe1FrKnsd/wK6YlUL3+kaz4n3QjsOwVQR+yxLgB176Y0IJKsAdbka95XQ0m0p2JSpz73qDmeUp/R2r68f19TONhJEfKA5sEwLCc6wWaJu1iF/YPVIVi90AOvP6HhcQ1CgZAfGeY=
       password: AgCYuVV5ZYHPbBW9BRyJpOp4jy+uP5C4SP9CRJQ8mbOEI82AfUJyh4sliWVm8Oo2O+nzEhW11kl6xLGpbcTB5Qg0bGrzrofSSA/iaKrroPAzhABpSJTH42hqRlEGo+pGhZ0zI/xugZsavvxu6Qzhy2WjYwbJRvnuFho2CbFzydTolbZoVuy63bqUicpDjonbJuTUCbRIqOfQdA0Lo+jaC80uYvrSL3paf/q6nibCnST2A4dnE0qExUzNT37ozv1beXNRtAcQ7Csy7PNhl6z4OPQuef6AzSUqXrC3n0t+TTIihX4H5G+fz6rrJWqxy86bT+yPRxRee99/DdaSGORrE/TY0DrIw/KisoLH5TFfMFk+53j23o1aYWzZCpmcq1vS20ELIxG+x4a41mUGQga16xxtefGHHzfbXRnWDkiuzlnLtBzHxxKCkEfpjpFq4wOLUBtQfmU9IMV869FvNYw4haNKdBQsk3zFgUG2vB9Klj/WaSX12hQZIBs69i1bigux7xQnGAqOGEoskYU2vY3Mlz4mDmEcfTU3tCAKo1AR1l92aAWK6u+0qkI6iCCqWLkvhbKS1p9dSSkJESOlJqnx04lINeBBQGXADA63Tv/rq32sikLcSDl6WFe5gB7ghTJIkQ4jmW6vKPjcrmu1EyaSbj9y07Xji0UdmQ0eXED0ZpxtoUvw2ZzsiICU5kbK/DzQ+FtVGn3h7dgJL0Si+6akH/tz0pnf8JEkHEnvtFVj1G8=
-    loki:
-      enabled: true
-      tenant: tst
-    tempo:
-      enabled: true
-      tenant: tst
-    ingress:
-      enabled: true
-      className: ""
-      annotations:
-        dev.okteto.com/generate-host: "true"
+  loki:
+    enabled: true
+    tenant: tst
+  tempo:
+    enabled: true
+    tenant: tst
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
