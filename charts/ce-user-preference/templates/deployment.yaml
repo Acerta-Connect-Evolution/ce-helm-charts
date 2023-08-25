@@ -1,0 +1,125 @@
+{{- /* @formatter:off */}}
+  {{- $fullName := include "mychart.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "mychart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.tempo.enabled }}
+        instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/default-sdk-{{ .Values.tempo.tenant }}"
+      {{- end }}
+      labels:
+        {{- include "mychart.selectorLabels" . | nindent 8 }}
+        {{- if .Values.loki.enabled }}
+        loki: connect-{{ .Values.loki.tenant }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "mychart.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - configMap:
+            name: application-yml-{{ include "mychart.fullname" . }}
+          name: application-yml
+      containers:
+        - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: actuator/health/liveness
+              port: http
+            failureThreshold: 1
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: actuator/health/liveness
+              port: http
+            failureThreshold: 30
+            periodSeconds: 5
+          env:
+            - name: SPRING_DATA_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-redis-cred
+                  key: password
+            - name: SPRING_INIT-DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-init-datasource-cred
+                  key: username
+            - name: SPRING_INIT-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-init-datasource-cred
+                  key: password
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-datasource-cred
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-datasource-cred
+                  key: password
+            - name: SPRING_LIQUIBASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-liquibase-datasource-cred
+                  key: username
+            - name: SPRING_LIQUIBASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-liquibase-datasource-cred
+                  key: password
+            - name: OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_METRICS_EXPORTER
+              value: none
+            {{- if .Values.extraEnvs }}
+              {{- toYaml .Values.extraEnvs | nindent 12 }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
