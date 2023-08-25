@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-connect-evolution/ce-calendar-repertorium
+  repository: nexus.global.dns:8443/acerta-connect-evolution/ce-user-preference
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
