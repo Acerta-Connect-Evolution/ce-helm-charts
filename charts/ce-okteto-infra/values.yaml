@@ -277,6 +277,7 @@ ce-authorization-service:
 
 
 ce-user-preference:
+  fullnameOverride: user-preference
   enabled: true
   sealedsecret:
     redis:
