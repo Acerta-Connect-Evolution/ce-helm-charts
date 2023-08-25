@@ -159,10 +159,6 @@ pulsar-client:
 ce-ff4j-server:
   fullnameOverride: ce-ff4j-server
   enabled: true
-  env:
-    ff4jserver:
-      elasticSearchUrl: http://elasticsearch-master:9200
-      elasticSearchContext: not_used_yet
   ingress:
     enabled: true
     className: ""
