@@ -3,4 +3,4 @@ appVersion: 2.10.0
 description: Helm chart for ce-calendar-balance-backend
 name: ce-calendar-balance-backend
 type: application
-version: 0.52.0
+version: 0.53.0
