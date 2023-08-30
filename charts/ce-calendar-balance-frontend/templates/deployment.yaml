@@ -35,8 +35,15 @@ spec:
       serviceAccountName: {{ include "mychart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - configMap:
+            name: application-yml-{{ include "mychart.fullname" . }}
+          name: application-yml
       containers:
         - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -58,16 +65,6 @@ spec:
             failureThreshold: 100
             periodSeconds: 5
           env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: {{ .Values.env.spring.profiles.active }}
-            - name: SPRING_ELASTICSEARCH_URIS
-              value: {{ .Values.env.spring.elasticsearch.uris }}
-            - name: AXON_AXONSERVER_SERVERS
-              value: {{ .Values.env.axon.axonserver.servers }}
-            - name: DATASOURCE_JDBC-URL
-              value: {{ .Values.env.datasource.jdbcurl }}
-            - name: DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.datasource.databasename }}
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -78,22 +75,12 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
-            - name: PULSAR_BROKER_URL
-              value: {{ .Values.env.pulsar.broker.url }}
-            - name: WEBCOMPONENT_HOST
-              value: {{ .Values.env.webcomponent.host }}
-            - name: FF4J_API_URL
-              value: {{ .Values.env.ff4j.api.url }}
             - name: OTEL_AGENT
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: OTEL_METRICS_EXPORTER
               value: none
-            - name: SPRING_DATA_REDIS_HOST
-              value: {{ .Values.env.spring.data.redis.host }}
-            - name: SPRING_DATA_REDIS_PORT
-              value: {{ .Values.env.spring.data.redis.port | quote }}
             - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
