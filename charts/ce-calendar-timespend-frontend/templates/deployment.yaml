@@ -75,8 +75,6 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: password
-            - name: AUTHORISATION_CHRO_API_PERMISSIONS_URL
-              value: {{ .Values.env.authorisation.chro.api.permissions.url }}
             - name: OTEL_AGENT
               valueFrom:
                 fieldRef:
