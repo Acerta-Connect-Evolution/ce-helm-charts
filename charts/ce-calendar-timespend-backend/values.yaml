@@ -100,32 +100,6 @@ sealedsecret:
     password:
 
 
-env:
-  dicco:
-    url: DICCO_URL
-  datasource:
-    jdbcurl: DATASOURCE_JDBC-URL
-    databasename: DATASOURCE_DATABASE-NAME
-  spring:
-    profiles:
-      active: default
-    elasticsearch:
-      uris: SPRING_ELASTICSEARCH_URIS
-    data:
-      redis:
-        host: SPRING_DATA_REDIS_HOST
-        port: 6379
-        password: SPRING_DATA_REDIS_PASSWORD
-  axon:
-    axonserver:
-      servers: AXON_AXONSERVER_SERVERS
-  pulsar:
-    fake: PULSAR_FAKE
-    broker:
-      url: PULSAR_BROKER_URL
-  ff4j:
-    api:
-      url: FF4J_API_URL
 loki:
   enabled: true
   # dev, tst, acc, prd
@@ -135,3 +109,5 @@ tempo:
   tenant: "tst"
 
 extraEnv: {}
+
+application_yml: ""
