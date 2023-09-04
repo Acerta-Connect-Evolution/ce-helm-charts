@@ -90,39 +90,6 @@ sealedsecret:
     username:
     password:
 
-env:
-  datasource:
-    jdbcurl: SPRING_DATASOURCE_JDBCURL
-    databasename:
-  spring:
-    profiles:
-      active: default
-    elasticsearch:
-      uris: SPRING_ELASTICSEARCH_URIS
-    data:
-      redis:
-        host: SPRING_DATA_REDIS_HOST
-        port: 6379
-        password: SPRING_DATA_REDIS_PASSWORD
-  axon:
-    axonserver:
-      servers: AXON_AXONSERVER_SERVERS
-  pulsar:
-    broker:
-      url: PULSAR_BROKER_URL
-  webcomponent:
-    host: WEBCOMPONENT_HOST
-  ff4j:
-    api:
-      url: FF4J_API_URL
-  authorisation:
-    chro:
-      api:
-        permissions:
-          url: AUTHORISATION_CHRO_API_PERMISSIONS_URL
-  repertorium:
-    url: REPERTORIUM_URL
-
 loki:
   enabled: true
   # dev, tst, acc, prd
@@ -131,4 +98,4 @@ tempo:
   enabled: true
   tenant: "tst"
 
-extraEnv: {}
+  application_yml: ""
