@@ -91,10 +91,6 @@ tempo:
   enabled: true
   tenant: "tst"
 
-env:
-  spring:
-    profiles:
-      active: default
 
-extraEnv: {}
+
 
