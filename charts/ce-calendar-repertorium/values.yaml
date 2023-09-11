@@ -102,16 +102,4 @@ sealedsecret:
     username:
     password:
 
-env:
-  datasource:
-    jdbcurl: DATASOURCE_JDBC-URL
-    databasename: DATASOURCE_DATABASE-NAME
-  spring:
-    profiles:
-      active: default
-    pulsar:
-      broker:
-        url: PULSAR_BROKER_URL
-
-extraEnv: {}
-
+application_yml: ""

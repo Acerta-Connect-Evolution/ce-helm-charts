@@ -3,4 +3,4 @@ appVersion: 1.9.0
 description: Helm chart for ce-calendar-repertorium
 name: ce-calendar-repertorium
 type: application
-version: 1.8.0
+version: 1.9.0
