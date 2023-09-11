@@ -35,8 +35,15 @@ spec:
       serviceAccountName: {{ include "mychart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - configMap:
+            name: application-yml-{{ include "mychart.fullname" . }}
+          name: application-yml
       containers:
         - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -46,12 +53,6 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
-            - name: DATASOURCE_JDBC-URL
-              value: {{ .Values.env.datasource.jdbcurl }}
-            - name: DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.datasource.databasename }}
-            - name: PULSAR_BROKER_URL
-              value: {{ .Values.env.pulsar.broker.url }}
             - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -88,11 +89,6 @@ spec:
                   fieldPath: status.hostIP
             - name: OTEL_METRICS_EXPORTER
               value: none
-            - name: SPRING_PROFILES_ACTIVE
-              value: {{ .Values.env.spring.profiles.active }}
-            {{- if .Values.extraEnvs }}
-              {{- toYaml .Values.extraEnvs | nindent 12 }}
-            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
