@@ -27,9 +27,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {
-  checksum/config-map: { { (tpl (include (print $.Template.BasePath "/spring-config.yaml).AsConfig . ) | sha256sum } }
-}
+podAnnotations:
+  checksumConfigMap: { { include (print $.Template.BasePath "/spring-config.yaml") . | sha256sum } }
 
 
 podSecurityContext: { }
