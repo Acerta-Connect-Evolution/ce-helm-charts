@@ -27,20 +27,22 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: { checksum/config-map: { { (tpl (include (print $.Template.BasePath "/spring-config.yaml).AsConfig . ) | sha256sum } }
+podAnnotations: {
+  checksum/config-map: { { (tpl (include (print $.Template.BasePath "/spring-config.yaml).AsConfig . ) | sha256sum } }
+}
 
 
-                  podSecurityContext: { }
-  # fsGroup: 2000
+podSecurityContext: { }
+# fsGroup: 2000
 
-                  postSyncJob:
-                    enabled: false
+postSyncJob:
+  enabled: false
 
-                  securityContext: { }
-                    # capabilities:
+securityContext: { }
+  # capabilities:
   #   drop:
   #   - ALL
-  # readOnlyRootFilesystem: true
+# readOnlyRootFilesystem: true
 # runAsNonRoot: true
 # runAsUser: 1000
 
