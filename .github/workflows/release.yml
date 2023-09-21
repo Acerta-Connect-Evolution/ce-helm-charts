@@ -5,7 +5,10 @@ on:
     branches:
       - main
       - 'hotfix/**'
-
+  pull_request:
+    branches-ignore:    
+      - 'hotfix/**'
+      
 concurrency: ci-sequential
 
 jobs:
