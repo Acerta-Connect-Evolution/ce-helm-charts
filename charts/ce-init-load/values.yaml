@@ -28,7 +28,7 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  checksumConfigMap: { include (print $.Template.BasePath "/application.yaml") . | sha256sum }
+  checksumConfigMap: include (print $.Template.BasePath "/application.yaml") . | sha256sum
 
 
 podSecurityContext: { }
