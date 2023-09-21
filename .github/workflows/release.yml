@@ -14,6 +14,7 @@ concurrency: ci-sequential
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: false == startsWith(github.event.pull_request.head.ref, 'hotfix/') 
     steps:
 #      - name: Sleep 1 minute
 #        run: sleep 60s
