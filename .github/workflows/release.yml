@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-#checking my script withouth always triggering this    
-#  - 'hotfix/**'
+      - 'hotfix/**'
       
 concurrency: ci-sequential
 
