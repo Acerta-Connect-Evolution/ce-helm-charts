@@ -1,16 +1,39 @@
 name: Testing Release Charts
-
-on:
-  push:
-    branches:
-      - main
-      - 'testing/**'
-
-
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    #  if: false == startsWith(github.event.pull_request.head.ref, 'hotfix/')
-    steps:
-      - name: Succesfull
-        run: echo "Build succesfull"
+#
+#on:
+#  push:
+#    branches:
+#      - 'testingmain'
+#      - 'testing/**'
+#
+#jobs:
+#  release:
+#    runs-on: ubuntu-latest
+#    if: false == contains(github.event.head_commit.message, 'testing')
+#    steps:
+#      - name: Succesfull
+#        run: echo "Build succesfull"
+#
+#  printSelector:
+#    name: Print selector
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Dump GitHub context
+#        env:
+#          github: ${{ toJson(github.event.head_commit.message) }}
+#        run: |
+#          echo "$github"
+#
+#  printJob:
+#    name: Print event
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Dump GitHub context
+#        env:
+#          GITHUB_CONTEXT: ${{ toJson(github) }}
+#        run: |
+#          echo "$GITHUB_CONTEXT"
+#          
+#          
+          
+          
