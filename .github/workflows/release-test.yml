@@ -6,11 +6,9 @@ on:
       - 'testingmain'
       - 'testing/**'
 
-
 jobs:
   release:
     runs-on: ubuntu-latest
-    #  if: false == startsWith(github.event.pull_request.head.ref, 'hotfix/')
     steps:
       - name: Succesfull
-        run: echo "Build succesfull"
+        run: echo github.event
