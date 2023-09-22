@@ -7,8 +7,12 @@ on:
       - 'testing/**'
 
 jobs:
-  release:
+  printJob:
+    name: Print event
     runs-on: ubuntu-latest
     steps:
-      - name: Succesfull
-        run: echo github.event
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
