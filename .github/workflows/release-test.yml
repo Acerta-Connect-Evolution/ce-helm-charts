@@ -3,7 +3,7 @@ name: Testing Release Charts
 on:
   push:
     branches:
-      - main
+      - 'testingmain/**'
       - 'testing/**'
 
 
