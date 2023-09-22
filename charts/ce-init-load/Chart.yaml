@@ -4,3 +4,4 @@ description: Helm chart for ce-init-load
 name: ce-init-load
 type: application
 version: 0.46.1
+
