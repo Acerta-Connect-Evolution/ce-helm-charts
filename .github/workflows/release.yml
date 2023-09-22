@@ -4,10 +4,8 @@ on:
   push:
     branches:
       - main
-      - 'hotfix/**'
-  pull_request:
-    branches-ignore:    
-      - 'hotfix/**'
+#checking my script withouth always triggering this    
+#  - 'hotfix/**'
       
 concurrency: ci-sequential
 
