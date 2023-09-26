@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 1.10.0
+appVersion: 1.11.0
 description: Helm chart for ce-calendar-repertorium
 name: ce-calendar-repertorium
 type: application
-version: 1.11.0
+version: 1.12.0
