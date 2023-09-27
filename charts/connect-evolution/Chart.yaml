@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.1565.0
+version: 1.1566.0
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.363.0
@@ -65,7 +65,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-ff4j-server.enabled
   - name: ce-payroll-vacationcertificate
-    version: 0.109.0
+    version: 0.110.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-payroll-vacationcertificate.enabled
   - name: ce-webcomponents
@@ -73,15 +73,15 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-webcomponents.enabled
   - name: ce-calendar-repertorium
-    version: 1.11.0
+    version: 1.12.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-repertorium.enabled
   - name: ce-balances
-    version: 0.40.0
+    version: 0.41.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-balances.enabled
   - name: ce-clink
-    version: 0.51.0
+    version: 0.53.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-clink.enabled
   - name: ce-init-load
@@ -113,10 +113,10 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-connect.enabled
   - name: ce-migration
-    version: 1.5.0
+    version: 1.6.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-migration.enabled
   - name: ce-user-preference
-    version: 1.2.0
+    version: 1.3.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-user-preference.enabled
