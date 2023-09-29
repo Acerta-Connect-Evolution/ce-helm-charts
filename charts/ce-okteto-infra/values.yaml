@@ -1,6 +1,12 @@
 mssql-latest:
   fullnameOverride: mssql-latest
   enabled: true
+  resources:
+    limits:
+      memory: 3072Mi
+    requests:
+      cpu: 5m
+      memory: 1536Mi
   persistence:
     dataSize: 1Gi
     userlogSeparateClaim: false
@@ -10,9 +16,15 @@ mssql-latest:
 elasticsearch:
   fullnameOverride: elasticsearch-master
   enabled: true
+  resources:
+    limits:
+      memory: 3072Mi
+    requests:
+      cpu: 20m
+      memory: 1536Mi
   image: nexus.global.dns:8443/acerta-dev/elasticsearch
   imageTag: 7.15.0
-  replicas: 2
+  replicas: 1
   minimumMasterNodes: 1
   volumeClaimTemplate.resources.requests.storage: 1Gi
   sysctlInitContainer.enabled: false
@@ -28,6 +40,12 @@ elasticsearch:
 redis:
   fullnameOverride: redis
   enabled: true
+  resources:
+    requests:
+      cpu: 5m
+      memory: 1024Mi
+    limits:
+      memory: 128Mi
   architecture: standalone
   global:
     redis:
@@ -36,22 +54,27 @@ redis:
 pulsar-standalone:
   fullnameOverride: pulsar-standalone
   enabled: true
+  resources:
+    requests:
+      cpu: 100m
+      memory: 3072Mi
+    limits:
+      memory: 4096Mi
   ingress:
     className: ""
     enabled: true
     annotations:
       dev.okteto.com/generate-host: "true"
-  resources:
-    requests:
-      cpu: "500m"
-      memory: "2048Mi"
-    limits:
-      memory: "4096Mi"
-      cpu: "1000m"
 
 pulsar-admin-console:
   fullnameOverride: pulsar-admin-console
   enabled: true
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      cpu: 5m
+      memory: 64Mi
   local_json: |
     {
         "auth_mode": "none",
@@ -112,6 +135,12 @@ pulsar-admin-console:
 axon-server-calendar:
   fullnameOverride: axon-server-calendar
   enabled: true
+  resources:
+    limits:
+      memory: 2048Mi
+    requests:
+      cpu: 10m
+      memory: 1024Mi
   image:
     # Note: the name of the repository is used throughout the chart to figure if we should configure for SE or EE
     # "axoniq/axonserver" is the SE Docker image. Any other (custom) image means that the chart will configure for EE
@@ -146,6 +175,12 @@ axon-server-calendar:
 pulsar-client:
   fullnameOverride: pulsar-client
   enabled: true
+  resources:
+    limits:
+      memory: 1024Mi
+    requests:
+      cpu: 5m
+      memory: 512Mi
   env:
     pulsar:
       adminurl: http://pulsar-standalone:8080
@@ -159,6 +194,12 @@ pulsar-client:
 ce-ff4j-server:
   fullnameOverride: ce-ff4j-server
   enabled: true
+  resources:
+    limits:
+      memory: 512Mi
+    requests:
+      cpu: 10m
+      memory: 256Mi
   ingress:
     enabled: true
     className: ""
@@ -168,6 +209,12 @@ ce-ff4j-server:
 ce-calendar-repertorium:
   fullnameOverride: calendar-repertorium
   enabled: true
+  resources:
+    limits:
+      memory: 1024Mi
+    requests:
+      cpu: 10m
+      memory: 512Mi
   env:
     pulsar:
       broker:
@@ -212,6 +259,12 @@ ff4j-init-job:
 frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
   enabled: true
+  resources:
+    limits:
+      memory: 1024Mi
+    requests:
+      cpu: 20m
+      memory: 512Mi
   ingress:
     enabled: true
     className: ""
@@ -222,6 +275,12 @@ frontend-services-gateway:
 keycloak-boot:
   fullnameOverride: keycloak-boot
   enabled: true
+  resources:
+    limits:
+      memory: 1024Mi
+    requests:
+      cpu: 5m
+      memory: 512Mi
   ingress:
     enabled: true
     className: ""
@@ -236,6 +295,12 @@ keycloak-boot:
 ce-webcomponents:
   fullnameOverride: ce-webcomponents
   enabled: true
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      cpu: 5m
+      memory: 64Mi
   image:
     tag: "latest"
   ingress:
@@ -247,6 +312,12 @@ ce-webcomponents:
 ce-fake-everesst:
   fullnameOverride: ce-fake-everesst
   enabled: true
+  resources:
+    limits:
+      memory: 768Mi
+    requests:
+      cpu: 20m
+      memory: 384Mi
   ingress:
     enabled: true
     className: ""
@@ -257,6 +328,12 @@ ce-fake-everesst:
 ce-fake-chro:
   fullnameOverride: ce-fake-chro
   enabled: true
+  resources:
+    limits:
+      memory: 512Mi
+    requests:
+      cpu: 5m
+      memory: 256Mi
   ingress:
     enabled: true
     className: ""
@@ -267,6 +344,12 @@ ce-fake-chro:
 ce-authorization-service:
   fullnameOverride: ce-authorization-service
   enabled: true
+  resources:
+    limits:
+      memory: 512Mi
+    requests:
+      cpu: 10m
+      memory: 256Mi
   sealedsecret:
     redis:
       password: AgBvJecr46uhBJDSAlKeomWM4ztuqMrr3jvNWhd0cH6KLz/wPSvvz/Nq0Bga1ZZ82lv5SvDVnKixAEAGkUY0yxxPXUbxFEncficX/o0XGNUmRyMezCZBNbsk1T24Qqd5my0gkq2Rx0gVc/ja6eYx+mg71yV0MIjyJ51MeAeBq9Oe4/lsdN5W6g+6NXGeiOVhBhVehZzSxTBZcZZTu0QZ1vXVpCPctReBKeu2MmpNqyUO0kytNlM907i/CLdwea5710DjIiHqsXbIyipfzjyTPfI72KmizmkitpFIZMj9xIXnlRQp4gS82MaBFNBfouZ7PXyL1ECZG0anmEOQhrHhg6rRP9HChfbCnuDKVyXqw/XhaieFTLt8fdXHRMZOqVRt4jt8ZzEPgjPo/8zNcWCTgTfuqa2WVpqXTLGr8af0vQ/i5Tw2Zs+Pl2kPfsOj3sJfDSaCVAc67I3UPbvAQBK1yqYeE4Ci/xvJDMnvWqkirYo1j7xgb27iWIZ3Ez7iEUHMsNCYJGVOZRwWibgRVc04oOQzHTSdzUv7I739Lm9VJThdZBirnU4Jn2alc4nsP/VdgLiBfleXjmPf+rD++pGP/+j9FkAQh/0qC2sKot4ZtA5rYEdgVNMkm2QdwF/WU4gDaG+u1QM4VETFHGTUczuLNibwudfiTsYmmDJZ/iOQctBOT8r117IMkmuyWZV9Eyi3j+hEBgLUfvlcXA==
@@ -279,6 +362,12 @@ ce-authorization-service:
 ce-user-preference:
   fullnameOverride: user-preference
   enabled: true
+  resources:
+    requests:
+      cpu: 5m
+      memory: 512Mi
+    limits:
+      memory: 1024Mi
   sealedsecret:
     redis:
       password: AgBvJecr46uhBJDSAlKeomWM4ztuqMrr3jvNWhd0cH6KLz/wPSvvz/Nq0Bga1ZZ82lv5SvDVnKixAEAGkUY0yxxPXUbxFEncficX/o0XGNUmRyMezCZBNbsk1T24Qqd5my0gkq2Rx0gVc/ja6eYx+mg71yV0MIjyJ51MeAeBq9Oe4/lsdN5W6g+6NXGeiOVhBhVehZzSxTBZcZZTu0QZ1vXVpCPctReBKeu2MmpNqyUO0kytNlM907i/CLdwea5710DjIiHqsXbIyipfzjyTPfI72KmizmkitpFIZMj9xIXnlRQp4gS82MaBFNBfouZ7PXyL1ECZG0anmEOQhrHhg6rRP9HChfbCnuDKVyXqw/XhaieFTLt8fdXHRMZOqVRt4jt8ZzEPgjPo/8zNcWCTgTfuqa2WVpqXTLGr8af0vQ/i5Tw2Zs+Pl2kPfsOj3sJfDSaCVAc67I3UPbvAQBK1yqYeE4Ci/xvJDMnvWqkirYo1j7xgb27iWIZ3Ez7iEUHMsNCYJGVOZRwWibgRVc04oOQzHTSdzUv7I739Lm9VJThdZBirnU4Jn2alc4nsP/VdgLiBfleXjmPf+rD++pGP/+j9FkAQh/0qC2sKot4ZtA5rYEdgVNMkm2QdwF/WU4gDaG+u1QM4VETFHGTUczuLNibwudfiTsYmmDJZ/iOQctBOT8r117IMkmuyWZV9Eyi3j+hEBgLUfvlcXA==
@@ -302,3 +391,52 @@ ce-user-preference:
     className: ""
     annotations:
       dev.okteto.com/generate-host: "true"
+
+spring-cloud-dataflow:
+  enabled: true
+  fullnameOverride: spring-cloud-dataflow
+  skipper:
+    enabled: false
+  rabbitmq:
+    resources:
+      limits:
+        memory: 256Mi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+  server:
+    resources:
+      limits:
+        memory: 1024Mi
+      requests:
+        cpu: 30m
+        memory: 512Mi
+    image:
+      registry: nexus.global.dns:8443
+      repository: acerta-connect-evolution/spring-cloud-dataflow
+      tag: 2.10.3-debian-11-r4
+    initContainers:
+      - name: init-db
+        image: nexus.global.dns:8443/acerta-connect-evolution/spring-cloud-dataflow-init-db:1.0.0
+    configuration:
+      streamingEnabled: false
+      defaultSpringApplicationJSON: false
+    ingress:
+      enabled: true
+      className: ""
+      annotations:
+        dev.okteto.com/generate-host: "true"
+    extraEnvVars:
+      - name: SPRING_APPLICATION_JSON
+        value: |-
+          { \"maven\": { \"local-repository\": null,\"remote-repositories\": { \"repo1\": { \"url\": \"https://nexus.global.dns/repository/maven-public/\" } } } }
+  mariadb:
+    enabled: false
+  externalDatabase:
+    password: ScdfApplicationPass123
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    dataflow:
+      url: jdbc:sqlserver://mssql-latest:1433;sendStringParametersAsUnicode=false;encrypt=false
+      username: scdf_application_user
+      database: spring_cloud_dataflow
+    hibernateDialect: org.hibernate.dialect.SQLServer2012Dialect

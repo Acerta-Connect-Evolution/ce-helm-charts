@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.88.0
+version: 0.89.0
 dependencies:
   - name: mssql-latest
     version: 0.3.8
@@ -80,3 +80,7 @@ dependencies:
     version: 1.2.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-user-preference.enabled
+  - name: spring-cloud-dataflow
+    version: 23.1.4
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: spring-cloud-dataflow.enabled
