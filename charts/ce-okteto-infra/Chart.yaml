@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.89.0
+version: 0.90.0
 dependencies:
   - name: mssql-latest
     version: 0.3.8
@@ -14,7 +14,7 @@ dependencies:
     repository: https://helm.elastic.co
     condition: elasticsearch.enabled
   - name: redis
-    version: 17.3.7
+    version: 18.1.0
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
   - name: pulsar-standalone
