@@ -398,6 +398,7 @@ spring-cloud-dataflow:
   skipper:
     enabled: false
   rabbitmq:
+    fullnameOverride: spring-cloud-dataflow-rabbitmq
     resources:
       limits:
         memory: 256Mi
