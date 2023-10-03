@@ -398,13 +398,7 @@ spring-cloud-dataflow:
   skipper:
     enabled: false
   rabbitmq:
-    fullnameOverride: spring-cloud-dataflow-rabbitmq
-    resources:
-      limits:
-        memory: 256Mi
-      requests:
-        cpu: 10m
-        memory: 128Mi
+    enabled: false
   server:
     resources:
       limits:
@@ -418,7 +412,10 @@ spring-cloud-dataflow:
       tag: 2.10.3-debian-11-r4
     initContainers:
       - name: init-db
-        image: nexus.global.dns:8443/acerta-connect-evolution/spring-cloud-dataflow-init-db:1.0.0
+        image: nexus.global.dns:8443/acerta-connect-evolution/spring-cloud-dataflow-init-db:1.1.0
+        env:
+          - name: MSSQL_HOST
+            value: mssql-latest
     configuration:
       streamingEnabled: false
       defaultSpringApplicationJSON: false
