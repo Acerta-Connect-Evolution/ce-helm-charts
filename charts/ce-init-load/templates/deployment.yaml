@@ -19,9 +19,14 @@ spec:
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.tempo.enabled }}
+        instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/default-sdk-{{ .Values.tempo.tenant }}"
+      {{- end }}
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
-        loki: connect
+        {{- if .Values.loki.enabled }}
+        loki: connect-{{ .Values.loki.tenant }}
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
