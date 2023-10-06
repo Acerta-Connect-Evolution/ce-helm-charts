@@ -3,4 +3,4 @@ appVersion: 0.93.0
 description: Helm chart for ce-payroll-vacationcertificate
 name: ce-payroll-vacationcertificate
 type: application
-version: 0.111.0
+version: 0.112.0
