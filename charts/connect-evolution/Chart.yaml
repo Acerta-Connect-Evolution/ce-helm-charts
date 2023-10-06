@@ -121,6 +121,6 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-user-preference.enabled
   - name: ce-scdf-client
-    version: 0.0.1
+    version: 0.1.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-scdf-client.enabled
