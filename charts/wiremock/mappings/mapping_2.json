@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "dicco-rest/v1/foo"
+  },
+  "response":{
+    "status":200,
+    "bodyFileName":"responses/response_1.json",
+    "headers":{
+      "Content-Type":"application/json"
+    }
+  }
+}
