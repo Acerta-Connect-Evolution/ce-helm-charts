@@ -107,3 +107,6 @@ ce-migration:
 
 ce-user-preference:
   enabled: true
+
+ce-scdf-client:
+  enabled: true
