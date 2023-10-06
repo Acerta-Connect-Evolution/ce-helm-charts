@@ -78,7 +78,7 @@ tolerations: []
 
 affinity: {}
 
-extraEnvs: { }
+extraEnvs: {}
 
 sealedsecret:
   debezium:

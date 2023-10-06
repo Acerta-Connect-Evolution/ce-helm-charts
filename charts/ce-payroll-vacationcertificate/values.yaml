@@ -129,4 +129,4 @@ tempo:
   enabled: true
   tenant: "tst"
 
-extraEnv: { }
+extraEnv: {}
