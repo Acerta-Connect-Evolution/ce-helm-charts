@@ -3,4 +3,4 @@ appVersion: 1.48.0
 description: Helm chart for Pulsar Client
 name: pulsar-client
 type: application
-version: 3.54.0
+version: 3.55.0
