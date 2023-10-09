@@ -1,7 +1,7 @@
 {
   "request": {
       "method": "GET",
-      "url": "dicco-rest/v1/time-spends"
+      "url": "/dicco-rest/v1/time-spends"
   },
   "response":{
     "status":200,
