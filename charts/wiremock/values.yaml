@@ -23,6 +23,7 @@ service:
   type: ClusterIP
   externalPort: 9021
   internalPort: 9021
+  annotations: {}
 
 ingress:
   enabled: false
