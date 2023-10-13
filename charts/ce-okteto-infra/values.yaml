@@ -24,8 +24,9 @@ elasticsearch:
       memory: 1536Mi
   image: nexus.global.dns:8443/acerta-dev/elasticsearch
   imageTag: 7.15.0
-  replicas: 2
+  replicas: 1
   minimumMasterNodes: 1
+  false
   volumeClaimTemplate.resources.requests.storage: 1Gi
   sysctlInitContainer.enabled: false
   extraEnvs:
