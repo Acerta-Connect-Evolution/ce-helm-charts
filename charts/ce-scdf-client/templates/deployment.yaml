@@ -95,6 +95,26 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
                   key: password
+            - name: DICCO-DATASOURCE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-dicco-datasource-cred
+                  key: username
+            - name: DICCO-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-dicco-datasource-cred
+                  key: password
+            - name: SCDF-DATASOURCE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-scdf-datasource-cred
+                  key: username
+            - name: SCDF-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-scdf-datasource-cred
+                  key: password
             - name: OTEL_AGENT
               valueFrom:
                 fieldRef:

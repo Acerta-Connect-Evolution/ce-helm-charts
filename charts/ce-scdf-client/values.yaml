@@ -105,3 +105,9 @@ sealedsecret:
   liquibasedatasource:
     username:
     password:
+  diccodatasource:
+    username:
+    password:
+  scdfdatasource:
+    username:
+    password:
