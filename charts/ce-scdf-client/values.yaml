@@ -95,3 +95,13 @@ application_yml: ""
 
 extraEnv: {}
 
+sealedsecret:
+  initdatasource:
+    username:
+    password:
+  datasource:
+    username:
+    password:
+  liquibasedatasource:
+    username:
+    password:
