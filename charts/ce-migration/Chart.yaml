@@ -3,4 +3,4 @@ appVersion: 0.3.0
 description: Helm chart for ce-migration
 name: ce-migration
 type: application
-version: 1.6.0
+version: 1.7.0

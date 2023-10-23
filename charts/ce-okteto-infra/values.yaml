@@ -439,3 +439,5 @@ spring-cloud-dataflow:
       username: scdf_application_user
       database: spring_cloud_dataflow
     hibernateDialect: org.hibernate.dialect.SQLServer2012Dialect
+wiremock:
+  enabled: true

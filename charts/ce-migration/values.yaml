@@ -97,4 +97,12 @@ sealedsecret:
     username:
     password:
 
+loki:
+  enabled: true
+  # dev, tst, acc, prd
+  tenant: "tst"
+tempo:
+  enabled: true
+  tenant: "tst"
+
 application_yml: ""
