@@ -3,4 +3,4 @@ appVersion: 0.7.0
 description: Helm chart for ce-scdf-client
 name: ce-scdf-client
 type: application
-version: 0.7.0
+version: 0.8.0
