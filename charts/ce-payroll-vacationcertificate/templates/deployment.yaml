@@ -97,7 +97,7 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
                   key: password
-            - name: SPRING_REDIS_PASSWORD
+            - name: SPRING_DATA_REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-redis-cred
@@ -118,8 +118,6 @@ spec:
               value: {{ .Values.env.pulsar.broker.url }}
             - name: FF4J_API_URL
               value: {{ .Values.env.ff4j.api.url }}
-            - name: SPRING_REDIS_HOST
-              value: {{ .Values.env.spring.redis.host }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
