@@ -109,8 +109,9 @@ env:
   spring:
     profiles:
       active: default
-    redis:
-      host: REDIS_HOST
+    data:
+      redis:
+        host: REDIS_HOST
   webcomponent:
     host: WEBCOMPONENT_HOST
   pulsar:
