@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 0.7.0
+appVersion: 0.8.0
 description: Helm chart for ce-scdf-client
 name: ce-scdf-client
 type: application
-version: 0.10.0
+version: 0.11.0
