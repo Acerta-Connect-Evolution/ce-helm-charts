@@ -65,16 +65,6 @@ spec:
             failureThreshold: 30
             periodSeconds: 5
           env:
-            - name: SPRING_INIT-DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-init-datasource-cred
-                  key: username
-            - name: SPRING_INIT-DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-init-datasource-cred
-                  key: password
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -95,7 +85,7 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
                   key: password
-            - name: DICCO-DATASOURCE_USER
+            - name: DICCO-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-dicco-datasource-cred
@@ -104,16 +94,6 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-dicco-datasource-cred
-                  key: password
-            - name: SCDF-DATASOURCE_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-scdf-datasource-cred
-                  key: username
-            - name: SCDF-DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-scdf-datasource-cred
                   key: password
             - name: OTEL_AGENT
               valueFrom:
