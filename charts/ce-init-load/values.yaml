@@ -27,7 +27,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: { }
+podAnnotations:
+  checksumConfigMap: '{{ include (print $.Template.BasePath "/spring-config.yaml") . | sha256sum }}'
 
 podSecurityContext: { }
 # fsGroup: 2000
