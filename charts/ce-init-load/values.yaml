@@ -28,7 +28,7 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  checksumConfigMap: '{{ include (print $.Template.BasePath "/spring-config.yaml") . | sha256sum }}'
+  checksumConfigMap: '{{ include (print $.Template.BasePath "/application-yml") . | sha256sum }}'
 
 podSecurityContext: { }
 # fsGroup: 2000
