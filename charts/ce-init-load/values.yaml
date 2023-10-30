@@ -27,7 +27,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {}
+podAnnotations:
+  checksumConfigMap: include (tpl (.Files.Glob "application_yml").AsConfig . ) | sha256sum
 
 podSecurityContext: { }
 # fsGroup: 2000
