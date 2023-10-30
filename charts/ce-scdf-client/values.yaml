@@ -96,9 +96,6 @@ application_yml: ""
 extraEnv: {}
 
 sealedsecret:
-  initdatasource:
-    username:
-    password:
   datasource:
     username:
     password:
@@ -106,8 +103,5 @@ sealedsecret:
     username:
     password:
   diccodatasource:
-    username:
-    password:
-  scdfdatasource:
     username:
     password:
