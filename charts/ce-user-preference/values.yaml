@@ -23,7 +23,7 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  checksum/config-map: include ("application-yml.configmap") .| sha256sum
+  checksum/config-map: include ("application-yml-user-preference.configmap") .| sha256sum
 
 
 podSecurityContext: {}
