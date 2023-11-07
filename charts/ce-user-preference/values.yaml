@@ -23,7 +23,8 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  checksum/config-map: include (print $.Files.Get "config/application.yml") . | sha256sum
+  checksum/config-map: (tpl (.Template.BasePath "/spring-config.yaml") . ) | sha256sum
+
 
 podSecurityContext: {}
 # fsGroup: 2000
