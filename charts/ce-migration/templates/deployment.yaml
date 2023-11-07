@@ -17,6 +17,7 @@ spec:
     metadata:
       {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config-map: {{ include (print $.Template.BasePath "/spring-config.yaml") . | sha256sum   }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
         {{- if .Values.tempo.enabled }}
