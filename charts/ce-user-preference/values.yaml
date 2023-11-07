@@ -23,7 +23,7 @@ serviceAccount:
   name: ""
 
 podAnnotations:
-  checksum/config-map: include (print $.Template.BasePath "config/application.yml") . | sha256sum
+  checksum/config-map: (tpl (.Files.Glob "conf/*").AsConfig . ) | sha256sum
 
 podSecurityContext: {}
 # fsGroup: 2000
