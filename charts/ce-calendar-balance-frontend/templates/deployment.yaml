@@ -16,6 +16,7 @@ spec:
   template:
     metadata:
       annotations:
+        checksum/config-map: {{ include (print $.Template.BasePath "/spring-config.yaml") . | sha256sum   }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
