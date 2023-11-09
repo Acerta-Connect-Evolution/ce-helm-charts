@@ -46,7 +46,7 @@ service:
   rsocket_port: 7001
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations:
   # kubernetes.io/ingress.class: nginx
