@@ -72,9 +72,3 @@ loki:
   tenant: "tst"
 
 extraEnv: {}
-
-servicemonitor:
-  create: true
-  namespaceSelector:
-    matchNames:
-      - default
