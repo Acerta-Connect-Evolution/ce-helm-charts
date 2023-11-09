@@ -20,7 +20,7 @@ spec:
           regex: {{ include "mychart.fullname" . }}
         - source_labels: [__meta_kubernetes_pod_container_port_number]
           action: keep
-          regex: {{ .Values.service.port }}
+          regex: "{{ .Values.service.port }}"
     - interval: 15s
       path: /metrics/proxy
       port: scrape
@@ -32,7 +32,7 @@ spec:
           regex: {{ include "mychart.fullname" . }}
         - source_labels: [__meta_kubernetes_pod_container_port_number]
           action: keep
-          regex: {{ .Values.service.port }}
+          regex: "{{ .Values.service.port }}"
         - action: labelmap
           regex: __meta_kubernetes_pod_label_(.+)
         - source_labels: [__meta_kubernetes_pod_name]
