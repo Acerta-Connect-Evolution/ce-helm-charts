@@ -113,3 +113,6 @@ ce-user-preference:
 
 ce-scdf-client:
   enabled: true
+
+prometheus-rsocket-proxy:
+  enabled: true

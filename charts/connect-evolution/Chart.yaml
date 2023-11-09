@@ -129,3 +129,7 @@ dependencies:
     version: 0.15.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-scdf-client.enabled
+  - name: prometheus-rsocket-proxy
+    version: 0.7.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: prometheus-rsocket-proxy.enabled
