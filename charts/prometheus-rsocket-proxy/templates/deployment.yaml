@@ -19,9 +19,6 @@ spec:
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.tempo.enabled }}
-        instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/default-sdk"
-      {{- end }}
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
         {{- if .Values.loki.enabled }}
