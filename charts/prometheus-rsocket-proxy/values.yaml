@@ -45,11 +45,11 @@ service:
   port: 8080
   rsocket_port: 7001
 
-resources: # {}
+resources:
 #  requests:
 #    cpu: "2"
 #    memory: "1000Mi"
-args: # {}
+args:
 #  - -cpus
 #  - "2"
 
@@ -72,3 +72,9 @@ loki:
   tenant: "tst"
 
 extraEnv: {}
+
+servicemonitor:
+  create: true
+  namespaceSelector:
+    matchNames:
+      - default

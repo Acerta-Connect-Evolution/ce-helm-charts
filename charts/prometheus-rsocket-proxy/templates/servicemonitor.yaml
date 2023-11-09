@@ -1,4 +1,4 @@
-{{- /* @formatter:off */}}
+{{- if .Values.servicemonitor.create -}}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -40,7 +40,8 @@ spec:
           target_label: kubernetes_pod_name
   namespaceSelector:
     matchNames:
-      - {{ .Release.Namespace }}
+      {{- toYaml .Values.servicemonitor.namespaceSelector.matchNames | nindent 6 }}
   selector:
     matchLabels:
       appType: {{ .Values.appType }}
+{{- end }}
