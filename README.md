@@ -20,10 +20,17 @@ You can then run `helm search repo ce-helm` to see the charts.
 
 We defined some custom images that the charts refer to. They can be found in [ce-images](https://github.com/Acerta-Connect-Evolution/ce-images).
 
-## Tip: Linting a chart
+## Tip: Validating a chart up front
 
-Useful when checking the syntactical correctness of a chart:
+Check the syntactical correctness of a chart before publishing it. E.g., for chart 'keycloak-boot':
 
 ```console
-helm lint .\keycloak-boot\
+# test rendering chart template locally
+helm template --debug .\charts\keycloak-boot\
+
+# let the server decide if the chart is valid
+helm install --dry-run --debug keycloak-boot .\charts\keycloak-boot\
+
+# are best-practices followed?
+helm lint .\charts\keycloak-boot\
 ```
