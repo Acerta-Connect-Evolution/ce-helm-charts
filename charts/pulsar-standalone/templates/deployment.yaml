@@ -29,18 +29,23 @@ spec:
       serviceAccountName: {{ include "mychart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.persistence.enabled }}
       volumes:
-        - name: data-volume
-          emptyDir: {}
+        - name: pulsar-data
+          persistentVolumeClaim:
+            claimName: pulsar-data
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.persistence.enabled }}
           volumeMounts:
-            - name: data-volume
+            - name: pulsar-data
               mountPath: /pulsar/data
+          {{- end }}
           command:
             - /bin/bash
             - -c

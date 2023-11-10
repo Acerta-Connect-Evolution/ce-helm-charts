@@ -78,6 +78,12 @@ tolerations: []
 
 affinity: {}
 
+persistence:
+  enabled: false
+  storageClass: ""
+  dataAccessMode: ReadWriteOnce
+  dataSize: 1Gi
+
 env:
   debezium:
     database:
