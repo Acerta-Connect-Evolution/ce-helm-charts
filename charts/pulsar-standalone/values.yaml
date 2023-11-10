@@ -22,8 +22,11 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-# fsGroup: 2000
+podSecurityContext:
+  fsGroup: 10000
+  runAsUser: 10000
+  runAsGroup: 10000
+  fsGroupChangePolicy: "OnRootMismatch"
 
 securityContext: {}
   # capabilities:
@@ -81,7 +84,7 @@ affinity: {}
 persistence:
   enabled: false
   storageClass: ""
-  dataAccessMode: ReadWriteOnce
+  dataAccessMode: ReadWriteMany
   dataSize: 1Gi
 
 env:

@@ -35,6 +35,8 @@ spec:
           persistentVolumeClaim:
             claimName: pulsar-data
       {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
