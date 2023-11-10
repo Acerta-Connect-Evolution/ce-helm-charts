@@ -18,7 +18,7 @@ dependencies:
     repository: https://charts.bitnami.com/bitnami
     condition: redis.enabled
   - name: pulsar-standalone
-    version: 3.6.0
+    version: 3.8.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-standalone.enabled
   - name: pulsar-admin-console
