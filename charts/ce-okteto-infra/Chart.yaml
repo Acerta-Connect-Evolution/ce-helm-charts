@@ -53,7 +53,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-repertorium.enabled
   - name: frontend-services-gateway
-    version: 1.99.0
+    version: 1.103.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: frontend-services-gateway.enabled
   - name: keycloak-boot
