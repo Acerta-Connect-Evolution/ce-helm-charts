@@ -94,7 +94,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-init-load.enabled
   - name: frontend-services-gateway
-    version: 1.104.0
+    version: 1.105.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
