@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.103.0
+version: 0.104.0
 dependencies:
   - name: mssql-latest
     version: 0.3.9
@@ -53,7 +53,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-repertorium.enabled
   - name: frontend-services-gateway
-    version: 1.104.0
+    version: 1.105.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: frontend-services-gateway.enabled
   - name: keycloak-boot
