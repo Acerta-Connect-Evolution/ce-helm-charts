@@ -116,3 +116,6 @@ ce-scdf-client:
 
 prometheus-rsocket-proxy:
   enabled: true
+
+ce-chro-inbound-integration:
+  enabled: true
