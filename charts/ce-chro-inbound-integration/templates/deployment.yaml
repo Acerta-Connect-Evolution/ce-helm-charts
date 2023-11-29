@@ -1,0 +1,76 @@
+{{- /* @formatter:off */}}
+  {{- $fullName := include "mychart.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "mychart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config-map: {{ include (print $.Template.BasePath "/spring-config.yaml") . | sha256sum   }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.tempo.enabled }}
+        instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/default-sdk-{{ .Values.tempo.tenant }}"
+      {{- end }}
+      labels:
+        {{- include "mychart.selectorLabels" . | nindent 8 }}
+        {{- if .Values.loki.enabled }}
+        loki: connect-{{ .Values.loki.tenant }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "mychart.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - configMap:
+            name: application-yml-{{ include "mychart.fullname" . }}
+          name: application-yml
+      containers:
+        - name: {{ .Chart.Name }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: application-yml
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          env:
+            - name: OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_METRICS_EXPORTER
+              value: none
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

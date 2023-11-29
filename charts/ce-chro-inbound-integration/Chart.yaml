@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 1.0.0
+description: Helm chart for ce-chro-inbound-integration
+name: ce-chro-inbound-integration
+type: application
+version: 1.0.0
