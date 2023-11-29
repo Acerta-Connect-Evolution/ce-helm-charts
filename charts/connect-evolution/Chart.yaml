@@ -129,3 +129,7 @@ dependencies:
     version: 0.15.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-scdf-client.enabled
+  - name: ce-chro-inbound-integration
+    version: 1.0.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-chro-inbound-integration.enabled
