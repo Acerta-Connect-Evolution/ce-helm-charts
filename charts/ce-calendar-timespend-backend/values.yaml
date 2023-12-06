@@ -98,6 +98,9 @@ sealedsecret:
   liquibasedatasource:
     username:
     password:
+  diccodatasource:
+    username:
+    password:
 
 
 loki:

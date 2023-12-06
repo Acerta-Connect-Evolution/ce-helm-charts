@@ -109,6 +109,16 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-liquibase-datasource-cred
                   key: password
+            - name: SPRING_DICCO-DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-dicco-datasource-cred
+                  key: username
+            - name: SPRING_DICCO-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-dicco-datasource-cred
+                  key: password
             - name: OTEL_AGENT
               valueFrom:
                 fieldRef:
