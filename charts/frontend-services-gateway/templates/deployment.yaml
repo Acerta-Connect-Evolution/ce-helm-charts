@@ -77,6 +77,12 @@ spec:
                   fieldPath: status.hostIP
             - name: OTEL_METRICS_EXPORTER
               value: none
+            {{- if .Values.ingress.enabled -}}
+            {{- range .Values.ingress.hosts }}
+            - name: SPRING_BOOT_ADMIN_CLIENT_INSTANCE_SERVICE-BASE-URL
+              value: https://{{ .host }}
+            {{- end }}
+            {{- end }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
