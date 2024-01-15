@@ -37,6 +37,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
+  # will be used for /actuator endpoints
   port: 8080
   annotations:
     # dev.okteto.com/auto-ingress: "true"
