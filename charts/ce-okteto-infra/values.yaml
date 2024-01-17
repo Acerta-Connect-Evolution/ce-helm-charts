@@ -256,6 +256,18 @@ ff4j-init-job:
       endpoint: ce-ff4j-server:8080
   script: ""
 
+db-init-job:
+  fullnameOverride: db-init-job
+  enabled: true
+  initContainers:
+    waitForMssql:
+      enabled: true
+      server:
+        host: mssql-latest
+        user: sa
+        password: Admin123
+  script: ""
+
 frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
   enabled: true
