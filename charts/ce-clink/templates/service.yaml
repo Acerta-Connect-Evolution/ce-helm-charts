@@ -1,3 +1,4 @@
+{{- /* @formatter:off */}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,10 +9,14 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.http.port }}
       targetPort: http
       protocol: TCP
       name: http
+    - port: {{ .Values.service.grpc.port }}
+      targetPort: grpc
+      protocol: TCP
+      name: grpc
     - name: debug
       port: 5006
       protocol: TCP

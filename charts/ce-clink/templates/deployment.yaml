@@ -57,7 +57,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.http.port }}
+              protocol: TCP
+            - name: grpc
+              containerPort: {{ .Values.service.grpc.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -80,6 +83,7 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-redis-cred
                   key: password
+
             - name: SPRING_INIT-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
