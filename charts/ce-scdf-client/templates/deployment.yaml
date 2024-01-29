@@ -96,6 +96,26 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-dicco-datasource-cred
                   key: password
+            - name: CALENDAR_AXON-DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-calendar-axon-datasource-cred
+                  key: username
+            - name: CALENDAR_AXON-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-calendar-axon-datasource-cred
+                  key: password
+            - name: REPERTORIUM-DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-repertorium-datasource-cred
+                  key: username
+            - name: REPERTORIUM-DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-repertorium-datasource-cred
+                  key: password
             - name: OTEL_AGENT
               valueFrom:
                 fieldRef:

@@ -105,3 +105,9 @@ sealedsecret:
   diccodatasource:
     username:
     password:
+  calendaraxondatasource:
+    username:
+    password:
+  repertoriumdatasource:
+    username:
+    password:
