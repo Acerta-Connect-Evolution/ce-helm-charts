@@ -96,12 +96,12 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-dicco-datasource-cred
                   key: password
-            - name: CALENDAR_AXON-DATASOURCE_USERNAME
+            - name: CALENDAR-AXON-DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-calendar-axon-datasource-cred
                   key: username
-            - name: CALENDAR_AXON-DATASOURCE_PASSWORD
+            - name: CALENDAR-AXON-DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-calendar-axon-datasource-cred
