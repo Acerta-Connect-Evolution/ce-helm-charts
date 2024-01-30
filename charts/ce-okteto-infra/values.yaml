@@ -421,10 +421,10 @@ spring-cloud-dataflow:
     image:
       registry: nexus.global.dns:8443
       repository: acerta-connect-evolution/spring-cloud-dataflow
-      tag: 2.10.3-debian-11-r4
+      tag: 2.11.2-debian-11-r5
     initContainers:
       - name: init-db
-        image: nexus.global.dns:8443/acerta-connect-evolution/spring-cloud-dataflow-init-db:1.1.0
+        image: nexus.global.dns:8443/acerta-connect-evolution/spring-cloud-dataflow-init-db:1.2.0
         env:
           - name: MSSQL_HOST
             value: mssql-latest
@@ -433,7 +433,7 @@ spring-cloud-dataflow:
       defaultSpringApplicationJSON: false
     composedTaskRunner:
       image:
-        tag: 2.10.3
+        tag: 2.11.2
     ingress:
       enabled: true
       className: ""
