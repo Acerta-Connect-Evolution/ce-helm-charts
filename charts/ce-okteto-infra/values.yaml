@@ -431,9 +431,6 @@ spring-cloud-dataflow:
     configuration:
       streamingEnabled: false
       defaultSpringApplicationJSON: false
-    composedTaskRunner:
-      image:
-        tag: 2.11.2
     ingress:
       enabled: true
       className: ""
