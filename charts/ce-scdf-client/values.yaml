@@ -102,12 +102,3 @@ sealedsecret:
   liquibasedatasource:
     username:
     password:
-  diccodatasource:
-    username:
-    password:
-  calendaraxondatasource:
-    username:
-    password:
-  repertoriumdatasource:
-    username:
-    password:
