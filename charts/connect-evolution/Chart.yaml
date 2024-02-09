@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.1827.3
+version: 1.1827.4
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.402.0
@@ -108,7 +108,5 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: prometheus-rsocket-proxy.enabled
   - name: common
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    tags:
-      - bitnami-common
     version: 2.14.1
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
