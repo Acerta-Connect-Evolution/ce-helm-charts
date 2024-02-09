@@ -36,12 +36,6 @@ spec:
       serviceAccountName: {{ include "mychart.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.initContainers.waitForPulsar.enabled }}
-      initContainers:
-        - name: wait-for-pulsar
-          image: nexus.global.dns:8443/ce/wait-for-pulsar-schemas:1.0
-          args: ['{{ .Values.initContainers.waitForPulsar.topics }}']
-      {{- end }}
       volumes:
         - configMap:
             name: application-yml-{{ include "mychart.fullname" . }}
