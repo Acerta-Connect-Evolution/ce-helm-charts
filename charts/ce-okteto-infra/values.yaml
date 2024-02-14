@@ -65,6 +65,15 @@ pulsar-standalone:
     enabled: true
     annotations:
       dev.okteto.com/generate-host: "true"
+  persistence:
+    enabled: true
+    dataSize: 5Gi
+    dataAccessMode: ReadWriteOnce
+  podSecurityContext:
+    runAsUser: 0
+    fsGroupChangePolicy: "OnRootMismatch"
+  securityContext:
+    runAsUser: 0
 
 pulsar-admin-console:
   fullnameOverride: pulsar-admin-console
