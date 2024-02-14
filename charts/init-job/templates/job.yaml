@@ -48,7 +48,7 @@ spec:
         {{- end }}
         {{- if .Values.extraEnvs }}
           {{- toYaml .Values.extraEnvs | nindent 12 }}
-        {{- end } }
+        {{- end }}
         {{- with .Values.resources }}
         resources:
 {{ toYaml . | indent 10 }}
