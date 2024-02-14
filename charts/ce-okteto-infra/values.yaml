@@ -280,8 +280,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "notify",
-          "containerImage": "acerta-connect-evolution/notify-task:0.7.0",
-          "metadataJar": "be.acerta.ce.batch:notify-task:jar:metadata:0.7.0",
+          "containerImage": "acerta-connect-evolution/notify-task:0.8.0",
+          "metadataJar": "be.acerta.ce.batch:notify-task:jar:metadata:0.8.0",
           "force": false
       }'
     curl -X 'POST' \
