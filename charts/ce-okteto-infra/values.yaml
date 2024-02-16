@@ -200,21 +200,6 @@ pulsar-client:
     annotations:
       dev.okteto.com/generate-host: "true"
 
-ce-ff4j-server:
-  fullnameOverride: ce-ff4j-server
-  enabled: true
-  resources:
-    limits:
-      memory: 512Mi
-    requests:
-      cpu: 10m
-      memory: 256Mi
-  ingress:
-    enabled: true
-    className: ""
-    annotations:
-      dev.okteto.com/generate-host: "true"
-
 pulsar-init-job:
   fullnameOverride: pulsar-init-job
   enabled: true
@@ -222,7 +207,157 @@ pulsar-init-job:
     waitForUrl:
       enabled: true
       endpoint: pulsar-standalone:8080/admin/v2/brokers/health;pulsar-client:8080/actuator/health
-  script: ""
+  script: |
+    echo "Create Tenant [connect-evolution]"
+    curl -X 'POST' \
+      'http://pulsar-client:8080/api/v1/tenants/connect-evolution' \
+      -H 'accept: */*' \
+      -d ''
+    echo ""
+    echo "Tenant Created"
+    echo "Create Namespace [connect-evolution/calendar-acl-sync]"
+    curl -X 'POST' \
+      'http://pulsar-client:8080/api/v1/tenants/connect-evolution/namespaces/calendar-acl-sync' \
+      -H 'accept: */*' \
+      -d ''
+    echo ""
+    echo "Namespace Created"
+    echo "Create Namespace [connect-evolution/calendar-acl-sync]"
+    curl -X 'POST' \
+      'http://pulsar-client:8080/api/v1/tenants/connect-evolution/namespaces/calendar-acl-cdc' \
+      -H 'accept: */*' \
+      -d ''
+    echo ""
+    echo "Namespace Created"
+    echo "Create Namespace [connect-evolution/calendar]"
+    curl -X 'POST' \
+      'http://pulsar-client:8080/api/v1/tenants/connect-evolution/namespaces/calendar' \
+      -H 'accept: */*' \
+      -d ''
+    echo ""
+    echo "Namespace Created"
+    echo "Create Tenant [everesst]"
+    curl -X 'POST' \
+      'http://pulsar-client:8080/api/v1/tenants/everesst' \
+      -H 'accept: */*' \
+      -d ''
+    echo ""
+    echo "Tenant Created"
+    echo "Create Namespace [everesst/payroll]"
+    curl -X 'POST' \
+      'http://pulsar-client:8080/api/v1/tenants/everesst/namespaces/payroll' \
+      -H 'accept: */*' \
+      -d ''
+    echo ""
+    echo "Namespace Created"
+    echo "Create Tenant [acerta]"
+    curl -X 'POST' \
+      'http://pulsar-client:8080/api/v1/tenants/acerta' \
+      -H 'accept: */*' \
+      -d ''
+    echo ""
+    echo "Tenant Created"
+    echo "Create Namespace [acerta/payroll]"
+    curl -X 'POST' \
+      'http://pulsar-client:8080/api/v1/tenants/acerta/namespaces/payroll' \
+      -H 'accept: */*' \
+      -d ''
+    echo ""
+    echo "Namespace Created"
+    echo "Set retention for [connect-evolution/calendar-acl-cdc] to 1 month"
+    curl -X 'POST' \
+      'pulsar-client:8080/api/v1/tenants/connect-evolution/namespaces/calendar-acl-cdc/retention' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+           "retentionTimeInMinutes":"30d",
+           "retentionSizeInMB":"-1"
+        }'
+    echo "Retention Set"
+    echo "Set retention for [connect-evolution/calendar-acl-sync] to 1 month"
+    curl -X 'POST' \
+      'pulsar-client:8080/api/v1/tenants/connect-evolution/namespaces/calendar-acl-sync/retention' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+           "retentionTimeInMinutes":"30d",
+           "retentionSizeInMB":"-1"
+        }'
+    echo "Retention Set"
+    echo "Set retention for [connect-evolution/calendar] to 1 month"
+    curl -X 'POST' \
+      'pulsar-client:8080/api/v1/tenants/connect-evolution/namespaces/calendar/retention' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+           "retentionTimeInMinutes":"30d",
+           "retentionSizeInMB":"-1"
+        }'
+    echo "Retention Set"
+    echo "Set retention for [acerta/payroll] to 1 month"
+    curl -X 'POST' \
+      'pulsar-client:8080/api/v1/tenants/acerta/namespaces/payroll/retention' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+           "retentionTimeInMinutes":"30d",
+           "retentionSizeInMB":"-1"
+        }'
+    echo "Retention Set"
+    echo "Set retention for [everesst/payroll] to 1 month"
+    curl -X 'POST' \
+      'pulsar-client:8080/api/v1/tenants/everesst/namespaces/payroll/retention' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+           "retentionTimeInMinutes":"30d",
+           "retentionSizeInMB":"-1"
+        }'
+    echo "Retention Set"
+    echo "Create Source [connect-evolution/calendar-acl-cdc/dicco-debezium-source]"
+    sleep 30
+    curl -X 'POST' \
+      'pulsar-client:8080/api/v1/tenants/connect-evolution/namespaces/calendar-acl-cdc/sources' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+           "name":"dicco-debezium-source",
+           "parallelism": 1,
+           "config":{
+              "database.hostname":"t-sqldicco.global.dns",
+              "database.port":"1433",
+              "database.user":"connect_evolution_user",
+              "database.password":"smethmBM354GEmnsrge",
+              "database.dbname":"DICCO",
+              "database.server.name":"cdc",
+              "table.include.list":"ACERTA.GBTEMC01,ACERTA.GBTEMC06,ACERTA.GBTEMC03,ACERTA.GBTPAA30,ACERTA.GBTPAA31,ACERTA.GBTPAA32,ACERTA.GBTPAA01,ACERTA.GBTPAA02,ACERTA.GBTPAA10,ACERTA.GBTPAA12,ACERTA.GBTPAA51,ACERTA.GBTOAA01,ACERTA.GBTOAA03,ACERTA.GBTEMR01,ACERTA.GBTEMR02,ACERTA.GBTACD01,ACERTA.GBTSSR02",
+              "snapshot.mode":"schema_only",
+              "snapshot.isolation.mode":"read_committed",
+              "topic.namespace":"connect-evolution/calendar-acl-cdc",
+              "task.class":"io.debezium.connector.sqlserver.SqlServerConnectorTask",
+              "value.converter":"org.apache.kafka.connect.json.JsonConverter",
+              "key.converter":"org.apache.kafka.connect.json.JsonConverter",
+              "database.history":"org.apache.pulsar.io.debezium.PulsarDatabaseHistory",
+              "database.tcpKeepAlive":"true",
+              "decimal.handling.mode":"double",
+              "database.history.pulsar.topic":"dicco-debezium-source-history-topic",
+              "database.history.pulsar.service.url":"pulsar://pulsar-standalone:6650",
+              "pulsar.service.url":"pulsar://pulsar-standalone:6650",
+              "source.table.include.list":".*\\..*",
+              "time.precision.mode":"connect",
+              "transforms":"RegisteredConverter,ModifiedConverter",
+              "transforms.RegisteredConverter.type":"org.apache.kafka.connect.transforms.TimestampConverter",
+              "transforms.RegisteredConverter.format":"yyyy-MM-dd HH-mm-ss.SSSSSS",
+              "transforms.RegisteredConverter.field":"REG_TS",
+              "transforms.RegisteredConverter.target.type":"Timestamp",
+              "transforms.ModifiedConverter.type":"org.apache.kafka.connect.transforms.TimestampConverter",
+              "transforms.ModifiedConverterModifiedConverter.format":"yyyy-MM-dd HH-mm-ss.SSSSSS",
+              "transforms.ModifiedConverter.field":"MUT_TS",
+              "transforms.ModifiedConverter.target.type":"Timestamp"
+           }
+        }'
+    echo ""
+    echo "Source Created"
 
 ff4j-init-job:
   fullnameOverride: ff4j-init-job
@@ -236,6 +371,8 @@ ff4j-init-job:
 db-init-job:
   fullnameOverride: db-init-job
   enabled: true
+  image:
+    repository: nexus.global.dns:8443/acerta-connect-evolution/mssql-client
   initContainers:
     waitForMssql:
       enabled: true
@@ -243,7 +380,112 @@ db-init-job:
         host: mssql-latest
         user: sa
         password: Admin123
-  script: ""
+  script: |
+    export CMD='/opt/mssql-tools/bin/sqlcmd -S mssql-latest'
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE DATABASE connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "ALTER DATABASE connectevolution SET RECOVERY SIMPLE"
+    export CMD='/opt/mssql-tools/bin/sqlcmd -S mssql-latest -d connectevolution'
+    echo "init CALENDAR_AXON"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE SCHEMA calendar_axon"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN calendar_axon_user WITH PASSWORD ='CalendarAxonUserPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN calendar_axon_ddl with PASSWORD = 'CalendarAxonDdlPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER calendar_axon_user FROM LOGIN calendar_axon_user WITH DEFAULT_SCHEMA = calendar_axon"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER calendar_axon_ddl FROM LOGIN calendar_axon_ddl WITH DEFAULT_SCHEMA = calendar_axon"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE calendar_axon_user_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE calendar_axon_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: calendar_axon TO calendar_axon_user_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, ALTER, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: calendar_axon TO calendar_axon_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT CREATE TABLE TO calendar_axon_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'calendar_axon_user_role', 'calendar_axon_user'"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'calendar_axon_ddl_role', 'calendar_axon_ddl'"
+    echo "init CALENDAR_REPERTORIUM"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE SCHEMA calendar_repertorium"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN calendar_repertorium_user WITH PASSWORD ='CalendarRepertoriumUserPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN calendar_repertorium_ddl with PASSWORD = 'CalendarRepertoriumDdlPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER calendar_repertorium_user FROM LOGIN calendar_repertorium_user WITH DEFAULT_SCHEMA = calendar_repertorium"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER calendar_repertorium_ddl FROM LOGIN calendar_repertorium_ddl WITH DEFAULT_SCHEMA = calendar_repertorium"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE calendar_repertorium_user_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE calendar_repertorium_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: calendar_repertorium TO calendar_repertorium_user_role "
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, ALTER, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: calendar_repertorium TO calendar_repertorium_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT CREATE TABLE TO calendar_repertorium_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'calendar_repertorium_user_role', 'calendar_repertorium_user'"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'calendar_repertorium_ddl_role', 'calendar_repertorium_ddl'"
+    echo "init CLINK"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE SCHEMA clink"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN clink_user WITH PASSWORD ='ClinkUserPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN clink_ddl with PASSWORD = 'ClinkDdlPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER clink_user FROM LOGIN clink_user WITH DEFAULT_SCHEMA = clink"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER clink_ddl FROM LOGIN clink_ddl WITH DEFAULT_SCHEMA = clink"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE clink_user_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE clink_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: clink TO clink_user_role "
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, ALTER, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: clink TO clink_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT CREATE TABLE TO clink_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'clink_user_role', 'clink_user'"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'clink_ddl_role', 'clink_ddl'"
+    echo "init USER_PREFERENCE"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE SCHEMA user_preference"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN user_preference_user WITH PASSWORD ='UserPreferenceUserPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN user_preference_ddl with PASSWORD = 'UserPreferenceDdlPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER user_preference_user FROM LOGIN user_preference_user WITH DEFAULT_SCHEMA = user_preference"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER user_preference_ddl FROM LOGIN user_preference_ddl WITH DEFAULT_SCHEMA = user_preference"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE user_preference_user_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE user_preference_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: user_preference TO user_preference_user_role "
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, ALTER, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: user_preference TO user_preference_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT CREATE TABLE TO user_preference_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'user_preference_user_role', 'user_preference_user'"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'user_preference_ddl_role', 'user_preference_ddl'"
+    echo "init PAYROLL_VACATION_CERTIFICATE"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE SCHEMA payroll_vacation_certificate"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN payroll_vacationcertificate_user WITH PASSWORD ='PayrollVacationCertificateUserPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN payroll_vacationcertificate_ddl with PASSWORD = 'PayRollVacationCertificateDdlPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER payroll_vacationcertificate_user FROM LOGIN payroll_vacationcertificate_user WITH DEFAULT_SCHEMA = payroll_vacation_certificate"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER payroll_vacationcertificate_ddl FROM LOGIN payroll_vacationcertificate_ddl WITH DEFAULT_SCHEMA = payroll_vacation_certificate"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE payroll_vacationcertificate_user_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE payroll_vacationcertificate_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: payroll_vacation_certificate TO payroll_vacationcertificate_user_role "
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, ALTER, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: payroll_vacation_certificate TO payroll_vacationcertificate_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT CREATE TABLE TO payroll_vacationcertificate_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'payroll_vacationcertificate_user_role', 'payroll_vacationcertificate_user'"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'payroll_vacationcertificate_ddl_role', 'payroll_vacationcertificate_ddl'"
+    echo "init INIT_LOAD_BATCH"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE SCHEMA init_load_batch"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN init_load_batch_ddl with PASSWORD = 'InitLoadBatchDdlPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER init_load_batch_ddl FROM LOGIN init_load_batch_ddl WITH DEFAULT_SCHEMA = init_load_batch"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE init_load_batch_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, ALTER, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: init_load_batch TO init_load_batch_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT CREATE TABLE TO init_load_batch_ddl_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'init_load_batch_ddl_role', 'init_load_batch_ddl'"
+    extraDeploy:
+    - apiVersion: bitnami.com/v1alpha1
+      kind: SealedSecret
+      metadata:
+        annotations:
+          sealedsecrets.bitnami.com/cluster-wide: "true"
+        name: db-init-job-datasource-cred
+      spec:
+        encryptedData:
+          username: AgDAvnpD+6Jk3gRHdARgmuUeRyKmq6lkPTU7YNJhfehCgmzwsZOsAnceRSwjzyDZFsVJQjmexNnQylgl6DyX4FlYgudIvkIS8L/U72g0C2QUyrCHYmqgbyjH65c9+yng3iveYnWCj29X+o1zyIN90YVfsINeRmx80gC7NevNfOdS1oF7B1o/drziPetobrj/USd7N+5R3bNk5niwJYf8EVUpcy8fkVZHZQnddO8FiZi/4vQaYZ+KnwOO56tAoxizgQIV9ozcB+WznLbQqx6GH94g4FPJ+KReLRdGiohOIIKjno8NlqY1nCT6ZxP6l3UzNFXiq3t0BzEd0bvmZmTFrtjisaLsL8TPjHqsdNspfDrTYzQIoaZVDXKtwlPm2ua2Sk6Sa7z6cBe2EVKAa9AgQGfXsiCSKt+/Z0wcvkMOi19hV3DeQTbYk7eBHVoupzkhG+v3XqF9uzpZPPNLIP3sbDPCqPUa1StnXN6T8rUCTIaRUCijWXi+Kzh1Q4lImqYxad8ZwlB9xzDvR9LSWiToi7LMJ17CqPd2WlDoKlUkWAQXg2NYr6SwRPbOYMUgx9mah0aOb2np9DFXXv0IvrB9d2yf+4aOIpnwDbub8aHVPX/qc0qhlvHAtKJ1G0nMdlM0IVWmbt3LmWzLktjFwFlynq9W1yVSby7A6Wc1/S2DYjuwklYhDW0MSQHq7nL863/aii105w==
+          password: AgCdt5/5f2nDW2Zy1gKZt98Vbk6J1g/6X6goylU9Vs49srHuINbZmAuWZxdpSy4iCgUT3hALTl1k7p4fQHVKKW2n3hUhRw0tN85drj8vSIodYfJ+MadEKlvVuhZjdHPXpCtOIPcz0OIExkGwBnV/oAsZpOxYnp0pbom43wCsmKRSJzhJMIJNrCq9WNKYbP6k62UJzPC+B9JmmWYCgfPRRIGivRD412ZKQTMnUgtarjaETG5nHHcIHaZxNStkLswrCqQDklYHDaRks3w4LqrEfWsTQLJUumMZvTe95uYsm5GGExTXUgjtDcKhnlANfF2xX7c2gJDlfCYnkYb7zFhccQ/gE6p+ORpc8wBQZXPV3jTVt6dkpNO4a8DCZQcDEouUS5V20lUwtnnIarlZ4DgtSsco+IquVUcU70mBny6yBAvZx27Burf/g1YVIMdhGPkt7HCtJ05BrpcytNUa50UDlS8B6wumx8HaORzWZFTcaUhyfnpGRz853X+XlgzHkghBZqTXAhCHTLrvpz1CAwjhNup6CzBAyrQp/GGGxybwzk6glZkXjMoQ6FiVrGKXuaDAkKFWu4Nu8JiC5wc8bY4Mw4c4gsckfre2HvoL67Va6MOqhpw/Xc5QsYxTtf55hwG5GvjKLb0ZYhrpGPOGu6O6Hjv5rYL/bFmLd+8FZoWRmiNK+X4TCAsyMbBV2gFcU5pOQyUMKOV+J9R28g==
+        template:
+          data: null
+          metadata:
+            annotations:
+              sealedsecrets.bitnami.com/cluster-wide: "true"
+            name: db-init-job-datasource-cred
+  extraEnvs:
+    - name: USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: db-init-job-datasource-cred
+          key: username
+    - name: PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: db-init-job-datasource-cred
+          key: password
 
 scdf-init-job:
   fullnameOverride: scdf-init-job
@@ -341,6 +583,27 @@ scdf-init-job:
           "description": "Sync Acerta Wide Time Codes Task"
       }'
 
+ce-ff4j-server:
+  fullnameOverride: ce-ff4j-server
+  enabled: true
+  resources:
+    limits:
+      memory: 512Mi
+    requests:
+      cpu: 10m
+      memory: 256Mi
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
+  loki:
+    enabled: true
+    tenant: dev
+  tempo:
+    enabled: true
+    tenant: dev
+
 frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
   enabled: true
@@ -350,12 +613,182 @@ frontend-services-gateway:
     requests:
       cpu: 20m
       memory: 512Mi
+  sealedsecret:
+    gatewayclient:
+      secret: AgCHRB/V7EX6MIGama1SKxH2zPZfbfixPjwuYlGPoXyrctUvwdMRukIfIzNgjvQZ/pHOtTHrg/R5e9xY2zml4drjelTfb68jT9CmFJMobRbydOWu4CzJmiFNwfDR/HNFahl+Ty/+N2//xyYcH1bMATJubk8UiTLnwRRLML39cHl425hsE30yW5nqu5DyX3Yh3N2YxwkqYyO4lM8MbEzze/yFSHIUeDhPoXN/VA1wGy2QkG+XOY2vjLEE9qhyrojFtU0pmLywjDQECIym4c8e5RVVlE9lVQq/YZ+rxnsZA75J+qeKLnufYlQuqquLnYG0P1zgu5fIm1ldA3LhvGV8DXAgoBLeHsQ9mA7QH+CrEQin62KHl/rWj63DHWb4XQbYtPGRFBOjTr2wNfacUQlzv1qAKrGOi4yiJZoD9bhi4/2Jc6NcjW5ALq0rm+J/zpWMuu+c6cKdPmbG5hDVeevd2vi0bKcEGr/WliY8UkVemqTLORs7+pDn0a3H5b+X8sTIe5+6P2IWUfI8cIOU624JzerofUZNptw8tp8Tv1o/oEKiPlt+T1rPmEwW2BF5N17rPlWnF5055tKWU9NLN5wZFt0q5Fy+t8CxTBni5rei5WS+B/vTvgakyFjtn8EGQ8o8yy+TpaC3MtHjfx3fK7oxkYmrTYC4mORJuQecHr4y3d2SJfjB5WOtwa45pRR9jbIVfDw2eQn8Z2cdz0FgwS5Zg1BA4WXh7/VJ+Em50x47HWq+Gg==
   ingress:
     enabled: true
     className: ""
     annotations:
       dev.okteto.com/generate-host: "true"
-  application_yml: ""
+  loki:
+    enabled: true
+    tenant: dev
+  tempo:
+    enabled: true
+    tenant: dev
+  application_yml: |
+    spring:
+      # profile 'always-active' should always be active :) as the corresponding application-always-active.yml (in gateway jar)
+      # contains some config that is always needed under normal circumstances. We pushed that config to the application-always-active.yml
+      # to remove unnecessary clutter from the application.yml file.
+      profiles:
+        active: always-active #, nosecurity
+      redis:
+        host: redis-master
+        port: 6379
+        password: Admin123
+      security:
+        oauth2:
+          client:
+            provider:
+              keycloak:
+                issuer-uri: https://keycloak-boot-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/auth/realms/acerta
+                token-uri: https://keycloak-boot-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/auth/realms/acerta/protocol/openid-connect/token
+                authorization-uri: https://keycloak-boot-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/auth/realms/acerta/protocol/openid-connect/auth
+            registration:
+              ce-gateway:
+                provider: keycloak
+                client-id: ce-gateway
+                client-secret: replaced-by-sealed-secret
+                redirect-uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/login/oauth2/code/ce-gateway
+                scope:
+                  - openid
+                  - email
+                  - profile
+                  - roles
+      cloud:
+        gateway:
+          default-filters:
+            - TokenRelay
+            - RemoveRequestHeader=Cookie
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+          globalcors:
+            corsConfigurations:
+              '[/**]':
+                allowedMethods: "*"
+                allowedHeaders: "*"
+                allowedOrigins: "*"
+          routes:
+            - id: heartbeat
+              uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io
+              order: 1000
+              predicates:
+                - Path=/heartbeat
+              filters:
+                - RewritePath=/heartbeat, /session-refresh
+            - id: calendar-timespend-frontend-rsocket
+              uri: ws://calendar-timespend-frontend:7000
+              order: 1000
+              predicates:
+                - Path=/calendar-timespend/socket
+              filters:
+                - RewritePath=/calendar-timespend/socket, /socket
+            - id: calendar-timespend-frontend-rsocket-perftest
+              uri: ws://calendar-timespend-frontend:7000
+              order: 1000
+              predicates:
+                - Path=/calendar-timespend/perftest
+              filters:
+                - FullAccessAuthorizationJwtInjectingGatewayFilter=PERFTEST_USER,${JWT_HMAC_KEY}
+                - RewritePath=/calendar-timespend/perftest, /socket
+            - id: calendar-timespend-frontend-everything-else
+              uri: http://calendar-timespend-frontend:8080
+              order: 2000
+              predicates:
+                - Path=/calendar-timespend/**
+              filters:
+                - PropertyInResponseResolvingGatewayFilter
+                - RewritePath=/calendar-timespend/(?<segment>.*), /$\{segment}
+            - id: calendar-balance-frontend-rsocket
+              uri: ws://calendar-balance-frontend:7000
+              order: 1000
+              predicates:
+                - Path=/calendar-balance/socket
+              filters:
+                - RewritePath=/calendar-balance/socket, /socket
+            - id: calendar-balance-frontend-everything-else
+              uri: http://calendar-balance-frontend:8080
+              order: 2000
+              predicates:
+                - Path=/calendar-balance/**
+              filters:
+                - PropertyInResponseResolvingGatewayFilter
+                - RewritePath=/calendar-balance/(?<segment>.*), /$\{segment}
+            - id: ff4j
+              uri: http://ce-ff4j-server:8080
+              order: 10
+              predicates:
+                - Path=/ff4j/**
+              filters:
+                - RewritePath=/ff4j/(?<segment>.*), /$\{segment}
+            - id: balances
+              uri: http://balances:8080
+              order: 10
+              predicates:
+                - Path=/balances/**
+              filters:
+                - RewritePath=/balances/(?<segment>.*), /$\{segment}
+            - id: vacation-certificate
+              uri: http://payroll-vacation-certificate-service:8080
+              order: 10
+              predicates:
+                - Path=/payroll-vacation-certificate/**
+              filters:
+                - PropertyInResponseResolvingGatewayFilter
+                - RewritePath=/payroll-vacation-certificate/(?<segment>.*), /$\{segment}
+            - id: calendar-repertorium
+              uri: http://calendar-repertorium:8080
+              order: 10
+              predicates:
+                - Path=/calendar-repertorium/**
+              filters:
+                - PropertyInResponseResolvingGatewayFilter
+                - RewritePath=/calendar-repertorium/(?<segment>.*), /$\{segment}
+            - id: user-preference
+              uri: http://user-preference:8080
+              order: 10
+              predicates:
+                - Path=/user-preference/**
+              filters:
+                - RewritePath=/user-preference/(?<segment>.*), /$\{segment}
+            - id: webcomponents
+              uri: http://ce-webcomponents:8080
+              order: 10
+              predicates:
+                - Path=/webcomponents/**
+              filters:
+                - RewritePath=/webcomponents/(?<segment>.*), /$\{segment}
+            - id: CE-test-backend
+              uri: http://test-websocket-service:8085
+              predicates:
+                - Path=/ce/**
+            - id: CE-test-backend-2
+              uri: http://test-websocket-service:8085
+              predicates:
+                - Path=/chro/**
+    ---
+    frontend:
+      properties:
+        WEBCOMPONENT_HOST: "frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io"
+    filter:
+      propertyresolver:
+        requireQueryParam: false
+        ellegibleFileExtensions: "js,mjs,html"
+        cache:
+          enabled: false
+          ttl: 10 
+    acerta:
+      keycloak:
+        registration-service-name: ce-gateway
+      gateway:
+        session-cookie-domain: acerta.io
+        keep-alive-path: /keep-alive/index.html
+        logout-uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/authenticate
+        session-timeout: 90
+    ff4j:
+      api:
+        url: https://ce-ff4j-server-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/api/ff4j
 
 keycloak-boot:
   fullnameOverride: keycloak-boot
@@ -408,7 +841,38 @@ ce-fake-everesst:
     className: ""
     annotations:
       dev.okteto.com/generate-host: "true"
-  application_yml: ""
+  application_yml: |
+    spring:
+      profiles:
+        active: always-active
+    ---
+    ff4j.api.url:  http://ce-ff4j-server:8080/api/ff4j
+    ---
+    # Pulsar
+    pulsar:
+      enabled: true
+      broker.url: pulsar://pulsar-standalone:6650
+      defaults:
+        consumer:
+          tenant: acerta
+          namespace: payroll
+        producer:
+          tenant: everesst
+          namespace: payroll
+      consumers:
+        PulsarAdjustmentBookedIntegrationEventHandler:
+          subscription:
+            topic: employee-out-fake
+      producers:
+        WorktimePrioritizationCalculatedIntegrationEventPublisher:
+          topic: worktime
+        ScheduledRedisJailTestEventPublisher:
+          topic: testRedisJail
+    
+    logging:
+      level:
+        root: INFO
+        be.acerta.ce.fake.everesst: DEBUG
 
 ce-fake-chro:
   fullnameOverride: ce-fake-chro
@@ -442,7 +906,12 @@ ce-authorization-service:
     spring:
       profiles:
         active: okteto, always-active
-
+  loki:
+    enabled: true
+    tenant: dev
+  tempo:
+    enabled: true
+    tenant: dev
 
 ce-user-preference:
   fullnameOverride: user-preference
@@ -523,8 +992,13 @@ spring-cloud-dataflow:
       username: scdf_application_user
       database: spring_cloud_dataflow
     hibernateDialect: org.hibernate.dialect.SQLServer2012Dialect
+
 wiremock:
   enabled: true
+  fullnameOverride: ce-fake-connect-be
+  service:
+    annotations:
+      dev.okteto.com/auto-ingress: "true"
 
 ce-scdf-client:
   fullnameOverride: scdf-client
