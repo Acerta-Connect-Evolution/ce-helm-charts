@@ -79,5 +79,5 @@ prometheus-rsocket-proxy:
 ce-chro-inbound-integration:
   enabled: true
 
-ce-calender-perftest:
+ce-calendar-perftest:
   enabled: false

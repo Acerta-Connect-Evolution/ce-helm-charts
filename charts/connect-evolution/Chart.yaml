@@ -107,7 +107,7 @@ dependencies:
     version: 0.9.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: prometheus-rsocket-proxy.enabled
-  - name: ce-calender-perftest
+  - name: ce-calendar-perftest
     version: 0.3.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: ce-calender-perftest.enabled
+    condition: ce-calendar-perftest.enabled
