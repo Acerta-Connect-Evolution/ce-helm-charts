@@ -100,7 +100,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-scdf-client.enabled
   - name: ce-chro-inbound-integration
-    version: 1.7.0
+    version: 1.8.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-chro-inbound-integration.enabled
   - name: prometheus-rsocket-proxy
