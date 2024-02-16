@@ -97,3 +97,26 @@ sealedsecret:
     password:
 
 application_yml: ""
+
+redis:
+  fullnameOverride: redis-perftest
+  enabled: true
+  resources:
+    requests:
+      cpu: 5m
+      memory: 1024Mi
+    limits:
+      memory: 128Mi
+  architecture: standalone
+  global:
+    redis:
+      password: Admin123
+mysql:
+    fullnameOverride: mysql-perftest
+    enabled: true
+    auth:
+        defaultAuthenticationPlugin: caching_sha2_password
+        rootPassword: perftestpw
+        username: perftestuser
+        password: perftestpw
+        database: perftest
