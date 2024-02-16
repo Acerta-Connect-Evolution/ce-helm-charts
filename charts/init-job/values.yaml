@@ -67,3 +67,6 @@ securityContext:
   runAsUser:
   runAsGroup:
   fsGroup:
+
+extraDeploy: []
+extraEnvs: {}

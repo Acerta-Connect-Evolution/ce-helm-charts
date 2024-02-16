@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.114.0
+version: 0.120.0
 dependencies:
   - name: mssql-latest
     version: 0.3.9
@@ -35,28 +35,29 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-client.enabled
   - name: init-job
-    version: 1.0.21
+    version: 2.2.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-init-job.enabled
     alias: pulsar-init-job
   - name: init-job
-    version: 1.0.21
+    version: 2.2.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ff4j-init-job.enabled
     alias: ff4j-init-job
   - name: init-job
-    version: 1.0.21
+    version: 2.2.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: db-init-job.enabled
     alias: db-init-job
+  - name: init-job
+    version: 2.2.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: scdf-init-job.enabled
+    alias: scdf-init-job
   - name: ce-ff4j-server
     version: 1.40.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-ff4j-server.enabled
-  - name: ce-calendar-repertorium
-    version: 1.19.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: ce-calendar-repertorium.enabled
   - name: frontend-services-gateway
     version: 1.110.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
@@ -93,3 +94,7 @@ dependencies:
     version: 0.1.6
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: wiremock.enabled
+  - name: ce-scdf-client
+    version: 0.32.0
+    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    condition: ce-scdf-client.enabled

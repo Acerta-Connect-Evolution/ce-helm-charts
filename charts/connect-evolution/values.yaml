@@ -4,25 +4,6 @@ ce-calendar-timespend-backend:
 ce-calendar-timespend-frontend:
   enabled: true
 
-axon-server-calendar-timespend:
-  enabled: false
-  nameOverride: axon-server-calendar-timespend
-  image:
-    tag: "4.6.7-dev"
-  extraEnvs:
-    - name: AXONIQ_AXONSERVER_DEVMODE_ENABLED
-      value: "true"
-    - name: AXONIQ_AXONSERVER_METRICS_GRPC_ENABLED
-      value: "true"
-    - name: AXONIQ_AXONSERVER_METRICS_GRPC_PROMETHEUSENABLED
-      value: "true"
-  java:
-    jvmOptions:
-      timezoneOptions: "-Duser.timezone=Europe/Brussels"
-  persistence:
-    enabled: true
-    accessModes: [ ReadWriteOnce ]
-    size: 3Gi
 
 connect-backend:
   enabled: true
@@ -30,26 +11,7 @@ connect-backend:
 connect-frontend:
   enabled: true
 
-mssql-latest:
-  enabled: false
 
-elasticsearch:
-  enabled: false
-  image: nexus.global.dns:8443/acerta-dev/elasticsearch
-  imageTag: 7.15.0
-  replicas: 1
-  minimumMasterNodes: 1
-  volumeClaimTemplate.resources.requests.storage: 1Gi
-  sysctlInitContainer.enabled: false
-  extraEnvs:
-    - name: TZ
-      value: Europe/Brussels
-
-pulsar-standalone:
-  enabled: false
-
-flink:
-  enabled: false
 
 pulsar-client:
   enabled: true
@@ -103,9 +65,6 @@ ce-authorization-service:
   enabled: true
 
 ce-connect:
-  enabled: true
-
-ce-migration:
   enabled: true
 
 ce-user-preference:
