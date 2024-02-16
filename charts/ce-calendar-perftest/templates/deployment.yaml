@@ -43,7 +43,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           volumeMounts:
-            - mountPath: /app/config
+            - mountPath: /config
               name: application-yml
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
