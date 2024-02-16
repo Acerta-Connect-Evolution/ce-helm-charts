@@ -112,11 +112,11 @@ redis:
     redis:
       password: Admin123
 mysql:
-    fullnameOverride: mysql-perftest
-    enabled: true
-    auth:
-        defaultAuthenticationPlugin: caching_sha2_password
-        database: perftest
-        rootPassword: perftestpw
-        username: perftestuser
-        password: perftestpw
+  fullnameOverride: mysql-perftest
+  enabled: true
+  auth:
+      defaultAuthenticationPlugin: caching_sha2_password
+      database: perftest
+      rootPassword: perftestpw
+      username: perftestuser
+      password: perftestpw
