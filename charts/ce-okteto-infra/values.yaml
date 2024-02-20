@@ -948,6 +948,10 @@ ce-user-preference:
 
 spring-cloud-dataflow:
   enabled: true
+  skipper:
+    enabled: false
+  rabbitmq:
+    enabled: false
   extraDeploy:
     - apiVersion: bitnami.com/v1alpha1
       kind: SealedSecret
@@ -966,6 +970,16 @@ spring-cloud-dataflow:
               sealedsecrets.bitnami.com/cluster-wide: "true"
             name: scdf-server-init-datasource-cred
   server:
+    resources:
+      limits:
+        memory: 1024Mi
+      requests:
+        cpu: 30m
+        memory: 512Mi
+    image:
+      registry: nexus.global.dns:8443
+      repository: acerta-connect-evolution/spring-cloud-dataflow
+      tag: 2.11.2-debian-11-r5
     initContainers:
       - name: init-db
         image: nexus.global.dns:8443/acerta-connect-evolution/mssql-client:latest
