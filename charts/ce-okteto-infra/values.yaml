@@ -1,6 +1,6 @@
 mssql-latest:
   fullnameOverride: mssql-latest
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 3072Mi
@@ -15,7 +15,7 @@ mssql-latest:
 
 elasticsearch:
   fullnameOverride: elasticsearch-master
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 3072Mi
@@ -39,7 +39,7 @@ elasticsearch:
 
 redis:
   fullnameOverride: redis
-  enabled: true
+  enabled: false
   resources:
     requests:
       cpu: 5m
@@ -53,7 +53,7 @@ redis:
 
 pulsar-standalone:
   fullnameOverride: pulsar-standalone
-  enabled: true
+  enabled: false
   resources:
     requests:
       cpu: 100m
@@ -77,7 +77,7 @@ pulsar-standalone:
 
 pulsar-admin-console:
   fullnameOverride: pulsar-admin-console
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 128Mi
@@ -143,7 +143,7 @@ pulsar-admin-console:
 
 axon-server-calendar:
   fullnameOverride: axon-server-calendar
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 2048Mi
@@ -183,7 +183,7 @@ axon-server-calendar:
 
 pulsar-client:
   fullnameOverride: pulsar-client
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 1024Mi
@@ -202,7 +202,7 @@ pulsar-client:
 
 pulsar-init-job:
   fullnameOverride: pulsar-init-job
-  enabled: true
+  enabled: false
   initContainers:
     waitForUrl:
       enabled: true
@@ -361,7 +361,7 @@ pulsar-init-job:
 
 ff4j-init-job:
   fullnameOverride: ff4j-init-job
-  enabled: true
+  enabled: false
   initContainers:
     waitForUrl:
       enabled: true
@@ -370,7 +370,7 @@ ff4j-init-job:
 
 db-init-job:
   fullnameOverride: db-init-job
-  enabled: true
+  enabled: false
   image:
     repository: nexus.global.dns:8443/acerta-connect-evolution/mssql-client
   initContainers:
@@ -489,7 +489,7 @@ db-init-job:
 
 scdf-init-job:
   fullnameOverride: scdf-init-job
-  enabled: true
+  enabled: false
   initContainers:
     waitForUrl:
       enabled: true
@@ -585,7 +585,7 @@ scdf-init-job:
 
 ce-ff4j-server:
   fullnameOverride: ce-ff4j-server
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 512Mi
@@ -606,7 +606,7 @@ ce-ff4j-server:
 
 frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 1024Mi
@@ -792,7 +792,7 @@ frontend-services-gateway:
 
 keycloak-boot:
   fullnameOverride: keycloak-boot
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 1024Mi
@@ -812,7 +812,7 @@ keycloak-boot:
 
 ce-webcomponents:
   fullnameOverride: ce-webcomponents
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 128Mi
@@ -829,7 +829,7 @@ ce-webcomponents:
 
 ce-fake-everesst:
   fullnameOverride: ce-fake-everesst
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 768Mi
@@ -876,7 +876,7 @@ ce-fake-everesst:
 
 ce-fake-chro:
   fullnameOverride: ce-fake-chro
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 512Mi
@@ -892,7 +892,7 @@ ce-fake-chro:
 
 ce-authorization-service:
   fullnameOverride: ce-authorization-service
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 512Mi
@@ -915,7 +915,7 @@ ce-authorization-service:
 
 ce-user-preference:
   fullnameOverride: user-preference
-  enabled: true
+  enabled: false
   resources:
     requests:
       cpu: 5m
@@ -947,7 +947,7 @@ ce-user-preference:
       dev.okteto.com/generate-host: "true"
 
 spring-cloud-dataflow:
-  enabled: true
+  enabled: false
   fullnameOverride: spring-cloud-dataflow
   skipper:
     enabled: false
@@ -1038,7 +1038,7 @@ spring-cloud-dataflow:
             name: scdf-server-init-datasource-cred
 
 wiremock:
-  enabled: true
+  enabled: false
   fullnameOverride: ce-fake-connect-be
   service:
     annotations:
@@ -1046,7 +1046,7 @@ wiremock:
 
 ce-scdf-client:
   fullnameOverride: scdf-client
-  enabled: true
+  enabled: false
   resources:
     requests:
       cpu: 5m
