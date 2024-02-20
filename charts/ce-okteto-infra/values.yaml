@@ -948,6 +948,7 @@ ce-user-preference:
 
 spring-cloud-dataflow:
   enabled: true
+  fullnameOverride: spring-cloud-dataflow
   skipper:
     enabled: false
   rabbitmq:
