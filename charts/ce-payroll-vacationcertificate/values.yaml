@@ -86,9 +86,6 @@ tolerations: []
 affinity: {}
 
 sealedsecret:
-  initdatasource:
-    username:
-    password:
   datasource:
     username:
     password:
