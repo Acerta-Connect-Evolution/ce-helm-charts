@@ -110,9 +110,6 @@ affinity: {}
 sealedsecret:
   redis:
     password:
-  initdatasource:
-    username:
-    password:
   datasource:
     username:
     password:
