@@ -102,7 +102,7 @@ sealedsecret:
 env:
   datasource:
     host: DATASOURCE_HOST
-    database-name: connectevolution
+    databasename: connectevolution
   spring:
     profiles:
       active: default

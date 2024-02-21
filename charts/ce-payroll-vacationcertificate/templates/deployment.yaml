@@ -64,7 +64,7 @@ spec:
             - name: DATASOURCE_HOST
               value: {{ .Values.env.datasource.host }}
             - name: DATASOURCE_DATABASE-NAME
-              value: {{ .Values.env.datasource.database-name }}
+              value: {{ .Values.env.datasource.databasename }}
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
             - name: SPRING_DATASOURCE_USERNAME
