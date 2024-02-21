@@ -59,7 +59,7 @@ ingress:
   #      - chart-example.local
 
 api:
-  service: connect-backend-calendar-timespend-tst
+  service: connect-backend
   port: 8080
 
 connect:
