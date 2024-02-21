@@ -94,9 +94,6 @@ sealedsecret:
   datasource:
     username:
     password:
-  initdatasource:
-    username:
-    password:
   diccodatasource:
     username:
     password:
