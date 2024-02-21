@@ -4,14 +4,11 @@ ce-calendar-timespend-backend:
 ce-calendar-timespend-frontend:
   enabled: true
 
-
 connect-backend:
   enabled: true
 
 connect-frontend:
   enabled: true
-
-
 
 pulsar-client:
   enabled: true
@@ -25,7 +22,7 @@ scdf-init-job:
 ce-test-support:
   enabled: true
 
-cdc-db-init-job:
+db-init-job:
   enabled: true
 
 ce-ff4j-server:
