@@ -101,8 +101,8 @@ sealedsecret:
 
 env:
   datasource:
-    jdbcurl: DATASOURCE_JDBC-URL
-    databasename: DATASOURCE_DATABASE-NAME
+    host: DATASOURCE_HOST
+    database-name: connectevolution
   spring:
     profiles:
       active: default
