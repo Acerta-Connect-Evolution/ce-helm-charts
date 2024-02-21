@@ -54,16 +54,6 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           env:
-            - name: SPRING_INIT-DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-init-datasource-cred
-                  key: username
-            - name: SPRING_INIT-DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $fullName }}-init-datasource-cred
-                  key: password
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
