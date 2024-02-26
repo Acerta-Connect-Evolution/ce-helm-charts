@@ -1,8 +1,8 @@
-{{- $fullName := include "mychart.fullname" . -}}
+{{- $fullName := include "job.fullname" . -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ template "job.fullname" . }}
+  name: {{ $fullName }}
 spec:
   template:
     spec:
