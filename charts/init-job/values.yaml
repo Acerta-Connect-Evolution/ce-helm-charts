@@ -23,12 +23,15 @@ initContainers:
     enabled: false
     server:
       host: ""
-      user: ""
-      password: ""
     image:
       repository: nexus.global.dns:8443/acerta-connect-evolution/wait-for-mssql
       tag: '4.0'
       pullPolicy: IfNotPresent
+
+sealedsecret:
+  datasource:
+    username: ""
+    password: ""
 
 ## Job configurations
 backoffLimit: 4

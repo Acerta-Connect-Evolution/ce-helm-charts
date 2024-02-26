@@ -1,3 +1,4 @@
+{{- $fullName := include "mychart.fullname" . -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -25,6 +26,10 @@ spec:
           image: "{{ .Values.initContainers.waitForUrl.image.repository }}:{{ .Values.initContainers.waitForUrl.image.tag }}"
           imagePullPolicy: {{ .Values.initContainers.waitForUrl.image.imagePullPolicy }}
           args: [ '{{ .Values.initContainers.waitForUrl.endpoint }}' ]
+          env:
+          {{- if .Values.extraEnvs }}
+            {{- toYaml .Values.extraEnvs | nindent 10 }}
+          {{- end }}
       {{- end }}
       {{- if .Values.initContainers.waitForMssql.enabled }}
       initContainers:
@@ -32,6 +37,20 @@ spec:
           image: "{{ .Values.initContainers.waitForMssql.image.repository }}:{{ .Values.initContainers.waitForMssql.image.tag }}"
           imagePullPolicy: {{ .Values.initContainers.waitForMssql.image.imagePullPolicy }}
           args: [ '{{ .Values.initContainers.waitForMssql.server.host }}', '{{ .Values.initContainers.waitForMssql.server.user }}', '{{ .Values.initContainers.waitForMssql.server.password }}' ]
+          env:
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-datasource-cred
+                  key: username
+            - name: PWD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $fullName }}-datasource-cred
+                  key: password
+            {{- if .Values.extraEnvs }}
+              {{- toYaml .Values.extraEnvs | nindent 10 }}
+            {{- end }}
       {{- end }}
       containers:
       - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -42,12 +61,22 @@ spec:
           - "-c"
           - {{- toYaml .Values.script | nindent 12 }}
         env:
+          - name: USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ $fullName }}-datasource-cred
+                key: username
+          - name: PWD
+            valueFrom:
+              secretKeyRef:
+                name: {{ $fullName }}-datasource-cred
+                key: password
         {{- range concat (.Values.global.environment) (.Values.environment | default list)}}
           - name: {{ .name | quote}}
             value: {{ .value | quote }}
         {{- end }}
         {{- if .Values.extraEnvs }}
-          {{- toYaml .Values.extraEnvs | nindent 12 }}
+          {{- toYaml .Values.extraEnvs | nindent 10 }}
         {{- end }}
         {{- with .Values.resources }}
         resources:
