@@ -61,6 +61,7 @@ spec:
           - "-c"
           - {{- toYaml .Values.script | nindent 12 }}
         env:
+          {{- if .Values.initContainers.waitForMssql.enabled }}
           - name: USERNAME
             valueFrom:
               secretKeyRef:
@@ -71,6 +72,7 @@ spec:
               secretKeyRef:
                 name: {{ $fullName }}-datasource-cred
                 key: password
+          {{- end }}
         {{- range concat (.Values.global.environment) (.Values.environment | default list)}}
           - name: {{ .name | quote}}
             value: {{ .value | quote }}
