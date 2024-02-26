@@ -38,12 +38,12 @@ spec:
           imagePullPolicy: {{ .Values.initContainers.waitForMssql.image.imagePullPolicy }}
           args: [ '{{ .Values.initContainers.waitForMssql.server.host }}', '{{ .Values.initContainers.waitForMssql.server.user }}', '{{ .Values.initContainers.waitForMssql.server.password }}' ]
           env:
-            - name: USER
+            - name: USERNAME
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
                   key: username
-            - name: PWD
+            - name: PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ $fullName }}-datasource-cred
@@ -61,12 +61,12 @@ spec:
           - "-c"
           - {{- toYaml .Values.script | nindent 12 }}
         env:
-          - name: USER
+          - name: USERNAME
             valueFrom:
               secretKeyRef:
                 name: {{ $fullName }}-datasource-cred
                 key: username
-          - name: PWD
+          - name: PASSWORD
             valueFrom:
               secretKeyRef:
                 name: {{ $fullName }}-datasource-cred

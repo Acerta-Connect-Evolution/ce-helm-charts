@@ -25,7 +25,7 @@ initContainers:
       host: ""
     image:
       repository: nexus.global.dns:8443/acerta-connect-evolution/wait-for-mssql
-      tag: '4.0'
+      tag: '5.0'
       pullPolicy: IfNotPresent
 
 sealedsecret:
