@@ -378,8 +378,6 @@ db-init-job:
       enabled: true
       server:
         host: mssql-latest
-        user: sa
-        password: Admin123
   script: |
     export CMD='/opt/mssql-tools/bin/sqlcmd -S mssql-latest'
     $CMD -U $USERNAME -P $PASSWORD -Q "CREATE DATABASE connectevolution"
@@ -458,34 +456,10 @@ db-init-job:
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, ALTER, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: init_load_batch TO init_load_batch_ddl_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT CREATE TABLE TO init_load_batch_ddl_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'init_load_batch_ddl_role', 'init_load_batch_ddl'"
-  extraDeploy:
-  - apiVersion: bitnami.com/v1alpha1
-    kind: SealedSecret
-    metadata:
-      annotations:
-        sealedsecrets.bitnami.com/cluster-wide: "true"
-      name: db-init-job-datasource-cred
-    spec:
-      encryptedData:
-        username: AgDAvnpD+6Jk3gRHdARgmuUeRyKmq6lkPTU7YNJhfehCgmzwsZOsAnceRSwjzyDZFsVJQjmexNnQylgl6DyX4FlYgudIvkIS8L/U72g0C2QUyrCHYmqgbyjH65c9+yng3iveYnWCj29X+o1zyIN90YVfsINeRmx80gC7NevNfOdS1oF7B1o/drziPetobrj/USd7N+5R3bNk5niwJYf8EVUpcy8fkVZHZQnddO8FiZi/4vQaYZ+KnwOO56tAoxizgQIV9ozcB+WznLbQqx6GH94g4FPJ+KReLRdGiohOIIKjno8NlqY1nCT6ZxP6l3UzNFXiq3t0BzEd0bvmZmTFrtjisaLsL8TPjHqsdNspfDrTYzQIoaZVDXKtwlPm2ua2Sk6Sa7z6cBe2EVKAa9AgQGfXsiCSKt+/Z0wcvkMOi19hV3DeQTbYk7eBHVoupzkhG+v3XqF9uzpZPPNLIP3sbDPCqPUa1StnXN6T8rUCTIaRUCijWXi+Kzh1Q4lImqYxad8ZwlB9xzDvR9LSWiToi7LMJ17CqPd2WlDoKlUkWAQXg2NYr6SwRPbOYMUgx9mah0aOb2np9DFXXv0IvrB9d2yf+4aOIpnwDbub8aHVPX/qc0qhlvHAtKJ1G0nMdlM0IVWmbt3LmWzLktjFwFlynq9W1yVSby7A6Wc1/S2DYjuwklYhDW0MSQHq7nL863/aii105w==
-        password: AgCdt5/5f2nDW2Zy1gKZt98Vbk6J1g/6X6goylU9Vs49srHuINbZmAuWZxdpSy4iCgUT3hALTl1k7p4fQHVKKW2n3hUhRw0tN85drj8vSIodYfJ+MadEKlvVuhZjdHPXpCtOIPcz0OIExkGwBnV/oAsZpOxYnp0pbom43wCsmKRSJzhJMIJNrCq9WNKYbP6k62UJzPC+B9JmmWYCgfPRRIGivRD412ZKQTMnUgtarjaETG5nHHcIHaZxNStkLswrCqQDklYHDaRks3w4LqrEfWsTQLJUumMZvTe95uYsm5GGExTXUgjtDcKhnlANfF2xX7c2gJDlfCYnkYb7zFhccQ/gE6p+ORpc8wBQZXPV3jTVt6dkpNO4a8DCZQcDEouUS5V20lUwtnnIarlZ4DgtSsco+IquVUcU70mBny6yBAvZx27Burf/g1YVIMdhGPkt7HCtJ05BrpcytNUa50UDlS8B6wumx8HaORzWZFTcaUhyfnpGRz853X+XlgzHkghBZqTXAhCHTLrvpz1CAwjhNup6CzBAyrQp/GGGxybwzk6glZkXjMoQ6FiVrGKXuaDAkKFWu4Nu8JiC5wc8bY4Mw4c4gsckfre2HvoL67Va6MOqhpw/Xc5QsYxTtf55hwG5GvjKLb0ZYhrpGPOGu6O6Hjv5rYL/bFmLd+8FZoWRmiNK+X4TCAsyMbBV2gFcU5pOQyUMKOV+J9R28g==
-      template:
-        data: null
-        metadata:
-          annotations:
-            sealedsecrets.bitnami.com/cluster-wide: "true"
-          name: db-init-job-datasource-cred
-  extraEnvs:
-    - name: USERNAME
-      valueFrom:
-        secretKeyRef:
-          name: db-init-job-datasource-cred
-          key: username
-    - name: PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: db-init-job-datasource-cred
-          key: password
+  sealedsecret:
+    datasource:
+      username: AgDAvnpD+6Jk3gRHdARgmuUeRyKmq6lkPTU7YNJhfehCgmzwsZOsAnceRSwjzyDZFsVJQjmexNnQylgl6DyX4FlYgudIvkIS8L/U72g0C2QUyrCHYmqgbyjH65c9+yng3iveYnWCj29X+o1zyIN90YVfsINeRmx80gC7NevNfOdS1oF7B1o/drziPetobrj/USd7N+5R3bNk5niwJYf8EVUpcy8fkVZHZQnddO8FiZi/4vQaYZ+KnwOO56tAoxizgQIV9ozcB+WznLbQqx6GH94g4FPJ+KReLRdGiohOIIKjno8NlqY1nCT6ZxP6l3UzNFXiq3t0BzEd0bvmZmTFrtjisaLsL8TPjHqsdNspfDrTYzQIoaZVDXKtwlPm2ua2Sk6Sa7z6cBe2EVKAa9AgQGfXsiCSKt+/Z0wcvkMOi19hV3DeQTbYk7eBHVoupzkhG+v3XqF9uzpZPPNLIP3sbDPCqPUa1StnXN6T8rUCTIaRUCijWXi+Kzh1Q4lImqYxad8ZwlB9xzDvR9LSWiToi7LMJ17CqPd2WlDoKlUkWAQXg2NYr6SwRPbOYMUgx9mah0aOb2np9DFXXv0IvrB9d2yf+4aOIpnwDbub8aHVPX/qc0qhlvHAtKJ1G0nMdlM0IVWmbt3LmWzLktjFwFlynq9W1yVSby7A6Wc1/S2DYjuwklYhDW0MSQHq7nL863/aii105w==
+      password: AgCdt5/5f2nDW2Zy1gKZt98Vbk6J1g/6X6goylU9Vs49srHuINbZmAuWZxdpSy4iCgUT3hALTl1k7p4fQHVKKW2n3hUhRw0tN85drj8vSIodYfJ+MadEKlvVuhZjdHPXpCtOIPcz0OIExkGwBnV/oAsZpOxYnp0pbom43wCsmKRSJzhJMIJNrCq9WNKYbP6k62UJzPC+B9JmmWYCgfPRRIGivRD412ZKQTMnUgtarjaETG5nHHcIHaZxNStkLswrCqQDklYHDaRks3w4LqrEfWsTQLJUumMZvTe95uYsm5GGExTXUgjtDcKhnlANfF2xX7c2gJDlfCYnkYb7zFhccQ/gE6p+ORpc8wBQZXPV3jTVt6dkpNO4a8DCZQcDEouUS5V20lUwtnnIarlZ4DgtSsco+IquVUcU70mBny6yBAvZx27Burf/g1YVIMdhGPkt7HCtJ05BrpcytNUa50UDlS8B6wumx8HaORzWZFTcaUhyfnpGRz853X+XlgzHkghBZqTXAhCHTLrvpz1CAwjhNup6CzBAyrQp/GGGxybwzk6glZkXjMoQ6FiVrGKXuaDAkKFWu4Nu8JiC5wc8bY4Mw4c4gsckfre2HvoL67Va6MOqhpw/Xc5QsYxTtf55hwG5GvjKLb0ZYhrpGPOGu6O6Hjv5rYL/bFmLd+8FZoWRmiNK+X4TCAsyMbBV2gFcU5pOQyUMKOV+J9R28g==
 
 scdf-init-job:
   fullnameOverride: scdf-init-job
