@@ -456,6 +456,18 @@ db-init-job:
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT REFERENCES, ALTER, SELECT, INSERT, UPDATE, DELETE ON SCHEMA :: init_load_batch TO init_load_batch_ddl_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT CREATE TABLE TO init_load_batch_ddl_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'init_load_batch_ddl_role', 'init_load_batch_ddl'"
+    echo "init MONITORING"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE LOGIN connectevolution_monitor WITH PASSWORD ='CEMonitorPass123', default_database = connectevolution"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE USER connectevolution_monitor FROM LOGIN connectevolution_monitor"
+    $CMD -U $USERNAME -P $PASSWORD -Q "CREATE ROLE connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: calendar_axon TO connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: calendar_repertorium TO connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: clink TO connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: user_preference TO connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: payroll_vacation_certificate TO connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: init_load_batch TO connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: spring_cloud_dataflow TO connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "EXEC sp_addrolemember 'connectevolution_monitor_role', 'connectevolution_monitor'"
   sealedsecret:
     datasource:
       username: AgDAvnpD+6Jk3gRHdARgmuUeRyKmq6lkPTU7YNJhfehCgmzwsZOsAnceRSwjzyDZFsVJQjmexNnQylgl6DyX4FlYgudIvkIS8L/U72g0C2QUyrCHYmqgbyjH65c9+yng3iveYnWCj29X+o1zyIN90YVfsINeRmx80gC7NevNfOdS1oF7B1o/drziPetobrj/USd7N+5R3bNk5niwJYf8EVUpcy8fkVZHZQnddO8FiZi/4vQaYZ+KnwOO56tAoxizgQIV9ozcB+WznLbQqx6GH94g4FPJ+KReLRdGiohOIIKjno8NlqY1nCT6ZxP6l3UzNFXiq3t0BzEd0bvmZmTFrtjisaLsL8TPjHqsdNspfDrTYzQIoaZVDXKtwlPm2ua2Sk6Sa7z6cBe2EVKAa9AgQGfXsiCSKt+/Z0wcvkMOi19hV3DeQTbYk7eBHVoupzkhG+v3XqF9uzpZPPNLIP3sbDPCqPUa1StnXN6T8rUCTIaRUCijWXi+Kzh1Q4lImqYxad8ZwlB9xzDvR9LSWiToi7LMJ17CqPd2WlDoKlUkWAQXg2NYr6SwRPbOYMUgx9mah0aOb2np9DFXXv0IvrB9d2yf+4aOIpnwDbub8aHVPX/qc0qhlvHAtKJ1G0nMdlM0IVWmbt3LmWzLktjFwFlynq9W1yVSby7A6Wc1/S2DYjuwklYhDW0MSQHq7nL863/aii105w==
