@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-connect-evolution/ce-chro-inbound-integration
+  repository: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/ce-chro-inbound-integration
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
