@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/acerta-connect-evolution/ce-fake-chro
+  repository: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/ce-fake-chro
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
