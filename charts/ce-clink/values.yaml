@@ -13,10 +13,6 @@ imagePullSecrets:
 nameOverride: ""
 fullnameOverride: ""
 
-initContainers:
-  waitForPulsar:
-    enabled: true
-    topics: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
