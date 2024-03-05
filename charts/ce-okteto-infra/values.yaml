@@ -381,7 +381,6 @@ db-init-job:
   script: |
     export CMD='/opt/mssql-tools/bin/sqlcmd -S mssql-latest'
     $CMD -U $USERNAME -P $PASSWORD -Q "CREATE DATABASE connectevolution"
-    $CMD -U $USERNAME -P $PASSWORD -Q "ALTER DATABASE connectevolution SET READ_COMMITTED_SNAPSHOT ON"
     $CMD -U $USERNAME -P $PASSWORD -Q "ALTER DATABASE connectevolution SET RECOVERY SIMPLE"
     export CMD='/opt/mssql-tools/bin/sqlcmd -S mssql-latest -d connectevolution'
     echo "init CALENDAR_AXON"
