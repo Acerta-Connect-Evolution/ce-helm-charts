@@ -78,3 +78,6 @@ ce-chro-inbound-integration:
 
 ce-calendar-perftest:
   enabled: false
+
+ce-calendar-agreement-grouping-backend:
+  enabled: true
