@@ -3,4 +3,4 @@ appVersion: 0.0.1
 description: Helm chart for ce-calendar-counter-backend
 name: ce-calendar-counter-backend
 type: application
-version: 0.0.2
+version: 0.0.3
