@@ -22,7 +22,7 @@ elasticsearch:
     requests:
       cpu: 20m
       memory: 1536Mi
-  image: nexus.global.dns:8443/acerta-dev/elasticsearch
+  image: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/elasticsearch
   imageTag: 7.15.0
   replicas: 2
   minimumMasterNodes: 1
@@ -372,7 +372,7 @@ db-init-job:
   fullnameOverride: db-init-job
   enabled: false
   image:
-    repository: nexus.global.dns:8443/acerta-connect-evolution/mssql-client
+    repository: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/mssql-client
   initContainers:
     waitForMssql:
       enabled: true
@@ -487,8 +487,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "init",
-          "containerImage": "acerta-connect-evolution/init-task:0.11.0",
-          "metadataJar": "be.acerta.ce.batch:init-task:jar:metadata:0.11.0",
+          "containerImage": "acerta-connect-evolution/init-task:0.29.0",
+          "metadataJar": "be.acerta.ce.batch:init-task:jar:metadata:0.29.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -497,8 +497,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "migrate-employer",
-          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.20.0",
-          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.20.0",
+          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.28.0",
+          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.28.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -507,8 +507,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "onboard-ce",
-          "containerImage": "acerta-connect-evolution/onboard-ce-task:1.3.0",
-          "metadataJar": "be.acerta.ce.batch:onboard-ce-task:jar:metadata:1.3.0",
+          "containerImage": "acerta-connect-evolution/onboard-ce-task:1.9.0",
+          "metadataJar": "be.acerta.ce.batch:onboard-ce-task:jar:metadata:1.9.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -517,8 +517,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "notify",
-          "containerImage": "acerta-connect-evolution/notify-task:0.10.0",
-          "metadataJar": "be.acerta.ce.batch:notify-task:jar:metadata:0.10.0",
+          "containerImage": "acerta-connect-evolution/notify-task:0.16.0",
+          "metadataJar": "be.acerta.ce.batch:notify-task:jar:metadata:0.16.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -527,8 +527,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "cleanup",
-          "containerImage": "acerta-connect-evolution/cleanup-task:0.8.0",
-          "metadataJar": "be.acerta.ce.batch:cleanup-task:jar:metadata:0.8.0",
+          "containerImage": "acerta-connect-evolution/cleanup-task:0.15.0",
+          "metadataJar": "be.acerta.ce.batch:cleanup-task:jar:metadata:0.15.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -537,8 +537,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "time-code",
-          "containerImage": "acerta-connect-evolution/time-code-task:0.3.0",
-          "metadataJar": "be.acerta.ce.batch:time-code-task:jar:metadata:0.3.0",
+          "containerImage": "acerta-connect-evolution/time-code-task:0.8.0",
+          "metadataJar": "be.acerta.ce.batch:time-code-task:jar:metadata:0.8.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -914,12 +914,12 @@ spring-cloud-dataflow:
         cpu: 30m
         memory: 512Mi
     image:
-      registry: nexus.global.dns:8443
-      repository: acerta-connect-evolution/spring-cloud-dataflow
+      registry: harbor.tools.acerta.io
+      repository: acerta-releases/acerta-connect-evolution/spring-cloud-dataflow
       tag: 2.11.2-debian-11-r5
     initContainers:
       - name: init-db
-        image: nexus.global.dns:8443/acerta-connect-evolution/mssql-client:latest
+        image: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/mssql-client:latest
         command:
           - "sh"
           - "-c"
