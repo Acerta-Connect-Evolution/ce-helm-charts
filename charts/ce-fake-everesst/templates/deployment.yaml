@@ -15,10 +15,11 @@ spec:
       {{- include "mychart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        checksum/config-map: {{ include (print $.Template.BasePath "/spring-config.yaml") . | sha256sum   }}
+        {{- with .Values.podAnnotations }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
     spec:
