@@ -155,7 +155,7 @@ axon-server-calendar:
     # "axoniq/axonserver" is the SE Docker image. Any other (custom) image means that the chart will configure for EE
     repository: axoniq/axonserver
     pullPolicy: IfNotPresent
-    tag: "4.6.7-dev"
+    tag: "4.6.11-dev"
   extraEnvs:
     - name: AXONIQ_AXONSERVER_DEVMODE_ENABLED
       value: "true"
