@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/calendar-agreement-grouping-backend
+  repository: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/calendar-agreement-grouping-service
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
