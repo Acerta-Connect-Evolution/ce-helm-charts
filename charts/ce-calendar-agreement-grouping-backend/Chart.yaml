@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 0.3.0
+appVersion: 0.4.0
 description: Helm chart for ce-calendar-agreement-grouping-backend
 name: ce-calendar-agreement-grouping-backend
 type: application
