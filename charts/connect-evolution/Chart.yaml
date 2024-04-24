@@ -45,7 +45,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-test-support.enabled
   - name: ce-ff4j-server
-    version: 1.41.0
+    version: 1.42.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-ff4j-server.enabled
   - name: ce-payroll-vacationcertificate
