@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: 1.43.0
+appVersion: 1.44.0
 description: Helm chart for ce-calendar-perftest
 name: ce-calendar-perftest
 type: application
-version: 0.48.0
+version: 0.49.0
 dependencies:
 - name: redis
   version: 18.1.0
