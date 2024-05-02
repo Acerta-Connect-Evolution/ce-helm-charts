@@ -1,6 +1,6 @@
 name: Release Helm Charts
 
-run-name: DEVELOPMENT\:${{ github.actor }} is releasing new Helm charts.
+run-name: DEV ${{ github.actor }} is releasing new Helm charts.
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: okteto
     steps:
 
     - name: 'Git Checkout'
