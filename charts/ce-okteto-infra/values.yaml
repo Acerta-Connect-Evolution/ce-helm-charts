@@ -527,8 +527,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "cleanup",
-          "containerImage": "acerta-connect-evolution/cleanup-task:0.15.0",
-          "metadataJar": "be.acerta.ce.batch:cleanup-task:jar:metadata:0.15.0",
+          "containerImage": "acerta-connect-evolution/cleanup-task:0.16.0",
+          "metadataJar": "be.acerta.ce.batch:cleanup-task:jar:metadata:0.16.0",
           "force": false
       }'
     curl -X 'POST' \
