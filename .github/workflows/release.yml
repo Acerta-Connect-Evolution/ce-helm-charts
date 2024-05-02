@@ -1,6 +1,6 @@
 name: Release Helm Charts
 
-run-name: ${{ github.actor }} is releasing new Helm charts.
+run-name: DEVELOPMENT\:${{ github.actor }} is releasing new Helm charts.
 
 on:
   workflow_dispatch:
@@ -13,8 +13,7 @@ on:
 
 jobs:
   release:
-    runs-on:
-      group: k8s-runners
+    runs-on: ubuntu-latest
     steps:
 
     # Checkout the current Git repository.
