@@ -16,30 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    # Checkout the current Git repository.
     - name: 'Git Checkout'
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
-    # Configure Helm
     - name: 'Configure & Install Helm'
       uses: azure/setup-helm@v3
 
-    # Authorize Azure CLI
-    # The ACC secret works on all environments, it's quite a weird setup.
-    - name: Login to Azure CLI
-      uses: Acerta-Common/custom-github-actions/azure-cli-login@v5.2.4
-      id: azure-login
-      with:
-        subscription-id: ${{ vars.ACC_SUBSCRIPTION_ID }}
-        client-id: ${{ vars.ACC_SERVICE_PRINCIPAL_ID }}
-        tenant-id: ${{ vars.AZURE_TENANT_ID }}
-        client-secret: ${{ secrets.AZURE_CREDENTIALS_AZLOGIN_ACC }}
-        environment: acc
-        sub-environment: acc
-
-    # Authorize with Harbor
     - name: Authorize with Harbor
       run: |
-        echo ${{ steps.azure-login.outputs.harbor-release-password }} | helm registry login -u ${{ steps.azure-login.outputs.harbor-release-username }} --password-stdin harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/charts
+        echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/charts
