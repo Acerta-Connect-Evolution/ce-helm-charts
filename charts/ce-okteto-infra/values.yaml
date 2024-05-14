@@ -1024,6 +1024,3 @@ ce-scdf-client:
     className: ""
     annotations:
       dev.okteto.com/generate-host: "true"
-  application_yml: |
-    cleanup:
-      clean-redis: true
