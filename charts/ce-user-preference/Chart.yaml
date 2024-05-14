@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: 1.8.0
-description: Helm chart for ce-user-preference
-name: ce-user-preference
-type: application
-version: 1.11.0
