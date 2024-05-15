@@ -64,7 +64,7 @@ ce-authorization-service:
 ce-connect:
   enabled: true
 
-ce-user-preference:
+ce-preference:
   enabled: true
 
 ce-scdf-client:

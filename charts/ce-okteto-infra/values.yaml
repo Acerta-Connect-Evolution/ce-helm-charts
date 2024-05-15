@@ -463,7 +463,7 @@ db-init-job:
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: calendar_axon TO connectevolution_monitor_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: calendar_repertorium TO connectevolution_monitor_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: clink TO connectevolution_monitor_role"
-    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: user_preference TO connectevolution_monitor_role"
+    $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: preference TO connectevolution_monitor_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: payroll_vacation_certificate TO connectevolution_monitor_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: init_load_batch TO connectevolution_monitor_role"
     $CMD -U $USERNAME -P $PASSWORD -Q "GRANT SELECT ON SCHEMA :: spring_cloud_dataflow TO connectevolution_monitor_role"
@@ -731,13 +731,13 @@ frontend-services-gateway:
               filters:
                 - PropertyInResponseResolvingGatewayFilter
                 - RewritePath=/calendar-repertorium/(?<segment>.*), /$\{segment}
-            - id: user-preference
-              uri: http://user-preference:8080
+            - id: preference
+              uri: http://preference:8080
               order: 10
               predicates:
-                - Path=/user-preference/**
+                - Path=/preference/**
               filters:
-                - RewritePath=/user-preference/(?<segment>.*), /$\{segment}
+                - RewritePath=/preference/(?<segment>.*), /$\{segment}
             - id: webcomponents
               uri: http://ce-webcomponents:8080
               order: 10
