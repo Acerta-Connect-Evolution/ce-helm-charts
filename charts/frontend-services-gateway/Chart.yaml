@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 1.116.4
+appVersion: 1.116.5
 description: Helm chart for frontend-services-gateway
 name: frontend-services-gateway
 type: application
-version: 1.119.3
+version: 1.119.4
