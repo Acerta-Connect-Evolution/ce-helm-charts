@@ -49,18 +49,6 @@ spec:
           volumeMounts:
            - name: mssqldb
              mountPath: /var/opt/mssql
-             {{- if .Values.persistence.userdbSeparateClaim }}
-           - name: mssqluserdb
-             mountPath: /var/opt/mssql/userdata
-             {{- end }}
-             {{- if .Values.persistence.userlogSeparateClaim }}
-           - name: mssqllog
-             mountPath: /var/opt/mssql/userlog
-             {{- end }}
-             {{- if .Values.persistence.tempSeparateClaim }}
-           - name: mssqltemp
-             mountPath: /var/opt/mssql/tempdb
-             {{- end }}
            - name: mssql-config-volume
              mountPath: /var/opt/config
           resources:
@@ -69,21 +57,6 @@ spec:
        - name: mssqldb
          persistentVolumeClaim:
           claimName: mssql-data
-       {{- if .Values.persistence.userdbSeparateClaim }}
-       - name: mssqluserdb
-         persistentVolumeClaim:
-          claimName: mssql-userdb
-       {{- end }}
-       {{- if .Values.persistence.userlogSeparateClaim }}
-       - name: mssqllog
-         persistentVolumeClaim:
-          claimName: mssql-log
-       {{- end }}
-       {{- if .Values.persistence.tempSeparateClaim }}
-       - name: mssqltemp
-         persistentVolumeClaim:
-          claimName: mssql-temp
-       {{- end }}
        - name: mssql-config-volume
          configMap:
           name: mssql-config
