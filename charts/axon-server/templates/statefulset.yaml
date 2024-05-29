@@ -166,7 +166,7 @@ spec:
           requests:
             storage: {{ .Values.persistence.size }}
         selector:
-{{ toYaml .Values.persistence.selector | indent 8 }}
+{{ toYaml .Values.persistence.selector | indent 10 }}
         storageClassName: {{ .Values.persistence.storageClassName }}
     {{- if .Values.extraVolumeClaimTemplates }}
       {{- toYaml .Values.extraVolumeClaimTemplates | nindent 4 }}
