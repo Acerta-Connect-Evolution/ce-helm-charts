@@ -1,12 +1,17 @@
 apiVersion: v2
-name: axon-server
+appVersion: 4.5.12
 
+name: axon-server
 home: https://axoniq.io/product-overview/axon-server
 description: AxonServer to be used in Development Workbench (eg less volumes)
-type: application
 
-version: 1.0.0
-appVersion: 4.5.12
+type: application
+version: 1.0.1
+
+dependencies:
+  - name: common
+    version: 2.19.3
+    repository: oci://registry-1.docker.io/bitnamicharts
 
 keywords:
 - axoniq
