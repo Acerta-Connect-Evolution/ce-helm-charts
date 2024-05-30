@@ -63,15 +63,6 @@ resources: # {}
 #    memory: "512Mi"
 
 persistence:
-  storageClass: "nfs"
+  storageClass: ""
   dataAccessMode: ReadWriteOnce
   dataSize: 1Gi
-  userlogaccessMode: ReadWriteOnce
-  userlogsize: 1Gi
-  userlogSeparateClaim: true
-  tempdbaccessMode: ReadWriteOnce
-  tempsize: 1Gi
-  tempSeparateClaim: true
-  userdbaccessMode: ReadWriteOnce
-  userdbsize: 1Gi
-  userdbSeparateClaim: true

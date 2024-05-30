@@ -24,4 +24,5 @@ spec:
   storageClassName: "{{ .Values.persistence.storageClass }}"
 {{- end }}
 {{- end }}
-  volumeName: mssql-data
+  selector:
+    {{ toYaml .Values.persistence.selector | indent 4 }}
