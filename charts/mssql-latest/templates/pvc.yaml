@@ -25,4 +25,4 @@ spec:
 {{- end }}
 {{- end }}
   selector:
-    {{ toYaml .Values.persistence.selector | indent 4 }}
+{{ toYaml .Values.persistence.selector | indent 4 }}
