@@ -714,9 +714,10 @@ frontend-services-gateway:
               predicates:
                 - Path=/balances/**
               filters:
+                - PropertyInResponseResolvingGatewayFilter
                 - RewritePath=/balances/(?<segment>.*), /$\{segment}
             - id: vacation-certificate
-              uri: http://payroll-vacation-certificate-service:8080
+              uri: http://payroll-vacationcertificate:8080
               order: 10
               predicates:
                 - Path=/payroll-vacation-certificate/**
