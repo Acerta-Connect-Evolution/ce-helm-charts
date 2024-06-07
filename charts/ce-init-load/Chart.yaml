@@ -1,7 +1,7 @@
 apiVersion: v2
-appVersion: 2.0.0
+appVersion: 3.0.0
 description: Helm chart for ce-init-load
 name: ce-init-load
 type: application
-version: 0.63.0
+version: 0.64.0
 
