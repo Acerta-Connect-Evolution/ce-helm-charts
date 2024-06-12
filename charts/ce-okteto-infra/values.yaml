@@ -789,7 +789,7 @@ frontend-services-gateway:
         logout-uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/authenticate
     ff4j:
       api:
-        url: https://ce-ff4j-server:8080/api/ff4j
+        url: http://ce-ff4j-server:8080/api/ff4j
     logging:
       pattern.level: 'trace_id=%mdc{trace_id} span_id=%mdc{span_id} principal=%mdc{user_id} %5p'
       level:
