@@ -594,36 +594,29 @@ frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
   enabled: false
   resources:
-    limits:
-      memory: 1024Mi
     requests:
-      cpu: 20m
-      memory: 512Mi
-  sealedsecret:
-    gatewayclient:
-      secret: AgCHRB/V7EX6MIGama1SKxH2zPZfbfixPjwuYlGPoXyrctUvwdMRukIfIzNgjvQZ/pHOtTHrg/R5e9xY2zml4drjelTfb68jT9CmFJMobRbydOWu4CzJmiFNwfDR/HNFahl+Ty/+N2//xyYcH1bMATJubk8UiTLnwRRLML39cHl425hsE30yW5nqu5DyX3Yh3N2YxwkqYyO4lM8MbEzze/yFSHIUeDhPoXN/VA1wGy2QkG+XOY2vjLEE9qhyrojFtU0pmLywjDQECIym4c8e5RVVlE9lVQq/YZ+rxnsZA75J+qeKLnufYlQuqquLnYG0P1zgu5fIm1ldA3LhvGV8DXAgoBLeHsQ9mA7QH+CrEQin62KHl/rWj63DHWb4XQbYtPGRFBOjTr2wNfacUQlzv1qAKrGOi4yiJZoD9bhi4/2Jc6NcjW5ALq0rm+J/zpWMuu+c6cKdPmbG5hDVeevd2vi0bKcEGr/WliY8UkVemqTLORs7+pDn0a3H5b+X8sTIe5+6P2IWUfI8cIOU624JzerofUZNptw8tp8Tv1o/oEKiPlt+T1rPmEwW2BF5N17rPlWnF5055tKWU9NLN5wZFt0q5Fy+t8CxTBni5rei5WS+B/vTvgakyFjtn8EGQ8o8yy+TpaC3MtHjfx3fK7oxkYmrTYC4mORJuQecHr4y3d2SJfjB5WOtwa45pRR9jbIVfDw2eQn8Z2cdz0FgwS5Zg1BA4WXh7/VJ+Em50x47HWq+Gg==
-  ingress:
-    enabled: true
-    className: ""
-    annotations:
-      dev.okteto.com/generate-host: "true"
-  loki:
-    enabled: true
-    tenant: dev
-  tempo:
-    enabled: true
-    tenant: dev
+      cpu: 5m
+      memory: "512Mi"
+    limits:
+      memory: "512Mi"
   application_yml: |
+    logging:
+      pattern.level: 'trace_id=%mdc{trace_id} span_id=%mdc{span_id} %5p'
+    server.reactive.session.cookie.name: OKTETO_CE_GATEWAY_SESSION
     spring:
-      # profile 'always-active' should always be active :) as the corresponding application-always-active.yml (in gateway jar)
-      # contains some config that is always needed under normal circumstances. We pushed that config to the application-always-active.yml
-      # to remove unnecessary clutter from the application.yml file.
+      web:
+        resources:
+          cache.cachecontrol:
+            no-cache: true
+
       profiles:
-        active: always-active #, nosecurity
+        active: always-active
+    
       redis:
         host: redis-master
         port: 6379
         password: Admin123
+    
       security:
         oauth2:
           client:
@@ -636,13 +629,13 @@ frontend-services-gateway:
               ce-gateway:
                 provider: keycloak
                 client-id: ce-gateway
-                client-secret: replaced-by-sealed-secret
                 redirect-uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/login/oauth2/code/ce-gateway
                 scope:
                   - openid
                   - email
                   - profile
                   - roles
+    
       cloud:
         gateway:
           default-filters:
@@ -656,23 +649,39 @@ frontend-services-gateway:
                 allowedHeaders: "*"
                 allowedOrigins: "*"
           routes:
-            - id: heartbeat
+            - id: keep-alive
+              uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io
+              order: 20
+              predicates:
+                - Path=/keep-alive/**
+              filters:
+                - PropertyInResponseResolvingGatewayFilter
+                - RewritePath=/keep-alive/(?<segment>.*), /static/keep-alive/$\{segment}
+            - id: initialize
+              uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io
+              order: 20
+              predicates:
+                - Path=/initialize/**
+              filters:
+                - PropertyInResponseResolvingGatewayFilter
+                - RewritePath=/initialize/(?<segment>.*), /static/initialize/$\{segment}
+            - id: session-refresh
               uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io
               order: 1000
               predicates:
-                - Path=/heartbeat
+                - Path=/session-refresh
               filters:
-                - RewritePath=/heartbeat, /session-refresh
+                - RemoveRequestHeader=Cookie
             - id: calendar-timespend-frontend-rsocket
               uri: ws://calendar-timespend-frontend:7000
-              order: 1000
+              order: 10
               predicates:
                 - Path=/calendar-timespend/socket
               filters:
                 - RewritePath=/calendar-timespend/socket, /socket
             - id: calendar-timespend-frontend-rsocket-perftest
               uri: ws://calendar-timespend-frontend:7000
-              order: 1000
+              order: 10
               predicates:
                 - Path=/calendar-timespend/perftest
               filters:
@@ -680,7 +689,7 @@ frontend-services-gateway:
                 - RewritePath=/calendar-timespend/perftest, /socket
             - id: calendar-timespend-frontend-everything-else
               uri: http://calendar-timespend-frontend:8080
-              order: 2000
+              order: 20
               predicates:
                 - Path=/calendar-timespend/**
               filters:
@@ -688,26 +697,28 @@ frontend-services-gateway:
                 - RewritePath=/calendar-timespend/(?<segment>.*), /$\{segment}
             - id: calendar-balance-frontend-rsocket
               uri: ws://calendar-balance-frontend:7000
-              order: 1000
+              order: 10
               predicates:
                 - Path=/calendar-balance/socket
               filters:
                 - RewritePath=/calendar-balance/socket, /socket
             - id: calendar-balance-frontend-everything-else
               uri: http://calendar-balance-frontend:8080
-              order: 2000
+              order: 20
               predicates:
                 - Path=/calendar-balance/**
               filters:
                 - PropertyInResponseResolvingGatewayFilter
                 - RewritePath=/calendar-balance/(?<segment>.*), /$\{segment}
-            - id: ff4j
-              uri: http://ce-ff4j-server:8080
-              order: 10
+            - id: calendar-repertorium
+              uri: http://calendar-repertorium:8080
+              order: 20
               predicates:
-                - Path=/ff4j/**
+                - PropertyInResponseResolvingGatewayFilter
+                - Path=/calendar-repertorium/**
               filters:
-                - RewritePath=/ff4j/(?<segment>.*), /$\{segment}
+                - PropertyInResponseResolvingGatewayFilter
+                - RewritePath=/calendar-repertorium/(?<segment>.*), /$\{segment}
             - id: balances
               uri: http://balances:8080
               order: 10
@@ -724,14 +735,21 @@ frontend-services-gateway:
               filters:
                 - PropertyInResponseResolvingGatewayFilter
                 - RewritePath=/payroll-vacation-certificate/(?<segment>.*), /$\{segment}
-            - id: calendar-repertorium
-              uri: http://calendar-repertorium:8080
+            - id: webcomponents
+              uri: http://ce-webcomponents:8080
               order: 10
               predicates:
-                - Path=/calendar-repertorium/**
+                - Path=/webcomponents/**
               filters:
                 - PropertyInResponseResolvingGatewayFilter
-                - RewritePath=/calendar-repertorium/(?<segment>.*), /$\{segment}
+                - RewritePath=/webcomponents/(?<segment>.*), /$\{segment}
+            - id: ff4j
+              uri: http://ce-ff4j-server:8080
+              order: 10
+              predicates:
+                - Path=/ff4j/**
+              filters:
+                - RewritePath=/ff4j/(?<segment>.*), /$\{segment}
             - id: preference
               uri: http://preference:8080
               order: 10
@@ -739,13 +757,6 @@ frontend-services-gateway:
                 - Path=/preference/**
               filters:
                 - RewritePath=/preference/(?<segment>.*), /$\{segment}
-            - id: webcomponents
-              uri: http://ce-webcomponents:8080
-              order: 10
-              predicates:
-                - Path=/webcomponents/**
-              filters:
-                - RewritePath=/webcomponents/(?<segment>.*), /$\{segment}
             - id: CE-test-backend
               uri: http://test-websocket-service:8085
               predicates:
@@ -757,26 +768,60 @@ frontend-services-gateway:
     ---
     frontend:
       properties:
+        ENABLE_FRONTEND_LOGGING: "true"
         WEBCOMPONENT_HOST: "frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io"
+        GATEWAY_HOST: "frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io"
+        GATEWAY_CONTEXT: ""
+        GATEWAY_COOKIE: "OKTETO_CE_GATEWAY_SESSION"
+        GATEWAY_COOKIE_REFRESHED_EVENT: "ce-gateway-refreshed"
     filter:
       propertyresolver:
+        overriddenFilterUrls: >
+          /connect/
         requireQueryParam: false
         ellegibleFileExtensions: "js,mjs,html"
         cache:
-          enabled: false
           ttl: 10 
     acerta:
       keycloak:
         registration-service-name: ce-gateway
       gateway:
-        session-cookie-domain: acerta.io
         keep-alive-path: /keep-alive/index.html
         logout-uri: https://frontend-services-gateway-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/authenticate
-        session-timeout: 90
     ff4j:
       api:
-        url: https://ce-ff4j-server-${OKTETO_NAMESPACE}.devtst.okt.acerta.io/api/ff4j
-
+        url: https://ce-ff4j-server:8080/api/ff4j
+    logging:
+      pattern.level: 'trace_id=%mdc{trace_id} span_id=%mdc{span_id} principal=%mdc{user_id} %5p'
+      level:
+        be.acerta.fegateway: DEBUG
+        org.springframework: INFO
+        org.springframework.cloud.gateway: DEBUG                                                              # gateway debugging
+        org.springframework.cloud.gateway.handler: INFO
+        org.springframework.cloud.gateway.filter.WeightCalculatorWebFilter: INFO
+        org.springframework.security: DEBUG                                                                   # security debugging
+        org.springframework.security.web.server.DefaultServerRedirectStrategy: INFO                           # logging OIDC redirection details (to IDP > keep-alive)
+        org.springframework.security.web.server.context: INFO                                                 # logging SecurityContext (user details)
+        org.springframework.security.web.server.authorization.AuthorizationWebFilter: INFO                    # validation authorization successfull / failed
+        org.springframework.security.web.server.authorization.DelegatingReactiveAuthorizationManager: INFO    # logs what resource is requested (w/ checking auth)
+        org.springframework.security.web.server.util.matcher: INFO
+        reactor.netty.http: INFO
+        reactor.netty.http.server.AccessLog: WARN
+        be.acerta.fegateway.gateway.filters.SessionFilter: INFO
+  sealedsecret:
+    gatewayclient:
+      secret: AgCHRB/V7EX6MIGama1SKxH2zPZfbfixPjwuYlGPoXyrctUvwdMRukIfIzNgjvQZ/pHOtTHrg/R5e9xY2zml4drjelTfb68jT9CmFJMobRbydOWu4CzJmiFNwfDR/HNFahl+Ty/+N2//xyYcH1bMATJubk8UiTLnwRRLML39cHl425hsE30yW5nqu5DyX3Yh3N2YxwkqYyO4lM8MbEzze/yFSHIUeDhPoXN/VA1wGy2QkG+XOY2vjLEE9qhyrojFtU0pmLywjDQECIym4c8e5RVVlE9lVQq/YZ+rxnsZA75J+qeKLnufYlQuqquLnYG0P1zgu5fIm1ldA3LhvGV8DXAgoBLeHsQ9mA7QH+CrEQin62KHl/rWj63DHWb4XQbYtPGRFBOjTr2wNfacUQlzv1qAKrGOi4yiJZoD9bhi4/2Jc6NcjW5ALq0rm+J/zpWMuu+c6cKdPmbG5hDVeevd2vi0bKcEGr/WliY8UkVemqTLORs7+pDn0a3H5b+X8sTIe5+6P2IWUfI8cIOU624JzerofUZNptw8tp8Tv1o/oEKiPlt+T1rPmEwW2BF5N17rPlWnF5055tKWU9NLN5wZFt0q5Fy+t8CxTBni5rei5WS+B/vTvgakyFjtn8EGQ8o8yy+TpaC3MtHjfx3fK7oxkYmrTYC4mORJuQecHr4y3d2SJfjB5WOtwa45pRR9jbIVfDw2eQn8Z2cdz0FgwS5Zg1BA4WXh7/VJ+Em50x47HWq+Gg==
+  ingress:
+    enabled: true
+    className: ""
+    annotations:
+      dev.okteto.com/generate-host: "true"
+  loki:
+    enabled: true
+    tenant: dev
+  tempo:
+    enabled: true
+    tenant: dev
 keycloak-boot:
   fullnameOverride: keycloak-boot
   enabled: false
