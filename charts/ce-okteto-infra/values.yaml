@@ -714,7 +714,6 @@ frontend-services-gateway:
               uri: http://calendar-repertorium:8080
               order: 20
               predicates:
-                - PropertyInResponseResolvingGatewayFilter
                 - Path=/calendar-repertorium/**
               filters:
                 - PropertyInResponseResolvingGatewayFilter
