@@ -487,8 +487,18 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "init",
-          "containerImage": "acerta-connect-evolution/init-task:0.31.0",
-          "metadataJar": "be.acerta.ce.batch:init-task:jar:metadata:0.31.0",
+          "containerImage": "acerta-connect-evolution/init-task:0.33.0",
+          "metadataJar": "be.acerta.ce.batch:init-task:jar:metadata:0.33.0",
+          "force": false
+      }'
+    curl -X 'POST' \
+      'scdf-client:8080/api/v1/apps' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+          "name": "init",
+          "containerImage": "acerta-connect-evolution/reset-dicco-task:1.2.0",
+          "metadataJar": "be.acerta.ce.batch:reset-dicco-task:jar:metadata:1.2.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -497,8 +507,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "migrate-employer",
-          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.38.0",
-          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.38.0",
+          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.40.0",
+          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.40.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -507,8 +517,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "onboard-ce",
-          "containerImage": "acerta-connect-evolution/onboard-ce-task:1.10.0",
-          "metadataJar": "be.acerta.ce.batch:onboard-ce-task:jar:metadata:1.10.0",
+          "containerImage": "acerta-connect-evolution/onboard-ce-task:1.12.0",
+          "metadataJar": "be.acerta.ce.batch:onboard-ce-task:jar:metadata:1.12.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -517,8 +527,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "notify",
-          "containerImage": "acerta-connect-evolution/notify-task:0.16.0",
-          "metadataJar": "be.acerta.ce.batch:notify-task:jar:metadata:0.16.0",
+          "containerImage": "acerta-connect-evolution/notify-task:0.18.0",
+          "metadataJar": "be.acerta.ce.batch:notify-task:jar:metadata:0.18.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -567,6 +577,15 @@ scdf-init-job:
           "name": "time-code",
           "definition": "time-code",
           "description": "Sync Acerta Wide Time Codes Task"
+      }'
+    curl -X 'POST' \
+      'scdf-client:8080/api/v1/tasks' \
+      -H 'accept: */*' \
+      -H 'Content-Type: application/json' \
+      -d '{
+          "name": "reset-environment",
+          "definition": "init && reset-dicco && migrate-employer && onboard-ce && notify",
+          "description": "Reset Environment Task"
       }'
 
 ce-ff4j-server:
