@@ -1,9 +1,9 @@
-{{- if .Values.ingress.http.enabled -}}
+{{- if .Values.ingress.grpc.enabled -}}
   {{- $fullName := include "mychart.fullname" . -}}
-  {{- $svcPort := .Values.service.http.port -}}
-  {{- if and .Values.ingress.http.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
-  {{- if not (hasKey .Values.ingress.http.annotations "kubernetes.io/ingress.http.class") }}
-  {{- $_ := set .Values.ingress.http.annotations "kubernetes.io/ingress.http.class" .Values.ingress.http.className}}
+  {{- $svcPort := .Values.service.grpc.port -}}
+  {{- if and .Values.ingress.grpc.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
+  {{- if not (hasKey .Values.ingress.grpc.annotations "kubernetes.io/ingress.grpc.class") }}
+  {{- $_ := set .Values.ingress.grpc.annotations "kubernetes.io/ingress.grpc.class" .Values.ingress.grpc.className}}
   {{- end }}
   {{- end }}
   {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
@@ -15,20 +15,20 @@ apiVersion: extensions/v1beta1
   {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-grpc
   labels:
     {{- include "mychart.labels" . | nindent 4 }}
-  {{- with .Values.ingress.http.annotations }}
+  {{- with .Values.ingress.grpc.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if and .Values.ingress.http.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
-  ingressClassName: {{ .Values.ingress.http.className }}
+  {{- if and .Values.ingress.grpc.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
+  ingressClassName: {{ .Values.ingress.grpc.className }}
   {{- end }}
-  {{- if .Values.ingress.http.tls }}
+  {{- if .Values.ingress.grpc.tls }}
   tls:
-    {{- range .Values.ingress.http.tls }}
+    {{- range .Values.ingress.grpc.tls }}
     - hosts:
         {{- range .hosts }}
         - {{ . | quote }}
@@ -37,7 +37,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.http.hosts }}
+    {{- range .Values.ingress.grpc.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:
@@ -49,11 +49,11 @@ spec:
             backend:
               {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
               service:
-                name: {{ $fullName }}
+                name: {{ $fullName }}-grpc
                 port:
                   number: {{ $svcPort }}
               {{- else }}
-              serviceName: {{ $fullName }}
+              serviceName: {{ $fullName }}-grpc
               servicePort: {{ $svcPort }}
               {{- end }}
           {{- end }}

@@ -51,20 +51,26 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.http.port }}
+              protocol: TCP
+            - name: grpc
+              containerPort: {{ .Values.service.grpc.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: actuator/health/liveness
+              path: /actuator/health/liveness
               port: http
             failureThreshold: 1
             periodSeconds: 10
           startupProbe:
             httpGet:
-              path: actuator/health/liveness
+              path: /actuator/health/liveness
               port: http
             failureThreshold: 30
             periodSeconds: 5
+
+          # use kustomize to specify env-vars per environment (tst, acc, prd); see kustomization.yml
+          # dummy foo-bar added to make op 'add' in patch work correctly
           env:
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_CE-GATEWAY_ClIENT-SECRET
               valueFrom:
@@ -77,8 +83,8 @@ spec:
                   fieldPath: status.hostIP
             - name: OTEL_METRICS_EXPORTER
               value: none
-            {{- if .Values.ingress.enabled -}}
-            {{- range .Values.ingress.hosts }}
+            {{- if .Values.ingress.http.enabled -}}
+            {{- range .Values.ingress.http.hosts }}
             - name: SPRING_BOOT_ADMIN_CLIENT_INSTANCE_SERVICE-BASE-URL
               value: https://{{ .host }}
             {{- end }}
