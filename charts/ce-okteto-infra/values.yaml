@@ -783,6 +783,12 @@ frontend-services-gateway:
               uri: http://test-websocket-service:8085
               predicates:
                 - Path=/chro/**
+            - id: grpc-has-prio
+              uri: https://clink-${OKTETO_NAMESPACE}.devtst.okt.acerta.io
+              predicates:
+                - Path=/be.acerta.ce.clink.integrationapi.driven.onboarding.OnboardingService/**
+              filters:
+                - OnboardingGrpcApiFilter
     ---
     frontend:
       properties:
