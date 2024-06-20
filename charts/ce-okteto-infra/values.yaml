@@ -496,7 +496,7 @@ scdf-init-job:
       -H 'accept: */*' \
       -H 'Content-Type: application/json' \
       -d '{
-          "name": "init",
+          "name": "reset-dicco",
           "containerImage": "acerta-connect-evolution/reset-dicco-task:1.2.0",
           "metadataJar": "be.acerta.ce.batch:reset-dicco-task:jar:metadata:1.2.0",
           "force": false
