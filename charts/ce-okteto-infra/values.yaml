@@ -836,10 +836,13 @@ frontend-services-gateway:
     gatewayclient:
       secret: AgCHRB/V7EX6MIGama1SKxH2zPZfbfixPjwuYlGPoXyrctUvwdMRukIfIzNgjvQZ/pHOtTHrg/R5e9xY2zml4drjelTfb68jT9CmFJMobRbydOWu4CzJmiFNwfDR/HNFahl+Ty/+N2//xyYcH1bMATJubk8UiTLnwRRLML39cHl425hsE30yW5nqu5DyX3Yh3N2YxwkqYyO4lM8MbEzze/yFSHIUeDhPoXN/VA1wGy2QkG+XOY2vjLEE9qhyrojFtU0pmLywjDQECIym4c8e5RVVlE9lVQq/YZ+rxnsZA75J+qeKLnufYlQuqquLnYG0P1zgu5fIm1ldA3LhvGV8DXAgoBLeHsQ9mA7QH+CrEQin62KHl/rWj63DHWb4XQbYtPGRFBOjTr2wNfacUQlzv1qAKrGOi4yiJZoD9bhi4/2Jc6NcjW5ALq0rm+J/zpWMuu+c6cKdPmbG5hDVeevd2vi0bKcEGr/WliY8UkVemqTLORs7+pDn0a3H5b+X8sTIe5+6P2IWUfI8cIOU624JzerofUZNptw8tp8Tv1o/oEKiPlt+T1rPmEwW2BF5N17rPlWnF5055tKWU9NLN5wZFt0q5Fy+t8CxTBni5rei5WS+B/vTvgakyFjtn8EGQ8o8yy+TpaC3MtHjfx3fK7oxkYmrTYC4mORJuQecHr4y3d2SJfjB5WOtwa45pRR9jbIVfDw2eQn8Z2cdz0FgwS5Zg1BA4WXh7/VJ+Em50x47HWq+Gg==
   ingress:
-    enabled: true
-    className: ""
-    annotations:
-      dev.okteto.com/generate-host: "true"
+    http:
+      annotations:
+        dev.okteto.com/generate-host: "true"
+    grpc:
+      annotations:
+        dev.okteto.com/generate-host: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
   loki:
     enabled: true
     tenant: dev
