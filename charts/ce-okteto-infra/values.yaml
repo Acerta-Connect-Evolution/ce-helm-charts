@@ -784,7 +784,7 @@ frontend-services-gateway:
               predicates:
                 - Path=/chro/**
             - id: grpc-has-prio
-              uri: clink-${OKTETO_NAMESPACE}.devtst.okt.acerta.io
+              uri: https://clink-${OKTETO_NAMESPACE}.devtst.okt.acerta.io
               predicates:
                 - Path=/be.acerta.ce.clink.integrationapi.driven.onboarding.OnboardingService/**
               filters:
