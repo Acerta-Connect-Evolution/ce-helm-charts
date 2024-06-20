@@ -1,6 +1,6 @@
 {{- if .Values.ingress.grpc.enabled -}}
   {{- $fullName := include "mychart.fullname" . -}}
-  {{- $svcPort := .Values.service.grpc.port -}}
+  {{- $svcPort := .Values.service.port -}}
   {{- if and .Values.ingress.grpc.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.grpc.annotations "kubernetes.io/ingress.grpc.class") }}
   {{- $_ := set .Values.ingress.grpc.annotations "kubernetes.io/ingress.grpc.class" .Values.ingress.grpc.className}}

@@ -37,10 +37,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  grpc:
-    port: 8080
-  http:
-    port: 8080
+  port: 8080
 
 sealedsecret:
   gatewayclient:
