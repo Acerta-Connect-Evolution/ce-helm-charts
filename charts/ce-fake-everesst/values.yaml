@@ -45,6 +45,11 @@ sealedsecret:
   gatewayclient:
     secret:
 
+loki:
+  enabled: true
+  multiline: false
+  tenant: "tst"
+
 env:
   foo: "bar"
 extraEnv: {}
