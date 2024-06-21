@@ -26,7 +26,11 @@ spec:
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
         {{- if .Values.loki.enabled }}
-        lokiml: acerta-payroll-service-{{ .Values.loki.tenant }}
+            {{- if .Values.loki.multiline.disabled }}
+          loki: acerta-payroll-service-{{ .Values.loki.tenant }}
+            {{- else }}
+          lokiml: acerta-payroll-service-{{ .Values.loki.tenant }}
+            {{- end }}
         {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}

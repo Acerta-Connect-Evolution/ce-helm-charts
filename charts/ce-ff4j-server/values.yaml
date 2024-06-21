@@ -82,6 +82,8 @@ loki:
   enabled: true
   # dev, tst, acc, prd
   tenant: "tst"
+  # allow switching off loki multi-line support for cluster that don't support it yet
+  multiline.disabled: false
 tempo:
   enabled: true
   tenant: "tst"
