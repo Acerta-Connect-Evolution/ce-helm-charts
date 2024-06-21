@@ -27,9 +27,9 @@ spec:
         {{- include "mychart.selectorLabels" . | nindent 8 }}
         {{- if .Values.loki.enabled }}
             {{- if .Values.loki.multiline }}
-          lokiml: acerta-payroll-service-{{ .Values.loki.tenant }}
+        lokiml: acerta-payroll-service-{{ .Values.loki.tenant }}
             {{- else }}
-          loki: acerta-payroll-service-{{ .Values.loki.tenant }}
+        loki: acerta-payroll-service-{{ .Values.loki.tenant }}
             {{- end }}
         {{- end }}
     spec:
