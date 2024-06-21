@@ -3,4 +3,4 @@ appVersion: 1.142.0
 description: Helm chart for ce-connect
 name: ce-connect
 type: application
-version: 0.144.0
+version: 0.145.0

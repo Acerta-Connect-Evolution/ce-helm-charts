@@ -72,6 +72,11 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+loki:
+  enabled: true
+  tenant: "tst"
+  multiline: true
+
 nodeSelector: {}
 
 tolerations: []
