@@ -1,33 +1,29 @@
-name: Release Charts
+name: Release Helm Charts
+
+run-name: DEV ${{ github.actor }} is releasing new Helm charts.
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main
-      - 'hotfix/**'
-      
-concurrency: ci-sequential
+    - main
+    - hotfix/**
+    paths:
+    - charts/**
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: okteto
     steps:
-#      - name: Sleep 1 minute
-#        run: sleep 60s
-        # temp? fix to let preceding releases finish
 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+    - name: 'Git Checkout'
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+    - name: 'Configure & Install Helm'
+      uses: azure/setup-helm@v3
 
-      - name: Run chart-releaser
-        # https://github.com/helm/chart-releaser-action/releases
-        uses: helm/chart-releaser-action@v1.5.0
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    - name: Authorize with Harbor
+      run: |
+        echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/charts
