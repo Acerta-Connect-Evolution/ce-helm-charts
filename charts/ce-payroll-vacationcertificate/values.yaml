@@ -118,6 +118,7 @@ env:
       url: FF4J_API_URL
 
 loki:
+  multiline: true
   enabled: true
   # dev, tst, acc, prd
   tenant: "tst"
