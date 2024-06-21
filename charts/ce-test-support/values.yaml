@@ -80,6 +80,11 @@ affinity: {}
 
 extraEnv: {}
 
+loki:
+  enabled: true
+  multiline: true
+  tenant: "tst"
+
 env:
   test:
     support:
