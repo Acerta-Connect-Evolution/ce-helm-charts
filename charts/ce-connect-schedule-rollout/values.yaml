@@ -99,6 +99,11 @@ sealedsecret:
     username:
     password:
 
+loki:
+  enabled: true
+  tenant: "tst"
+  multiline: true
+
 env:
   dicco:
     url: DICCO_URL
