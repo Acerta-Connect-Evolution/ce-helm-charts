@@ -3,4 +3,4 @@ appVersion: 1.83.0
 description: Helm chart for ce-webcomponents
 name: ce-webcomponents
 type: application
-version: 0.88.0
+version: 0.89.0
