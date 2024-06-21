@@ -100,6 +100,7 @@ sealedsecret:
 
 
 loki:
+  multiline: true
   enabled: true
   # dev, tst, acc, prd
   tenant: "tst"
