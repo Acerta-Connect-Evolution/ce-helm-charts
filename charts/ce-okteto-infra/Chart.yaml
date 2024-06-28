@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.162.0
+version: 0.163.0
 dependencies:
   - name: mssql-latest
     version: 0.3.9
@@ -26,12 +26,12 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-admin-console.enabled
   - name: axon-server
-    version: 1.0.0
+    version: 1.0.3
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: axon-server-calendar.enabled
     alias: axon-server-calendar
   - name: pulsar-client
-    version: 3.60.0
+    version: 3.63.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-client.enabled
   - name: init-job
@@ -59,7 +59,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-ff4j-server.enabled
   - name: frontend-services-gateway
-    version: 1.145.0
+    version: 1.149.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: frontend-services-gateway.enabled
   - name: keycloak-boot
@@ -67,11 +67,11 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: keycloak-boot.enabled
   - name: ce-webcomponents
-    version: 0.88.0
+    version: 0.89.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-webcomponents.enabled
   - name: ce-fake-everesst
-    version: 0.16.0
+    version: 0.45.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-fake-everesst.enabled
   - name: ce-fake-chro
@@ -79,7 +79,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-fake-chro.enabled
   - name: ce-authorization-service
-    version: 0.39.0
+    version: 0.41.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-authorization-service.enabled
   - name: spring-cloud-dataflow
