@@ -92,11 +92,11 @@ spicedb:
     secretName: "spicedb-datastore"
     engine: "postgres"
   grpc:
-    notls: "true"
+    notls: true
     preshared:
       secretName: "spicedb-preshared"
   http:
-    enabled: "true"
+    enabled: true
   telemetry:
     endpoint: ""
 

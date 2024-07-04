@@ -68,13 +68,13 @@ spec:
                   name: {{ .Values.spicedb.datastore.secretName }}
                   key: "spicedb_datastore_conn_uri"
             - name: SPICEDB_DATASTORE_ENGINE
-              value: {{ .Values.spicedb.datastore.engine }}
+              value: {{ .Values.spicedb.datastore.engine | quote }}
             - name: SPICEDB_LOG_LEVEL
-              value: {{ .Values.spicedb.loglevel }}
+              value: {{ .Values.spicedb.loglevel | quote }}
             - name: SPICEDB_GRPC_NO_TLS
-              value: {{ .Values.spicedb.grpc.notls }}
+              value: {{ .Values.spicedb.grpc.notls | quote }}
             - name: SPICEDB_HTTP_ENABLED
-              value:  {{ .Values.spicedb.http.enabled }}
+              value:  {{ .Values.spicedb.http.enabled | quote}}
             - name: SPICEDB_GRPC_SHUTDOWN_GRACE_PERIOD
               value: "1s"
             - name: SPICEDB_DATASTORE_BOOTSTRAP_OVERWRITE
