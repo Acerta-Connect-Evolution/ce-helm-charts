@@ -13,6 +13,12 @@ spec:
   selector:
     matchLabels:
       {{- include "mychart.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: "RollingUpdate"
+    rollingUpdate:
+      maxSurge: "25%"
+      maxUnavailable: "25%"
+  progressDeadlineSeconds: 600
   template:
     metadata:
       annotations:
@@ -39,7 +45,7 @@ spec:
       initContainers:
         - name: {{ .Chart.Name }}-migrate
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          command: ['migrate head']
+          command: ["spicedb", "migrate", "head"]
           restartPolicy: OnFailure
           env:
             - name: SPICEDB_DATASTORE_CONN_URI
@@ -56,12 +62,67 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command: ["spicedb", "serve"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 8443
-            - containerPort: 9090
-            - containerPort: 50051
+            - name: "grpc"
+              containerPort: 50051
+              protocol: "TCP"
+            - name: "http"
+              containerPort: {{ .Values.service.port }}
+              protocol: "TCP"
+            - name: "dispatch"
+              containerPort: 50053
+              protocol: "TCP"
+            - name: "prometheus"
+              containerPort: 9090
+              protocol: "TCP"
+          readinessProbe:
+            exec:
+              command: ["grpc_health_probe", "-v", "-addr=localhost:50051"]
+            failureThreshold: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
           env:
+            # These flags are used to enable TLS for the gRPC and HTTP ports:
+            #
+            # - name: "SPICEDB_GRPC_TLS_KEY_PATH"
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: "spicedb"
+            #       key: "SPICEDB_GRPC_KEY_PATH"
+            # - name: "SPICEDB_GRPC_TLS_CERT_PATH"
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: "spicedb"
+            #       key: "SPICEDB_GRPC_CERT_PATH"
+            # - name: "SPICEDB_HTTP_TLS_KEY_PATH"
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: "spicedb"
+            #       key: "SPICEDB_HTTP_KEY_PATH"
+            # - name: "SPICEDB_HTTP_TLS_CERT_PATH"
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: "spicedb"
+            #       key: "SPICEDB_HTTP_TLS_CERT_PATH"
+            #
+            # These flags are used to enable a persistent datastore along
+            # with cluster dispatching. For more info see:
+            # https://docs.authzed.com/spicedb/selecting-a-datastore
+            #
+            # - name: "SPICEDB_DATASTORE_ENGINE"
+            #   value: "cockroachdb"
+            # - name: "SPICEDB_DATASTORE_CONN_URI"
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: "spicedb"
+            #       key: "SPICEDB_DATASTORE_CONN_URI"
+            # - name: "SPICEDB_DISPATCH_CLUSTER_ENABLED"
+            #   value: "true"
+            # - name: "SPICEDB_DISPATCH_UPSTREAM_ADDR"
+            #   value: "kubernetes:///spicedb:dispatch"
             - name: SPICEDB_DATASTORE_CONN_URI
               valueFrom:
                 secretKeyRef:

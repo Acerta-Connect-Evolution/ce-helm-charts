@@ -1,7 +1,7 @@
+# https://akoserwal.medium.com/a-comprehensive-guide-to-setting-up-spicedb-with-postgresql-and-a-monitoring-stack-b250f31d7775
 replicaCount: 1
-
 image:
-  repository: authzed/spicedb
+  repository: quay.io/authzed/spicedb
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -13,7 +13,7 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -46,8 +46,8 @@ resources:
 #  requests:
 #    cpu: "2"
 #    memory: "1000Mi"
-args:
-  - serve
+# args:
+#  - serve
 
 autoscaling:
   enabled: false
@@ -110,3 +110,4 @@ postgresql:
       auth:
         username: "postgres"
         password: "yPsw5e6ab4bvAGe5H"
+        database: "spicedb"
