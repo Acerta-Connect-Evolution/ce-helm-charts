@@ -8,7 +8,7 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - name: "grpc"
-      port: 50051
+      port: {{ .Values.service.port }}
       protocol: TCP
     - name: "http"
       port: 8443

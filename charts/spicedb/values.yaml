@@ -39,7 +39,7 @@ securityContext: {}
 # runAsUser: 1000
 
 service:
-  port: 8443
+  port: 50051
   type: ClusterIP
 
 resources:
@@ -96,7 +96,7 @@ spicedb:
     preshared:
       secretName: "spicedb-preshared"
   http:
-    enabled: true
+    enabled: false
   telemetry:
     endpoint: ""
 

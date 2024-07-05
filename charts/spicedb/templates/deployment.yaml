@@ -66,10 +66,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: "grpc"
-              containerPort: 50051
+              containerPort: {{ .Values.service.port }}
               protocol: "TCP"
             - name: "http"
-              containerPort: {{ .Values.service.port }}
+              containerPort: 8443
               protocol: "TCP"
             - name: "dispatch"
               containerPort: 50053
