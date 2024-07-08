@@ -1,18 +1,18 @@
 {{- /* @formatter:off */}}
-{{- $fullName := include "mychart.fullname" . -}}
+{{- $fullName := include "spicedb.fullname" . -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mychart.fullname" . }}
+  name: {{ include "spicedb.fullname" . }}
   labels:
-    {{- include "mychart.labels" . | nindent 4 }}
+    {{- include "spicedb.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "mychart.selectorLabels" . | nindent 6 }}
+      {{- include "spicedb.selectorLabels" . | nindent 6 }}
   strategy:
     type: "RollingUpdate"
     rollingUpdate:
@@ -26,7 +26,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "mychart.selectorLabels" . | nindent 8 }}
+        {{- include "spicedb.selectorLabels" . | nindent 8 }}
         {{- if .Values.loki.enabled }}
             {{- if .Values.loki.multiline }}
         lokiml: acerta-payroll-service-{{ .Values.loki.tenant }}
@@ -39,7 +39,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "mychart.serviceAccountName" . }}
+      serviceAccountName: {{ include "spicedb.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
@@ -65,21 +65,29 @@ spec:
           command: ["spicedb", "serve"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: "grpc"
-              containerPort: {{ .Values.service.port }}
-              protocol: "TCP"
-            - name: "http"
-              containerPort: 8443
-              protocol: "TCP"
-            - name: "dispatch"
-              containerPort: 50053
-              protocol: "TCP"
-            - name: "prometheus"
-              containerPort: 9090
-              protocol: "TCP"
+            {{- if .Values.spicedb.grpc.enabled }}
+            - containerPort: {{ .Values.spicedb.grpc.port }}
+              protocol: TCP
+              name: grpc
+            {{- end }}
+            {{- if .Values.spicedb.http.enabled }}
+            - containerPort: {{ .Values.spicedb.http.port }}
+              protocol: TCP
+              name: http
+            {{- end }}
+            {{- if .Values.spicedb.dispatch.enabled }}
+            - containerPort: {{ .Values.spicedb.dispatch.port }}
+              protocol: TCP
+              name: dispatch
+            {{- end }}
+            {{- if .Values.spicedb.metrics.enabled }}
+            - containerPort: {{ .Values.spicedb.metrics.port }}
+              protocol: TCP
+              name: metrics
+            {{- end }}
           readinessProbe:
             exec:
-              command: ["grpc_health_probe", "-v", "-addr=localhost:50051"]
+              command: ["grpc_health_probe", "-v", "-addr=localhost:{{ .Values.spicedb.grpc.port }}"]
             failureThreshold: 5
             periodSeconds: 10
             successThreshold: 1
@@ -136,6 +144,8 @@ spec:
               value: {{ .Values.spicedb.grpc.notls | quote }}
             - name: SPICEDB_HTTP_ENABLED
               value:  {{ .Values.spicedb.http.enabled | quote}}
+            - name: SPICEDB_METRICS_ENABLED
+              value:  {{ .Values.spicedb.metrics.enabled | quote}}
             - name: SPICEDB_GRPC_SHUTDOWN_GRACE_PERIOD
               value: "1s"
             - name: SPICEDB_DATASTORE_BOOTSTRAP_OVERWRITE
@@ -147,6 +157,10 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.spicedb.grpc.preshared.secretName }}
                   key: "spicedbpresharedkey"
+            - name: SPICEDB_DISPATCH_CLUSTER_ENABLED
+              value: {{ .Values.spicedb.dispatch.enabled | quote }}
+            - name: SPICEDB_DISPATCH_UPSTREAM_ADR
+              value: "kubernetes://{{ include "spicedb.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.dispatch.port }}"
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
