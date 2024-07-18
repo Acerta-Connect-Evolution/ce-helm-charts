@@ -21,7 +21,11 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- if .Values.tempo.enabled }}
+        {{- if .Values.alloy.enabled }}
+        instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/alloy-default-sdk-{{ .Values.tempo.tenant }}"
+        {{- else }}
         instrumentation.opentelemetry.io/inject-sdk: "open-telemetry/default-sdk-{{ .Values.tempo.tenant }}"
+        {{- end }}
       {{- end }}
       labels:
         {{- include "mychart.selectorLabels" . | nindent 8 }}

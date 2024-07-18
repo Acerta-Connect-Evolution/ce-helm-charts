@@ -88,6 +88,8 @@ loki:
 tempo:
   enabled: true
   tenant: "tst"
+alloy:
+  enabled: false
 
 extraEnv: {}
 
