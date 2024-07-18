@@ -3,14 +3,14 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.2246.0
+version: 1.2266.0
 dependencies:
   - name: ce-calendar-timespend-backend
-    version: 1.469.0
+    version: 1.470.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-backend.enabled
   - name: ce-calendar-timespend-frontend
-    version: 0.550.0
+    version: 0.553.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-frontend.enabled
   - name: connect-backend
@@ -53,7 +53,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-payroll-vacationcertificate.enabled
   - name: ce-webcomponents
-    version: 0.89.0
+    version: 0.91.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-webcomponents.enabled
   - name: ce-calendar-repertorium
@@ -61,7 +61,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-repertorium.enabled
   - name: ce-balances
-    version: 0.47.0
+    version: 0.48.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-balances.enabled
   - name: ce-clink
@@ -73,7 +73,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-init-load.enabled
   - name: frontend-services-gateway
-    version: 1.151.0
+    version: 1.161.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
@@ -89,7 +89,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-connect-schedule-rollout.enabled
   - name: ce-authorization-service
-    version: 0.41.0
+    version: 0.42.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-authorization-service.enabled
   - name: ce-connect
@@ -113,7 +113,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: prometheus-rsocket-proxy.enabled
   - name: ce-calendar-perftest
-    version: 0.58.0
+    version: 0.60.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-perftest.enabled
   - name: ce-calendar-agreement-grouping-backend
