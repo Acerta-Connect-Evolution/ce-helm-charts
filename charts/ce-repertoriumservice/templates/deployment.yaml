@@ -58,6 +58,12 @@ spec:
               value: none
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env.spring.profiles.active }}
+            {{- if .Values.ingress.enabled -}}
+            {{- range .Values.ingress.hosts }}
+            - name: SPRING_BOOT_ADMIN_CLIENT_INSTANCE_SERVICE-BASE-URL
+              value: https://{{ .host }}
+            {{- end }}
+            {{- end }}
             {{- range $key, $value := $.Values.extraEnv }}
             - name: {{ $key }}
               value: {{ $value | quote }}

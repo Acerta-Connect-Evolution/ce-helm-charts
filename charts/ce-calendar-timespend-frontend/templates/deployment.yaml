@@ -91,6 +91,12 @@ spec:
                 secretKeyRef:
                   name: {{ $fullName }}-redis-cred
                   key: password
+            {{- if .Values.ingress.enabled -}}
+            {{- range .Values.ingress.hosts }}
+            - name: SPRING_BOOT_ADMIN_CLIENT_INSTANCE_SERVICE-BASE-URL
+              value: https://{{ .host }}
+            {{- end }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

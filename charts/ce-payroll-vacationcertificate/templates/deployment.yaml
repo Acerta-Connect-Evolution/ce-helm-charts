@@ -112,6 +112,12 @@ spec:
               value: {{ .Values.env.ff4j.api.url }}
             - name: SPRING_DATA_REDIS_HOST
               value: {{ .Values.env.spring.data.redis.host }}
+            {{- if .Values.ingress.enabled -}}
+            {{- range .Values.ingress.hosts }}
+            - name: SPRING_BOOT_ADMIN_CLIENT_INSTANCE_SERVICE-BASE-URL
+              value: https://{{ .host }}
+            {{- end }}
+            {{- end }}
             {{- if .Values.extraEnvs }}
               {{- toYaml .Values.extraEnvs | nindent 12 }}
             {{- end }}
