@@ -547,8 +547,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "time-code",
-          "containerImage": "acerta-connect-evolution/time-code-task:0.9.0",
-          "metadataJar": "be.acerta.ce.batch:time-code-task:jar:metadata:0.9.0",
+          "containerImage": "acerta-connect-evolution/time-code-task:0.11.0",
+          "metadataJar": "be.acerta.ce.batch:time-code-task:jar:metadata:0.11.0",
           "force": false
       }'
     curl -X 'POST' \
