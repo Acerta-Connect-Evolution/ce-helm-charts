@@ -988,8 +988,8 @@ spring-cloud-dataflow:
         memory: 512Mi
     image:
       registry: harbor.tools.acerta.io
-      repository: acerta-releases/acerta-connect-evolution/spring-cloud-dataflow
-      tag: 2.11.2-debian-11-r5
+      repository: acerta-releases/acerta-connect-evolution/spring-cloud-dataflow-2.11.2-debian-11-r5
+      tag: 1.0.0
     initContainers:
       - name: init-db
         image: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/mssql-client:latest
