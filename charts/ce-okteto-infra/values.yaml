@@ -153,7 +153,7 @@ axon-server-calendar:
   image:
     # Note: the name of the repository is used throughout the chart to figure if we should configure for SE or EE
     # "axoniq/axonserver" is the SE Docker image. Any other (custom) image means that the chart will configure for EE
-    repository: axoniq/axonserver
+    repository: harbor.tools.acerta.io/dockerhub/axoniq/axonserver
     pullPolicy: IfNotPresent
     tag: "4.6.11-dev"
   extraEnvs:
@@ -487,8 +487,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "init",
-          "containerImage": "acerta-connect-evolution/init-task:0.36.0",
-          "metadataJar": "be.acerta.ce.batch:init-task:jar:metadata:0.36.0",
+          "containerImage": "acerta-connect-evolution/init-task:0.38.0",
+          "metadataJar": "be.acerta.ce.batch:init-task:jar:metadata:0.38.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -507,8 +507,8 @@ scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "migrate-employer",
-          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.43.0",
-          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.43.0",
+          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.48.0",
+          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.48.0",
           "force": false
       }'
     curl -X 'POST' \
