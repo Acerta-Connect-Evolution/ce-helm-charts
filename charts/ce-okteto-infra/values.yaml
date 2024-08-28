@@ -1039,11 +1039,11 @@ spring-cloud-dataflow:
   mariadb:
     enabled: false
   externalDatabase:
-    password: ScdfDdlPass123
     driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
     dataflow:
       url: jdbc:sqlserver://mssql-latest:1433;sendStringParametersAsUnicode=false;encrypt=false;database=connectevolution
       username: scdf_ddl
+      password: ScdfDdlPass123
     hibernateDialect: org.hibernate.dialect.SQLServer2012Dialect
   extraDeploy:
     - apiVersion: bitnami.com/v1alpha1
