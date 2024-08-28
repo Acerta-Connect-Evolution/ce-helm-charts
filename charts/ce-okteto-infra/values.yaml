@@ -1027,6 +1027,8 @@ spring-cloud-dataflow:
     configuration:
       streamingEnabled: false
       defaultSpringApplicationJSON: false
+    containerSecurityContext:
+      readOnlyRootFilesystem: false
     ingress:
       enabled: true
       className: ""
