@@ -3,7 +3,11 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
+<<<<<<< HEAD
 version: 0.179.0
+=======
+version: 0.177.0
+>>>>>>> parent of 451fb8e4 (Release okteto-chart with latest scdf-tasks)
 dependencies:
   - name: mssql-latest
     version: 0.3.9
