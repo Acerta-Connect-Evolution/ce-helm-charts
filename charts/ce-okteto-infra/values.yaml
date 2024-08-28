@@ -988,7 +988,7 @@ spring-cloud-dataflow:
         memory: 512Mi
     image:
       registry: harbor.tools.acerta.io
-      repository: acerta-releases/acerta-connect-evolution/spring-cloud-dataflow-2.11.4-debian-12-r3
+      repository: acerta-releases/acerta-connect-evolution/spring-cloud-dataflow-2.11.2-debian-11-r5
       tag: 1.0.0
     initContainers:
       - name: init-db
@@ -1035,7 +1035,7 @@ spring-cloud-dataflow:
     extraEnvVars:
       - name: SPRING_APPLICATION_JSON
         value: |-
-          { "maven": { "local-repository": null, "remote-repositories": { "repo1": { "url": "https://nexus.stg.acerta.io/repository/maven-public/" }, "repo2": { "url": "https://nexus.prd.acerta.io/repository/maven-public/" } } } }
+          { \"maven\": { \"local-repository\": null, \"remote-repositories\": { \"repo1\": { \"url\": \"https://nexus.stg.acerta.io/repository/maven-public/\" }, \"repo2\": { \"url\": \"https://nexus.prd.acerta.io/repository/maven-public/\" } } } }
   mariadb:
     enabled: false
   externalDatabase:
