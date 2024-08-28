@@ -1035,7 +1035,7 @@ spring-cloud-dataflow:
     extraEnvVars:
       - name: SPRING_APPLICATION_JSON
         value: |-
-          { "maven": { "local-repository": null, "remote-repositories": { "repo1": { "url": "https://nexus.stg.acerta.io/repository/maven-public/" }, "repo2": { "url": "https://nexus.prd.acerta.io/repository/maven-public/" } } } }
+          { \"maven\": { \"local-repository\": null, \"remote-repositories\": { \"repo1\": { \"url\": \"https://nexus.stg.acerta.io/repository/maven-public/\" }, \"repo2\": { \"url\": \"https://nexus.prd.acerta.io/repository/maven-public/\" } } } }
   mariadb:
     enabled: false
   externalDatabase:
