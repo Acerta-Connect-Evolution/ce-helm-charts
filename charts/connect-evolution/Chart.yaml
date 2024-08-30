@@ -22,7 +22,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: connect-frontend.enabled
   - name: pulsar-client
-    version: 3.62.0
+    version: 3.64.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: pulsar-client.enabled
   - name: init-job
