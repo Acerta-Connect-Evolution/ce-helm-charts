@@ -21,7 +21,7 @@ jobs:
 
       - name: Log in to Harbor
         run: |
-          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin
+          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login harbor.tools.acerta.io -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin
                                             
     
       - name: Dependency build
