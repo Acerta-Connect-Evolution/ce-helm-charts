@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: nexus.global.dns:8443/dicco/dicco-oltp
+  repository: harbor.toolsstg.acerta.io/acerta-snapshots/dicco/dicco-oltp
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "2024.03.TST-SNAPSHOT"
+  tag: "2024.09.TST-SNAPSHOT"
 
 imagePullSecrets:
   - name: "regcred"
