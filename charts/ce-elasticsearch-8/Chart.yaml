@@ -1,0 +1,12 @@
+apiVersion: v2
+version: 1.0.0
+appVersion: 8.5.1
+description: Helm chart for Elasticsearch 8 used by Connect Evolution
+name: ce-elasticsearch-8
+type: application
+dependencies:
+  - name: elasticsearch
+    version: 8.5.1
+    repository: https://helm.elastic.co
+
+  

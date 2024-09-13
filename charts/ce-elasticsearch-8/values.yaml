@@ -1,0 +1,32 @@
+elasticsearch:
+  fullnameOverride: elasticsearch-master
+  enabled: false
+  resources:
+    limits:
+      memory: "2Gi"
+    requests:
+      cpu: 100m
+      memory: "2Gi"
+  image: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/elasticsearch-8
+  imageTag: 8.5.1
+  replicas: 2
+  minimumMasterNodes: 1
+  volumeClaimTemplate.resources.requests.storage: 1Gi
+
+  sysctlInitContainer.enabled: false
+  antiAffinity: "soft" # used for testing only!
+  
+  extraEnvs:
+    - name: TZ
+      value: Europe/Brussels
+  
+  ingress:
+    className: ""
+    enabled: true
+    annotations:
+      dev.okteto.com/generate-host: "true"
+
+  secret:
+    enabled: true # will create certificate and credentials
+    password: "elastic" # for development purposes only
+  createCert: true
