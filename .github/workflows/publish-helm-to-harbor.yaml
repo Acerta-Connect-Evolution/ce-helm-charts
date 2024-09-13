@@ -2,8 +2,6 @@ name: Publish Helm Chart to Harbor
 
 on:
   workflow_dispatch:
-env:
-  HELM_EXPERIMENTAL_OCI: 1
 
 jobs:
   publish:
@@ -20,7 +18,7 @@ jobs:
 
       - name: Log in to Harbor
         run: |
-          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBOR_RELEASE_USERNAME }} --password-stdin
+          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin
     
       - name: Dependency build
         run: helm dependency build charts/ce-elasticsearch-8
