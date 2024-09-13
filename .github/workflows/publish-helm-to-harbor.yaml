@@ -4,30 +4,31 @@ on:
   workflow_dispatch:
 env:
   HELM_EXPERIMENTAL_OCI: 1
+
 jobs:
   publish:
     runs-on: ubuntu-latest
 
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  - name: Set up Helm
-    uses: azure/setup-helm@v1
-    with:
-      version: v3.7.0
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.7.0
 
-  - name: Log in to Harbor
-    run: |
-      echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBOR_RELEASE_USERNAME }} --password-stdin
-  
+      - name: Log in to Harbor
+        run: |
+          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBOR_RELEASE_USERNAME }} --password-stdin
+    
       - name: Dependency build
-    run: helm dependency build charts/ce-elasticsearch-8
+        run: helm dependency build charts/ce-elasticsearch-8
 
-  - name: Package Helm chart
-    run: helm package charts/ce-elasticsearch-8
+      - name: Package Helm chart
+        run: helm package charts/ce-elasticsearch-8
 
-  - name: Push Helm chart to Harbor
-    run: |
-      CHART_PACKAGE=$(ls *.tgz)
-      helm push $CHART_PACKAGE oci://harbor.toolsstg.acerta.io/connect-evolution
+      - name: Push Helm chart to Harbor
+        run: |
+          CHART_PACKAGE=$(ls *.tgz)
+          helm push $CHART_PACKAGE oci://harbor.toolsstg.acerta.io/connect-evolution
