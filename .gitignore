@@ -1,3 +1,5 @@
 *.iml
 .idea
 SCRATCHPAD.md
+*.tgz
+*.lock
