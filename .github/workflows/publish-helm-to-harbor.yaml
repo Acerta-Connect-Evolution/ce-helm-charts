@@ -7,12 +7,14 @@ env:
   HELM_EXPERIMENTAL_OCI: 1
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  publish-to-harbor:
+    runs-on: [ self-hosted, Linux ]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          submodules: 'true'
 
       - name: Set up Helm
         uses: azure/setup-helm@v1
@@ -21,16 +23,35 @@ jobs:
 
       - name: Log in to Harbor
         run: |
-          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login harbor.tools.acerta.io -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin
-                                            
-    
+          echo ${{ secrets.HARBORSTG_PASSWORD }} | \
+          helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
+
       - name: Dependency build
-        run: helm dependency build charts/ce-elasticsearch-8
+        run: |
+          for dir in charts/*; do
+            helm dep update "$dir"
+          done
 
       - name: Package Helm chart
-        run: helm package charts/ce-elasticsearch-8
-
-      - name: Push Helm chart to Harbor
         run: |
-          CHART_PACKAGE=$(ls *.tgz)
-          helm push $CHART_PACKAGE oci://harbor.toolsstg.acerta.io/connect-evolution
+          for dir in charts/*; do
+            helm package "$dir"
+          done
+
+      - name: Dependency build ce-helm-charts
+        run: |
+          for dir in charts-harbor/*; do
+            helm dep update "$dir"
+          done
+
+      - name: Package Helm chart  ce-helm-charts
+        run: |
+          for dir in charts-harbor/*; do
+            helm package "$dir"
+          done
+
+      - name: Push Helm charts to Harbor
+        run: |
+          for chart in *.tgz; do
+            helm push "$chart" oci://harbor.toolsstg.acerta.io/connect-evolution
+          done
