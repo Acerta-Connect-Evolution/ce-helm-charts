@@ -3,4 +3,4 @@ appVersion: "1.0"
 description: Helm chart for Pact Broker
 name: pact-broker
 type: application
-version: 2.0.3
+version: 2.0.4
