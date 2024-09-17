@@ -18,37 +18,56 @@ jobs:
         with:
           submodules: 'true'
 
+
       - name: Set up Helm
         uses: azure/setup-helm@v1
         with:
           version: v3.7.0
+
+      - name: Cache Helm dependencies
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: |
+            charts/**/charts
+            charts/**/tmpcharts
+            charts/**/Chart.lock
+          key: ${{ runner.os }}-helm-${{ hashFiles('charts/**/Chart.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-helm-
 
       - name: Log in to Harbor
         run: |
           echo ${{ secrets.HARBORSTG_PASSWORD }} | \
           helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
 
+      - name: List Helm Dependencies
+        run: |
+          for dir in charts/*; do
+            echo "Listing dependencies for $dir"
+            helm dep list "$dir"
+            echo ""
+          done
+
       - name: Dependency build
         run: |
           for dir in charts/*; do
-            helm dep update "$dir"
+            if  helm dep list "$dir" | grep -q 'missing';
+            then
+            
+              echo "---"
+              echo "Updating de
+              pendencies for $dir"
+              helm dep update "$dir"
+            else
+              echo "---"
+              echo "Dependencies are up to date for $dir"
+            fi
           done
 
       - name: Package Helm chart
         run: |
           for dir in charts/*; do
-            helm package "$dir"
-          done
-
-      - name: Dependency build ce-helm-charts
-        run: |
-          for dir in charts-harbor/*; do
-            helm dep update "$dir"
-          done
-
-      - name: Package Helm chart  ce-helm-charts
-        run: |
-          for dir in charts-harbor/*; do
             helm package "$dir"
           done
 
