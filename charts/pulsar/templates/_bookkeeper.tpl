@@ -90,11 +90,11 @@ Define bookie tls config
 {{- define "pulsar.bookkeeper.config.tls" -}}
 {{- if and .Values.tls.enabled .Values.tls.bookie.enabled }}
 PULSAR_PREFIX_tlsProviderFactoryClass: org.apache.bookkeeper.tls.TLSContextFactory
-PULSAR_PREFIX_tlsCertificatePath: /pulsar/certs/bookie/tls.crt  
+PULSAR_PREFIX_tlsCertificatePath: /pulsar/certs/bookie/tls.crt
 PULSAR_PREFIX_tlsKeyStoreType: PEM
 PULSAR_PREFIX_tlsKeyStore: /pulsar/certs/bookie/tls.key
 PULSAR_PREFIX_tlsTrustStoreType: PEM
-PULSAR_PREFIX_tlsTrustStore: /pulsar/certs/ca/ca.crt 
+PULSAR_PREFIX_tlsTrustStore: /pulsar/certs/ca/ca.crt
 {{- end }}
 {{- end }}
 

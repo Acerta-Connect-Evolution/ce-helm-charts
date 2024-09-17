@@ -26,7 +26,7 @@ metadata:
   namespace: {{ template "pulsar.namespace" . }}
   labels:
     {{- include "pulsar.standardLabels" . | nindent 4 }}
-    component: keytool 
+    component: keytool
 data:
   keytool.sh: |
     #!/bin/bash
@@ -39,7 +39,7 @@ data:
     p12File=/pulsar/${component}.p12
     keyStoreFile=/pulsar/${component}.keystore.jks
     trustStoreFile=/pulsar/${component}.truststore.jks
-    
+
     function checkFile() {
         local file=$1
         local len=$(wc -c ${file} | awk '{print $1}')
@@ -60,13 +60,13 @@ data:
             echo "file isn't initialized yet ... check in 3 seconds ..." && sleep 3;
         done;
     }
-    
+
     ensureFileNotEmpty ${crtFile}
     ensureFileNotEmpty ${keyFile}
     ensureFileNotEmpty ${caFile}
-    
+
     PASSWORD=$(head /dev/urandom | base64 | head -c 24)
-    
+
     openssl pkcs12 \
         -export \
         -in ${crtFile} \
@@ -74,14 +74,14 @@ data:
         -out ${p12File} \
         -name ${name} \
         -passout "pass:${PASSWORD}"
-    
+
     keytool -importkeystore \
         -srckeystore ${p12File} \
         -srcstoretype PKCS12 -srcstorepass "${PASSWORD}" \
         -alias ${name} \
         -destkeystore ${keyStoreFile} \
         -deststorepass "${PASSWORD}"
-    
+
     keytool -import \
         -file ${caFile} \
         -storetype JKS \
@@ -89,10 +89,10 @@ data:
         -keystore ${trustStoreFile} \
         -storepass "${PASSWORD}" \
         -trustcacerts -noprompt
-    
+
     ensureFileNotEmpty ${keyStoreFile}
     ensureFileNotEmpty ${trustStoreFile}
-    
+
     if [[ "x${isClient}" == "xtrue" ]]; then
         echo $'\n' >> conf/pulsar_env.sh
         echo "PULSAR_EXTRA_OPTS=\"${PULSAR_EXTRA_OPTS} -Dzookeeper.clientCnxnSocket=org.apache.zookeeper.ClientCnxnSocketNetty -Dzookeeper.client.secure=true -Dzookeeper.ssl.keyStore.location=${keyStoreFile} -Dzookeeper.ssl.keyStore.password=${PASSWORD} -Dzookeeper.ssl.trustStore.location=${trustStoreFile} -Dzookeeper.ssl.trustStore.password=${PASSWORD}\"" >> conf/pulsar_env.sh

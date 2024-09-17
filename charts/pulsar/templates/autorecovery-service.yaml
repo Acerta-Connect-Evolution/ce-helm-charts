@@ -36,4 +36,3 @@ spec:
     release: {{ .Release.Name }}
     component: {{ .Values.autorecovery.component }}
 {{- end }}
-

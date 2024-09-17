@@ -71,7 +71,7 @@ spec:
         - mountPath: /data/responses
           name: responses-volume
         - mountPath: /home/wiremock/storage/__files
-          name: responses-data    
+          name: responses-data
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}

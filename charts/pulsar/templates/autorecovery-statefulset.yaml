@@ -96,7 +96,7 @@ spec:
                       operator: In
                       values:
                       - {{ .Release.Name }}
-                    - key: "component" 
+                    - key: "component"
                       operator: In
                       values:
                       - {{ .Values.autorecovery.component }}
@@ -152,4 +152,3 @@ spec:
       {{- include "pulsar.autorecovery.certs.volumes" . | nindent 6 }}
       {{- include "pulsar.imagePullSecrets" . | nindent 6}}
 {{- end }}
-

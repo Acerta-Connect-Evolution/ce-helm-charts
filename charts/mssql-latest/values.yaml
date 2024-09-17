@@ -26,11 +26,11 @@ ingress:
   #      - chart-example.local
 
 ACCEPT_EULA:
-    value: "y"
+  value: "y"
 MSSQL_PID:
-    value: "Developer"
+  value: "Developer"
 MSSQL_AGENT_ENABLED:
-    value: "true"
+  value: "true"
 hostname: mssqllatest
 sa_password: "Admin123"
 existingSecret: ""

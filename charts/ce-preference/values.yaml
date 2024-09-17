@@ -99,8 +99,9 @@ sealedsecret:
   liquibasedatasource:
     username:
     password:
+  redis:
+    password:
 
 application_yml: ""
 
 extraEnv: {}
-

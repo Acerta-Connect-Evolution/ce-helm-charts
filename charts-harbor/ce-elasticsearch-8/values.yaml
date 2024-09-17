@@ -15,11 +15,11 @@ elasticsearch:
 
   sysctlInitContainer.enabled: false
   antiAffinity: "soft" # used for testing only!
-  
+
   extraEnvs:
     - name: TZ
       value: Europe/Brussels
-  
+
   ingress:
     className: ""
     enabled: true

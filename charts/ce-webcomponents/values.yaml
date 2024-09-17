@@ -84,4 +84,3 @@ loki:
   tenant: "tst"
 
 extraEnvs: {}
-

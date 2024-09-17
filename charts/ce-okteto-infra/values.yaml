@@ -630,12 +630,12 @@ frontend-services-gateway:
 
       profiles:
         active: always-active
-    
+
       redis:
         host: redis-master
         port: 6379
         password: Admin123
-    
+
       security:
         oauth2:
           client:
@@ -654,7 +654,7 @@ frontend-services-gateway:
                   - email
                   - profile
                   - roles
-    
+
       cloud:
         gateway:
           default-filters:
@@ -805,7 +805,7 @@ frontend-services-gateway:
         requireQueryParam: false
         ellegibleFileExtensions: "js,mjs,html"
         cache:
-          ttl: 10 
+          ttl: 10
     acerta:
       keycloak:
         registration-service-name: ce-gateway
@@ -927,7 +927,7 @@ ce-fake-everesst:
           topic: worktime
         ScheduledRedisJailTestEventPublisher:
           topic: testRedisJail
-    
+
     logging:
       level:
         root: INFO

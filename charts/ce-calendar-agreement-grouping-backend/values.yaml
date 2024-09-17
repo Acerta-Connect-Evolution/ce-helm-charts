@@ -98,6 +98,8 @@ sealedsecret:
   diccodatasource:
     username:
     password:
+  redis:
+    password:
 
 
 loki:

@@ -1,5 +1,5 @@
-{{- if .Values.postSyncJob.enabled -}}
-{{- $fullName := include "mychart.fullname" . -}}
+{{- if .Values.postSyncJob.enabled }}
+  {{- $fullName := include "mychart.fullname" . -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -18,7 +18,7 @@ spec:
             - --location
             - --request
             - POST
-            - 'https://api.github.com/repos/Acerta-Connect-Evolution/ce-calendar-timespend-frontend/dispatches'
+            - 'https://api.github.com/repos/Acerta-Connect-Evolution/ce-repertoriumservice/dispatches'
             - --header
             - 'Authorization: token $(GITHUB_TOKEN)'
             - --header
@@ -26,7 +26,7 @@ spec:
             - --header
             - 'Content-Type: application/json'
             - --data
-            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-calendar-timespend-frontend", "chartVersion" : "0.106.0", "appVersion" : "1.109.0", "closedPRTitle" : "frontend-main"}}'
+            - '{"event_type": "post-argocd-sync", "client_payload" : {"chartName" : "ce-repertoriumservice", "chartVersion" : "0.8.0", "appVersion" : "0.7.0", "closedPRTitle" : "feature/ACECEV-365"}}'
           env:
             - name: GITHUB_TOKEN
               valueFrom:

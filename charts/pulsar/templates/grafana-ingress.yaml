@@ -48,6 +48,6 @@ spec:
       {{- if .Values.grafana.ingress.hostname }}
       host: {{ .Values.grafana.ingress.hostname }}
       {{- end }}
-      
+
   {{- end }}
   {{- end }}

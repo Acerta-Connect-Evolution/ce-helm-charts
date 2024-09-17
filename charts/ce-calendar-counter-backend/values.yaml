@@ -98,6 +98,8 @@ sealedsecret:
   liquibasedatasource:
     username:
     password:
+  redis:
+    password:
 
 
 loki:

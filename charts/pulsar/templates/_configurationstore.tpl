@@ -17,4 +17,3 @@ Define configuration store connection string
 {{- template "pulsar.configurationStore.service" . }}:{{ .Values.pulsar_metadata.configurationStorePort }}
 {{- end -}}
 {{- end -}}
-
