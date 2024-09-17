@@ -1,0 +1,11 @@
+---
+    name: Renovate
+    on:
+      workflow_dispatch:
+      schedule:
+        - cron: '0 1 * * *'
+
+    jobs:
+      renovate:
+        uses: Acerta-Connect-Evolution/ce-custom-github-actions/.github/workflows/renovate.yml@main
+        secrets: inherit
