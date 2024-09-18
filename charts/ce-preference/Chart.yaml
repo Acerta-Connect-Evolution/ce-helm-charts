@@ -3,4 +3,4 @@ appVersion: 1.11.0
 description: Helm chart for ce-preference
 name: ce-preference
 type: application
-version: 2.6.0
+version: 2.6.1
