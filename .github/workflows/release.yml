@@ -30,4 +30,5 @@ jobs:
         # https://github.com/helm/chart-releaser-action/releases
         uses: helm/chart-releaser-action@v1.5.0
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+            CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+            SKIP_EXISTING: true
