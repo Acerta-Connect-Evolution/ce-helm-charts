@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Values.name }}-tls
+  namespace: {{ .Values.namespace }}
+spec:
+  secretName: {{ .Values.name }}-tls
+  issuerRef:
+    group: cert-manager.io
+    name: cert-manager
+    kind: ClusterIssuer
+  usages:
+  - digital signature
+  - key encipherment  
+  commonName: {{ .Values.dns_name }}
+  dnsNames:
+    - {{ .Values.dns_name }}

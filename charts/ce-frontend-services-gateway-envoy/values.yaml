@@ -1,0 +1,6 @@
+name: "envoy"
+namespace: "default"
+dns_name: "envoy.example.com"
+image: envoyproxy/envoy
+replicaCount: 1
+lb_endpoint: "container.namespace.svc.cluster.local"

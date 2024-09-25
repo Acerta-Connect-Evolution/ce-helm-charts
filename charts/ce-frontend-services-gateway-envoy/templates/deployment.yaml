@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.image }}
+          ports:
+            - name: https-alt
+              containerPort: 8443
+              protocol: TCP
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: https
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: https
+          volumeMounts:
+          - name: {{ .Values.name }}-config
+            mountPath: /etc/envoy
+          - name: {{ .Values.name }}-ssl
+            mountPath: /etc/envoy/ssl    
+         
+      volumes:
+      - name: {{ .Values.name }}-config
+        configMap:
+          name: {{ .Values.name }}-config
+      - name: {{ .Values.name }}-ssl
+        secret:
+          secretName: {{ .Values.name }}-tls
