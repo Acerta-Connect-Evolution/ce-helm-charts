@@ -3,5 +3,5 @@ name: ce-frontend-services-gateway-envoy
 description: Standalone Envoy proxy for frontend services gateway 
 type: application
 version: 0.1.0
-appVersion: "1.16.0"
+appVersion: "0.1.0"
 icon: https://www.envoyproxy.io/favicon.ico
