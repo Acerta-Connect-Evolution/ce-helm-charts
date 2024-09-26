@@ -36,7 +36,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-helm-
 
-      - name: Log in to Harbor
+      - name: Log in to Harbor staging
         run: |
           echo ${{ secrets.HARBORSTG_PASSWORD }} | \
           helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
@@ -71,8 +71,8 @@ jobs:
             helm package "$dir"
           done
 
-      - name: Push Helm charts to Harbor
+      - name: Push Helm charts to Harbor staging
         run: |
-          for chart in *.tgz; do
-            helm push "$chart" oci://harbor.toolsstg.acerta.io/connect-evolution
+          for chart in ce-*.tgz; do
+            helm push "$chart" oci://harbor.toolsstg.acerta.io/acerta-snapshots
           done
