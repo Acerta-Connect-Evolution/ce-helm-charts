@@ -74,5 +74,6 @@ jobs:
       - name: Push Helm charts to Harbor staging
         run: |
           for chart in ce-*.tgz; do
+            chart_name=$(basename "$chart" .tgz)
             helm push "$chart" oci://harbor.toolsstg.acerta.io/acerta-snapshots
           done
