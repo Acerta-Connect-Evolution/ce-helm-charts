@@ -1,6 +1,6 @@
 apiVersion: v2
 appVersion: 1.53.0
 description: Helm chart for Pulsar Client
-name: pulsar-client
+name: ce-pulsar-client
 type: application
 version: 3.65.1

@@ -1,5 +1,5 @@
 apiVersion: v2
 description: Pulsar Admin Console
-name: pulsar-admin-console
+name: ce-pulsar-admin-console
 type: application
 version: 0.10.1
