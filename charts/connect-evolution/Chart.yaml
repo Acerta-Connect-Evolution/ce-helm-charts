@@ -3,10 +3,10 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.2415.0
+version: 1.2422.0
 dependencies:
   - name: ce-calendar-timespend-backend
-    version: 1.509.0
+    version: 1.515.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-backend.enabled
   - name: ce-calendar-timespend-frontend
@@ -97,7 +97,7 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-connect.enabled
   - name: ce-preference
-    version: 2.6.0
+    version: 2.7.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-preference.enabled
   - name: ce-scdf-client
