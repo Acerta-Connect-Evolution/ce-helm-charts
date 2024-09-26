@@ -1,9 +1,10 @@
+{{- $fullName := include "mychart.fullname" . -}}
 {{- if .Values.prometheusRule.enabled }}
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ include "mychart.fullname" . }}
+  name: {{ $fullName }}-prometheusrule
   labels:
     {{- include "mychart.labels" . | nindent 4 }}
 {{- if .Values.prometheusRule.labels }}
@@ -12,7 +13,7 @@ metadata:
 spec:
 {{- with .Values.prometheusRule.rules }}
   groups:
-    - name: {{ include "mychart.fullname" . }}
+    - name: {{ template "mychart.fullname" $ }}
       rules: {{ tpl (toYaml .) $ | nindent 8 }}
 {{- end }}
 {{- end }}

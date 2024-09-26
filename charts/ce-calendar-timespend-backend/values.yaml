@@ -120,8 +120,7 @@ prometheusRule:
   ## https://github.com/coreos/prometheus-operator
   ##
   ## The rules will be processed as Helm template, allowing to set variables in them.
-  enabled: false
-  namespace: ""
+  enabled: true
   labels: {}
 
   # some bogus rules that you can use as a template
