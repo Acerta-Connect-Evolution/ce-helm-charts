@@ -48,5 +48,5 @@ jobs:
 
       - name: Push Helm charts to Harbor production
         run: |
-          helm push "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" oci://harbor.tools.acerta.io/acerta-snapshots
+          helm push "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" oci://harbor.tools.acerta.io/acerta-releases
           
