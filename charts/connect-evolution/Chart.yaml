@@ -1,9 +1,9 @@
 apiVersion: v2
 appVersion: '1.0'
 description: Helm chart for connect evolution application
-name: ce-connect-evolution
+name: connect-evolution
 type: application
-version: 1.2427.1
+version: 1.2428.0
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.517.0
