@@ -19,10 +19,6 @@ jobs:
     runs-on: [ self-hosted, devtst-ce ]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          submodules: 'true'
 
       - name: Set up Helm
         uses: azure/setup-helm@v1
@@ -38,7 +34,6 @@ jobs:
         run: |
           CHART_URL="https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}/${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz"
           curl -L -o "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" "$CHART_URL"
-          ls -l
 
       - name: Push Helm charts to Harbor staging
         run: |
