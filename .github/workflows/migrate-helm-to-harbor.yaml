@@ -43,8 +43,8 @@ jobs:
 
       - name: Log in to Harbor production
         run: |
-          echo ${{ secrets.HARBOR_PASSWORD }} | \
-          helm registry login harbor.tools.acerta.io -u ${{ secrets.HARBOR_USERNAME }} --password-stdin
+          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | \
+          helm registry login harbor.tools.acerta.io -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin
 
       - name: Push Helm charts to Harbor production
         run: |
