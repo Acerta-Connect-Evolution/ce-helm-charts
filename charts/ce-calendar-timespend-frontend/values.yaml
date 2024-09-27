@@ -106,9 +106,8 @@ prometheusRule:
   ## https://github.com/coreos/prometheus-operator
   ##
   ## The rules will be processed as Helm template, allowing to set variables in them.
-  enabled: true
+  enabled: false
   labels: {}
-
   # some bogus rules that you can use as a template
   rules: []
     # - record: xxx_filesystem_data_used_percent
@@ -124,4 +123,4 @@ prometheusRule:
     #     severity: critical
     #   annotations:
     #     description: The heap usage is over 90% for 15m
-  #     summary: xxx node {{ "{{ $labels.node }}" }} heap usage is high
+    #     summary: xxx node {{ "{{ $labels.node }}" }} heap usage is high
