@@ -99,4 +99,29 @@ tempo:
   enabled: true
   tenant: "tst"
 
-  application_yml: ""
+application_yml: ""
+
+prometheusRule:
+  ## If true, a PrometheusRule CRD is created for a prometheus operator
+  ## https://github.com/coreos/prometheus-operator
+  ##
+  ## The rules will be processed as Helm template, allowing to set variables in them.
+  enabled: true
+  labels: {}
+
+  # some bogus rules that you can use as a template
+  rules: []
+    # - record: xxx_filesystem_data_used_percent
+    #   expr: |
+    #     100 * (xxx_filesystem_data_size_bytes{service="{{ template "xxx-exporter.fullname" . }}"} - xxx_filesystem_data_free_bytes{service="{{ template "xxx-exporter.fullname" . }}"})
+    #     / xxx_filesystem_data_size_bytes{service="{{ template "xxx-exporter.fullname" . }}"}
+    # - alert: xxxHeapTooHigh
+    #   expr: |
+    #     xxx_jvm_memory_used_bytes{service="{{ template "xxx-exporter.fullname" . }}", area="heap"} / xxx_jvm_memory_max_bytes{service="{{ template "xxx-exporter.fullname" . }}", area="heap"}
+    #     > 0.9
+    #   for: 15m
+    #   labels:
+    #     severity: critical
+    #   annotations:
+    #     description: The heap usage is over 90% for 15m
+  #     summary: xxx node {{ "{{ $labels.node }}" }} heap usage is high
