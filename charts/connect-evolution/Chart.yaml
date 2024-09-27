@@ -3,15 +3,15 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.2428.0
+version: 1.2428.1
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.517.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-timespend-backend.enabled
   - name: ce-calendar-timespend-frontend
     version: 0.604.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-timespend-frontend.enabled
   - name: pulsar-client
     version: 3.65.0
@@ -34,27 +34,27 @@ dependencies:
     alias: db-init-job
   - name: ce-ff4j-server
     version: 1.50.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-ff4j-server.enabled
   - name: ce-payroll-vacationcertificate
     version: 0.131.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-payroll-vacationcertificate.enabled
   - name: ce-webcomponents
     version: 0.94.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-webcomponents.enabled
   - name: ce-calendar-repertorium
     version: 1.34.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-repertorium.enabled
   - name: ce-balances
     version: 0.52.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-balances.enabled
   - name: ce-clink
     version: 0.102.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-clink.enabled
   - name: ce-frontend-services-gateway
     version: 1.172.1
@@ -62,35 +62,35 @@ dependencies:
     condition: frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
     version: 0.70.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-balance-backend.enabled
   - name: ce-calendar-balance-frontend
     version: 0.106.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-balance-frontend.enabled
   - name: ce-connect-schedule-rollout
     version: 0.8.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-connect-schedule-rollout.enabled
   - name: ce-authorization-service
     version: 0.48.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-authorization-service.enabled
   - name: ce-connect
     version: 0.171.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-connect.enabled
   - name: ce-preference
     version: 2.7.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-preference.enabled
   - name: ce-scdf-client
     version: 0.52.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-scdf-client.enabled
   - name: ce-chro-inbound-integration
     version: 1.13.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-chro-inbound-integration.enabled
   - name: prometheus-rsocket-proxy
     version: 0.10.0
@@ -98,9 +98,9 @@ dependencies:
     condition: prometheus-rsocket-proxy.enabled
   - name: ce-calendar-perftest
     version: 0.60.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-perftest.enabled
   - name: ce-calendar-agreement-grouping-backend
     version: 0.18.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-agreement-grouping-backend.enabled
