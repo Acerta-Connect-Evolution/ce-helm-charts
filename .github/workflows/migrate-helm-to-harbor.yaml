@@ -25,17 +25,28 @@ jobs:
         with:
           version: v3.7.0
 
-      - name: Log in to Harbor staging
-        run: |
-          echo ${{ secrets.HARBORSTG_PASSWORD }} | \
-          helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
+
 
       - name: Download Helm chart from GitHub Pages
         run: |
           CHART_URL="https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}/${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz"
           curl -L -o "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" "$CHART_URL"
 
+      - name: Log in to Harbor staging
+        run: |
+          echo ${{ secrets.HARBORSTG_PASSWORD }} | \
+          helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
+
       - name: Push Helm charts to Harbor staging
         run: |
           helm push "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" oci://harbor.toolsstg.acerta.io/acerta-snapshots
+
+      - name: Log in to Harbor production
+        run: |
+          echo ${{ secrets.HARBOR_PASSWORD }} | \
+          helm registry login harbor.tools.acerta.io -u ${{ secrets.HARBOR_USERNAME }} --password-stdin
+
+      - name: Push Helm charts to Harbor production
+        run: |
+          helm push "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" oci://harbor.tools.acerta.io/acerta-snapshots
           
