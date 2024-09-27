@@ -36,11 +36,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-helm-
 
-      - name: Log in to Harbor staging
-        run: |
-          echo ${{ secrets.HARBORSTG_PASSWORD }} | \
-          helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
-
       - name: List Helm Dependencies
         run: |
           for dir in charts/*; do
@@ -71,8 +66,24 @@ jobs:
             helm package "$dir"
           done
 
+      - name: Log in to Harbor staging
+        run: |
+          echo ${{ secrets.HARBORSTG_PASSWORD }} | \
+          helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
+
       - name: Push Helm charts to Harbor staging
         run: |
-          for chart in ce-*.tgz; do
+          for chart in *.tgz; do
             helm push "$chart" oci://harbor.toolsstg.acerta.io/acerta-snapshots
+          done
+
+      - name: Log in to Harbor production
+        run: |
+          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | \
+          helm registry login harbor.tools.acerta.io -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin
+
+      - name: Push Helm charts to Harbor production
+        run: |
+          for chart in *.tgz; do
+            helm push "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" oci://harbor.tools.acerta.io/acerta-releases
           done
