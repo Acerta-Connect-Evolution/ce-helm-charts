@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: ce-connect-evolution
 type: application
-version: 1.2426.0
+version: 1.2426.1
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.517.0
@@ -13,14 +13,6 @@ dependencies:
     version: 0.603.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-calendar-timespend-frontend.enabled
-  - name: connect-backend
-    version: 0.0.32
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: connect-backend.enabled
-  - name: connect-frontend
-    version: 0.36.108
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: connect-frontend.enabled
   - name: pulsar-client
     version: 3.65.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
@@ -40,10 +32,6 @@ dependencies:
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: db-init-job.enabled
     alias: db-init-job
-  - name: ce-test-support
-    version: 1.27.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: ce-test-support.enabled
   - name: ce-ff4j-server
     version: 1.50.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
@@ -68,13 +56,9 @@ dependencies:
     version: 0.102.0
     repository: https://acerta-connect-evolution.github.io/ce-helm-charts
     condition: ce-clink.enabled
-  - name: ce-init-load
-    version: 0.67.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
-    condition: ce-init-load.enabled
-  - name: frontend-services-gateway
-    version: 1.172.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+  - name: ce-frontend-services-gateway
+    version: 1.172.1
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
     version: 0.70.0
