@@ -37,7 +37,8 @@ jobs:
       - name: Download Helm chart from GitHub Pages
         run: |
           CHART_URL="https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}/${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz"
-          curl -L -o "$CHART_NAME.tgz" "$CHART_URL"
+          curl -L -o "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" "$CHART_URL"
+          ls -l
 
       - name: Push Helm charts to Harbor staging
         run: |
