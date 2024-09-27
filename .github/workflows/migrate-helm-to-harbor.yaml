@@ -2,7 +2,6 @@ name: Migrate a helm chart to harbor
 
 on:
   workflow_dispatch:
-  push:
     inputs:
       chart_name:
         description: 'Name of the Helm chart to migrate'
