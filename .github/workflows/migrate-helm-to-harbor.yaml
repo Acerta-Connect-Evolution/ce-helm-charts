@@ -1,0 +1,46 @@
+name: Migrate a helm chart to harbor
+
+on:
+  workflow_dispatch:
+  push:
+    inputs:
+      chart_name:
+        description: 'Name of the Helm chart to migrate'
+        required: true
+      chart_version:
+        description: 'Version of the Helm chart to migrate'
+        required: true
+        branches:
+        - main
+env:
+  HELM_EXPERIMENTAL_OCI: 1
+
+jobs:
+  migrate-to-harbor:
+    runs-on: [ self-hosted, devtst-ce ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.7.0
+
+      - name: Log in to Harbor staging
+        run: |
+          echo ${{ secrets.HARBORSTG_PASSWORD }} | \
+          helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
+
+      - name: Download Helm chart from GitHub Pages
+        run: |
+          CHART_URL="https://github.com/Acerta-Connect-Evolution/ce-helm-charts/releases/download/${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}/${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz
+          curl -L -o "$CHART_NAME.tgz" "$CHART_URL"
+
+      - name: Push Helm charts to Harbor staging
+        run: |
+          helm push "${{ github.event.inputs.chart_name }}-${{ github.event.inputs.chart_version }}.tgz" oci://harbor.toolsstg.acerta.io/acerta-snapshots
+          
