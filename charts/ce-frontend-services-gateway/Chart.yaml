@@ -3,4 +3,4 @@ appVersion: 1.163.0
 description: Helm chart for frontend-services-gateway
 name: ce-frontend-services-gateway
 type: application
-version: 1.172.1
+version: 1.173.1
