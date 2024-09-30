@@ -2,8 +2,9 @@
     name: Renovate
     on:
       workflow_dispatch:
-      schedule:
-        - cron: '0 1 * * *'
+      # disabled until repo is private
+      # schedule:
+      #   - cron: '0 1 * * *'
 
     jobs:
       renovate:
