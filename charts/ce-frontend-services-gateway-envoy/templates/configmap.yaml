@@ -26,8 +26,7 @@ data:
                   "@type": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog
                   path: /dev/stdout
 
-              http2_protocol_options:
-                allow_connect: true
+              http2_protocol_options: {}
               upgrade_configs:
               - upgrade_type: CONNECT
               - upgrade_type: websocket
