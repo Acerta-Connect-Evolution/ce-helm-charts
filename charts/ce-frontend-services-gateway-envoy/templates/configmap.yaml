@@ -18,8 +18,10 @@ data:
             typed_config:
               "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
               codec_type: auto
+              http2_protocol_options:
+                allow_connect: true
               upgrade_configs:
-              - upgrade_type: "websocket"
+              - upgrade_type: CONNECT
               stat_prefix: ingress_http
               route_config:
                 name: local_route
@@ -32,6 +34,9 @@ data:
                       prefix: "/"
                     route:
                       cluster: frontend_services_gateway
+              
+                
+                
               http_filters:
               - name: envoy.filters.http.router
                 typed_config:
