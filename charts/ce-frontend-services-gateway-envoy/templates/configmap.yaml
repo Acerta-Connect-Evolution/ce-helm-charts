@@ -89,7 +89,7 @@ data:
         connect_timeout: 0.25s
         type: strict_dns
         lb_policy: round_robin
-        http2_protocol_options: {} # enable H2 protocol
+        # http2_protocol_options: {} # disabled for websocket to work
         
         load_assignment:
           cluster_name: frontend_services_gateway
