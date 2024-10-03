@@ -20,6 +20,12 @@ data:
             typed_config:
               "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
               codec_type: auto
+              access_log:
+              - name: envoy.access_loggers.file
+                typed_config:
+                  "@type": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog
+                  path: /dev/stdout
+
               http2_protocol_options:
                 allow_connect: true
               upgrade_configs:
@@ -36,9 +42,10 @@ data:
                   - match:
                       prefix: "/calendar-timespend/socket"
                     route:
-                      cluster: frontend_services_gateway
+                      cluster: frontend_services_gateway_ws
                       upgrade_configs:
                       - upgrade_type: websocket
+                        enabled: true
                   - match:
                       prefix: "/"
                     route:
@@ -67,6 +74,7 @@ data:
         type: strict_dns
         lb_policy: round_robin
         http2_protocol_options: {} # enable H2 protocol
+        
         load_assignment:
           cluster_name: frontend_services_gateway
           endpoints:
@@ -76,6 +84,22 @@ data:
                   socket_address:
                     address: frontend-services-gateway.connect-evolution-inttst.svc.cluster.local
                     port_value: 8080
+
+      - name: frontend_services_gateway_ws
+        connect_timeout: 0.25s
+        type: strict_dns
+        lb_policy: round_robin
+        http2_protocol_options: {} # enable H2 protocol
+        
+        load_assignment:
+          cluster_name: frontend_services_gateway
+          endpoints:
+          - lb_endpoints:
+            - endpoint:
+                address:
+                  socket_address:
+                    address: frontend-services-gateway.connect-evolution-inttst.svc.cluster.local
+                    port_value: 8080                    
     admin:
       access_log_path: /dev/null
       address:
