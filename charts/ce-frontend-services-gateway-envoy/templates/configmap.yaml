@@ -13,6 +13,8 @@ data:
             address: 0.0.0.0
             port_value: 8443
         filter_chains:
+     
+
         - filters:
           - name: envoy.filters.network.http_connection_manager
             typed_config:
@@ -22,6 +24,7 @@ data:
                 allow_connect: true
               upgrade_configs:
               - upgrade_type: CONNECT
+              - upgrade_type: websocket
               stat_prefix: ingress_http
               route_config:
                 name: local_route
@@ -30,6 +33,12 @@ data:
                   domains:
                   - "*"
                   routes:
+                  - match:
+                      prefix: "/calendar-timespend/socket"
+                    route:
+                      cluster: frontend_services_gateway
+                      upgrade_configs:
+                      - upgrade_type: websocket
                   - match:
                       prefix: "/"
                     route:
