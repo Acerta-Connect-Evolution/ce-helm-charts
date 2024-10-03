@@ -46,6 +46,20 @@ data:
                       - upgrade_type: websocket
                         enabled: true
                   - match:
+                      prefix: "/calendar-timespend/perftest"    
+                    route:
+                      cluster: frontend_services_gateway_ws
+                      upgrade_configs:
+                      - upgrade_type: websocket
+                        enabled: true
+                  - match:
+                      prefix: "/calendar-balance/socket"    
+                    route:
+                      cluster: frontend_services_gateway_ws
+                      upgrade_configs:
+                      - upgrade_type: websocket
+                        enabled: true                                                                        
+                  - match:
                       prefix: "/"
                     route:
                       cluster: frontend_services_gateway
