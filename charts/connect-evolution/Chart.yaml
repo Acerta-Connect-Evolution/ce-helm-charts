@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.2452.0
+version: 1.2453.0
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.524.0
@@ -85,7 +85,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-preference.enabled
   - name: ce-scdf-client
-    version: 0.55.0
+    version: 0.56.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-scdf-client.enabled
   - name: ce-chro-inbound-integration
