@@ -115,8 +115,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
-            {{- if .Values.ingress.enabled -}}
-            {{- range .Values.ingress.hosts }}
+            {{- if .Values.ingress.http.enabled -}}
+            {{- range .Values.ingress.http.hosts }}
             - name: SPRING_BOOT_ADMIN_CLIENT_INSTANCE_SERVICE-BASE-URL
               value: https://{{ .host }}
             {{- end }}
