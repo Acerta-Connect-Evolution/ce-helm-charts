@@ -103,6 +103,9 @@ env:
   datasource:
     jdbcurl: DATASOURCE_HOST
   spring:
+    boot.admin.client:
+      enabled: SPRING_BOOT_ADMIN_CLIENT_ENABLED
+      url: SPRING_BOOT_ADMIN_CLIENT_URL
     profiles:
       active: default
     data:
