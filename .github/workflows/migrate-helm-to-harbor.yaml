@@ -9,8 +9,7 @@ on:
       chart_version:
         description: 'Version of the Helm chart to migrate'
         required: true
-        branches:
-        - main
+
 env:
   HELM_EXPERIMENTAL_OCI: 1
 
