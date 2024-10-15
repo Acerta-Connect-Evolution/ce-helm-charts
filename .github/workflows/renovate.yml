@@ -1,0 +1,12 @@
+---
+    name: Renovate
+    on:
+      workflow_dispatch:
+      # disabled until repo is private
+      # schedule:
+      #   - cron: '0 1 * * *'
+
+    jobs:
+      renovate:
+        uses: Acerta-Connect-Evolution/ce-custom-github-actions/.github/workflows/renovate.yml@main
+        secrets: inherit

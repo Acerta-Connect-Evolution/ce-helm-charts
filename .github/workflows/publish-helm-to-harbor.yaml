@@ -2,35 +2,90 @@ name: Publish Helm Chart to Harbor
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'hotfix/**'
 
 env:
   HELM_EXPERIMENTAL_OCI: 1
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  publish-to-harbor:
+    runs-on: [ self-hosted, devtst-ce ]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+
 
       - name: Set up Helm
         uses: azure/setup-helm@v1
         with:
           version: v3.7.0
 
-      - name: Log in to Harbor
+      - name: Cache Helm dependencies
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: |
+            charts/**/charts
+            charts/**/tmpcharts
+            charts/**/Chart.lock
+          key: ${{ runner.os }}-helm-${{ hashFiles('charts/**/Chart.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-helm-
+
+      - name: List Helm Dependencies
         run: |
-          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | helm registry login harbor.tools.acerta.io -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin
-                                            
-    
+          for dir in charts/*; do
+            echo "Listing dependencies for $dir"
+            helm dep list "$dir"
+            echo ""
+          done
+
       - name: Dependency build
-        run: helm dependency build charts/ce-elasticsearch-8
+        run: |
+          for dir in charts/*; do
+            if  helm dep list "$dir" | grep -q 'missing';
+            then
+            
+              echo "---"
+              echo "Updating de
+              pendencies for $dir"
+              helm dep update "$dir"
+            else
+              echo "---"
+              echo "Dependencies are up to date for $dir"
+            fi
+          done
 
       - name: Package Helm chart
-        run: helm package charts/ce-elasticsearch-8
-
-      - name: Push Helm chart to Harbor
         run: |
-          CHART_PACKAGE=$(ls *.tgz)
-          helm push $CHART_PACKAGE oci://harbor.toolsstg.acerta.io/connect-evolution
+          for dir in charts/*; do
+            helm package "$dir"
+          done
+
+      - name: Log in to Harbor staging
+        run: |
+          echo ${{ secrets.HARBORSTG_PASSWORD }} | \
+          helm registry login harbor.toolsstg.acerta.io -u ${{ secrets.HARBORSTG_USERNAME }} --password-stdin
+
+      - name: Push Helm charts to Harbor staging
+        run: |
+          for chart in *.tgz; do
+            helm push "$chart" oci://harbor.toolsstg.acerta.io/acerta-snapshots
+          done
+
+      - name: Log in to Harbor production
+        run: |
+          echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | \
+          helm registry login harbor.tools.acerta.io -u ${{ secrets.HARBOR_RELEASE_USER }} --password-stdin
+
+      - name: Push Helm charts to Harbor production
+        run: |
+          for chart in *.tgz; do
+            helm push "$chart" oci://harbor.tools.acerta.io/acerta-releases
+          done
