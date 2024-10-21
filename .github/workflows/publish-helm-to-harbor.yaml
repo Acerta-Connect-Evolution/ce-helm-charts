@@ -79,6 +79,14 @@ jobs:
             helm push "$chart" oci://harbor.toolsstg.acerta.io/acerta-snapshots
           done
 
+      - name: Pull Helm chart to set Harbor staging pull counter to non-zero value
+        run: |
+          for chart in *.tgz; do
+            chart_version=$(echo $chart | sed -n 's/.*-\([^-]*\)\.tgz$/\1/p')
+            chart_name=$(echo $chart | sed -r 's/(.*)-[^-]+$/\1/')
+            helm pull oci://harbor.toolsstg.acerta.io/acerta-snapshots/$chart_name --version $chart_version
+          done
+
       - name: Log in to Harbor production
         run: |
           echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | \
@@ -88,4 +96,12 @@ jobs:
         run: |
           for chart in *.tgz; do
             helm push "$chart" oci://harbor.tools.acerta.io/acerta-releases
+          done
+
+      - name: Pull Helm chart to set Harbor production pull counter to non-zero value
+        run: |
+          for chart in *.tgz; do
+            chart_version=$(echo $chart | sed -n 's/.*-\([^-]*\)\.tgz$/\1/p')
+            chart_name=$(echo $chart | sed -r 's/(.*)-[^-]+$/\1/')
+            helm pull oci://harbor.tools.acerta.io/acerta-releases/$chart_name --version $chart_version
           done
