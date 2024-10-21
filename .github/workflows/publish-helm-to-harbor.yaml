@@ -84,9 +84,9 @@ jobs:
           for chart in *.tgz; do
             echo $chart
             chart=$(echo $chart | sed 's/.tgz$//')
-           
-            chart_name=$(echo $chart | awk -F: '{print $1}')
-            chart_version=$(echo $chart | awk -F: '{print $2}')
+            chart_version=$(echo $chart | sed -n 's/.*-\([^-]*\)\.tgz$/\1/p')
+            chart_name=$(echo $chart | sed -r 's/(.*)-[^-]+$/\1/')
+
             echo $chart_name $chart_version
             helm pull oci://harbor.toolsstg.acerta.io/acerta-snapshots/$chart_name --version $chart_version
           done
