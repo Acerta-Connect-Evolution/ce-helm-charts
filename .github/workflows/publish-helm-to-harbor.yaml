@@ -83,7 +83,6 @@ jobs:
         run: |
           for chart in *.tgz; do
             echo $chart
-            chart=$(echo $chart | sed 's/.tgz$//')
             chart_version=$(echo $chart | sed -n 's/.*-\([^-]*\)\.tgz$/\1/p')
             chart_name=$(echo $chart | sed -r 's/(.*)-[^-]+$/\1/')
 
