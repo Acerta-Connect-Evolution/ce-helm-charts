@@ -79,6 +79,14 @@ jobs:
             helm push "$chart" oci://harbor.toolsstg.acerta.io/acerta-snapshots
           done
 
+      - name: Pull Helm chart to set Harbor pull counter to non-zero value
+        run: |
+          for chart in *.tgz; do
+            chart_name=$(echo $chart | awk -F: '{print $1}')
+            chart_version=$(echo $chart | awk -F: '{print $2}')
+            helm pull oci://harbor.toolsstg.acerta.io/acerta-snapshots/$chart_name --version $chart_version
+          done
+
       - name: Log in to Harbor production
         run: |
           echo ${{ secrets.HARBOR_RELEASE_PASSWORD }} | \
