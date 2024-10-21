@@ -15,7 +15,7 @@ env:
 
 jobs:
   migrate-to-harbor:
-    runs-on: [ self-hosted, devtst-ce ]
+    runs-on: [ self-hosted, k8s-runners ]
 
     steps:
 
