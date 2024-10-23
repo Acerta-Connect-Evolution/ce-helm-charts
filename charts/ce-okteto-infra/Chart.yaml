@@ -87,7 +87,7 @@ dependencies:
     repository: oci://registry-1.docker.io/bitnamicharts
     condition: spring-cloud-dataflow.enabled
   - name: ce-wiremock
-    version: 0.1.1
+    version: 0.1.7
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: wiremock.enabled
   - name: ce-scdf-client
