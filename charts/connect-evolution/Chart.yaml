@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.2490.0
+version: 1.2490.1
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.528.0
@@ -13,23 +13,23 @@ dependencies:
     version: 0.615.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-timespend-frontend.enabled
-  - name: pulsar-client
-    version: 3.65.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+  - name: ce-pulsar-client
+    version: 3.65.1
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: pulsar-client.enabled
-  - name: init-job
-    version: 2.9.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+  - name: ce-init-job
+    version: 2.9.1
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: pulsar-init-job.enabled
     alias: pulsar-init-job
-  - name: init-job
-    version: 2.9.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+  - name: ce-init-job
+    version: 2.9.1
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: scdf-init-job.enabled
     alias: scdf-init-job
-  - name: init-job
-    version: 2.9.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+  - name: ce-init-job
+    version: 2.9.1
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: db-init-job.enabled
     alias: db-init-job
   - name: ce-ff4j-server
@@ -92,9 +92,9 @@ dependencies:
     version: 1.14.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-chro-inbound-integration.enabled
-  - name: prometheus-rsocket-proxy
-    version: 0.10.0
-    repository: https://acerta-connect-evolution.github.io/ce-helm-charts
+  - name: ce-prometheus-rsocket-proxy
+    version: 0.10.1
+    repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: prometheus-rsocket-proxy.enabled
   - name: ce-calendar-perftest
     version: 0.60.0
