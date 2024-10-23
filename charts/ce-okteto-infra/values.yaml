@@ -972,7 +972,7 @@ ce-authorization-service:
     enabled: true
     tenant: dev
 
-ce-spring-cloud-dataflow:
+spring-cloud-dataflow:
   enabled: false
   fullnameOverride: spring-cloud-dataflow
   skipper:
