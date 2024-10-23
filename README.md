@@ -9,12 +9,13 @@ GitHub Pages-powered Helm repository for charts needed by Connect Evolution.
 [Helm](https://helm.sh) must be installed to use the charts.
 Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
-Once Helm is set up properly, add the repo as follows:
-```console
-helm repo add ce-helm https://acerta-connect-evolution.github.io/ce-helm-charts
-```
+Helm charts are stored on Harbor using oci.
+https://harbor.toolsstg.acerta.io/
+https://harbor.tools.acerta.io/
 
-You can then run `helm search repo ce-helm` to see the charts.
+examples:
+helm pull oci://harbor.toolsstg.acerta.io/acerta-snapshots/connect-evolution
+helm show chart oci://harbor.tools.acerta.io/acerta-releases/connect-evolution
 
 ## Custom images
 
