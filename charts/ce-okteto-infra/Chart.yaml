@@ -3,12 +3,12 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.182.2
+version: 0.182.3
 dependencies:
   - name: ce-mssql-latest
     version: 0.3.14
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: mssql-latest.enabled
+    condition: ce-mssql-latest.enabled
   - name: elasticsearch
     version: 7.17.3
     repository: https://helm.elastic.co
@@ -20,40 +20,40 @@ dependencies:
   - name: ce-pulsar-standalone
     version: 3.11.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: pulsar-standalone.enabled
+    condition: ce-pulsar-standalone.enabled
   - name: ce-pulsar-admin-console
     version: 0.10.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: pulsar-admin-console.enabled
+    condition: ce-pulsar-admin-console.enabled
   - name: ce-axon-server
     version: 1.0.4
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: axon-server-calendar.enabled
-    alias: axon-server-calendar
+    condition: ce-axon-server-calendar.enabled
+    alias: ce-axon-server-calendar
   - name: ce-pulsar-client
     version: 3.65.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: pulsar-client.enabled
+    condition: ce-pulsar-client.enabled
   - name: ce-init-job
     version: 2.9.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: pulsar-init-job.enabled
-    alias: pulsar-init-job
+    condition: ce-pulsar-init-job.enabled
+    alias: ce-pulsar-init-job
   - name: ce-init-job
     version: 2.9.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: ff4j-init-job.enabled
-    alias: ff4j-init-job
+    condition: ce-ff4j-init-job.enabled
+    alias: ce-ff4j-init-job
   - name: ce-init-job
     version: 2.9.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: db-init-job.enabled
-    alias: db-init-job
+    condition: ce-db-init-job.enabled
+    alias: ce-db-init-job
   - name: ce-init-job
     version: 2.9.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: scdf-init-job.enabled
-    alias: scdf-init-job
+    alias: ce-scdf-init-job
   - name: ce-ff4j-server
     version: 1.53.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -61,11 +61,11 @@ dependencies:
   - name: ce-frontend-services-gateway
     version: 1.175.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: frontend-services-gateway.enabled
+    condition: ce-frontend-services-gateway.enabled
   - name: ce-keycloak-boot
     version: 1.9.19
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: keycloak-boot.enabled
+    condition: ce-keycloak-boot.enabled
   - name: ce-webcomponents
     version: 0.94.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -82,14 +82,14 @@ dependencies:
     version: 0.51.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-authorization-service.enabled
-  - name: spring-cloud-dataflow
+  - name: ce-spring-cloud-dataflow
     version: 31.0.1
     repository: oci://registry-1.docker.io/bitnamicharts
-    condition: spring-cloud-dataflow.enabled
+    condition: ce-spring-cloud-dataflow.enabled
   - name: ce-wiremock
     version: 0.1.7
     repository: oci://harbor.tools.acerta.io/acerta-releases
-    condition: wiremock.enabled
+    condition: ce-wiremock.enabled
   - name: ce-scdf-client
     version: 0.52.0
     repository: oci://harbor.tools.acerta.io/acerta-releases

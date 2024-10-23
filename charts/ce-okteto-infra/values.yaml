@@ -1,4 +1,4 @@
-mssql-latest:
+ce-mssql-latest:
   fullnameOverride: mssql-latest
   enabled: false
   resources:
@@ -51,7 +51,7 @@ redis:
     redis:
       password: Admin123
 
-pulsar-standalone:
+ce-pulsar-standalone:
   fullnameOverride: pulsar-standalone
   enabled: false
   resources:
@@ -75,7 +75,7 @@ pulsar-standalone:
   securityContext:
     runAsUser: 0
 
-pulsar-admin-console:
+ce-pulsar-admin-console:
   fullnameOverride: pulsar-admin-console
   enabled: false
   resources:
@@ -141,7 +141,7 @@ pulsar-admin-console:
     annotations:
       dev.okteto.com/generate-host: "true"
 
-axon-server-calendar:
+ce-axon-server-calendar:
   fullnameOverride: axon-server-calendar
   enabled: false
   resources:
@@ -181,7 +181,7 @@ axon-server-calendar:
     annotations:
       dev.okteto.com/generate-host: "true"
 
-pulsar-client:
+ce-pulsar-client:
   fullnameOverride: pulsar-client
   enabled: false
   resources:
@@ -200,7 +200,7 @@ pulsar-client:
     annotations:
       dev.okteto.com/generate-host: "true"
 
-pulsar-init-job:
+ce-pulsar-init-job:
   fullnameOverride: pulsar-init-job
   enabled: false
   initContainers:
@@ -359,7 +359,7 @@ pulsar-init-job:
     echo ""
     echo "Source Created"
 
-ff4j-init-job:
+ce-ff4j-init-job:
   fullnameOverride: ff4j-init-job
   enabled: false
   initContainers:
@@ -368,7 +368,7 @@ ff4j-init-job:
       endpoint: ce-ff4j-server:8080
   script: ""
 
-db-init-job:
+ce-db-init-job:
   fullnameOverride: db-init-job
   enabled: false
   image:
@@ -473,7 +473,7 @@ db-init-job:
       username: AgDAvnpD+6Jk3gRHdARgmuUeRyKmq6lkPTU7YNJhfehCgmzwsZOsAnceRSwjzyDZFsVJQjmexNnQylgl6DyX4FlYgudIvkIS8L/U72g0C2QUyrCHYmqgbyjH65c9+yng3iveYnWCj29X+o1zyIN90YVfsINeRmx80gC7NevNfOdS1oF7B1o/drziPetobrj/USd7N+5R3bNk5niwJYf8EVUpcy8fkVZHZQnddO8FiZi/4vQaYZ+KnwOO56tAoxizgQIV9ozcB+WznLbQqx6GH94g4FPJ+KReLRdGiohOIIKjno8NlqY1nCT6ZxP6l3UzNFXiq3t0BzEd0bvmZmTFrtjisaLsL8TPjHqsdNspfDrTYzQIoaZVDXKtwlPm2ua2Sk6Sa7z6cBe2EVKAa9AgQGfXsiCSKt+/Z0wcvkMOi19hV3DeQTbYk7eBHVoupzkhG+v3XqF9uzpZPPNLIP3sbDPCqPUa1StnXN6T8rUCTIaRUCijWXi+Kzh1Q4lImqYxad8ZwlB9xzDvR9LSWiToi7LMJ17CqPd2WlDoKlUkWAQXg2NYr6SwRPbOYMUgx9mah0aOb2np9DFXXv0IvrB9d2yf+4aOIpnwDbub8aHVPX/qc0qhlvHAtKJ1G0nMdlM0IVWmbt3LmWzLktjFwFlynq9W1yVSby7A6Wc1/S2DYjuwklYhDW0MSQHq7nL863/aii105w==
       password: AgCdt5/5f2nDW2Zy1gKZt98Vbk6J1g/6X6goylU9Vs49srHuINbZmAuWZxdpSy4iCgUT3hALTl1k7p4fQHVKKW2n3hUhRw0tN85drj8vSIodYfJ+MadEKlvVuhZjdHPXpCtOIPcz0OIExkGwBnV/oAsZpOxYnp0pbom43wCsmKRSJzhJMIJNrCq9WNKYbP6k62UJzPC+B9JmmWYCgfPRRIGivRD412ZKQTMnUgtarjaETG5nHHcIHaZxNStkLswrCqQDklYHDaRks3w4LqrEfWsTQLJUumMZvTe95uYsm5GGExTXUgjtDcKhnlANfF2xX7c2gJDlfCYnkYb7zFhccQ/gE6p+ORpc8wBQZXPV3jTVt6dkpNO4a8DCZQcDEouUS5V20lUwtnnIarlZ4DgtSsco+IquVUcU70mBny6yBAvZx27Burf/g1YVIMdhGPkt7HCtJ05BrpcytNUa50UDlS8B6wumx8HaORzWZFTcaUhyfnpGRz853X+XlgzHkghBZqTXAhCHTLrvpz1CAwjhNup6CzBAyrQp/GGGxybwzk6glZkXjMoQ6FiVrGKXuaDAkKFWu4Nu8JiC5wc8bY4Mw4c4gsckfre2HvoL67Va6MOqhpw/Xc5QsYxTtf55hwG5GvjKLb0ZYhrpGPOGu6O6Hjv5rYL/bFmLd+8FZoWRmiNK+X4TCAsyMbBV2gFcU5pOQyUMKOV+J9R28g==
 
-scdf-init-job:
+ce-scdf-init-job:
   fullnameOverride: scdf-init-job
   enabled: false
   initContainers:
@@ -609,7 +609,7 @@ ce-ff4j-server:
     enabled: true
     tenant: dev
 
-frontend-services-gateway:
+ce-frontend-services-gateway:
   fullnameOverride: frontend-services-gateway
   enabled: false
   resources:
@@ -849,7 +849,7 @@ frontend-services-gateway:
   tempo:
     enabled: true
     tenant: dev
-keycloak-boot:
+ce-keycloak-boot:
   fullnameOverride: keycloak-boot
   enabled: false
   resources:
@@ -972,7 +972,7 @@ ce-authorization-service:
     enabled: true
     tenant: dev
 
-spring-cloud-dataflow:
+ce-spring-cloud-dataflow:
   enabled: false
   fullnameOverride: spring-cloud-dataflow
   skipper:
@@ -1069,7 +1069,7 @@ spring-cloud-dataflow:
               sealedsecrets.bitnami.com/cluster-wide: "true"
             name: scdf-server-init-datasource-cred
 
-wiremock:
+ce-wiremock:
   enabled: false
   fullnameOverride: ce-fake-connect-be
   service:
