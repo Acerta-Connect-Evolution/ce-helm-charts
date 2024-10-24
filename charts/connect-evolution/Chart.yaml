@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.2492.2
+version: 1.2492.3
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.528.0
@@ -39,7 +39,6 @@ dependencies:
     version: 1.53.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-ff4j-server.enabled, ff4j-server.enabled
-    alias: ff4j-server
   - name: ce-payroll-vacationcertificate
     version: 0.134.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -64,7 +63,6 @@ dependencies:
     version: 0.107.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-clink.enabled, clink.enabled
-    alias: clink
   - name: ce-frontend-services-gateway
     version: 1.176.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -89,7 +87,6 @@ dependencies:
     version: 0.52.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-authorization-service.enabled, authorization-service.enabled
-    alias: authorization-service
   - name: ce-connect
     version: 0.184.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -99,12 +96,10 @@ dependencies:
     version: 2.7.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-preference.enabled, preference.enabled
-    alias: preference
   - name: ce-scdf-client
     version: 0.57.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-scdf-client.enabled, scdf-client.enabled
-    alias: scdf-client
   - name: ce-chro-inbound-integration
     version: 1.14.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
