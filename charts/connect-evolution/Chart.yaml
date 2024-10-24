@@ -3,23 +3,20 @@ appVersion: '1.0'
 description: Helm chart for connect evolution application
 name: connect-evolution
 type: application
-version: 1.2492.3
+version: 1.2492.4
 dependencies:
   - name: ce-calendar-timespend-backend
     version: 1.528.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-timespend-backend.enabled, calendar-timespend-backend.enabled
-    alias: calendar-timespend-backend
   - name: ce-calendar-timespend-frontend
     version: 0.615.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-timespend-frontend.enabled, calendar-timespend-frontend.enabled
-    alias: calendar-timespend-frontend
   - name: ce-pulsar-client
     version: 3.65.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-pulsar-client.enabled, pulsar-client.enabled
-    alias: pulsar-client
   - name: ce-init-job
     version: 2.9.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -43,22 +40,18 @@ dependencies:
     version: 0.134.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-payroll-vacationcertificate.enabled, payroll-vacationcertificate.enabled
-    alias: payroll-vacationcertificate
   - name: ce-webcomponents
     version: 0.94.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-webcomponents.enabled, webcomponents.enabled
-    alias: webcomponents
   - name: ce-calendar-repertorium
     version: 1.36.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-repertorium.enabled, calendar-repertorium.enabled
-    alias: calendar-repertorium
   - name: ce-balances
     version: 0.52.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-balances.enabled, balances.enabled
-    alias: balances
   - name: ce-clink
     version: 0.107.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -67,22 +60,18 @@ dependencies:
     version: 1.176.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-frontend-services-gateway.enabled, frontend-services-gateway.enabled
-    
   - name: ce-calendar-balance-backend
     version: 0.72.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-balance-backend.enabled, calendar-balance-backend.enabled
-    alias: calendar-balance-backend
   - name: ce-calendar-balance-frontend
     version: 0.106.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-balance-frontend.enabled, calendar-balance-frontend.enabled
-    alias: calendar-balance-frontend
   - name: ce-connect-schedule-rollout
     version: 0.8.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-connect-schedule-rollout.enabled, connect-schedule-rollout.enabled
-    alias: connect-schedule-rollout
   - name: ce-authorization-service
     version: 0.52.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -91,7 +80,6 @@ dependencies:
     version: 0.184.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-connect.enabled, connect.enabled
-    alias: connect
   - name: ce-preference
     version: 2.7.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
@@ -104,19 +92,15 @@ dependencies:
     version: 1.14.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-chro-inbound-integration.enabled, chro-inbound-integration.enabled
-    alias: chro-inbound-integration
   - name: ce-prometheus-rsocket-proxy
     version: 0.10.1
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-prometheus-rsocket-proxy.enabled, prometheus-rsocket-proxy.enabled
-    alias: prometheus-rsocket-proxy 
   - name: ce-calendar-perftest
     version: 0.60.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-perftest.enabled, calendar-perftest.enabled
-    alias: calendar-perftest
   - name: ce-calendar-agreement-grouping-backend
     version: 0.23.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-agreement-grouping-backend.enabled, calendar-agreement-grouping-backend.enabled
-    alias: calendar-agreement-grouping-backend
