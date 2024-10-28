@@ -631,7 +631,7 @@ ce-frontend-services-gateway:
       profiles:
         active: always-active
 
-      redis:
+      data.redis:
         host: redis-master
         port: 6379
         password: Admin123
