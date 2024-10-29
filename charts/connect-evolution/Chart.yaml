@@ -33,7 +33,7 @@ dependencies:
     condition: db-init-job.enabled
     alias: db-init-job
   - name: ce-ff4j-server
-    version: 1.54.0
+    version: 1.55.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-ff4j-server.enabled
   - name: ce-payroll-vacationcertificate
