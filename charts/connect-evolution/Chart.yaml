@@ -81,7 +81,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-connect.enabled
   - name: ce-preference
-    version: 2.9.0
+    version: 2.10.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-preference.enabled
   - name: ce-scdf-client
