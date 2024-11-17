@@ -70,7 +70,7 @@ spec:
           startupProbe:
             httpGet:
               path: /actuator/health/liveness
-              port: http-grpc-alt
+              port: https-alt
             failureThreshold: 30
             periodSeconds: 5
 
