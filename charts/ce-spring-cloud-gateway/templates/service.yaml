@@ -12,7 +12,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-      app: {{ .Values.name }}
+      app: {{ include "mychart.fullname" . }}
   ports:
       - name: https
         protocol: TCP
