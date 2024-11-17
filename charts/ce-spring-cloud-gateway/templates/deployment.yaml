@@ -44,7 +44,7 @@ spec:
           name: application-yml
         - name: ssl-certs
           secret:
-            secretName: {{ .Values.name }}-tls
+            secretName: {{ include "mychart.fullname" . }}-tls
       containers:
         - name: {{ .Chart.Name }}
           volumeMounts:
