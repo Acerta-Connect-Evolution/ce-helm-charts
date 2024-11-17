@@ -1,5 +1,7 @@
 replicaCount: 1
 
+dns_name: chart-example.local
+
 image:
   repository: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/clink
   pullPolicy: IfNotPresent
