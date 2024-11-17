@@ -65,12 +65,14 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: https-alt
+              scheme: HTTPS
             failureThreshold: 1
             periodSeconds: 10
           startupProbe:
             httpGet:
               path: /actuator/health/liveness
               port: https-alt
+              scheme: HTTPS
             failureThreshold: 30
             periodSeconds: 5
 
