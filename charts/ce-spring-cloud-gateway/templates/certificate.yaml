@@ -4,7 +4,7 @@ metadata:
   name: {{ include "mychart.fullname" . }}-tls
   namespace: {{ .Values.namespace }}
 spec:
-  secretName: {{ .Values.name }}-tls
+  secretName: {{ include "mychart.fullname" . }}-tls
   issuerRef:
     group: cert-manager.io
     name: cert-manager
