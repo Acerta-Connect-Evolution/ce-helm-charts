@@ -1,0 +1,20 @@
+{{- /* @formatter:off */}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "mychart.fullname" . }}
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+    appType: {{ .Values.appType }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.dns_name }}
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  type: LoadBalancer
+  selector:
+      app: {{ .Values.name }}
+  ports:
+      - name: https
+        protocol: TCP
+        port: 443
+        targetPort: 8443

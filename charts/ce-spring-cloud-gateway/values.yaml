@@ -1,0 +1,98 @@
+replicaCount: 1
+
+dns_name: "gateway.example.com"
+
+image:
+  repository: harbor.tools.acerta.io/acerta-releases/acerta-connect-evolution/frontend-services-gateway
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+appType: "springboot"
+
+imagePullSecrets:
+  - name: regcred
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+# fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+
+sealedsecret:
+  gatewayclient:
+    secret:
+
+loki:
+  multiline: true
+  enabled: true
+  # dev, tst, acc, prd
+  tenant: "tst"
+tempo:
+  enabled: true
+  tenant: "tst"
+
+extraEnv: {}
+
+resources: # {}
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+#  requests:
+#    cpu: "250m"
+#    memory: "384Mi"
+#  limits:
+#    cpu: "250m"
+#    memory: "512Mi"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+application_yml: ""
+
+prometheusRule:
+  ## If true, a PrometheusRule CRD is created for a prometheus operator
+  ## https://github.com/coreos/prometheus-operator
+  ##
+  ## The rules will be processed as Helm template, allowing to set variables in them.
+  enabled: false
+  labels: {}
+  # some bogus rules that you can use as a template
+  rules: []
+    # - record: xxx_filesystem_data_used_percent
+    #   expr: |
+    #     100 * (xxx_filesystem_data_size_bytes{service="{{ template "xxx-exporter.fullname" . }}"} - xxx_filesystem_data_free_bytes{service="{{ template "xxx-exporter.fullname" . }}"})
+    #     / xxx_filesystem_data_size_bytes{service="{{ template "xxx-exporter.fullname" . }}"}
+    # - alert: xxxHeapTooHigh
+    #   expr: |
+    #     xxx_jvm_memory_used_bytes{service="{{ template "xxx-exporter.fullname" . }}", area="heap"} / xxx_jvm_memory_max_bytes{service="{{ template "xxx-exporter.fullname" . }}", area="heap"}
+    #     > 0.9
+    #   for: 15m
+    #   labels:
+    #     severity: critical
+    #   annotations:
+    #     description: The heap usage is over 90% for 15m
+    #     summary: xxx node {{ "{{ $labels.node }}" }} heap usage is high
+
