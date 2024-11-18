@@ -47,7 +47,7 @@ spec:
         {{- if .Values.grpc_ssl_enabled }}
         - name: ssl-certs-grpc
           secret:
-            secretName: {{ include "mychart.fullname" . }}-grpc-service-tls
+            secretName: test-tls
         {{- end }}
       containers:
         - name: {{ .Chart.Name }}
