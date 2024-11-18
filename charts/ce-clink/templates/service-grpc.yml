@@ -1,0 +1,22 @@
+{{- if .Values.grpc_ssl_enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "mychart.fullname" . }}-grpc-ssl
+  labels:
+    {{- include "mychart.labels" . | nindent 4 }}
+    appType: {{ .Values.appType }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.grpc_dns_name }}
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  type: LoadBalancer
+  ports:
+    - port: {{ .Values.service.grpc.port }}
+      targetPort: grpc
+      protocol: TCP
+      name: grpc
+  selector:
+    {{- include "mychart.selectorLabels" . | nindent 4 }}
+{{- end }}

@@ -3,4 +3,4 @@ appVersion: 7.11.0
 description: Helm chart for ce-clink
 name: ce-clink
 type: application
-version: 0.108.1
+version: 0.109.0

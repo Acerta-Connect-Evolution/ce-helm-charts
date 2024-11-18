@@ -44,17 +44,21 @@ spec:
         - configMap:
             name: application-yml-{{ include "mychart.fullname" . }}
           name: application-yml
-        - name: ssl-certs
+        {{- if .Values.grpc_ssl_enabled }}
+        - name: ssl-certs-grpc
           secret:
-            secretName: {{ include "mychart.fullname" . }}-tls
+            secretName: {{ include "mychart.fullname" . }}-grpc-tls
+        {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           volumeMounts:
             - mountPath: /app/config
               name: application-yml
-            - name: ssl-certs
-              mountPath: /etc/ssl/certs
+            {{- if .Values.grpc_ssl_enabled }}
+            - name: ssl-certs-grpc
+              mountPath: /etc/ssl/certs/grpc/
               readOnly: true
+            {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"

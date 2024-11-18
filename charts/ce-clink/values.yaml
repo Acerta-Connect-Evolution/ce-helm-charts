@@ -1,5 +1,6 @@
 replicaCount: 1
 
+grpc_ssl_enabled: false
 dns_name: chart-example.local
 
 image:

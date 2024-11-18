@@ -1,10 +1,11 @@
+{{- if .Values.grpc_ssl_enabled }}
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "mychart.fullname" . }}-tls
+  name: {{ include "mychart.fullname" . }}-grpc-tls
   namespace: {{ .Values.namespace }}
 spec:
-  secretName: {{ include "mychart.fullname" . }}-tls
+  secretName: {{ include "mychart.fullname" . }}-grpc-tls
   issuerRef:
     group: cert-manager.io
     name: cert-manager
@@ -12,6 +13,7 @@ spec:
   usages:
   - digital signature
   - key encipherment  
-  commonName: {{ .Values.dns_name }}
+  commonName: {{ .Values.grpc_dns_name }}
   dnsNames:
     - {{ .Values.dns_name }}
+{{- end }}
