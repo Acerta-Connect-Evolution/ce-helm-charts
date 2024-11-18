@@ -1,4 +1,5 @@
 {{- /* @formatter:off */}}
+
   {{- $fullName := include "mychart.fullname" . -}}
 apiVersion: apps/v1
 kind: Deployment
@@ -31,6 +32,10 @@ spec:
             {{- end }}
         {{- end }}
     spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
