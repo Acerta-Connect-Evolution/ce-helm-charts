@@ -15,5 +15,5 @@ spec:
   - key encipherment  
   commonName: {{ .Values.grpc_dns_name }}
   dnsNames:
-    - {{ .Values.dns_name }}
+    - {{ .Values.grpc_dns_name }}
 {{- end }}
