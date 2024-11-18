@@ -45,6 +45,9 @@ spec:
         - name: ssl-certs
           secret:
             secretName: {{ include "mychart.fullname" . }}-tls
+        - name: ssl-keystore
+          secret:
+            secretName: test-ssl-keystore
       containers:
         - name: {{ .Chart.Name }}
           volumeMounts:
@@ -52,6 +55,9 @@ spec:
               name: application-yml
             - name: ssl-certs
               mountPath: /etc/ssl/certs
+              readOnly: true
+            - name: ssl-keystore
+              mountPath: /etc/ssl/keystore
               readOnly: true
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
