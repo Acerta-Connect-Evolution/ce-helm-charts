@@ -47,7 +47,7 @@ spec:
         {{- if .Values.grpc_ssl_enabled }}
         - name: ssl-certs-grpc
           secret:
-            secretName: test-tls
+            secretName: clink-grpc-service-tls
         {{- end }}
       containers:
         - name: {{ .Chart.Name }}
