@@ -3,7 +3,7 @@ appVersion: '1.0'
 description: Helm chart for connect evolution infrastructure on Okteto
 name: ce-okteto-infra
 type: application
-version: 0.187.0
+version: 0.188.0
 dependencies:
   - name: ce-mssql-latest
     version: 0.3.14
@@ -91,6 +91,6 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-wiremock.enabled
   - name: ce-scdf-client
-    version: 0.52.0
+    version: 0.59.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-scdf-client.enabled
