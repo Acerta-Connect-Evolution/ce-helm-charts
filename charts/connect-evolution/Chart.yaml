@@ -6,7 +6,7 @@ type: application
 version: 1.2543.0
 dependencies:
   - name: ce-calendar-timespend-backend
-    version: 1.535.0
+    version: 1.536.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-timespend-backend.enabled
   - name: ce-calendar-timespend-frontend
