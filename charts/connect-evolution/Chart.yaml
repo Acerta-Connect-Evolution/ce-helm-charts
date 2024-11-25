@@ -61,7 +61,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
-    version: 0.73.0
+    version: 0.74.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-balance-backend.enabled
   - name: ce-calendar-balance-frontend
