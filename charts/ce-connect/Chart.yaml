@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: 2.19.0
+appVersion: 2.20.0
 description: Helm chart for ce-connect
 name: ce-connect
 type: application
-version: 0.188.0
+version: 0.189.0
