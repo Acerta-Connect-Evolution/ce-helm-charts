@@ -10,7 +10,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-timespend-backend.enabled
   - name: ce-calendar-timespend-frontend
-    version: 0.639.0
+    version: 0.640.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-timespend-frontend.enabled
   - name: ce-pulsar-client
