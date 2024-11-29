@@ -41,7 +41,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-payroll-vacationcertificate.enabled
   - name: ce-webcomponents
-    version: 0.94.0
+    version: 0.95.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-webcomponents.enabled
   - name: ce-calendar-repertorium
