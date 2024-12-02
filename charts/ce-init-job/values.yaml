@@ -7,7 +7,7 @@ global:
 
 ## Job image
 image:
-  repository: "curlimages/curl"
+  repository: "harbor.tools.acerta.io/dockerhub/curlimages/curl"
   #tag is set by chart's appVersion
   pullPolicy: IfNotPresent
 

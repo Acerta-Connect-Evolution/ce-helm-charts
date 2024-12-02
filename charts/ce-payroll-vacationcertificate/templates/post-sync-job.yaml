@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: post-sync
-          image: curlimages/curl
+          image: harbor.tools.acerta.io/dockerhub/curlimages/curl
           command:
             - curl
             - --location
