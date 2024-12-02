@@ -507,8 +507,8 @@ ce-scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "migrate-employer",
-          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.54.0",
-          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.54.0",
+          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.55.0",
+          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.55.0",
           "force": false
       }'
     curl -X 'POST' \
