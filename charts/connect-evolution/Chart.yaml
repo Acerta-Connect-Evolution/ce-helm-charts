@@ -77,7 +77,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-authorization-service.enabled
   - name: ce-connect
-    version: 0.194.0
+    version: 0.195.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-connect.enabled
   - name: ce-preference
