@@ -8,7 +8,7 @@ ce-mssql-latest:
       cpu: 5m
       memory: 1536Mi
   persistence:
-    dataSize: 1Gi
+    dataSize: 25Gi
     userlogSeparateClaim: false
     tempSeparateClaim: false
     userdbSeparateClaim: false
@@ -487,8 +487,8 @@ ce-scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "init",
-          "containerImage": "acerta-connect-evolution/init-task:0.42.0",
-          "metadataJar": "be.acerta.ce.batch:init-task:jar:metadata:0.42.0",
+          "containerImage": "acerta-connect-evolution/init-task:0.38.0",
+          "metadataJar": "be.acerta.ce.batch:init-task:jar:metadata:0.38.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -497,8 +497,8 @@ ce-scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "reset-dicco",
-          "containerImage": "acerta-connect-evolution/reset-dicco-task:1.6.0",
-          "metadataJar": "be.acerta.ce.batch:reset-dicco-task:jar:metadata:1.6.0",
+          "containerImage": "acerta-connect-evolution/reset-dicco-task:1.4.0",
+          "metadataJar": "be.acerta.ce.batch:reset-dicco-task:jar:metadata:1.4.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -507,8 +507,8 @@ ce-scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "migrate-employer",
-          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.55.0",
-          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.55.0",
+          "containerImage": "acerta-connect-evolution/migrate-employer-task:0.48.0",
+          "metadataJar": "be.acerta.ce.batch:migrate-employer-task:jar:metadata:0.48.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -517,8 +517,8 @@ ce-scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "onboard-ce",
-          "containerImage": "acerta-connect-evolution/onboard-ce-task:1.16.0",
-          "metadataJar": "be.acerta.ce.batch:onboard-ce-task:jar:metadata:1.16.0",
+          "containerImage": "acerta-connect-evolution/onboard-ce-task:1.14.0",
+          "metadataJar": "be.acerta.ce.batch:onboard-ce-task:jar:metadata:1.14.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -527,8 +527,8 @@ ce-scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "notify",
-          "containerImage": "acerta-connect-evolution/notify-task:0.22.0",
-          "metadataJar": "be.acerta.ce.batch:notify-task:jar:metadata:0.22.0",
+          "containerImage": "acerta-connect-evolution/notify-task:0.20.0",
+          "metadataJar": "be.acerta.ce.batch:notify-task:jar:metadata:0.20.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -537,8 +537,8 @@ ce-scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "clean-ce",
-          "containerImage": "acerta-connect-evolution/clean-ce-task:0.21.0",
-          "metadataJar": "be.acerta.ce.batch:clean-ce-task:jar:metadata:0.21.0",
+          "containerImage": "acerta-connect-evolution/clean-ce-task:0.19.0",
+          "metadataJar": "be.acerta.ce.batch:clean-ce-task:jar:metadata:0.19.0",
           "force": false
       }'
     curl -X 'POST' \
@@ -547,8 +547,8 @@ ce-scdf-init-job:
       -H 'Content-Type: application/json' \
       -d '{
           "name": "time-code",
-          "containerImage": "acerta-connect-evolution/time-code-task:1.4.0",
-          "metadataJar": "be.acerta.ce.batch:time-code-task:jar:metadata:1.4.0",
+          "containerImage": "acerta-connect-evolution/time-code-task:1.2.0",
+          "metadataJar": "be.acerta.ce.batch:time-code-task:jar:metadata:1.2.0",
           "force": false
       }'
     curl -X 'POST' \
