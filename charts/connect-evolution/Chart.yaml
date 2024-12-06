@@ -53,7 +53,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-balances.enabled
   - name: ce-clink
-    version: 0.112.0
+    version: 0.113.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-clink.enabled
   - name: ce-frontend-services-gateway
