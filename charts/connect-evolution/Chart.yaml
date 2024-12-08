@@ -37,7 +37,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-ff4j-server.enabled
   - name: ce-payroll-vacationcertificate
-    version: 0.134.0
+    version: 0.135.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-payroll-vacationcertificate.enabled
   - name: ce-webcomponents
