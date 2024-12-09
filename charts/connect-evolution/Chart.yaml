@@ -101,6 +101,6 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-perftest.enabled
   - name: ce-calendar-agreement-grouping-backend
-    version: 0.24.0
+    version: 0.26.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-agreement-grouping-backend.enabled
