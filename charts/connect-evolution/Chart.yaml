@@ -45,7 +45,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-webcomponents.enabled
   - name: ce-calendar-repertorium
-    version: 1.37.0
+    version: 1.38.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-calendar-repertorium.enabled
   - name: ce-balances
