@@ -57,7 +57,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-clink.enabled
   - name: ce-frontend-services-gateway
-    version: 1.176.0
+    version: 1.177.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-frontend-services-gateway.enabled
   - name: ce-calendar-balance-backend
