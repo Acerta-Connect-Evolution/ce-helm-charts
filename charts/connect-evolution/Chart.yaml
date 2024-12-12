@@ -85,7 +85,7 @@ dependencies:
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-preference.enabled
   - name: ce-scdf-client
-    version: 0.61.0
+    version: 0.62.0
     repository: oci://harbor.tools.acerta.io/acerta-releases
     condition: ce-scdf-client.enabled
   - name: ce-chro-inbound-integration
